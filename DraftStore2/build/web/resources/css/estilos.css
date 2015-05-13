@@ -1,0 +1,104 @@
+/* make sidebar nav vertical */
+@media (min-width: 768px) {
+  .sidebar-nav .navbar .navbar-collapse {
+    padding: 0;
+    max-height: none;
+  }
+  .sidebar-nav .navbar ul {
+    float: none;
+  }
+  .sidebar-nav .navbar ul:not {
+    display: block;
+  }
+  .sidebar-nav .navbar li {
+    float: none;
+    display: block;
+  }
+  .sidebar-nav .navbar li a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+}
+td .hidden
+{
+    display: none;
+}
+.botões .ações
+{
+    display: inline;
+}
+#logo {
+	display: inline-block;
+	margin-bottom: 30px;
+	margin-left: 2%;
+}
+
+#titulo {
+	margin-top: 1%;
+	margin-left: 80px;
+	display: inline-block;
+}
+
+body {
+	font-size: 20px;
+	width: auto;
+	height: auto;
+        background: #373737 url("../img/bg.png") 0 0 repeat;
+        color: white;
+}
+
+h1 {
+	font-size: 64px;
+	margin-top: 20px;
+}
+
+li {
+	font-size: 18px;
+}
+
+label {
+	float: center;
+	width: 40%;
+}
+input{
+	float: center;
+
+}
+
+select{
+	float: center;
+	margin-right: 25px;
+	-webkit-appearance: menulist-button;
+}
+
+
+.highlighted {
+    color: #DCDCDC;
+    background-color: #0000FF;
+}
+tbody tr:hover {
+    color: #DCDCDC;
+    background-color: #1E90FF;
+}
+
+.comboBox{
+	display: inline-block;
+	width: 400px;
+}
+
+.textField.number {
+	width: 50%;
+	margin-left: 25px;
+}
+.number {
+	float:left;
+	width: 120%;
+}
+
+.textField.custo {
+	width: 40%;
+}
+
+.inputCusto {
+	float: right;
+}

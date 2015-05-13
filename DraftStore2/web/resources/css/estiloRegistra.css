@@ -1,0 +1,54 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 09/05/2015, 22:28:12
+    Author     : Marcos
+*/
+
+.submit-lente {
+  position:absolute;
+  top:0; right:0;
+  z-index:10;
+  border:none;
+  background:transparent;
+  outline:none;
+}
+
+.submit-line {
+  position: relative;
+  width: 500px;
+}
+
+.submit-line input {
+  width: 100%;
+}
+
+.botao{
+    position: relative;
+    top: 20px;
+    left: 15px;
+}
+label{
+     width: 150px;
+     margin-left: 15px;
+}
+.iptData{
+    position: relative;
+    width: 240px;
+    right: 5%;
+}   
+#labelTotal{
+   position: relative;
+   right: 30px;
+}
+.iptTotal{
+    position: relative;
+    right: 88px;
+}
+.form2{
+    position: relative;
+    top: 80px;
+}
