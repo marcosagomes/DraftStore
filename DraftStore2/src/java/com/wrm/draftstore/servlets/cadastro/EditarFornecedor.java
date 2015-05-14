@@ -217,17 +217,17 @@ public class EditarFornecedor extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
 
-        String razaoSocial = request.getParameter("razaoSocial");
-        String cnpj = request.getParameter("cnpj");
-        String cep = request.getParameter("cep");
-        String endereco = request.getParameter("endereco");
-        String bairro = request.getParameter("bairro");
-        String cidade = request.getParameter("cidade");
-        String estado = request.getParameter("uf");
-        String telefone = request.getParameter("telefone");
-        String email = request.getParameter("email");
-        String site = request.getParameter("site");
-        String numero = request.getParameter("numero");
+        String razaoSocial = request.getParameter("RazaoSocial");
+        String cnpj = request.getParameter("Cnpj");
+        String cep = request.getParameter("Cep");
+        String endereco = request.getParameter("Endereco");
+        String bairro = request.getParameter("Bairro");
+        String cidade = request.getParameter("Cidade");
+        String estado = request.getParameter("Uf");
+        String telefone = request.getParameter("Telefone");
+        String email = request.getParameter("Email");
+        String site = request.getParameter("Site");
+        String numero = request.getParameter("Numero");
 
         Fornecedor f = new Fornecedor(razaoSocial, cnpj, cep, endereco, bairro,
                 cidade, estado, telefone, email, site, numero);

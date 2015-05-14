@@ -43,7 +43,7 @@
             <img id="logo" src="../resources/img/wrm-logoteste.png">
             <div class="texto" id="titulo">
                 <h1>
-                    Buscar Fornecedor
+                    Buscar Funcionário
                 </h1>
             </div>
         </header>

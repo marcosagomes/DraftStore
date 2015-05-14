@@ -31,7 +31,7 @@
 <body>
     <header>
         <img id="logo" src="../resources/img/wrm-logoteste.png">
-        <div class="texto" id="titulo"><h1>Editar Fornecedor</h1></div>
+        <div class="texto" id="titulo"><h1>Cadastrar Fornecedor</h1></div>
     </header>
     <div class="row">
         <div class="col-sm-3">
@@ -100,17 +100,12 @@
         <div class="col-sm-9">
             <!-- ********************** Inserir o conteudo aqui! ********************** -->
 
-            <form id="formulario" 
-                  action="EditarFornecedor"
-                  class="form-inline"
-                  method="POST"
-                  onSubmit="return valida(this)">
+            <form id="formulario" class="form-inline" onSubmit="return valida(this)">
 
                 <div id="campoRazaoSocial" class="normalidade form-group ">
                     <label class="col-sm-3 control-label" for="RazaoSocial"> Razão Social </label>
                     <div class="col-sm-7">
-                        <input type="text" id="inputRazaoSocial" 
-                               class="form-control" name="RazaoSocial" value="<c:out value="${Fornecedor.razaoSocial}"/>">
+                        <input type="text" id="inputRazaoSocial" class="form-control" name="RazaoSocial">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -119,7 +114,7 @@
                     <label class="col-sm-2 control-label cnpjMask" for="Cnpj"> CNPJ </label>
                     <div class="col-sm-3">
                         <input type="text" id="inputCNPJ" class="form-control" data-mask="99.999.999/9999-99" 
-                               placeholder="__.___.___/____-__" name="Cnpj" value="<c:out value="${Fornecedor.cnpj}"/>">
+                               placeholder="__.___.___/____-__" name="Cnpj">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -127,8 +122,7 @@
                 <div id="campoCep" class="normal form-group">
                     <label class="col-sm-2 control-label" for="Cep"> CEP </label>
                     <div class="col-sm-3">
-                        <input type="text" id="inputCep" class="form-control" data-mask="99999-999" 
-                               placeholder="_____-___" name="Cep" value="<c:out value="${Fornecedor.cep}"/>">
+                        <input type="text" id="inputCep" class="form-control" data-mask="99999-999" placeholder="_____-___" name="Cep">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -136,8 +130,7 @@
                 <div id="campoEndereco" class="normalidade form-group campoEndereco">
                     <label class="col-sm-3 control-label" for="Endereco"> Endereço </label>
                     <div class="col-sm-7">
-                        <input type="text" id="inputEndereco" class="form-control" 
-                               name="Endereco" value="<c:out value="${Fornecedor.endereco}"/>" disabled>
+                        <input type="text" id="inputEndereco" class="form-control" name="Endereco" disabled>
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -145,8 +138,7 @@
                 <div id="campoNumero" class="normal form-group">
                     <label class="col-sm-2 control-label" for="Numero"> Numero </label>
                     <div class="col-sm-3">
-                        <input type="text" id="inputNumero" class="form-control" 
-                               value="<c:out value="${Fornecedor.numero}"/>" name="Numero">
+                        <input type="text" id="inputNumero" class="form-control" name="Numero">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -154,8 +146,7 @@
                 <div id="campoBairro" class="normal form-group">
                     <label class="col-sm-2 control-label" for="Bairro"> Bairro </label>
                     <div class="col-sm-3">
-                        <input type="text" id="inputBairro" class="form-control" name="Bairro" 
-                               value="<c:out value="${Fornecedor.bairro}"/>" disabled>
+                        <input type="text" id="inputBairro" class="form-control" name="Bairro" disabled>
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -163,8 +154,7 @@
                 <div id="campoCidade" class="normal form-group">
                     <label class="col-sm-2 control-label" for="Cidade"> Cidade </label>
                     <div class="col-sm-3">
-                        <input type="text" id="inputCidade" class="form-control" 
-                               value="<c:out value="${Fornecedor.cidade}"/>" name="Cidade" disabled>
+                        <input type="text" id="inputCidade" class="form-control" name="Cidade" disabled>
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -172,8 +162,7 @@
                 <div id="campoUf" class="normal form-group">
                     <label class="col-sm-2 control-label" for="UF"> UF </label>
                     <div class="col-sm-3">
-                        <input type="text" id="inputUF" class="form-control" 
-                               value="<c:out value="${Fornecedor.estado}"/>" name="UF" disabled>
+                        <input type="text" id="inputUF" class="form-control" name="UF" disabled>
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -181,9 +170,7 @@
                 <div id="campoTelefone" class="normal form-group">
                     <label class="col-sm-2 control-label" for="Telefone"> Telefone </label>
                     <div class="col-sm-3">
-                        <input type="text" id="inputTelefone" class="form-control" 
-                               data-mask="(99) 9999-9999" placeholder="(__) ____-____" name="Telefone"
-                               value="<c:out value="${Fornecedor.telefone}"/>">
+                        <input type="text" id="inputTelefone" class="form-control" data-mask="(99) 9999-9999" placeholder="(__) ____-____" name="Telefone">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -191,8 +178,7 @@
                 <div id="campoEmail" class="normal form-group">
                     <label class="col-sm-2 control-label" for="Email"> Email </label>
                     <div class=" col-sm-3 ">
-                        <input type="text" id="inputEmail" class="form-control" name="Email"
-                               value="<c:out value="${Fornecedor.email}"/>">
+                        <input type="text" id="inputEmail" class="form-control" name="Email">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -201,14 +187,13 @@
                 <div id="campoSite" class="normalidade form-group">
                     <label class="col-sm-3 control-label" for="Site"> URL do Site </label>
                     <div class="col-sm-7">
-                        <input type="text" id="inputSite" class="form-control" name="Site"
-                               value="<c:out value="${Fornecedor.site}"/>">
+                        <input type="text" id="inputSite" class="form-control" name="Site">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
                 <div class="botoesFormulario">
                     <button type="reset" class="btn btn-danger">Cancelar</button>
-                    <button type="submit" class="btn btn-default">Efetuar alterações</button>
+                    <button type="submit" class="btn btn-default">Cadastrar</button>
                 </div>
 
             </form>

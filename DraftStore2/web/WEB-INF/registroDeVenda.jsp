@@ -109,7 +109,8 @@
         <div class="col-sm-9">
 
             <caption>Buscar por produto</caption>
-            <form action="#" class="form-search">
+            <form action="#" 
+                  class="form-search">
                 <div class="submit-line">
                     <input type="text" name="buscaProduto" />
                     <button class="submit-lente" type="submit">
@@ -148,10 +149,10 @@
             </table>
         </div>
         <div class="form2">
-            <form action="action" class="form-inline" method="post">
+            <form action="action" class="form-inline">
                 <div>
-                    <label> Data </label>
-                    <input type="date" class="iptData">
+                    <label for="data"> Data </label>
+                    <input type="date" class="iptData" name="data">
                     <div class="quebra">
                         <label id="labelTotal"> Total </label>
                         <input type="number" placeholder="R$" class="iptTotal"> 
