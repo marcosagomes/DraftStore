@@ -1,65 +1,54 @@
-@media (min-width: 768px) {
-    .sidebar-nav .navbar .navbar-collapse {
-        padding: 0;
-        max-height: none;
-    }
-    .sidebar-nav .navbar ul {
-        float: none;
-    }
-    .sidebar-nav .navbar ul:not {
-        display: block;
-    }
-    .sidebar-nav .navbar li {
-        float: none;
-        display: block;
-    }
-    .sidebar-nav .navbar li a {
-        padding-top: 15px;
-        padding-bottom: 15px;
-    }
-}
-li {
-    font-size: 18px;
-}
-#logo {
-    display: inline-block;
-    margin-bottom: 30px;
-    margin-left: 2%;
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 09/05/2015, 22:28:12
+    Author     : Marcos
+*/
+
+.submit-lente {
+  position:absolute;
+  top:0; right:0;
+  z-index:10;
+  border:none;
+  background:transparent;
+  outline:none;
 }
 
-#titulo {
-    margin-top: 1%;
-    margin-left: 80px;
-    display: inline-block;
+.submit-line {
+  position: relative;
+  width: 500px;
 }
 
-body {
-    font-size: 20px;
-    width: auto;
-    height: auto;
+.submit-line input {
+  width: 100%;
 }
 
-h1 {
-    font-size: 64px;
-    margin-top: 20px;
+.botao{
+    position: relative;
+    top: 20px;
+    left: 15px;
 }
-.form-group{
-    display: block;
-    padding-top:5em;
-    font-size:18px;
+label{
+     width: 150px;
+     margin-left: 15px;
 }
-.control-label{
-    width: 150px;
+.iptData{
+    position: relative;
+    width: 240px;
+    right: 5%;
+}   
+#labelTotal{
+   position: relative;
+   right: 30px;
 }
-button {
-    margin-top: 3em;
-    margin-left: 120px;
-    margin-right: 100px;
-    width: 140px;
+.iptTotal{
+    position: relative;
+    right: 88px;
 }
-#buscarProduto{
-    width: 300px;
-    border-radius: 8px;
-    border-style:ridge;
-    text-align: center;
+.form2{
+    position: relative;
+    top: 80px;
 }
