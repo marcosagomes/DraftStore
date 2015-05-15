@@ -5,6 +5,7 @@
  */
 package com.wrm.draftstore.servlets.cadastro;
 
+import com.wrm.draftstore.servlets.editar.EditarFornecedor;
 import com.wrm.draftstore.classes.Fornecedor;
 import com.wrm.draftstore.classes.Produto;
 import com.wrm.draftstore.classes.Usuario;

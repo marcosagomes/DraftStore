@@ -144,7 +144,7 @@ public class LoginServlet extends HttpServlet {
             sessao.setAttribute("usuario", usuario);
 
             // Redireciona para a a tela principal
-            response.sendRedirect("Servlet/BuscarFornecedor");
+            response.sendRedirect("Home");
             return;
             // FIM CASO SUCESSO
         }

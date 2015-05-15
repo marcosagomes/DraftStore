@@ -50,7 +50,7 @@
                     <div class="navbar-collapse collapse sidebar-navbar-collapse">
                         <ul class="nav navbar-nav">
                             <li>
-                                <a href="Home">Home</a>
+                                <a href="../Home">Home</a>
                             </li>
                             <li>
                                 <a href="RegistroVenda">Registrar Venda</a>

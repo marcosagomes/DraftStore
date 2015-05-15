@@ -27,7 +27,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author ramon.ahonorio
  */
-@WebServlet(name = "HomeServlet", urlPatterns = {"/Servlet/Home"})
+@WebServlet(name = "Home", urlPatterns = {"/Home"})
 public class HomeServlet extends HttpServlet {
 
     /**
@@ -50,7 +50,7 @@ public class HomeServlet extends HttpServlet {
         HttpSession sessao = httpRequest.getSession();
         Usuario usuario = (Usuario) sessao.getAttribute("usuario");
         request.setAttribute("usuario", usuario);
-        RequestDispatcher rd = request.getRequestDispatcher("../WEB-INF/home.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/home.jsp");
         rd.forward(request, response);
      
        
@@ -70,7 +70,7 @@ public class HomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        RequestDispatcher rd = request.getRequestDispatcher("../WEB-INF/home.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/home.jsp");
         rd.forward(request, response);
     }
 

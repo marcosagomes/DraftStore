@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.wrm.draftstore.servlets.cadastro;
+package com.wrm.draftstore.servlets.editar;
 
 import com.wrm.draftstore.classes.Fornecedor;
 import com.wrm.draftstore.classes.Usuario;

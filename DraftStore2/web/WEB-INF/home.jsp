@@ -19,7 +19,7 @@
         </title>
 
         <!-- Bootstrap -->
-        <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -27,13 +27,13 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
-        <link href="../resources/css/estiloCadastro.css" type="text/css" rel="stylesheet">
-        <link rel="icon" href="../resources/img/draft.ico" type="image/x-icon">
-        <link rel="shortcut icon" href="../resources/img/draft.ico" type="image/x-icon">
+        <link href="resources/css/estiloCadastro.css" type="text/css" rel="stylesheet">
+        <link rel="icon" href="resources/img/draft.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="resources/img/draft.ico" type="image/x-icon">
     </head>
     <body>
         <header>
-            <img id="logo" src="../resources/img/wrm-logoteste.png">
+            <img id="logo" src="resources/img/wrm-logoteste.png">
             <div class="texto" id="titulo"><h1> Inicio </h1></div>
         </header>
         <div class="row">
@@ -55,16 +55,16 @@
                                     <a href="Home">Home</a>
                                 </li>
                                 <li>
-                                    <a href="RegistroVenda">Registro de vendas</a>
+                                    <a href="Servlet/RegistroVenda">Registro de vendas</a>
                                 </li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produtos <b class="caret"></b></a>
                                     <ul class="dropdown-menu dropdown-menu-right">
                                         <li>
-                                            <a href="BuscarProduto">Buscar </a>
+                                            <a href="Servlet/BuscarProduto">Buscar </a>
                                         </li>
                                         <li>
-                                            <a href="CadastrarProduto">Cadastrar</a>
+                                            <a href="Servlet/CadastrarProduto">Cadastrar</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -72,10 +72,10 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Funcionários <b class="caret"></b></a>
                                     <ul class="dropdown-menu dropdown-menu-right">
                                         <li>
-                                            <a href="BuscarFuncionario">Buscar </a>
+                                            <a href="Servlet/BuscarFuncionario">Buscar </a>
                                         </li>
                                         <li>
-                                            <a href="CadastrarFuncionario">Cadastrar</a>
+                                            <a href="Servlet/CadastrarFuncionario">Cadastrar</a>
                                         </li>
 
                                     </ul>
@@ -84,10 +84,10 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Fornecedores <b class="caret"></b></a>
                                     <ul class="dropdown-menu dropdown-menu-right">
                                         <li>
-                                            <a href="BuscarFornecedor">Buscar </a>
+                                            <a href="Servlet/BuscarFornecedor">Buscar </a>
                                         </li>
                                         <li>
-                                            <a href="CadastrarFornecedor">Cadastrar</a>
+                                            <a href="Servlet/CadastrarFornecedor">Cadastrar</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -110,7 +110,6 @@
             <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
             <!-- Include all compiled plugins (below), or include individual files as needed -->
-            <script src="../bootstrap/js/bootstrap.min.js"></script>
-            <script src ="../resources/js/validacoesCampos.js"></script>
+            <script src="bootstrap/js/bootstrap.min.js"></script>
     </body>
 </html>

@@ -58,7 +58,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produtos <b class="caret"></b></a>
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <li>
-                                        <a href="Home">Home</a>
+                                        <a href="../Home">Home</a>
                                     </li>
                                     <li>
                                         <a href="BuscarProduto">Buscar </a>
