@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.wrm.draftstore.servlets.cadastro;
+package com.wrm.draftstore.servlets.remover;
 
 import com.wrm.draftstore.classes.Fornecedor;
 import com.wrm.draftstore.classes.Usuario;
@@ -30,55 +30,39 @@ import javax.servlet.http.HttpSession;
  *
  * @author ramon.ahonorio
  */
-@WebServlet(name = "EditarFornecedor", urlPatterns = {"/Servlet/EditarFornecedor"})
-public class EditarFornecedor extends HttpServlet {
+@WebServlet(name = "RemoverFornecedor", urlPatterns = {"/Servlet/RemoverFornecedor"})
+public class RemoverFornecedor extends HttpServlet {
     static String idFornec;
     public void editarFornecedor(Fornecedor f, Usuario u) {
         ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftstoredb");
         PreparedStatement stmt = null;
-        Connection conn = null; 
+        Connection conn = null;
         
-        String updateSql = "UPDATE TB_FORNECEDOR\n" +
-                          "    SET RAZAO_SOCIAL = '"+f.getRazaoSocial()+"', \n" +
-                          "        CNPJ = '"+f.getCnpj()+"', \n" +
-                          "        CEP = '"+f.getCep()+"', \n" +
-                          "        ENDERECO = '"+f.getEndereco()+"', \n" +
-                          "        BAIRRO = '"+f.getBairro()+"',\n" +
-                          "        NUMERO = "+Integer.parseInt(f.getNumero())+", \n" +
-                          "        CIDADE = '"+f.getCidade()+"', \n" +
-                          "        ESTADO = '"+f.getEstado()+"', \n" +
-                          "        TELEFONE = '"+f.getTelefone()+"', \n" +
-                          "        EMAIL = '"+f.getEmail()+"', \n" +
-                          "        SITE = '"+f.getSite()+"',\n" +
-                          "        FK_USUARIO = "+Integer.parseInt(u.getIdUsuario())+",\n" +
-                          "        NOME_USUARIO = '"+u.getNomeDoFuncionario()+"',\n" +
-                          "        DATA_CRIACAO = '"+new Timestamp(new Date().getTime()).toString()+"'\n" +
-                          "    WHERE ID_FORNECEDOR = "+idFornec+"\n" +
-                          "";
+        String updateSql = "DELETE FROM TB_FORNECEDOR WHERE ID_FORNECEDOR = "+idFornec+"";
         
         try {
             conn = conexaoBD.obterConexao();
             stmt = conn.prepareStatement(updateSql);
             stmt.execute();
 
-            System.out.println("Registro incluido com sucesso.");
+            System.out.println("> Fornecedor removido com sucesso.");
 
         } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(EditarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RemoverFornecedor.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("ERRO! -> " + ex.getMessage());
         } finally {
             if (stmt != null) {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(EditarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(RemoverFornecedor.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(EditarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(RemoverFornecedor.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -128,21 +112,21 @@ public class EditarFornecedor extends HttpServlet {
             }
             return f;
         } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(EditarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RemoverFornecedor.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("ERRO SQL! -> " + ex.getMessage());
         } finally {
             if (stmt != null) {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(EditarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(RemoverFornecedor.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(EditarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(RemoverFornecedor.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }

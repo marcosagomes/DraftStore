@@ -100,7 +100,10 @@
         <div class="col-sm-9">
             <!-- ********************** Inserir o conteudo aqui! ********************** -->
 
-            <form id="formulario" class="form-inline" onSubmit="return valida(this)">
+            <form id="formulario" 
+                  class="form-inline" 
+                  method="POST"
+                  onSubmit="return valida(this)">
 
                 <div id="campoRazaoSocial" class="normalidade form-group ">
                     <label class="col-sm-3 control-label" for="RazaoSocial"> Razão Social </label>
@@ -130,7 +133,7 @@
                 <div id="campoEndereco" class="normalidade form-group campoEndereco">
                     <label class="col-sm-3 control-label" for="Endereco"> Endereço </label>
                     <div class="col-sm-7">
-                        <input type="text" id="inputEndereco" class="form-control" name="Endereco" disabled>
+                        <input type="text" id="inputEndereco" class="form-control" name="Endereco" readonly>
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -146,7 +149,7 @@
                 <div id="campoBairro" class="normal form-group">
                     <label class="col-sm-2 control-label" for="Bairro"> Bairro </label>
                     <div class="col-sm-3">
-                        <input type="text" id="inputBairro" class="form-control" name="Bairro" disabled>
+                        <input type="text" id="inputBairro" class="form-control" name="Bairro" readonly>
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -154,7 +157,7 @@
                 <div id="campoCidade" class="normal form-group">
                     <label class="col-sm-2 control-label" for="Cidade"> Cidade </label>
                     <div class="col-sm-3">
-                        <input type="text" id="inputCidade" class="form-control" name="Cidade" disabled>
+                        <input type="text" id="inputCidade" class="form-control" name="Cidade" readonly>
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -162,7 +165,7 @@
                 <div id="campoUf" class="normal form-group">
                     <label class="col-sm-2 control-label" for="UF"> UF </label>
                     <div class="col-sm-3">
-                        <input type="text" id="inputUF" class="form-control" name="UF" disabled>
+                        <input type="text" id="inputUF" class="form-control" name="UF" readonly>
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -170,7 +173,8 @@
                 <div id="campoTelefone" class="normal form-group">
                     <label class="col-sm-2 control-label" for="Telefone"> Telefone </label>
                     <div class="col-sm-3">
-                        <input type="text" id="inputTelefone" class="form-control" data-mask="(99) 9999-9999" placeholder="(__) ____-____" name="Telefone">
+                        <input type="text" id="inputTelefone" class="form-control" 
+                               data-mask="(99) 9999-9999" placeholder="(__) ____-____" name="Telefone">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>

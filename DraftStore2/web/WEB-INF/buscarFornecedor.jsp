@@ -8,7 +8,7 @@ Author     : ramon.ahonorio
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -127,7 +127,7 @@ Author     : ramon.ahonorio
                     </form>                    
                 </div>
                 <br>
-                <div class="tabela">
+                <div class="tabela" id="tabelaBuscaFornecedor">
                     <table class="table table">
                         <caption>Fornecedores</caption>
                         <thead>
@@ -159,7 +159,11 @@ Author     : ramon.ahonorio
                             </p>
                         </div>	
                     </form>
-                    <form id="formRemover" class="form-search" onsubmit="return confirm('Deseja realmente remover o fornecedor selecionado ?')">
+                    <form id="formRemover" 
+                          action="RemoverFornecedor"
+                          method="GET"
+                          class="form-search" 
+                          onsubmit="return removerFornecedor(this)">
                         <input id="inputHiddenRemover" type="hidden" name="idFornecedor" value="">
                         <div class="botao">
                             <p>
@@ -174,5 +178,4 @@ Author     : ramon.ahonorio
                 <script src="../bootstrap/js/bootstrap.min.js"></script>
                 <script src="../resources/js/selecionarBusca.js"></script>
                 </body>
-
                 </html>
