@@ -14,8 +14,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -33,7 +31,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "RemoverFornecedor", urlPatterns = {"/Servlet/RemoverFornecedor"})
 public class RemoverFornecedor extends HttpServlet {
     static String idFornec;
-    public void editarFornecedor(Fornecedor f, Usuario u) {
+    public void removerFornecedor(Fornecedor f, Usuario u) {
         ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftstoredb");
         PreparedStatement stmt = null;
         Connection conn = null;
@@ -158,11 +156,12 @@ public class RemoverFornecedor extends HttpServlet {
         idFornec = request.getParameter("idFornecedor");
         
         Fornecedor f = buscarFornecedor(idFornec, usuario);
-        request.setAttribute("Fornecedor", f);
+//        request.setAttribute("Fornecedor", f);
+        
+        removerFornecedor(f, usuario);
+        
+        response.sendRedirect("BuscarFornecedor");
 
-//        response.sendRedirect("CadastrarFornecedor");
-        RequestDispatcher rd = request.getRequestDispatcher("../WEB-INF/editarFornecedor.jsp");
-        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -218,10 +217,10 @@ public class RemoverFornecedor extends HttpServlet {
         HttpSession sessao = httpRequest.getSession();
         Usuario usuario = (Usuario) sessao.getAttribute("usuario");
 
-        editarFornecedor(f, usuario);
+        removerFornecedor(f, usuario);
 
         System.out.println("> Fornecedor cadastrado.");
-        response.sendRedirect("../resultado.jsp");
+        response.sendRedirect("BuscarFornecedor");
     }
 
     /**

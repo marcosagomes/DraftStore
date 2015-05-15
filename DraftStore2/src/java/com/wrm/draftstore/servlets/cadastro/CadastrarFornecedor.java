@@ -38,8 +38,8 @@ public class CadastrarFornecedor extends HttpServlet {
         
         String sql = "INSERT INTO TB_FORNECEDOR " // Notar que antes de fechar aspas tem espaço em branco!
                 + "(RAZAO_SOCIAL, CNPJ, CEP, ENDERECO, BAIRRO, NUMERO, CIDADE, ESTADO, TELEFONE, EMAIL, SITE, "
-                + "FK_USUARIO, DATA_CRIACAO) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + "FK_USUARIO, DATA_CRIACAO, NOME_USUARIO) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
         conn = conexaoBD.obterConexao();
         stmt = conn.prepareStatement(sql);
@@ -49,19 +49,22 @@ public class CadastrarFornecedor extends HttpServlet {
         stmt.setString(3, f.getCep());
         stmt.setString(4, f.getEndereco());
         stmt.setString(5, f.getBairro());
-        stmt.setString(6, f.getNumero());
+        int numero = Integer.parseInt(f.getNumero());
+        stmt.setInt(6, numero);
         stmt.setString(7, f.getCidade());
         stmt.setString(8, f.getEstado());
         stmt.setString(9, f.getTelefone());
         stmt.setString(10, f.getEmail());
         stmt.setString(11, f.getSite());
-        stmt.setString(12, u.getIdUsuario());
+        int idUser = Integer.parseInt(u.getIdUsuario());
+        stmt.setInt(12, idUser);
         
         // Criando um Timestamp atual do sistema
         Date dataAtual = new Date();
         String timeStamp = new Timestamp(dataAtual.getTime()).toString();
         
         stmt.setString(13, timeStamp);
+        stmt.setString(14, u.getNomeDoFuncionario());
         
         stmt.executeUpdate();
         
@@ -103,17 +106,17 @@ public class CadastrarFornecedor extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         
-        String razaoSocial = request.getParameter("razaoSocial");
-        String cnpj = request.getParameter("cnpj");
-        String cep = request.getParameter("cep");
-        String endereco = request.getParameter("endereco");
-        String bairro = request.getParameter("bairro");
-        String cidade = request.getParameter("cidade");
-        String estado = request.getParameter("uf");
-        String telefone = request.getParameter("telefone");
-        String email = request.getParameter("email");
-        String site = request.getParameter("site");
-        String numero = request.getParameter("numero");
+        String razaoSocial = request.getParameter("RazaoSocial");
+        String cnpj = request.getParameter("Cnpj");
+        String cep = request.getParameter("Cep");
+        String endereco = request.getParameter("Endereco");
+        String bairro = request.getParameter("Bairro");
+        String cidade = request.getParameter("Cidade");
+        String estado = request.getParameter("UF");
+        String telefone = request.getParameter("Telefone");
+        String email = request.getParameter("Email");
+        String site = request.getParameter("Site");
+        String numero = request.getParameter("Numero");
         
         Fornecedor f = new Fornecedor(razaoSocial, cnpj, cep, endereco, bairro, 
                 cidade, estado, telefone, email, site, numero);
@@ -127,7 +130,7 @@ public class CadastrarFornecedor extends HttpServlet {
         
         cadastrarFornecedor(f, usuario);
         
-        response.sendRedirect("../resultado.jsp");
+        response.sendRedirect("CadastrarFornecedor");
         
     }
 
@@ -162,17 +165,17 @@ public class CadastrarFornecedor extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         
-        String razaoSocial = request.getParameter("razaoSocial");
-        String cnpj = request.getParameter("cnpj");
-        String cep = request.getParameter("cep");
-        String endereco = request.getParameter("endereco");
-        String bairro = request.getParameter("bairro");
-        String cidade = request.getParameter("cidade");
-        String estado = request.getParameter("uf");
-        String telefone = request.getParameter("telefone");
-        String email = request.getParameter("email");
-        String site = request.getParameter("site");
-        String numero = request.getParameter("numero");
+        String razaoSocial = request.getParameter("RazaoSocial");
+        String cnpj = request.getParameter("Cnpj");
+        String cep = request.getParameter("Cep");
+        String endereco = request.getParameter("Endereco");
+        String bairro = request.getParameter("Bairro");
+        String cidade = request.getParameter("Cidade");
+        String estado = request.getParameter("UF");
+        String telefone = request.getParameter("Telefone");
+        String email = request.getParameter("Email");
+        String site = request.getParameter("Site");
+        String numero = request.getParameter("Numero");
         
         Fornecedor f = new Fornecedor(razaoSocial, cnpj, cep, endereco, bairro, 
                 cidade, estado, telefone, email, site, numero);
@@ -184,10 +187,10 @@ public class CadastrarFornecedor extends HttpServlet {
         HttpSession sessao = httpRequest.getSession();
         Usuario usuario = (Usuario) sessao.getAttribute("usuario");
         
-        cadastrarFornecedor(f, usuario);
+      cadastrarFornecedor(f, usuario);
         
         System.out.println("> Fornecedor cadastrado.");
-        response.sendRedirect("../resultado.jsp");
+        response.sendRedirect("CadastrarFornecedor");
     }
 
     /**
