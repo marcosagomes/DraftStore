@@ -187,5 +187,10 @@ public class Usuario {
     List<String> papeisUsuario = Arrays.asList(this.papeis);
     return papeisUsuario.contains(papelNecessario);
   }
+  
+  public static void main(String[] args) {
+    Usuario u = new Usuario();
+    System.out.println(u.gerarHashSenhaMD5("adm"));
+  }
 
 }

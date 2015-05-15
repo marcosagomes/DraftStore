@@ -47,7 +47,6 @@
 
         <section class="about">
             <p class="about-links">
-
                 Copyright © 2015 WRM Sistemas
             </p>
 
