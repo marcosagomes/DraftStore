@@ -55,7 +55,7 @@
                                     <a href="Home">Home</a>
                                 </li>
                                 <li>
-                                    <a href="RevistroVenda">Registro de vendas</a>
+                                    <a href="RegistroVenda">Registro de vendas</a>
                                 </li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produtos <b class="caret"></b></a>
