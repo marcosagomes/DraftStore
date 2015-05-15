@@ -50,6 +50,9 @@ h1 {
 }
 .control-label{
   width: 150px;
+  margin-right: -18px;
+  margin-left: -35px;
+  padding-left: 40px;
 }
 .normalidade{
   width: 950px;
@@ -63,4 +66,8 @@ button {
     margin-left: 120px;
     margin-right: 100px;
     width: 140px;
+}
+
+input#inputCep.form-control,input#inputBairro.form-control,input#inputUF.form-control,input#inputEmail.form-control{
+ margin-right: 100px;
 }
