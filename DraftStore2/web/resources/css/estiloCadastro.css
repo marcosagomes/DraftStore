@@ -69,17 +69,3 @@ label{
 body{
     
 }
-
-.coluna1{
-   display: block;
-   background-color: grey;
-   width: 270px;
-   float: left;
-}
-
-.coluna2{
-    display: block;
-    background-color: yellow;
-    width: 270px;
-    float: right;
-}
