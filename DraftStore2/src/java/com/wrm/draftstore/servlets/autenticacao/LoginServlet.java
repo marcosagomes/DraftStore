@@ -23,6 +23,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -56,21 +59,14 @@ public class LoginServlet extends HttpServlet {
             Logger.getLogger(BuscarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-//        String sql = "SELECT TB_USUARIO.ID_USUARIO, "
-//                + "          TB_USUARIO.LOGIN, TB_USUARIO.SENHA, "
-//                + "          TB_USUARIO.NOME_FUNCIONARIO, TB_PAPEL.NOME_PAPEL\n"
-//                + "     FROM TB_USUARIO\n"
-//                + "     JOIN TB_PAPEL\n"
-//                + "      ON TB_USUARIO.FK_PAPEL = TB_PAPEL.ID_PAPEL"
-//                + "   WHERE TB_USUARIO.LOGIN = '" + nome
-//                + "'     AND TB_USUARIO.SENHA = '" + hashSenha + "'";
-        
-        String sql = "SELECT  TB_USUARIO.ID_USUARIO,\n" +
-                      "        TB_USUARIO.LOGIN, TB_USUARIO.SENHA, \n" +
-                      "        TB_USUARIO.NOME_FUNCIONARIO, TB_PAPEL.NOME_PAPEL\n" +
-                      "    FROM TB_USUARIO\n" +
-                      "    JOIN TB_PAPEL\n" +
-                      "    ON TB_USUARIO.FK_PAPEL = TB_PAPEL.ID_PAPEL";
+        String sql = "SELECT TB_USUARIO.ID_USUARIO, "
+                + "          TB_USUARIO.LOGIN, TB_USUARIO.SENHA, "
+                + "          TB_USUARIO.NOME_FUNCIONARIO, TB_PAPEL.NOME_PAPEL\n"
+                + "     FROM TB_USUARIO\n"
+                + "     JOIN TB_PAPEL\n"
+                + "      ON TB_USUARIO.FK_PAPEL = TB_PAPEL.ID_PAPEL"
+                + "   WHERE TB_USUARIO.LOGIN = '" + nome
+                + "'     AND TB_USUARIO.SENHA = '" + hashSenha + "'";
         try {
             conn = conexaoBD.obterConexao();
             stmt = conn.createStatement();
@@ -112,12 +108,12 @@ public class LoginServlet extends HttpServlet {
         return null;
     }
 
-//    static {
+    static {
 //    USUARIOS_CADASTRADOS = new HashMap<String, Usuario>();
 //    USUARIOS_CADASTRADOS.put("fulano", new Usuario("fulano", "abcd1234", new String[]{"ADMIN", "BASICO"}));
 //    USUARIOS_CADASTRADOS.put("ciclano", new Usuario("ciclano", "abcd1234", new String[]{"BASICO"}));
 //    USUARIOS_CADASTRADOS.put("ramonh", new Usuario("ramonh", "senac15", new String[]{"ADMIN"}));    
-//    }
+    }
 
     /**
      * Handles the HTTP <code>POST</code> method.

@@ -32,34 +32,41 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "EditarFornecedor", urlPatterns = {"/Servlet/EditarFornecedor"})
 public class EditarFornecedor extends HttpServlet {
-    static String idFornec;
-    public void editarFornecedor(Fornecedor f, Usuario u) {
+
+    public void cadastrarFornecedor(Fornecedor f, Usuario u) {
         ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftstoredb");
         PreparedStatement stmt = null;
-        Connection conn = null; 
-        
-        String updateSql = "UPDATE TB_FORNECEDOR\n" +
-                          "    SET RAZAO_SOCIAL = '"+f.getRazaoSocial()+"', \n" +
-                          "        CNPJ = '"+f.getCnpj()+"', \n" +
-                          "        CEP = '"+f.getCep()+"', \n" +
-                          "        ENDERECO = '"+f.getEndereco()+"', \n" +
-                          "        BAIRRO = '"+f.getBairro()+"',\n" +
-                          "        NUMERO = "+Integer.parseInt(f.getNumero())+", \n" +
-                          "        CIDADE = '"+f.getCidade()+"', \n" +
-                          "        ESTADO = '"+f.getEstado()+"', \n" +
-                          "        TELEFONE = '"+f.getTelefone()+"', \n" +
-                          "        EMAIL = '"+f.getEmail()+"', \n" +
-                          "        SITE = '"+f.getSite()+"',\n" +
-                          "        FK_USUARIO = "+Integer.parseInt(u.getIdUsuario())+",\n" +
-                          "        NOME_USUARIO = '"+u.getNomeDoFuncionario()+"',\n" +
-                          "        DATA_CRIACAO = '"+new Timestamp(new Date().getTime()).toString()+"'\n" +
-                          "    WHERE ID_FORNECEDOR = "+idFornec+"\n" +
-                          "";
-        
+        Connection conn = null;
+
+        String sql = "INSERT INTO TB_FORNECEDOR " // Notar que antes de fechar aspas tem espaço em branco!
+                + "(RAZAO_SOCIAL, CNPJ, CEP, ENDERECO, BAIRRO, NUMERO, CIDADE, ESTADO, TELEFONE, EMAIL, SITE, "
+                + "FK_USUARIO, DATA_CRIACAO, NOME_USUARIO) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             conn = conexaoBD.obterConexao();
-            stmt = conn.prepareStatement(updateSql);
-            stmt.execute();
+            stmt = conn.prepareStatement(sql);
+
+            stmt.setString(1, f.getRazaoSocial());
+            stmt.setString(2, f.getCnpj());
+            stmt.setString(3, f.getCep());
+            stmt.setString(4, f.getEndereco());
+            stmt.setString(5, f.getBairro());
+            stmt.setString(6, f.getNumero());
+            stmt.setString(7, f.getCidade());
+            stmt.setString(8, f.getEstado());
+            stmt.setString(9, f.getTelefone());
+            stmt.setString(10, f.getEmail());
+            stmt.setString(11, f.getSite());
+            stmt.setString(12, u.getIdUsuario());
+
+            // Criando um Timestamp atual do sistema
+            Date dataAtual = new Date();
+            String timeStamp = new Timestamp(dataAtual.getTime()).toString();
+
+            stmt.setString(13, timeStamp);
+            stmt.setString(14, u.getNomeDoFuncionario());
+
+            stmt.executeUpdate();
 
             System.out.println("Registro incluido com sucesso.");
 
@@ -171,9 +178,7 @@ public class EditarFornecedor extends HttpServlet {
         HttpSession sessao = httpRequest.getSession();
         Usuario usuario = (Usuario) sessao.getAttribute("usuario");
         
-        idFornec = request.getParameter("idFornecedor");
-        
-        Fornecedor f = buscarFornecedor(idFornec, usuario);
+        Fornecedor f = buscarFornecedor(request.getParameter("idFornecedor"), usuario);
         request.setAttribute("Fornecedor", f);
 
 //        response.sendRedirect("CadastrarFornecedor");
@@ -234,7 +239,7 @@ public class EditarFornecedor extends HttpServlet {
         HttpSession sessao = httpRequest.getSession();
         Usuario usuario = (Usuario) sessao.getAttribute("usuario");
 
-        editarFornecedor(f, usuario);
+        cadastrarFornecedor(f, usuario);
 
         System.out.println("> Fornecedor cadastrado.");
         response.sendRedirect("../resultado.jsp");
