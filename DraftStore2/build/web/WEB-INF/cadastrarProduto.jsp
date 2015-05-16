@@ -166,5 +166,6 @@
             <!-- Include all compiled plugins (below), or include individual files as needed -->
             <script src="../bootstrap/js/bootstrap.min.js"></script>
             <script src ="../resources/js/validacoesCampos.js"></script>
+            <script src ="../resources/js/previsaoPrecoVenda.js"></script>
     </body>
 </html>

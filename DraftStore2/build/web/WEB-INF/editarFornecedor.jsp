@@ -27,6 +27,8 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <link href="../resources/css/estiloFornecedor.css" type="text/css" rel="stylesheet">
+    <link rel="icon" href="../resources/img/draft.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../resources/img/draft.ico" type="image/x-icon">
 </head>
 <body>
     <header>
@@ -48,16 +50,16 @@
                     </div>
                     <div class="navbar-collapse collapse sidebar-navbar-collapse">
                         <ul class="nav navbar-nav">
-                           <li>
-                                        <a href="../Home">Home</a>
-                                    </li>
+                            <li>
+                                <a href="../Home">Home</a>
+                            </li>
                             <li>
                                 <a href="RegistroVenda">Registro de vendas</a>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produtos <b class="caret"></b></a>
                                 <ul class="dropdown-menu dropdown-menu-right">
-                                    
+
                                     <li>
                                         <a href="BuscarProduto">Buscar </a>
                                     </li>
@@ -126,7 +128,7 @@
                 </div>
 
                 <div id="campoCep" class="normal form-group">
-                    <label class="col-sm-2 control-label" for="Cep"> CEP </label>
+                    <label id="labelCep" class="col-sm-2 control-label" for="Cep"> CEP </label>
                     <div class="col-sm-3">
                         <input type="text" id="inputCep" class="form-control" data-mask="99999-999" 
                                placeholder="_____-___" name="Cep" value="<c:out value="${Fornecedor.cep}"/>">
@@ -153,7 +155,7 @@
                 </div>
 
                 <div id="campoBairro" class="normal form-group">
-                    <label class="col-sm-2 control-label" for="Bairro"> Bairro </label>
+                    <label id="labelBairro" class="col-sm-2 control-label" for="Bairro"> Bairro </label>
                     <div class="col-sm-3">
                         <input type="text" id="inputBairro" class="form-control" name="Bairro" 
                                value="<c:out value="${Fornecedor.bairro}"/>" disabled>
@@ -171,7 +173,7 @@
                 </div>
 
                 <div id="campoUf" class="normal form-group">
-                    <label class="col-sm-2 control-label" for="UF"> UF </label>
+                    <label id="labelUf" class="col-sm-2 control-label" for="UF"> UF </label>
                     <div class="col-sm-3">
                         <input type="text" id="inputUF" class="form-control" 
                                value="<c:out value="${Fornecedor.estado}"/>" name="UF" disabled>
@@ -190,7 +192,7 @@
                 </div>
 
                 <div id="campoEmail" class="normal form-group">
-                    <label class="col-sm-2 control-label" for="Email"> Email </label>
+                    <label id="labelEmail" class="col-sm-2 control-label" for="Email"> Email </label>
                     <div class=" col-sm-3 ">
                         <input type="text" id="inputEmail" class="form-control" name="Email"
                                value="<c:out value="${Fornecedor.email}"/>">

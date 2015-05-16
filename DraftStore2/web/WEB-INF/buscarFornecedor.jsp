@@ -132,8 +132,8 @@ Author     : ramon.ahonorio
                         <caption>Fornecedores</caption>
                         <thead>
                             <tr>
-                                <th>Nome</th>
-                                <th>Distribuidora</th>
+                                <th>Razão Social</th>
+                                <th>CNPJ</th>
                             </tr>
                         </thead>
                         <tbody>
