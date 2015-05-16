@@ -13,11 +13,17 @@
         <title>
             Draftstore - Falha na autenticação
         </title>
+         <link href="resources/css/estiloLogin.css" type="text/css" rel="stylesheet">
         <link rel="icon" href="../DraftStore/resources/img/draft.ico" type="image/x-icon">
         <link rel="shortcut icon" href="../DraftStore/resources/img/draft.ico" type="image/x-icon">
+        
     </head>
     <body>
-        <h1>Erro ao fazer login</h1>
+        <div id="logo">
+        <img id="logo" src="resources/img/wrm-logoteste.png">
+        </div>
         <a href="login.jsp">Voltar</a>
+        
+        
     </body>
 </html>

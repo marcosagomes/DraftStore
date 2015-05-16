@@ -145,10 +145,12 @@
                 </div>
                  <div id="campoCargo" class="normal form-group">
                     <label class="col-sm-2 control-label" for="Cargo">Cargo </label>
-                    <div class="col-sm-3">
-                        <input type="text" id="inputCargo" class="form-control" name="Cargo">
-                        <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
-                    </div>
+                     <div class="col-sm-3 from-group">
+                        <select class="form-control" id="selectCargo" name="Sexo">
+                            <option> Retargada </option>
+                            <option> Venda </option>
+                            <option> Suporte </option>
+                        </select>
                 </div>
                 <div id="campoAdmissao" class="normal form-group">
                     <label class="col-sm-2 control-label" for="Admissao"> Admissão </label>
