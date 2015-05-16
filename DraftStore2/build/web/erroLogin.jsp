@@ -13,17 +13,20 @@
         <title>
             Draftstore - Falha na autenticação
         </title>
-         <link href="resources/css/estiloLogin.css" type="text/css" rel="stylesheet">
+        <link href="resources/css/estiloLogin.css" type="text/css" rel="stylesheet">
         <link rel="icon" href="../DraftStore/resources/img/draft.ico" type="image/x-icon">
         <link rel="shortcut icon" href="../DraftStore/resources/img/draft.ico" type="image/x-icon">
-        
+
     </head>
     <body>
         <div id="logo">
-        <img id="logo" src="resources/img/wrm-logoteste.png">
+            <h1> Falha na Autenticação </h1>
+            <h3>O nome de conta e/ou senha estão incorretos</h3>
         </div>
-        <a href="login.jsp">Voltar</a>
-        
-        
+        <div>
+            <a href="login.jsp" id="voltar">Voltar</a>
+        </div>
+
+
     </body>
 </html>
