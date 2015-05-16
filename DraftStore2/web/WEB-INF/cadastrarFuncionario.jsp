@@ -118,7 +118,7 @@
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
-                 <div id="campoSexo" class="normal form-group">
+                <div id="campoSexo" class="normal form-group">
                     <label class="col-sm-2 control-label" for="Sexo"> Sexo </label>
                     <div class="col-sm-3 from-group">
                         <select class="form-control" id="selectSexo" name="Sexo">
@@ -135,34 +135,19 @@
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
-                
-                 <div id="campoRG" class="normal form-group">
+
+                <div id="campoRG" class="normal form-group">
                     <label class="col-sm-2 control-label" for="RG"> RG </label>
                     <div class="col-sm-3">
                         <input type="text" id="inputRg" class="form-control" name="RG" placeholder="__.___.___-_">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
-                 <div id="campoCargo" class="normal form-group">
-                    <label class="col-sm-2 control-label" for="Cargo">Cargo </label>
-                     <div class="col-sm-3 from-group">
-                        <select class="form-control" id="selectCargo" name="Sexo">
-                            <option> Retargada </option>
-                            <option> Venda </option>
-                            <option> Suporte </option>
-                        </select>
-                </div>
-                <div id="campoAdmissao" class="normal form-group">
-                    <label class="col-sm-2 control-label" for="Admissao"> Admissão </label>
-                    <div class="col-sm-3">
-                        <input type="date" id="inputAdmissao" class="form-control" name="Admissao">
-                        <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
-                    </div>
-                </div>
+
                 <div id="campoTelefone" class="normal form-group">
                     <label class="col-sm-2 control-label" for="Telefone"> Telefone </label>
                     <div class="col-sm-3">
-                        <input type="text" id="inputTelefone" class="form-control" name="Telefone">
+                        <input type="text" id="inputTelefone" class="form-control" name="Telefone"  data-mask="(99) 9999-9999" placeholder="( ) ____-____">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -173,10 +158,20 @@
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
-                 <div id="campoEmail" class="normalidade form-group ">
+                <div id="campoCargo" class="normal form-group">
+                    <label class="col-sm-2 control-label" for="Cargo"> Cargo </label>
+                    <div class="col-sm-3 from-group">
+                        <select class="form-control" id="selectCargo" name="Cargo">
+                            <option> Retaguarda </option>
+                            <option> Suporte </option>
+                            <option> Venda </option>
+                        </select>
+                    </div>
+                </div>
+                <div id="campoEmail" class="normal form-group ">
                     <label class="col-sm-3 control-label" for="Email"> Email </label>
                     <div class="col-sm-7">
-                        <input type="text" id="inputRazaoSocial" class="form-control" name="Email">
+                        <input type="text" id="inputEmail" class="form-control" name="Email">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -187,22 +182,25 @@
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
-                 <div id="campoSenha" class="normal form-group">
+                <div id="campoSenha" class="normal form-group">
                     <label class="col-sm-2 control-label" for="ConfirmeSenha"> Confirme </label>
                     <div class="col-sm-3">
                         <input type="password" id="inputCelular" class="form-control" name="ConfirmeSenha">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
-               
-                
+                <div class="botoesFormulario">
+                    <button type="reset" class="btn btn-danger">Cancelar</button>
+                    <button type="submit" class="btn btn-default">Cadastrar</button>
+                </div>
+
+
         </div>
     </form>
 
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>

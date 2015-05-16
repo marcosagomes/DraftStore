@@ -67,10 +67,10 @@ button {
     margin-right: 100px;
     width: 140px;
 }
-#selectSexo, #inputData, #inputAdmissao{
+#selectSexo,#inputData,#selectCargo{
     width: 196px;
     height: 35px;
 }
-#campoSexo,#campoRG,#campoAdmissao,#campoCelular{
+#campoRG,#campoCelular,#campoSexo,#campoEmail{
     width: 400px;
 }
