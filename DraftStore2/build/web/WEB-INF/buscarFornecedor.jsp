@@ -133,10 +133,10 @@ Author     : ramon.ahonorio
                         <thead>
                             <tr>
                                 <th>Nome</th>
-                                <th>Distribuidora</th>
+                                <th>CNPJ</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="bodyTabelaBuscaFornecedor">
                             <c:forEach items="${lista}" var="fornec" varStatus="stats">
                                 <tr id="lista[${stats.index}]">
                                     <td><c:out value="${fornec.razaoSocial}"/></td>
@@ -144,7 +144,7 @@ Author     : ramon.ahonorio
                                     <td class="hidden"><c:out value="${fornec.idFornecedor}"/></td>
                                 </tr>
                             </c:forEach>
-                        </tbody>                        
+                        </tbody>
                     </table>
                 </div>
                 <div class="botões ação">
@@ -160,10 +160,10 @@ Author     : ramon.ahonorio
                         </div>	
                     </form>
                     <form id="formRemover" 
-+                          action="RemoverFornecedor"
-+                          method="GET"
-+                          class="form-search" 
-+                          onsubmit="return removerFornecedor(this)">
+                          +                          action="RemoverFornecedor"
+                          +                          method="GET"
+                          +                          class="form-search" 
+                          +                          onsubmit="return removerFornecedor(this)">
                         <input id="inputHiddenRemover" type="hidden" name="idFornecedor" value="">
                         <div class="botao">
                             <p>

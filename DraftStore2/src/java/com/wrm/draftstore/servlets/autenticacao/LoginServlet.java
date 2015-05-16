@@ -108,13 +108,6 @@ public class LoginServlet extends HttpServlet {
         return null;
     }
 
-    static {
-//    USUARIOS_CADASTRADOS = new HashMap<String, Usuario>();
-//    USUARIOS_CADASTRADOS.put("fulano", new Usuario("fulano", "abcd1234", new String[]{"ADMIN", "BASICO"}));
-//    USUARIOS_CADASTRADOS.put("ciclano", new Usuario("ciclano", "abcd1234", new String[]{"BASICO"}));
-//    USUARIOS_CADASTRADOS.put("ramonh", new Usuario("ramonh", "senac15", new String[]{"ADMIN"}));    
-    }
-
     /**
      * Handles the HTTP <code>POST</code> method.
      *
