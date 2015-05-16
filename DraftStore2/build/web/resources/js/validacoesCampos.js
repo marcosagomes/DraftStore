@@ -1,3 +1,4 @@
+// validacoes
 var todosOsCamposValidos = false;
 
 var formulario = document.getElementById("formulario");
