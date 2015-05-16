@@ -5,6 +5,7 @@
  */
 package com.wrm.draftstore.servlets.autenticacao;
 
+import com.wrm.draftstore.auxiliares.BuscarPaginas;
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.wrm.draftstore.classes.*;
+import java.util.List;
 
 /**
  * http://www.journaldev.com/1933/java-servlet-filter-example-tutorial
@@ -25,11 +27,6 @@ import com.wrm.draftstore.classes.*;
  */
 @WebFilter(filterName = "AutorizacaoFilter", urlPatterns = "/Servlet/*")
 public class AutorizacaoFilter implements Filter {
-  
-  // Listagem das paginas validas para cada tipo de usuario
-  static String[] listaPaginasVendas = {"BuscarProduto", "CadastrarProduto"};
-  static String[] listaPaginasRetaguarda = {"BuscarFornecedor", "CadastrarFornecedor"};
-  static String[] listaPaginasSuporte = {"BuscarFuncionario", "CadastrarFuncionario"};
   
   @Override
   public void doFilter(ServletRequest request, ServletResponse response,
@@ -69,19 +66,17 @@ public class AutorizacaoFilter implements Filter {
 
   private boolean verificarAcesso(Usuario usuario, HttpServletRequest req, HttpServletResponse resp) {
     String pagina = req.getRequestURI();
-    if (checarPaginaAtual(pagina, listaPaginasRetaguarda) && usuario.autorizado("RETAGUARDA")){
+    
+    if(usuario.getPapel().equals("ADMIN"))
       return true;
-    } else if (checarPaginaAtual(pagina, listaPaginasSuporte) && usuario.autorizado("SUPORTE")) {
-      return true;
-    } else if (checarPaginaAtual(pagina, listaPaginasVendas) && usuario.autorizado("VENDAS")) {
-      return true;
-    } else if (usuario.autorizado("ADMIN")) {
-      return true;
+    else {
+      List<String> listaPaginas = new BuscarPaginas().listaDePaginas(usuario);
+      return checarPaginaAtual(pagina, listaPaginas);
     }
-    return false;
+    
   }
   
-  private boolean checarPaginaAtual(String pagina, String[] listaPaginasValidas){
+  private boolean checarPaginaAtual(String pagina, List<String> listaPaginasValidas){
     for (String p : listaPaginasValidas) {
       if(pagina.endsWith(p))
         return true;
