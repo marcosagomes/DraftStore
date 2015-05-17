@@ -27,7 +27,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <link href="../resources/css/estiloFornecedor.css" type="text/css" rel="stylesheet">
-    
+
     <link rel="icon" href="../DraftStore/resources/img/draft.ico" type="image/x-icon">
     <link rel="shortcut icon" href="../DraftStore/resources/img/draft.ico" type="image/x-icon">
 </head>
@@ -52,14 +52,15 @@
                     <div class="navbar-collapse collapse sidebar-navbar-collapse">
                         <ul class="nav navbar-nav">
                             <li>
+                                <a href="../Home">Home</a>
+                            </li>
+                            <li>
                                 <a href="RegistroVenda">Registro de vendas</a>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produtos <b class="caret"></b></a>
                                 <ul class="dropdown-menu dropdown-menu-right">
-                                    <li>
-                                        <a href="../Home">Home</a>
-                                    </li>
+
                                     <li>
                                         <a href="BuscarProduto">Buscar </a>
                                     </li>

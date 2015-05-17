@@ -72,3 +72,7 @@ button {
     width: 150px;
     margin-left: 13px;
 }
+#inputCep, #inputBairro, #inputUF, #inputEmail{
+   position:relative;
+   right: 50px;
+}
