@@ -50,7 +50,7 @@ public class EditarFornecedor extends HttpServlet {
                           "        TELEFONE = '"+f.getTelefone()+"', \n" +
                           "        EMAIL = '"+f.getEmail()+"', \n" +
                           "        SITE = '"+f.getSite()+"',\n" +
-                          "        FK_USUARIO = "+Integer.parseInt(u.getIdUsuario())+",\n" +
+                          "        FK_FUNCIONARIO = "+Integer.parseInt(u.getIdUsuario())+",\n" +
                           "        NOME_USUARIO = '"+u.getNomeDoFuncionario()+"',\n" +
                           "        DATA_CRIACAO = '"+new Timestamp(new Date().getTime()).toString()+"'\n" +
                           "    WHERE ID_FORNECEDOR = "+idFornec+"\n" +
@@ -99,7 +99,7 @@ public class EditarFornecedor extends HttpServlet {
                 + "          EMAIL,\n"
                 + "          SITE,\n"
                 + "          NUMERO,\n"
-                + "          FK_USUARIO,\n"
+                + "          FK_FUNCIONARIO,\n"
                 + "          DATA_CRIACAO,\n"
                 + "          RAZAO_SOCIAL,\n"
                 + "          CNPJ\n"

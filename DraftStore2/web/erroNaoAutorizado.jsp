@@ -17,7 +17,7 @@
         <link rel="shortcut icon" href="../DraftStore/resources/img/draft.ico" type="image/x-icon">
     </head>
     <body>
-        <h1>Usuário não autorizado a acessar esta página</h1>
-        <a href="Servlet/BuscarFornecedor">Voltar</a>
+        <h1>Usuário não está autorizado a acessar esta página</h1>
+        <a href="Home">Voltar</a>
     </body>
 </html>

@@ -132,3 +132,7 @@ tbody td, thead th {
     width: 50%;
     float: left;
 }
+
+.produtoTH {
+	width: 25%;
+}
