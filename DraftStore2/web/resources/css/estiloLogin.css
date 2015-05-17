@@ -1,7 +1,21 @@
 #logo{
-	position:absolute;
-	top:50%;
-	left:50%;
-	margin-top:-50px;
-	margin-left:-50px;
+    padding-bottom: 3em;
+    padding-top: 3em;
+    margin: 0 auto;
+    text-align: center;
+    width: 700px;
+    
+    /* O valor que você desejar. */
+}
+h1{
+    color: #FF0000;
+    font-size: 50px;
+}
+h3{
+    font-size: 35px;
+}
+#voltar{
+    text-decoration:none;
+    margin-left: 48%;
+    font-size: 18px;
 }
