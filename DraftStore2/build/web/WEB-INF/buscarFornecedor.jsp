@@ -126,7 +126,6 @@ Author     : ramon.ahonorio
                        data-search="true"
                        data-height="460"
                        data-toolbar="#toolbar"
-                       data-show-refresh="true"
                        data-show-toggle="true"
                        data-show-columns="true"
                        data-query-params="queryParams"
@@ -149,7 +148,7 @@ Author     : ramon.ahonorio
                           action="EditarFornecedor">
                         <input id="inputHiddenEditar" type="hidden" name="idFornecedor" value="">
                         <div class="botao">
-                            <button class="btn btn-small botaoDeAcao" type="submit">Editar</button>
+                            <button class="btn btn-default botaoDeAcao" type="submit">Editar</button>
                         </div>	
                     </form>
 

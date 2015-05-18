@@ -211,18 +211,18 @@
                     </div>
 
 
-                        <input id="inputHiddenEditar" type="hidden" name="idFornecedor" value="<c:out value="${idFornec}"/>">
-                        <div class="botao">
-                            <button id="btnEditar" class="btn btn-default botaoDeAcao" type="submit">Efetuar mudanças</button>
-                        </div>
+                    <input id="inputHiddenEditar" type="hidden" name="idFornecedor" value="<c:out value="${idFornec}"/>">
+                    <div class="botao">
+                        <button id="btnEditar" class="btn btn-default botaoDeAcao efetuar" type="submit">Efetuar mudanças</button>
+                    </div>
                 </form>
-                        
+
                 <form id="formVoltar" 
                       action="BuscarFornecedor"
                       class="form-search"
                       onsubmit="return true">
                     <div class="botao">
-                        <button class="btn btn-small btn-danger botaoDeAcao" type="submit">Cancelar</button>
+                        <button id="btnCancelar" class="btn btn-small btn-danger botaoDeAcao cancelar" type="submit">Cancelar</button>
                     </div>	
                 </form>
             </div>
