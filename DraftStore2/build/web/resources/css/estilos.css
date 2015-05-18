@@ -23,10 +23,7 @@ td .hidden
 {
     display: none;
 }
-.botões .ações
-{
-    display: inline;
-}
+
 #logo {
 	display: inline-block;
 	margin-bottom: 30px;
@@ -59,8 +56,7 @@ label {
 	width: 40%;
 }
 input{
-	float: center;
-
+    float: center;
 }
 
 select{
@@ -100,39 +96,22 @@ tbody tr:hover {
 .inputCusto {
     float: right;
 }
-table {
-        width: 100%;
-}
-
-thead, tbody, tr, td, th { display: block; }
-
-tr:after {
-    content: ' ';
-    display: block;
-    visibility: hidden;
-    clear: both;
-}
-
-thead th {
-    height: 50px;
-
-    /*text-align: left;*/
-}
-
-tbody {
-    height: 200px;
-    overflow-y: auto;
-}
-
-thead {
-    /* fallback */
-}
-
-tbody td, thead th {
-    width: 50%;
-    float: left;
-}
 
 .produtoTH {
-	width: 25%;
+    width: 25%;
+}
+
+.botaoDeAcao {
+    width: 20%;
+    display: inline-block;
+}
+
+.button-container form,
+.button-container form div {
+    display: inline;
+}
+
+.button-container button {
+    display: inline;
+    vertical-align: middle;
 }

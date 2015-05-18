@@ -150,7 +150,6 @@
                                     <td>${produto.precoVenda}</td>
                                 </tr>
                             </c:forEach>
-
                             <!--                            <tr class="">
                                                             <td>Intel Core I5</td>
                                                             <td>Intel do Brasil</td>

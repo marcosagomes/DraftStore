@@ -33,6 +33,7 @@ Author     : ramon.ahonorio
           </script>
         <![endif]-->
         <link href="../resources/css/estilos.css" type="text/css" rel="stylesheet">
+        <link href="../bootstrap-table/bootstrap-table.css" type="text/css" rel="stylesheet">
         <link rel="icon" href="../resources/img/draft.ico" type="image/x-icon">
         <link rel="shortcut icon" href="../resources/img/draft.ico" type="image/x-icon">
     </head>
@@ -116,67 +117,64 @@ Author     : ramon.ahonorio
                 </div>
             </div>
             <div class="col-sm-9">
-                <div class="form">
-                    <form class="form-search">
-                        <div class="radioBusca">
-                            <input type="radio" name="radio" value=" " checked> Busca por Descrição
-                            <input type="radio" name="radio" value=" "> Busca por Código
-                        </div>
-                        <input type="text" class="input-medium search-query">
-                        <input type="submit" class="btn">
-                    </form>                    
-                </div>
-                <br>
-                <div class="tabela" id="tabelaBuscaFornecedor">
-                    <table class="table table">
-                        <caption>Fornecedores</caption>
-                        <thead>
-                            <tr>
-                                <th>Razão Social</th>
-                                <th>CNPJ</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach items="${lista}" var="fornec" varStatus="stats">
-                                <tr id="lista[${stats.index}]">
-                                    <td><c:out value="${fornec.razaoSocial}"/></td>
-                                    <td><c:out value="${fornec.cnpj}"/></td>
-                                    <td class="hidden"><c:out value="${fornec.idFornecedor}"/></td>
-                                </tr>
-                            </c:forEach>
-                        </tbody>                        
-                    </table>
-                </div>
-                <div class="botões ação">
+                
+                <table id="tabelita" 
+                       data-click-to-select="true"
+                       data-formatter="stateFormatter"
+                       data-select-item-name="radioSelecionado"
+                       data-pagination="true"
+                       data-search="true"
+                       data-height="460"
+                       data-toolbar="#toolbar"
+                       data-show-refresh="true"
+                       data-show-toggle="true"
+                       data-show-columns="true"
+                       data-query-params="queryParams"
+                       data-response-handler="responseHandler">
+                    <thead>
+                        <tr>
+                            <th class="col-xs-2" data-field="state" data-radio="true"></th>
+                            <th class="col-xs-1" data-field="idFornecedor">id</th>
+                            <th class="col-xs-6" data-field="razaoSocial">Razão Social</th>
+                            <th class="col-xs-4" data-field="cnpj">CNPJ</th>
+                        </tr>
+                    </thead>
+                </table>
+                
+                
+                <div class="button-container">
                     <form id="formEditar"
                           class="form-search"
                           method="GET"
                           action="EditarFornecedor">
                         <input id="inputHiddenEditar" type="hidden" name="idFornecedor" value="">
                         <div class="botao">
-                            <p>
-                                <button class="btn btn-small btn-primary" type="submit">Editar</button>
-                            </p>
+                            <button class="btn btn-small botaoDeAcao" type="submit">Editar</button>
                         </div>	
                     </form>
+
                     <form id="formRemover" 
-+                          action="RemoverFornecedor"
-+                          method="GET"
-+                          class="form-search" 
-+                          onsubmit="return removerFornecedor(this)">
+                          action="RemoverFornecedor"
+                          method="GET"
+                          class="form-search" 
+                          onsubmit="return removerFornecedor(this)">
                         <input id="inputHiddenRemover" type="hidden" name="idFornecedor" value="">
                         <div class="botao">
-                            <p>
-                                <button class="btn btn-small" type="submit">Remover</button>
-                            </p>
+                            <button class="btn btn-small btn-danger botaoDeAcao" type="submit">Remover</button>
                         </div>	
                     </form>
                 </div>
+                
+
                 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+                <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+                <script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
                 <!-- Include all compiled plugins (below), or include individual files as needed -->
-                <script src="../bootstrap/js/bootstrap.min.js"></script>
+                <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+                <script type="text/javascript" src="../bootstrap-table/bootstrap-table.min.js"></script>
                 <script src="../resources/js/selecionarBusca.js"></script>
+                <script src="../resources/js/jsonFornecedores.js"></script>
+
                 </body>
 
                 </html>

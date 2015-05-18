@@ -44,8 +44,7 @@ h1 {
 }
 
 .form-group{
-  display: block;
-  padding-bottom:1.5em;
+  display: inline-block;
   font-size:18px;
 }
 .control-label{
@@ -58,17 +57,36 @@ h1 {
   width: 950px;
 }
 
+
 #inputRazaoSocial, #inputEndereco, #inputSite {
   width: 100%;
 }
 
+.form-control{
+	width: 172px;
+}
+
 button {
-    margin-left: 120px;
+/*     margin-left: 120px;
     margin-right: 100px;
-    width: 140px;
+    width: 140px; */
+    
 }
 
 #labelCep, #labelBairro, #labelUf, #labelEmail {
     width: 150px;
     margin-left: 13px;
+}
+
+
+.button-container form{
+    display: inline;
+}
+.button-container form div {
+    display: inline-block;
+}
+
+.button-container button {
+    display: inline;
+    vertical-align: middle;
 }

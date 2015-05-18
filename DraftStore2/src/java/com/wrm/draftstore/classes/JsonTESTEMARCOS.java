@@ -9,11 +9,10 @@ package com.wrm.draftstore.classes;
  *
  * @author Marcos
  */
-import java.util.ArrayList;
 
 import com.wrm.draftstore.servlets.busca.BuscarProduto;
 
-public class Json {
+public class JsonTESTEMARCOS {
 
   public void gerarJson() {
 
@@ -30,7 +29,7 @@ public class Json {
   }
 
   public static void main(String[] args) {
-    Json a = new Json();
+    JsonTESTEMARCOS a = new JsonTESTEMARCOS();
     a.gerarJson();
   }
 

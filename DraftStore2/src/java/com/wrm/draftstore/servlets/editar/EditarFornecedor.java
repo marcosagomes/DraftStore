@@ -37,7 +37,7 @@ public class EditarFornecedor extends HttpServlet {
         ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftstoredb");
         PreparedStatement stmt = null;
         Connection conn = null; 
-        
+        System.out.println("RAZAO: "+f.getRazaoSocial());
         String updateSql = "UPDATE TB_FORNECEDOR\n" +
                           "    SET RAZAO_SOCIAL = '"+f.getRazaoSocial()+"', \n" +
                           "        CNPJ = '"+f.getCnpj()+"', \n" +
@@ -88,6 +88,8 @@ public class EditarFornecedor extends HttpServlet {
         ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftstoredb");
         Statement stmt = null;
         Connection conn = null;
+        System.out.println("ID FORNEC: "+idFornec);
+        System.out.println("ID FORNECS: "+idFornecedor.toString());
 
         String sql = "SELECT ID_FORNECEDOR,\n"
                 + "          CEP,\n"
@@ -172,9 +174,11 @@ public class EditarFornecedor extends HttpServlet {
         Usuario usuario = (Usuario) sessao.getAttribute("usuario");
         
         idFornec = request.getParameter("idFornecedor");
+        System.out.println("ID FORNEC: "+idFornec);
         
         Fornecedor f = buscarFornecedor(idFornec, usuario);
         request.setAttribute("Fornecedor", f);
+        request.setAttribute("idFornec", idFornec);
 
         RequestDispatcher rd = request.getRequestDispatcher("../WEB-INF/editarFornecedor.jsp");
         rd.forward(request, response);

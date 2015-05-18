@@ -86,7 +86,6 @@ function validaSite() {
  }
 }
 
-
 function valida(form){
     if(!validaRazaoSocial()){
         form.RazaoSocial.focus();
@@ -115,7 +114,7 @@ function valida(form){
     if(!confirm('Tem certeza que deseja realizar o cadastro com essas informações?')){
         return false;
     } else {
-        alert('Operação realizada com sucesso!')
+        alert('Operação realizada com sucesso!');
     }
 }
 
@@ -124,7 +123,7 @@ function buscarCep(){
     if( cep_code.length <= 0 ) return;
     $.get("http://apps.widenet.com.br/busca-cep/api/cep.json", { code: cep_code },
      function(result){
-        if( result.status!=1 ){
+        if(result.status!=1 ){
            //alert(result.message || "Houve um erro desconhecido");
             console.log(result.message || "Houve um erro desconhecido");
            return;
