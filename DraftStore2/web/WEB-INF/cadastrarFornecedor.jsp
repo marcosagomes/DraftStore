@@ -26,10 +26,17 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+<<<<<<< HEAD
     <link href="../resources/css/estiloCadastrarFornecedor.css" type="text/css" rel="stylesheet">
     
     <link rel="icon" href="../resources/img/draft.ico" type="image/x-icon">
     <link rel="shortcut icon" href="../resources/img/draft.ico" type="image/x-icon">
+=======
+    <link href="../resources/css/estiloFornecedor.css" type="text/css" rel="stylesheet">
+
+    <link rel="icon" href="../DraftStore/resources/img/draft.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../DraftStore/resources/img/draft.ico" type="image/x-icon">
+>>>>>>> origin/master
 </head>
 <body>
     <header>
@@ -52,14 +59,15 @@
                     <div class="navbar-collapse collapse sidebar-navbar-collapse">
                         <ul class="nav navbar-nav">
                             <li>
+                                <a href="../Home">Home</a>
+                            </li>
+                            <li>
                                 <a href="RegistroVenda">Registro de vendas</a>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produtos <b class="caret"></b></a>
                                 <ul class="dropdown-menu dropdown-menu-right">
-                                    <li>
-                                        <a href="../Home">Home</a>
-                                    </li>
+
                                     <li>
                                         <a href="BuscarProduto">Buscar </a>
                                     </li>

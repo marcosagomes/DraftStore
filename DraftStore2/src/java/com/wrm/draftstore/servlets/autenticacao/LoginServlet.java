@@ -56,12 +56,14 @@ public class LoginServlet extends HttpServlet {
             Logger.getLogger(BuscarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        String sql = "SELECT ID_FUNCIONARIO, NOME, EMAIL, SENHA, NOME_PAPEL\n" +
-                "    FROM TB_FUNCIONARIO\n" +
-                "    JOIN TB_PAPEL\n" +
-                "    ON FK_PAPEL = ID_PAPEL\n" +
-                "    WHERE EMAIL = '"+nome+"'\n" +
-                "    AND SENHA = '"+hashSenha+"'";
+        String sql = "SELECT TB_USUARIO.ID_USUARIO, "
+                + "          TB_USUARIO.LOGIN, TB_USUARIO.SENHA, "
+                + "          TB_USUARIO.NOME_FUNCIONARIO, TB_PAPEL.NOME_PAPEL\n"
+                + "     FROM TB_USUARIO\n"
+                + "     JOIN TB_PAPEL\n"
+                + "      ON TB_USUARIO.FK_PAPEL = TB_PAPEL.ID_PAPEL"
+                + "   WHERE TB_USUARIO.LOGIN = '" + nome
+                + "'     AND TB_USUARIO.SENHA = '" + hashSenha + "'";
         try {
             conn = conexaoBD.obterConexao();
             stmt = conn.createStatement();
@@ -71,10 +73,10 @@ public class LoginServlet extends HttpServlet {
 
             while (resultados.next()) {
                 Usuario user = new Usuario();
-                user.setIdUsuario(resultados.getString("ID_FUNCIONARIO"));
-                user.setLogin(resultados.getString("EMAIL"));
+                user.setIdUsuario(resultados.getString("ID_USUARIO"));
+                user.setLogin(resultados.getString("LOGIN"));
                 user.setHashSenha(resultados.getString("SENHA").toCharArray());
-                user.setNomeDoFuncionario(resultados.getString("NOME"));
+                user.setNomeDoFuncionario(resultados.getString("NOME_FUNCIONARIO"));
                 user.setPapel(resultados.getString("NOME_PAPEL"));
 
                 mapa.put(user.getLogin(), user);

@@ -101,7 +101,7 @@
         <div class="col-sm-9">
             <!-- ********************** Inserir o conteudo aqui! ********************** -->
 
-            <form id="formulario" class="form-inline" onSubmit="return valida(this)">
+            <form id="formulario" class="form-inline" onSubmit="return validade(this)">
 
                 <div id="campoNome" class="normalidade form-group ">
                     <label class="col-sm-3 control-label" for="Nome"> Nome </label>
@@ -111,10 +111,10 @@
                     </div>
                 </div>
 
-                <div id="campoData" class="normal form-group">
-                    <label class="col-sm-2 control-label" for="Cep"> Nascimento </label>
+                <div id="campoDtNascimento" class="normal form-group">
+                    <label class="col-sm-2 control-label" for="Data"> Nascimento </label>
                     <div class="col-sm-3">
-                        <input type="date" id="inputData" class="form-control" name="Data">
+                        <input type="text" id="inputData" class="form-control" name="Data" data-mask="99/99/9999">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -122,8 +122,9 @@
                     <label class="col-sm-2 control-label" for="Sexo"> Sexo </label>
                     <div class="col-sm-3 from-group">
                         <select class="form-control" id="selectSexo" name="Sexo">
-                            <option> Masculino </option>
-                            <option> Feminino </option>
+                            <option selected="selected" calabel="0" value="0">Selecione</option>
+                            <option calabel="1" value="Masculino"> Masculino </option>
+                            <option calabel="2" value="Feminino"> Feminino </option>
                         </select>
                     </div>
                 </div>
@@ -131,7 +132,7 @@
                 <div id="campoCPF" class="normal form-group">
                     <label class="col-sm-2 control-label" for="CPF"> CPF </label>
                     <div class="col-sm-3">
-                        <input type="text" id="inputCPF" class="form-control" name="CPF" placeholder="___.___.___-__">
+                        <input type="text" id="inputCPF" class="form-control" name="CPF" placeholder="___.___.___-__"  data-mask = "999.999.999-99">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -139,7 +140,7 @@
                 <div id="campoRG" class="normal form-group">
                     <label class="col-sm-2 control-label" for="RG"> RG </label>
                     <div class="col-sm-3">
-                        <input type="text" id="inputRg" class="form-control" name="RG" placeholder="__.___.___-_">
+                        <input type="text" id="inputRg" class="form-control" name="RG" placeholder="__.___.___-_"  data-mask = "99.999.999-*">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -154,7 +155,7 @@
                 <div id="campoCelular" class="normal form-group">
                     <label class="col-sm-2 control-label" for="Telefone"> Celular </label>
                     <div class="col-sm-3">
-                        <input type="text" id="inputCelular" class="form-control" name="Celular">
+                        <input type="text" id="inputCelular" class="form-control" name="Celular" data-mask="(99) 9999-9999?9">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -162,9 +163,10 @@
                     <label class="col-sm-2 control-label" for="Cargo"> Cargo </label>
                     <div class="col-sm-3 from-group">
                         <select class="form-control" id="selectCargo" name="Cargo">
-                            <option> Retaguarda </option>
-                            <option> Suporte </option>
-                            <option> Venda </option>
+                           <option selected="selected" calabel="0" value="0">Selecione</option>
+                           <option calabel="1" value="Retaguarda"> Retaguarda </option>
+                            <option calabel="2" value="Suporte"> Suporte </option>
+                            <option calabel="3" value="Venda"> Venda </option>
                         </select>
                     </div>
                 </div>
@@ -178,14 +180,14 @@
                 <div id="campoSenha" class="normal form-group">
                     <label class="col-sm-2 control-label" for="Senha"> Senha </label>
                     <div class="col-sm-3">
-                        <input type="password" id="inputCelular" class="form-control" name="Senha">
+                        <input type="password" id="inputSenha" class="form-control" name="Senha">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
-                <div id="campoSenha" class="normal form-group">
+                <div id="campoSenhaC" class="normal form-group">
                     <label class="col-sm-2 control-label" for="ConfirmeSenha"> Confirme </label>
                     <div class="col-sm-3">
-                        <input type="password" id="inputCelular" class="form-control" name="ConfirmeSenha">
+                        <input type="password" id="inputSenhaC" class="form-control" name="ConfirmeSenha">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -204,6 +206,6 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
-<script src="../resources/js/validacoesCampos.js"></script>
+<script src="../resources/js/validacoesCampos_1.js"></script>
 </body>
 </html>
