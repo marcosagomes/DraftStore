@@ -101,7 +101,7 @@
         <div class="col-sm-9">
             <!-- ********************** Inserir o conteudo aqui! ********************** -->
 
-            <form id="formulario" class="form-inline" onSubmit="return validade(this)">
+            <form id="formulario" class="form-inline" onSubmit="return validar(this)">
 
                 <div id="campoNome" class="normalidade form-group ">
                     <label class="col-sm-3 control-label" for="Nome"> Nome </label>
@@ -122,9 +122,9 @@
                     <label class="col-sm-2 control-label" for="Sexo"> Sexo </label>
                     <div class="col-sm-3 from-group">
                         <select class="form-control" id="selectSexo" name="Sexo">
-                            <option selected="selected" calabel="0" value="0">Selecione</option>
-                            <option calabel="1" value="Masculino"> Masculino </option>
-                            <option calabel="2" value="Feminino"> Feminino </option>
+                            <option selected="selected"  value="">Selecione</option>
+                            <option value="Masculino"> Masculino </option>
+                            <option value="Feminino"> Feminino </option>
                         </select>
                     </div>
                 </div>
@@ -163,10 +163,10 @@
                     <label class="col-sm-2 control-label" for="Cargo"> Cargo </label>
                     <div class="col-sm-3 from-group">
                         <select class="form-control" id="selectCargo" name="Cargo">
-                           <option selected="selected" calabel="0" value="0">Selecione</option>
-                           <option calabel="1" value="Retaguarda"> Retaguarda </option>
-                            <option calabel="2" value="Suporte"> Suporte </option>
-                            <option calabel="3" value="Venda"> Venda </option>
+                           <option selected="selected"  value="">Selecione</option>
+                           <option  value="Retaguarda"> Retaguarda </option>
+                            <option  value="Suporte"> Suporte </option>
+                            <option  value="Venda"> Venda </option>
                         </select>
                     </div>
                 </div>

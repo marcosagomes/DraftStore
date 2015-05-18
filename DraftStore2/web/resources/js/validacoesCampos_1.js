@@ -32,19 +32,18 @@ function validaData() {
         return true;
     }
 }
-function validaSelect() {
-    $('#selectSexo').each;
-        if ($(this).val() == 0) {
-            campoSexo.classList.add("has-error");
-            return false;
-        }
-        else {
+function validaSelect() {  
+        var comboNome = document.getElementById("selectSexo");  
+        if (comboNome.options[comboNome.selectedIndex].value == "" ){  
+               campoSexo.classList.add("has-error");
+                return false;
+        }else {
             campoSexo.classList.remove("has-error");
             campoSexo.classList.add("has-success");
-            return false;
-        }
-    
-}
+            return true;
+        }  
+    }      
+
 function validaCPF() {
     var reg = /^[0-9]{3}.?[0-9]{3}.?[0-9]{3}-?[0-9]{2}/;
     var valorDoCampo = $("#inputCPF").val();
@@ -97,17 +96,15 @@ function validaCelular() {
     }
 }
 function validaSelectCargo() {
-    $('#selectCargo').each(function () {
-        if ($(this).val() == 0) {
-            campoCargo.classList.add("has-error");
-            return false;
-        }
-        else {
+     var comboNome = document.getElementById("selectCargo");  
+        if (comboNome.options[comboNome.selectedIndex].value == "" ){  
+               campoCargo.classList.add("has-error");
+                return false;
+        }else {
             campoCargo.classList.remove("has-error");
             campoCargo.classList.add("has-success");
-            return false;
-        }
-    });
+            return true;
+        }  
 }
 function validaEmail() {
     var regex = /^.+@.+\..{2,3}$/;
@@ -137,48 +134,51 @@ function validaSenha() {
     }
 
 }
-function validade(form) {
-    if (!validaRazaoSocial()) {
-        form.RazaoSocial.focus();
-        return false;
+function validar(form) {
+   if(!validaRazaoSocial()){
+       form.Nome.focus();
+       return false;
     }
-    if (!validaData()) {
+    if(!validaData()){
         form.Data.focus();
         return false;
-    }
-    if (!validaSelect()) {
+    }if(!validaSelect()){
         form.Sexo.focus();
         return false;
-    }
-    if (!validaCPF()) {
+       }if(!validaCPF()){
         form.CPF.focus();
         return false;
-    }
-    if (!validaRg()) {
+    }if(!validaRg()){
         form.RG.focus();
         return false;
-    }
-    if (!validaTelefone()) {
+    }if(!validaTelefone()){
         form.Telefone.focus();
         return false;
-    }
-    if (!validaCelular()) {
+    }if(!validaCelular()){
         form.Celular.focus();
         return false;
-    }
-    if (!validaEmail()) {
+    }if(!validaSelectCargo()){
+        form.Cargo.focus();
+        return false;
+    }if(!validaEmail()){
         form.Email.focus();
         return false;
-    }
-    if (!validaSenha()) {
-        form.Senha.focus();
-        return false;
+    }if(!validaSenha()){
+        if(form.Senha.value == ""){
+            form.Senha.focus();
+            return false;
+        }else if (form.ConfirmeSenha.value === ""){
+            form.ConfirmeSenha.focus();
+            return false
+        }
+        
     }
     if (!confirm('Tem certeza que deseja realizar o cadastro com essas informações?')) {
         return false;
     } else {
         alert('Operação realizada com sucesso!');
     }
+  
 }
 
 function validarCPF(cpf) {
