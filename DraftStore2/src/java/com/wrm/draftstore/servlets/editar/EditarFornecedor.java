@@ -88,8 +88,6 @@ public class EditarFornecedor extends HttpServlet {
         ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftstoredb");
         Statement stmt = null;
         Connection conn = null;
-        System.out.println("ID FORNEC: "+idFornec);
-        System.out.println("ID FORNECS: "+idFornecedor.toString());
 
         String sql = "SELECT ID_FORNECEDOR,\n"
                 + "          CEP,\n"
