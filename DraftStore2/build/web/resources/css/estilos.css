@@ -16,7 +16,7 @@
   }
   .sidebar-nav .navbar li a {
     padding-top: 15px;
-    padding-bottom: 15px;
+    padding-bottom: 10px;
   }
 }
 td .hidden
@@ -104,6 +104,7 @@ tbody tr:hover {
 .botaoDeAcao {
     width: 20%;
     display: inline-block;
+    margin-left: 20%;
 }
 
 .button-container form,
@@ -114,4 +115,8 @@ tbody tr:hover {
 .button-container button {
     display: inline;
     vertical-align: middle;
+}
+
+.fixed-table-toolbar{
+	margin-top: -15px;
 }

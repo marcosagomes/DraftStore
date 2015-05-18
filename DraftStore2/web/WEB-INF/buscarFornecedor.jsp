@@ -133,10 +133,10 @@ Author     : ramon.ahonorio
                        data-response-handler="responseHandler">
                     <thead>
                         <tr>
-                            <th class="col-xs-2" data-field="state" data-radio="true"></th>
-                            <th class="col-xs-1" data-field="idFornecedor">ID</th>
-                            <th class="col-xs-6" data-field="razaoSocial">Razão Social</th>
-                            <th class="col-xs-4" data-field="cnpj">CNPJ</th>
+                            <th data-field="state" data-radio="true"></th>
+                            <th data-field="idFornecedor">ID</th>
+                            <th data-field="razaoSocial">Razão Social</th>
+                            <th data-field="cnpj">CNPJ</th>
                         </tr>
                     </thead>
                 </table>
