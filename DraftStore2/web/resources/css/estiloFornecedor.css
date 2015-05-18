@@ -77,8 +77,6 @@ button {
     width: 150px;
     margin-left: 13px;
 }
-<<<<<<< HEAD
-
 
 .button-container form{
     display: inline;
@@ -90,9 +88,4 @@ button {
 .button-container button {
     display: inline;
     vertical-align: middle;
-=======
-#inputCep, #inputBairro, #inputUF, #inputEmail{
-   position:relative;
-   right: 50px;
->>>>>>> origin/master
 }

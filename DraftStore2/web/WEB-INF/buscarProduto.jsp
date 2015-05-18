@@ -135,10 +135,10 @@
                         <caption>Produtos</caption>
                         <thead>
                             <tr>
-                                <th>Tipo de produto</th>
-                                <th>Marca</th>
-                                <th>Modelo</th>
-                                <th>Preço de venda</th>
+                                <th class="produtoTH">Tipo de produto</th>
+                                <th class="produtoTH">Marca</th>
+                                <th class="produtoTH">Modelo</th>
+                                <th class="produtoTH">Preço de venda</th>
                             </tr>
                         </thead>
                         <tbody>

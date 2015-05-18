@@ -38,7 +38,7 @@ public class CadastrarFornecedor extends HttpServlet {
         
         String sql = "INSERT INTO TB_FORNECEDOR " // Notar que antes de fechar aspas tem espaço em branco!
                 + "(RAZAO_SOCIAL, CNPJ, CEP, ENDERECO, BAIRRO, NUMERO, CIDADE, ESTADO, TELEFONE, EMAIL, SITE, "
-                + "FK_USUARIO, DATA_CRIACAO, NOME_USUARIO) "
+                + "FK_FUNCIONARIO, DATA_CRIACAO, NOME_USUARIO) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
         conn = conexaoBD.obterConexao();
@@ -68,7 +68,7 @@ public class CadastrarFornecedor extends HttpServlet {
         
         stmt.executeUpdate();
         
-        System.out.println("Registro incluido com sucesso.");
+        System.out.println("> FORNECEDOR incluido com sucesso.");
 
       } catch (SQLException | ClassNotFoundException ex) {
         Logger.getLogger(CadastrarFornecedor.class.getName()).log(Level.SEVERE, null, ex);

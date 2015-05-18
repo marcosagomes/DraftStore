@@ -134,7 +134,7 @@ Author     : ramon.ahonorio
                     <thead>
                         <tr>
                             <th class="col-xs-2" data-field="state" data-radio="true"></th>
-                            <th class="col-xs-1" data-field="idFornecedor">id</th>
+                            <th class="col-xs-1" data-field="idFornecedor">ID</th>
                             <th class="col-xs-6" data-field="razaoSocial">Razão Social</th>
                             <th class="col-xs-4" data-field="cnpj">CNPJ</th>
                         </tr>

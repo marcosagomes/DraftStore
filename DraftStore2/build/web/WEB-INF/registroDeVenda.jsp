@@ -53,7 +53,7 @@
                                 <a href="../Home">Home</a>
                             </li>
                             <li>
-                                <a href="RegistroVenda">Registrar Venda</a>
+                                <a href="RegistroVenda">Registro de vendas</a>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produtos <b class="caret"></b></a>
