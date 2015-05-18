@@ -103,7 +103,11 @@
             <div class="col-sm-9">
                 <!-- ********************** Inserir o conteudo aqui! ********************** -->
                 <p>
-                    Bem - Vindo ao DraftStore Sr(a): <c:out value="${usuario.nomeDoFuncionario}"/>
+                    Seja bem-vindo ao Sistema Draftstore, <b><c:out value="${usuario.nomeDoFuncionario}"/></b>!
+                </p> 
+                <p>
+                    Utilize o menu lateral para navegar pelas funcionalidades do sistema. <br>
+                    Lembre-se: as páginas estão liberadas de acordo com o seu papel.
                 </p> 
                 
             </div>
