@@ -5,7 +5,7 @@
  */
 package com.wrm.draftstore.servlets.busca;
 
-import com.wrm.draftstore.classes.Produto;
+import com.wrm.draftstore.classes.Produto2;
 import com.wrm.draftstore.database.ConexaoBDJavaDB;
 import java.io.IOException;
 import java.sql.Connection;
@@ -31,7 +31,7 @@ import javax.servlet.http.HttpServletResponse;
         urlPatterns = {"/Servlet/BuscarProduto"})
 public class BuscarProduto extends HttpServlet {
 
-  public List<Produto> listarProdutos() {
+  public List<Produto2> listarProdutos() {
     ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftstoredb");
     Statement stmt = null;
     Connection conn = null;
@@ -42,10 +42,10 @@ public class BuscarProduto extends HttpServlet {
       stmt = conn.createStatement();
       ResultSet resultados = stmt.executeQuery(sql);
       
-      List<Produto> lista = new ArrayList<>();
+      List<Produto2> lista = new ArrayList<>();
 
       while (resultados.next()) {
-          Produto p = new Produto();
+          Produto2 p = new Produto2();
           p.setTipoProduto(resultados.getString("TIPO_PRODUTO"));
           p.setMarca(resultados.getString("MARCA"));
           p.setModelo(resultados.getString("MODELO"));

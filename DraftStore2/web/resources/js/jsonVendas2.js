@@ -9,6 +9,9 @@ var idProduto;
 var jsonProdutos;
 var produtoSelecionado;
 var barraSearch = document.getElementsByClassName("pull-right search");
+var totalVendasInput = document.getElementById("totalVenda");
+var soma = 0;
+var botaoRegistrar = document.getElementById("botaoRegistrar");
 
 function carregarJsonProdutos() {
     jsonProdutos = JSON.parse(this.responseText);
@@ -39,16 +42,6 @@ function queryParams() {
 }
 
 var dadosCarrinho = [];
-//
-//$('#tabelita').on('click', 'tr', function (event) {
-////    console.log(this.childNodes[1].textContent);
-//    idProduto = this.childNodes[1].textContent;
-//    var inputEditar = document.getElementById("inputHiddenEditar");
-//    inputEditar.setAttribute("value", idProduto);
-//    var inputRemover = document.getElementById("inputHiddenRemover");
-//    inputRemover.setAttribute("value", idProduto);
-//});
-
 function operateFormatter(value, row, index) {
     return [
         '<a class="add" href="javascript:void(0)" title="Adicionar">',
@@ -98,29 +91,39 @@ window.operateEvents = {
             });
         }
 
+        soma += produtoSelecionado.precoVenda;
+        totalVendasInput.setAttribute('value', soma);
         updateData(dadosCarrinho);
     },
     'click .remover': function (e, value, row, index) {
 //        // Informacoes
 //        alert('You click remove icon, row: ' + JSON.stringify(row));
-        console.log(value, row, index);
-        console.log(row.idProduto);
+//        console.log(value, row, index);
+//        console.log(row.idProduto);
 //        dadosCarrinho = removeFunction(dadosCarrinho, "idProduto", row.idProduto);
         produtoSelecionado = row;
-        
+        var f = 0.0;
+
         for (var i in dadosCarrinho) {
             if (dadosCarrinho[i].idProduto == produtoSelecionado.idProduto) {
-                if(dadosCarrinho[i].quantidade > 1) {
+                f = dadosCarrinho[i].precoUni;
+                if (dadosCarrinho[i].quantidade > 1) {
                     dadosCarrinho[i].quantidade--;
                     dadosCarrinho[i].preco = dadosCarrinho[i].precoUni * dadosCarrinho[i].quantidade;
                 } else {
                     dadosCarrinho.splice(i, 1);
 //                    delete dadosCarrinho[i];
                 }
+                
                 break;
             }
         }
-
+        
+        soma = soma - parseFloat(f);
+        console.log('soma = '+soma);
+        console.log('f = '+f);
+        console.log('parseF = '+parseFloat(f));
+        totalVendasInput.setAttribute('value', soma);
         updateData(dadosCarrinho);
     }
 };
@@ -144,3 +147,28 @@ function removerCarinha(meuArray, propriedade, valor) {
         }
     }
 }
+
+function confirmarVenda(){
+    if(confirm("Tem certeza?")){
+        var jsonCarrinho = JSON.stringify(dadosCarrinho);
+        var inputHidden = document.createElement('input');
+        inputHidden.setAttribute('type', 'hidden');
+        inputHidden.setAttribute('value', jsonCarrinho);
+        alert('carrinho:'+jsonCarrinho);
+        alert('input:'+inputHidden);
+        
+        form.appendChild(inputHidden);
+        
+    } else {
+        return false;
+    }
+}
+
+$("#formVenda").submit( function(eventObj) {
+    var jsonCarrinho = JSON.stringify(dadosCarrinho);
+      $('<input />').attr('type', 'hidden')
+          .attr('name', "jsonCarrinho")
+          .attr('value', jsonCarrinho)
+          .appendTo('#formVenda');
+      return true;
+  });

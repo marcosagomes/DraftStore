@@ -7,7 +7,7 @@ package com.wrm.draftstore.servlets.cadastro;
 
 import com.wrm.draftstore.servlets.editar.EditarFornecedor;
 import com.wrm.draftstore.classes.Fornecedor;
-import com.wrm.draftstore.classes.Produto;
+import com.wrm.draftstore.classes.Produto2;
 import com.wrm.draftstore.classes.Usuario;
 import com.wrm.draftstore.database.ConexaoBDJavaDB;
 import com.wrm.draftstore.servlets.busca.BuscarFornecedor;
@@ -83,7 +83,7 @@ public class CadastrarProduto extends HttpServlet {
     return null;
   }
   
-  public void cadastrarProduto(Produto p, Usuario u){
+  public void cadastrarProduto(Produto2 p, Usuario u){
         ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftstoredb");
         PreparedStatement stmt = null;
         Connection conn = null;
@@ -172,7 +172,7 @@ public class CadastrarProduto extends HttpServlet {
 //        float custo = Float.parseFloat(request.getParameter("custo"));
         int fkFornecedor = Integer.parseInt(request.getParameter("fornecedor"));
         
-        Produto p = new Produto(precoVenda, percentualLucro, modelo, 
+        Produto2 p = new Produto2(precoVenda, percentualLucro, modelo, 
                 marca, tipoProduto, custo, fkFornecedor);
         
         // 1) OBTEM AS INFORMACOES DO USUARIO DA SESSAO

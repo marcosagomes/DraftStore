@@ -7,7 +7,7 @@ package com.wrm.draftstore.auxiliares;
 
 import com.google.gson.Gson;
 import com.wrm.draftstore.classes.Fornecedor;
-import com.wrm.draftstore.classes.Produto;
+import com.wrm.draftstore.classes.Produto2;
 import com.wrm.draftstore.database.ConexaoBDJavaDB;
 import com.wrm.draftstore.servlets.busca.BuscarFornecedor;
 import java.io.FileWriter;
@@ -47,7 +47,7 @@ public class JsonVendasServlet extends HttpServlet {
   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
     
-    List<Produto> fornecedoresLista = listarProdutos();
+    List<Produto2> fornecedoresLista = listarProdutos();
     request.setAttribute("lista", fornecedoresLista);
     
     String json = new Gson().toJson(fornecedoresLista);
@@ -117,7 +117,7 @@ public class JsonVendasServlet extends HttpServlet {
     return "Short description";
   }// </editor-fold>
 
-  public List<Produto> listarProdutos() {
+  public List<Produto2> listarProdutos() {
     ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftstoredb");
     Statement stmt = null;
     Connection conn = null;
@@ -140,11 +140,11 @@ public class JsonVendasServlet extends HttpServlet {
       stmt = conn.createStatement();
       ResultSet resultados = stmt.executeQuery(sql);
 
-      List<Produto> lista = new ArrayList<>();
+      List<Produto2> lista = new ArrayList<>();
 
       while (resultados.next()) {
-        Produto p = new Produto();
-//        p.setIdProduto(resultados.getInt("ID_PRODUTO"));
+        Produto2 p = new Produto2();
+        p.setIdProduto(resultados.getInt("ID_PRODUTO"));
         p.setPrecoVenda(resultados.getFloat("PRECO_VENDA"));
         p.setPercentualLucro(resultados.getFloat("PERCENTUAL_LUCRO"));
         p.setModelo(resultados.getString("MODELO"));
@@ -152,10 +152,10 @@ public class JsonVendasServlet extends HttpServlet {
         p.setTipoProduto(resultados.getString("TIPO_PRODUTO"));
         p.setCusto(resultados.getFloat("CUSTO"));
         p.setIdFornecedor(resultados.getInt("FK_FORNECEDOR"));
-//        p.setIdFuncionario(resultados.getInt("FK_FUNCIONARIO"));
-//        p.setDataCriacao(resultados.getString("DATA_CRIACAO"));
-//        p.setNomeFornecedor(resultados.getString("NOME_FORNECEDOR"));
-//        p.setNomeUsuario(resultados.getString("NOME_USUARIO"));
+        p.setIdFuncionario(resultados.getInt("FK_FUNCIONARIO"));
+        p.setDataCriacao(resultados.getString("DATA_CRIACAO"));
+        p.setNomeFornecedor(resultados.getString("NOME_FORNECEDOR"));
+        p.setNomeUsuario(resultados.getString("NOME_USUARIO"));
         
         lista.add(p);
         
