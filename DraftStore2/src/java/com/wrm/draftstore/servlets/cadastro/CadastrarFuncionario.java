@@ -6,6 +6,8 @@
 package com.wrm.draftstore.servlets.cadastro;
 
 import com.wrm.draftstore.classes.Fornecedor;
+import com.wrm.draftstore.classes.Funcionario;
+import com.wrm.draftstore.classes.Usuario;
 import com.wrm.draftstore.database.ConexaoBDJavaDB;
 import java.io.IOException;
 import java.sql.Connection;
@@ -19,6 +21,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -27,32 +30,32 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "CadastrarFuncionario", urlPatterns = {"/Servlet/CadastrarFuncionario"})
 public class CadastrarFuncionario extends HttpServlet {
 
-    public void cadastrarFornecedor(Fornecedor f){
+    public void cadastrarFuncionario(Funcionario f, Usuario u){
         ConexaoBDJavaDB conexaoBD
             = new ConexaoBDJavaDB("draftstoredb");
         PreparedStatement stmt = null;
         Connection conn = null;
         
-        String sql = "INSERT INTO TB_FORNECEDOR " // Notar que antes de fechar aspas tem espaço em branco!
-                + "(RAZAO_SOCIAL, CNPJ, CEP, ENDERECO, BAIRRO, NUMERO, CIDADE, ESTADO, TELEFONE, EMAIL, SITE) "
+        String sql = "INSERT INTO TB_FUNCIONARIO " // Notar que antes de fechar aspas tem espaço em branco!
+                + "(SENHA, NOME, DATA_NASCIMENTO, SEXO, CPF, RG, CARGO, TELEFONE, CELULAR, EMAIL, DATA_CRIACAO) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
         conn = conexaoBD.obterConexao();
         stmt = conn.prepareStatement(sql);
         
-           System.out.println(f.getNumero());
+           System.out.println(f.getNome());
         
-        stmt.setString(1, f.getRazaoSocial());
-        stmt.setString(2, f.getCnpj());
-        stmt.setString(3, f.getCep());
-        stmt.setString(4, f.getEndereco());
-        stmt.setString(5, f.getBairro());
-        stmt.setString(6, f.getNumero());
-        stmt.setString(7, f.getCidade());
-        stmt.setString(8, f.getEstado());
-        stmt.setString(9, f.getTelefone());
+        stmt.setString(1, f.getSenha());
+        stmt.setString(2, f.getNome());
+        stmt.setString(3, f.getDtNascimento());
+        stmt.setString(4, f.getSexo());
+        stmt.setString(5, f.getCpf());
+        stmt.setString(6, f.getRg());
+        stmt.setString(7, f.getCargo());
+        stmt.setString(8, f.getTelefone());
+        stmt.setString(9, f.getCelular());
         stmt.setString(10, f.getEmail());
-        stmt.setString(11, f.getSite());
+        stmt.setString(11, "current_timestamp");
         
         stmt.executeUpdate();
         
@@ -93,23 +96,27 @@ public class CadastrarFuncionario extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         
-        String razaoSocial = request.getParameter("razaoSocial");
-        String cnpj = request.getParameter("cnpj");
-        String cep = request.getParameter("cep");
-        String endereco = request.getParameter("endereco");
-        String bairro = request.getParameter("bairro");
-        String cidade = request.getParameter("cidade");
-        String estado = request.getParameter("uf");
-        String telefone = request.getParameter("telefone");
-        String email = request.getParameter("email");
-        String site = request.getParameter("site");
-        String numero = request.getParameter("numero");
+        String nome = request.getParameter("Nome");
+        String dtNascimento = request.getParameter("Data");
+        String sexo = request.getParameter("Sexo");
+        String cpf = request.getParameter("CPF");
+        String rg = request.getParameter("RG");
+        String telefone = request.getParameter("Telefone");
+        String celular = request.getParameter("Celular");
+        String cargo = request.getParameter("Cargo");
+        String email = request.getParameter("Email");
+        String senha = request.getParameter("Senha");
         
-        Fornecedor f = new Fornecedor(razaoSocial, cnpj, cep, endereco, bairro, 
-                cidade, estado, telefone, email, site, numero);
+        Funcionario f = new Funcionario(nome, dtNascimento, sexo, cpf, rg, telefone, 
+                                        celular, cargo, email, senha);
         
-        cadastrarFornecedor(f);
+       
+         HttpServletRequest httpRequest = (HttpServletRequest) request;
+        // B) TENTA RECUPERAR A SESSÃO DO USUÁRIO
+        HttpSession sessao = httpRequest.getSession();
+        Usuario usuario = (Usuario) sessao.getAttribute("usuario");
         
+        cadastrarFuncionario(f, usuario);
         response.sendRedirect("../resultado.jsp");
         
     }
@@ -143,6 +150,37 @@ public class CadastrarFuncionario extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
+        
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        
+        String nome = request.getParameter("Nome");
+        String dtNascimento = request.getParameter("Data");
+        String sexo = request.getParameter("Sexo");
+        String cpf = request.getParameter("CPF");
+        String rg = request.getParameter("RG");
+        String telefone = request.getParameter("Telefone");
+        String celular = request.getParameter("Celular");
+        String cargo = request.getParameter("Cargo");
+        String email = request.getParameter("Email");
+        String senha = request.getParameter("Senha");
+        
+        Funcionario f = new Funcionario(nome, dtNascimento, sexo, cpf, rg, telefone, 
+                                        celular, cargo, email, senha);
+        
+        // 1) OBTEM AS INFORMACOES DO USUARIO DA SESSAO
+        // A) CAST DOS PARÂMETROS RECEBIDOS
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        // B) TENTA RECUPERAR A SESSÃO DO USUÁRIO
+        HttpSession sessao = httpRequest.getSession();
+        Usuario usuario = (Usuario) sessao.getAttribute("usuario");
+        
+        cadastrarFuncionario(f, usuario);
+        
+        System.out.println("> Funcionario cadastrado.");
+        response.sendRedirect("CadastrarFuncionario");
+        
     }
 
     /**
