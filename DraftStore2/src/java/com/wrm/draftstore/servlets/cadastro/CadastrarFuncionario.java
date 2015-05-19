@@ -8,10 +8,17 @@ package com.wrm.draftstore.servlets.cadastro;
 import com.wrm.draftstore.classes.Funcionario;
 import com.wrm.draftstore.classes.Usuario;
 import com.wrm.draftstore.database.ConexaoBDJavaDB;
+import com.wrm.draftstore.servlets.busca.BuscarFornecedor;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -28,6 +35,50 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "CadastrarFuncionario", urlPatterns = {"/Servlet/CadastrarFuncionario"})
 public class CadastrarFuncionario extends HttpServlet {
+    
+    //Metódo para tentar comparar CARGO > FK_PAPEL
+    public List<Funcionario> listarFuncionarios() {
+    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftstoredb");
+    Statement stmt = null;
+    Connection conn = null;
+
+    String sql = "SELECT NOME, FK_PAPEL FROM TB_FUNCIONARIO";
+    try {
+      conn = conexaoBD.obterConexao();
+      stmt = conn.createStatement();
+      ResultSet resultados = stmt.executeQuery(sql);
+      
+      List<Funcionario> lista = new ArrayList<>();
+
+      while (resultados.next()) {
+          Funcionario f = new Funcionario();
+          f.setNome(resultados.getString("NOME"));
+          f.setFkPapel(resultados.getString("FK_PAPEL"));
+          lista.add(f);
+      }
+      
+     return lista;
+
+    } catch (SQLException | ClassNotFoundException ex) {
+      Logger.getLogger(BuscarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+    } finally {
+      if (stmt != null) {
+        try {
+          stmt.close();
+        } catch (SQLException ex) {
+          Logger.getLogger(BuscarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      }
+      if (conn != null) {
+        try {
+          conn.close();
+        } catch (SQLException ex) {
+          Logger.getLogger(BuscarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      }
+    }
+    return null;
+  }
 
     public void cadastrarFuncionario(Funcionario f, Usuario u){
         ConexaoBDJavaDB conexaoBD
@@ -35,15 +86,13 @@ public class CadastrarFuncionario extends HttpServlet {
         PreparedStatement stmt = null;
         Connection conn = null;
         
-        String sql = "INSERT INTO TB_FORNECEDOR " // Notar que antes de fechar aspas tem espaço em branco!
-                + "(SENHA, NOME, DATA_NASCIMENTO, SEXO, CPF, RG, PAPEL, TELEFONE, CELULAR, EMAIL) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO TB_FUNCIONARIO " // Notar que antes de fechar aspas tem espaço em branco!
+                + "(SENHA, NOME, DATA_NASCIMENTO, SEXO, CPF, RG, FK_PAPEL, TELEFONE, CELULAR, EMAIL, DATA_CRIACAO) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
         conn = conexaoBD.obterConexao();
         stmt = conn.prepareStatement(sql);
-        
-          
-        
+  
         stmt.setString(1, f.getSenha());
         stmt.setString(2, f.getNome());
         stmt.setString(3, f.getDtNascimento());
@@ -54,6 +103,11 @@ public class CadastrarFuncionario extends HttpServlet {
         stmt.setString(8, f.getTelefone());
         stmt.setString(9, f.getCelular());
         stmt.setString(10, f.getEmail());
+        
+        Date dataAtual = new Date();
+        String timeStamp = new Timestamp(dataAtual.getTime()).toString();
+        
+        stmt.setString(11, timeStamp);
         
         stmt.executeUpdate();
         
@@ -150,7 +204,35 @@ public class CadastrarFuncionario extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+ 
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        
+        String nome = request.getParameter("Nome");
+        String dtNascimento = request.getParameter("Data");
+        String sexo = request.getParameter("Sexo");
+        String cpf = request.getParameter("CPG");
+        String rg = request.getParameter("RG");
+        String telefone = request.getParameter("Telefone");
+        String celular = request.getParameter("Celular");
+        String cargo = request.getParameter("Cargo");
+        String email = request.getParameter("Email");
+        String senha = request.getParameter("Senha");
+        
+       
+        Funcionario f = new Funcionario(nome, dtNascimento, sexo, cpf, rg, telefone, celular, cargo, email, senha);
+         
+        // 1) OBTEM AS INFORMACOES DO USUARIO DA SESSAO
+        // A) CAST DOS PARÂMETROS RECEBIDOS
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        // B) TENTA RECUPERAR A SESSÃO DO USUÁRIO
+        HttpSession sessao = httpRequest.getSession();
+        Usuario usuario = (Usuario) sessao.getAttribute("usuario");
+        
+        cadastrarFuncionario(f, usuario);
+        
+        
+        response.sendRedirect("../resultado.jsp");
     }
 
     /**

@@ -101,7 +101,7 @@
         <div class="col-sm-9">
             <!-- ********************** Inserir o conteudo aqui! ********************** -->
 
-            <form id="formulario" class="form-inline" onSubmit="return validar(this)">
+            <form id="formulario" class="form-inline" onSubmit="return validar(this)" method="POST" action="CadastrarFuncionario">
 
                 <div id="campoNome" class="normalidade form-group ">
                     <label class="col-sm-3 control-label" for="Nome"> Nome </label>
