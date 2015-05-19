@@ -172,7 +172,7 @@ public class CadastrarProduto extends HttpServlet {
 //        float custo = Float.parseFloat(request.getParameter("custo"));
         int fkFornecedor = Integer.parseInt(request.getParameter("fornecedor"));
         
-        Produto p = new Produto(precoVenda, percentualLucro, modelo, 
+        Produto p = new Produto(0, precoVenda, percentualLucro, modelo, 
                 marca, tipoProduto, custo, fkFornecedor);
         
         // 1) OBTEM AS INFORMACOES DO USUARIO DA SESSAO

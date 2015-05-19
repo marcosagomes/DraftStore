@@ -1,6 +1,6 @@
 // Requisitando o JSON do Servlet
 var xhr = new XMLHttpRequest();
-xhr.open("GET", "TesteJsonFornecedores", true);
+xhr.open("GET", "JsonFornecedoresServlet", true);
 xhr.setRequestHeader("Content-type", "application/json");
 xhr.addEventListener("load", carregarJSONFornecedores);
 xhr.send();

@@ -5,16 +5,8 @@
  */
 package com.wrm.draftstore.servlets.autenticacao;
 
-import com.wrm.draftstore.servlets.cadastro.*;
-import com.wrm.draftstore.classes.Fornecedor;
 import com.wrm.draftstore.classes.Usuario;
-import com.wrm.draftstore.database.ConexaoBDJavaDB;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

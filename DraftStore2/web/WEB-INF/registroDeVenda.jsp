@@ -26,7 +26,9 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <link href="../resources/css/estiloRegistra.css" type="text/css" rel="stylesheet">
+    <!--<link href="../resources/css/estiloRegistra.css" type="text/css" rel="stylesheet">-->
+    <link href="../resources/css/estilos.css" type="text/css" rel="stylesheet">
+    <link href="../bootstrap-table/bootstrap-table.css" type="text/css" rel="stylesheet">
 
 </head>
 <body>
@@ -101,44 +103,87 @@
         </div>
         <div class="col-sm-9">
             <!-- ********************** Inserir o conteudo aqui! ********************** -->
-            <input type="text" placeholder="    Buscar Produtos    " id="buscarProduto">
+            <label>Pesquisar de produtos</label>
 
-            <table class="table table">
-                <caption>Carrinho</caption>
+            <table id="tabelita" 
+                   data-click-to-select="true"
+                   data-formatter="stateFormatter"
+                   data-select-item-name="radioSelecionado"
+                   data-search="true"
+                   data-height="200"
+                   data-toolbar="#toolbar"
+                   data-show-toggle="true"
+                   data-show-columns="true"
+                   data-query-params="queryParams"
+                   data-response-handler="responseHandler">
                 <thead>
                     <tr>
-                        <th>Tipo de produto</th>
-                        <th>Quantidade</th>
-                        <th>Preço</th>
+                        <th data-field="state" data-radio="true"></th>
+                        <th data-field="idProduto">ID</th>
+                        <th data-field="tipoProduto">Tipo de produto</th>
+                        <th data-field="marca">Marca</th>
+                        <th data-field="modelo">Modelo</th>
+                        <th data-field="custo">Custo</th>
+                        <th data-align="center" data-field="operate" data-formatter="operateFormatter" 
+                            data-events="operateEvents">Adicionar</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <c:forEach items="${lista}" var="produto" varStatus="stats">
-                        <tr id="lista[${stats.index}]">
-                            <td>${produto.tipoProduto}</td>
-                            <td>${produto.marca}</td>
-                            <td>${produto.modelo}</td>
-                            <td>${produto.precoVenda}</td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
             </table>
+            
+            <br>
+            <label>Carrinho de compras</label>
+            
+            <table id="carrinho" 
+                   data-click-to-select="true"
+                   data-formatter="stateFormatter"
+                   data-select-item-name="radioSelecionado"
+                   data-height="300"
+                   data-toolbar="#toolbar"
+                   data-show-toggle="true"
+                   data-show-columns="true"
+                   data-show-refresh="true"
+                   data-query-params="queryParams"
+                   data-response-handler="responseHandler">
+                <thead>
+<!--                    <tr>
+                        <th data-field="state" data-radio="true"></th>
+                        <th data-field="idProduto">ID</th>
+                        <th data-field="tipoProduto">Tipo de produto</th>
+                        <th data-field="marca">Marca</th>
+                        <th data-field="modelo">Modelo</th>
+                        <th data-field="custo" >Custo</th>
+                        <th data-align="center" data-field="operate" data-formatter="operateFormatter2" 
+                            data-events="operateEvents">Remover</th>
+                    </tr>-->
+                    <tr>
+                        <th data-field="state" data-radio="true"></th>
+                        <th data-field="idItemVenda">ID</th>
+                        <th data-field="idProduto">ID Produto</th>
+                        <th data-field="nomeProduto">Modelo</th>
+                        <th data-field="quantidade">Quantidade</th>
+                        <th data-field="preco" >Preço</th>
+                        <th data-align="center" data-field="operate" data-formatter="operateFormatter2" 
+                            data-events="operateEvents">Remover</th>
+                    </tr>
+                </thead>
+            </table>
+
         </div>
-        <div class="form2">
+<!--        <div class="form2">
             <form action="action" class="form-inline" id="fomulario2">
                 <div id="campoData" class="normal form-group">
                     <label class="col-sm-2 control-label" for="data"> Data </label>
                     <div class="col-sm-3">
                         <input type="date" id="inputData" class="form-control" name="data">
-                        <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
+                        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
                     </div>
                 </div>
-                 
+
                 <div id="campoPreco" class="normal form-group">
                     <label class="col-sm-2 control-label" for="total"> Total </label>
                     <div class="col-sm-3">
                         <input type="text" id="inputTotal" class="form-control" name="total">
-                        <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
+                        <span class="glyphicon glyphicon-remove form-control-feedback"></span>
                     </div>
                 </div>
                 <div class="botao">
@@ -146,13 +191,15 @@
                     <button class="btn btn-small" type="button">Confirmar Registro</button>
                 </div>
             </form>
-        </div>
+        </div>-->
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../bootstrap-table/bootstrap-table.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
-        <script src="../resources/js/validacoesCampos.js"></script>
+        <!--<script src="../resources/js/validacoesCampos.js"></script>-->
+        <script src="../resources/js/jsonVendas.js"></script>
 </body>
 </html>
