@@ -26,7 +26,7 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <link href="../resources/css/estiloFuncionario.css" type="text/css" rel="stylesheet">
+    <link href="../resources/css/estiloProduto.css" type="text/css" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -103,10 +103,9 @@
 
             <form id="formulario" class="form-inline" onSubmit="return validade(this)">
                 
-            <div class="coluna1">
-                <div id="campoTipo" class="normal form-group">
-                    <label class="col-sm-2 control-label" for="Tipo"> Tipo do Produto </label>
-                    <div class="col-sm-3 from-group">
+           <div id="campoTipoProduto" class="normal form-group" >
+                    <label class="col-sm-3 control-label" for="Tipo"> Tipo do Produto </label>
+                    <div class="col-sm-2 from-group">
                         <select class="form-control" id="selectTipo" name="Tipo">
                             <option selected="selected" calabel="0" value="0">Selecione</option>
                             <option calabel="1" value="Processador"> Processador </option>
@@ -117,9 +116,9 @@
                     </div>
                 </div>
                 
-                <div id="campoFornecedor" class="normalidade form-group">
-                    <label class="col-sm-2 control-label" for="Fornecedor"> Fornecedor </label>
-                    <div class="col-sm-3 from-group">
+                <div id="campoFornecedor" class="normal form-group">
+                    <label class="col-sm-3 control-label" for="Fornecedor"> Fornecedor </label>
+                    <div class="col-sm-2 from-group">
                         <select class="form-control" id="selectFornecedor" name="Fornecedor">
                             <c:forEach items="${lista}" var="fornec" varStatus="stats">
                             <option value="${fornec.idFornecedor}">${fornec.razaoSocial}</option>
@@ -129,7 +128,7 @@
                 </div>
                 
                 
-                <div id="campoMarca" class="normalidade form-group ">
+                <div id="campoMarca" class="normal form-group ">
                     <label class="col-sm-3 control-label" for="Marca"> Marca </label>
                     <div class="col-sm-7">
                         <input type="text" id="inputMarca" class="form-control" name="Marca">
@@ -139,18 +138,15 @@
                 
                 <div id="campoModelo" class="normal form-group ">
                     <label class="col-sm-3 control-label" for="Modelo"> Modelo </label>
-                    <div class="col-sm-7">
+                    <div class="col-sm-2">
                         <input type="text" id="inputModelo" class="form-control" name="Modelo">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
-            </div>
-                
-                
-            <div class="coluna2">    
-                <div id="campoCusto" class="normalidade form-group ">
+             
+                <div id="campoCusto" class="normal form-group ">
                     <label class="col-sm-3 control-label" for="Custo"> Custo </label>
-                    <div class="col-sm-7">
+                    <div class="col-sm-2">
                         <input type="number" min="0.1" step="0.01" value="120" id="inputCusto" class="form-control" name="Custo">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
@@ -165,13 +161,13 @@
                 </div>
                 
                 <div id="campoPreco" class="normalidade form-group">
-                    <label class="col-sm-2 control-label" for="Preco"> Preco de Venda </label>
-                    <div class="col-sm-3">
-                        <input type="text" id="inputPreco" class="form-control" name="lucro" placeholder="R$ 00,00">
+                    <label class="col-sm-3 control-label" for="Preco"> Preco de Venda </label>
+                    <div class="col-sm-2">
+                        <input type="text" id="inputPreco" class="form-control" name="lucro" placeholder="R$ 00,00" readonly>
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
-            </div>   
+         
                 <div class="botoesFormulario">
                     <button type="reset" class="btn btn-danger">Cancelar</button>
                     <button type="submit" class="btn btn-default">Cadastrar</button>
