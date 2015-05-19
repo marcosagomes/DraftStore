@@ -144,7 +144,7 @@ public class JsonVendasServlet extends HttpServlet {
 
       while (resultados.next()) {
         Produto p = new Produto();
-        p.setIdProduto(resultados.getInt("ID_PRODUTO"));
+//        p.setIdProduto(resultados.getInt("ID_PRODUTO"));
         p.setPrecoVenda(resultados.getFloat("PRECO_VENDA"));
         p.setPercentualLucro(resultados.getFloat("PERCENTUAL_LUCRO"));
         p.setModelo(resultados.getString("MODELO"));
@@ -152,10 +152,10 @@ public class JsonVendasServlet extends HttpServlet {
         p.setTipoProduto(resultados.getString("TIPO_PRODUTO"));
         p.setCusto(resultados.getFloat("CUSTO"));
         p.setIdFornecedor(resultados.getInt("FK_FORNECEDOR"));
-        p.setIdFuncionario(resultados.getInt("FK_FUNCIONARIO"));
-        p.setDataCriacao(resultados.getString("DATA_CRIACAO"));
-        p.setNomeFornecedor(resultados.getString("NOME_FORNECEDOR"));
-        p.setNomeUsuario(resultados.getString("NOME_USUARIO"));
+//        p.setIdFuncionario(resultados.getInt("FK_FUNCIONARIO"));
+//        p.setDataCriacao(resultados.getString("DATA_CRIACAO"));
+//        p.setNomeFornecedor(resultados.getString("NOME_FORNECEDOR"));
+//        p.setNomeUsuario(resultados.getString("NOME_USUARIO"));
         
         lista.add(p);
         
