@@ -164,6 +164,7 @@ public class CadastrarProduto extends HttpServlet {
           Logger.getLogger(CadastrarProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        
 //        float precoVenda = Float.parseFloat(request.getParameter("precoVenda"));
 //        float percentualLucro = Float.parseFloat(request.getParameter("lucro"));
         String modelo = request.getParameter("modelo");
@@ -171,9 +172,16 @@ public class CadastrarProduto extends HttpServlet {
         String tipoProduto = request.getParameter("tipoProduto");
 //        float custo = Float.parseFloat(request.getParameter("custo"));
         int fkFornecedor = Integer.parseInt(request.getParameter("fornecedor"));
+        String dataCriacao = request.getParameter("data");
+        String nomeFornecedor = request.getParameter("nomeFornecedor");
+        String nomeUsuario = request.getParameter("nomeUsuario");
+        int fkFuncionario = Integer.parseInt(request.getParameter("funcionario"));
         
         Produto2 p = new Produto2(precoVenda, percentualLucro, modelo, 
                 marca, tipoProduto, custo, fkFornecedor);
+//        Produto p = new Produto(0, precoVenda, percentualLucro, modelo, 
+//                marca, tipoProduto, custo, fkFornecedor, dataCriacao, nomeFornecedor, nomeUsuario, fkFuncionario);
+
         
         // 1) OBTEM AS INFORMACOES DO USUARIO DA SESSAO
         // A) CAST DOS PARÂMETROS RECEBIDOS

@@ -42,10 +42,23 @@ public class Funcionario {
         private String cargo;
         private String email;
         private String senha;
+        private String fkPapel;
+
+ 
         
         
         
         //Métodos
+        
+    public String getFkPapel() {
+        return fkPapel;
+    }
+
+    public void setFkPapel(String fkPapel) {
+        this.fkPapel = fkPapel;
+    }
+        
+        
     public String getIdFuncionario() {
         return idFuncionario;
     }
@@ -133,6 +146,8 @@ public class Funcionario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+    
+    
 
         
 }
