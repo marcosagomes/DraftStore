@@ -103,7 +103,7 @@
         </div>
         <div class="col-sm-9">
             <!-- ********************** Inserir o conteudo aqui! ********************** -->
-            <label>Pesquisar de produtos</label>
+            <label>Pesquisa de produtos</label>
 
             <table id="tabelita" 
                    data-click-to-select="true"
@@ -123,7 +123,7 @@
                         <th data-field="tipoProduto">Tipo de produto</th>
                         <th data-field="marca">Marca</th>
                         <th data-field="modelo">Modelo</th>
-                        <th data-field="custo">Custo</th>
+                        <th data-field="precoVenda">Preço</th>
                         <th data-align="center" data-field="operate" data-formatter="operateFormatter" 
                             data-events="operateEvents">Adicionar</th>
                     </tr>
@@ -157,7 +157,6 @@
                     </tr>-->
                     <tr>
                         <th data-field="state" data-radio="true"></th>
-                        <th data-field="idItemVenda">ID</th>
                         <th data-field="idProduto">ID Produto</th>
                         <th data-field="nomeProduto">Modelo</th>
                         <th data-field="quantidade">Quantidade</th>
