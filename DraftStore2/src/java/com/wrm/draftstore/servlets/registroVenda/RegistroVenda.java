@@ -151,17 +151,18 @@ public class RegistroVenda extends HttpServlet {
 
     String sql = "INSERT INTO ADM.TB_VENDA "
             + "(FK_FUNCIONARIO, DATA_CRIACAO, NOME_USUARIO) \n"
-            + "	VALUES (?, ?, ?);\n";
+            + "	VALUES (?, ?, ?)\n";
     try {
       conn = conexaoBD.obterConexao();
       stmt = conn.prepareStatement(sql);
 
       // Criando um Timestamp atual do sistema
       Date dataAtual = new Date();
-      String timeStamp = new Timestamp(dataAtual.getTime()).toString();
+      timeStamp = new Timestamp(dataAtual.getTime()).toString();
 
       stmt.setInt(1, Integer.parseInt(u.getIdUsuario()));
       stmt.setString(2, timeStamp);
+      stmt.setString(3, u.getNomeDoFuncionario());
 
       stmt.executeUpdate();
 

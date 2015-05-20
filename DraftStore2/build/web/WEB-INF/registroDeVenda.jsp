@@ -203,6 +203,6 @@
         <script type="text/javascript" src="../bootstrap-table/bootstrap-table.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
         <!--<script src="../resources/js/validacoesCampos.js"></script>-->
-        <script src="../resources/js/jsonVendas2.js"></script>
+        <script src="../resources/js/jsonVendas.js"></script>
 </body>
 </html>
