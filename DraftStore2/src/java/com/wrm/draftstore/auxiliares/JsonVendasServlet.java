@@ -6,8 +6,7 @@
 package com.wrm.draftstore.auxiliares;
 
 import com.google.gson.Gson;
-import com.wrm.draftstore.classes.Fornecedor;
-import com.wrm.draftstore.classes.Produto2;
+import com.wrm.draftstore.classes.Produto;
 import com.wrm.draftstore.database.ConexaoBDJavaDB;
 import com.wrm.draftstore.servlets.busca.BuscarFornecedor;
 import java.io.FileWriter;
@@ -47,7 +46,7 @@ public class JsonVendasServlet extends HttpServlet {
   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
     
-    List<Produto2> fornecedoresLista = listarProdutos();
+    List<Produto> fornecedoresLista = listarProdutos();
     request.setAttribute("lista", fornecedoresLista);
     
     String json = new Gson().toJson(fornecedoresLista);
@@ -117,7 +116,7 @@ public class JsonVendasServlet extends HttpServlet {
     return "Short description";
   }// </editor-fold>
 
-  public List<Produto2> listarProdutos() {
+  public List<Produto> listarProdutos() {
     ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftstoredb");
     Statement stmt = null;
     Connection conn = null;
@@ -140,10 +139,10 @@ public class JsonVendasServlet extends HttpServlet {
       stmt = conn.createStatement();
       ResultSet resultados = stmt.executeQuery(sql);
 
-      List<Produto2> lista = new ArrayList<>();
+      List<Produto> lista = new ArrayList<>();
 
       while (resultados.next()) {
-        Produto2 p = new Produto2();
+        Produto p = new Produto();
         p.setIdProduto(resultados.getInt("ID_PRODUTO"));
         p.setPrecoVenda(resultados.getFloat("PRECO_VENDA"));
         p.setPercentualLucro(resultados.getFloat("PERCENTUAL_LUCRO"));
