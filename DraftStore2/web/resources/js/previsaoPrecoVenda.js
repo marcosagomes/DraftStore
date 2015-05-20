@@ -1,7 +1,7 @@
 // ----------------- CALCULAR PRECO PREVISTO -----------------
-var custo = document.getElementsByClassName("inputCusto")[0];
-var percentLucro = document.getElementsByClassName("inputLucro")[0];
-var previsto = document.getElementsByClassName("inputPrevisto")[0];
+var custo = document.getElementById("inputCusto");
+var percentLucro = document.getElementById("inputLucro");
+var previsto = document.getElementById("inputPreco");
 
 custo.addEventListener("input", atualizarPrevisto);
 percentLucro.addEventListener("input", atualizarPrevisto);
