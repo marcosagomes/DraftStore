@@ -17,11 +17,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -83,14 +81,24 @@ public class CadastrarProduto extends HttpServlet {
     return null;
   }
   
-  public void cadastrarProduto(Produto p, Usuario u){
+  public void cadastrarProduto(String razaoSocial, Produto p, Usuario u){
         ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftstoredb");
         PreparedStatement stmt = null;
         Connection conn = null;
         
-        String sql = "INSERT INTO ADM.TB_PRODUTO (PRECO_VENDA, PERCENTUAL_LUCRO, "
-                + "MODELO, MARCA, TIPO_PRODUTO, CUSTO, FK_FORNECEDOR, FK_USUARIO, DATA_CRIACAO) \n"
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO ADM.TB_PRODUTO"
+                + "(PRECO_VENDA,"
+                + " PERCENTUAL_LUCRO,"
+                + " MODELO,"
+                + " MARCA,"
+                + " TIPO_PRODUTO,"
+                + " CUSTO,"
+                + " FK_FORNECEDOR,"
+                + " FK_FUNCIONARIO,"
+                + " DATA_CRIACAO,"
+                + " NOME_FORNECEDOR,"
+                + " NOME_USUARIO) \n"
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
         conn = conexaoBD.obterConexao();
         stmt = conn.prepareStatement(sql);
@@ -105,11 +113,11 @@ public class CadastrarProduto extends HttpServlet {
         stmt.setString(8, u.getIdUsuario());
         
         // Criando um Timestamp atual do sistema
-        Date dataAtual = new Date();
-        String timeStamp = new Timestamp(dataAtual.getTime()).toString();
+        stmt.setString(9, "current_timestamp");
         
-        stmt.setString(9, timeStamp);
-        
+        stmt.setString(10, p.getNomeFornecedor());
+        stmt.setString(11, razaoSocial);
+
         stmt.executeUpdate();
         
         System.out.println("> Produto cadastrado com sucesso.");
@@ -150,9 +158,9 @@ public class CadastrarProduto extends HttpServlet {
         
         request.setCharacterEncoding("UTF-8");
         
-        String stringPrecoVenda = request.getParameter("precoVenda");
+        String stringPrecoVenda = request.getParameter("preco");
         String stringPercLucro = request.getParameter("lucro");
-        String stringCusto = request.getParameter("custo");
+        String stringCusto = request.getParameter("Custo");
         float precoVenda = 0;
         float percentualLucro = 0;
         float custo = 0;
@@ -167,11 +175,11 @@ public class CadastrarProduto extends HttpServlet {
         
 //        float precoVenda = Float.parseFloat(request.getParameter("precoVenda"));
 //        float percentualLucro = Float.parseFloat(request.getParameter("lucro"));
-        String modelo = request.getParameter("modelo");
-        String marca = request.getParameter("marca");
-        String tipoProduto = request.getParameter("tipoProduto");
+        String modelo = request.getParameter("Modelo");
+        String marca = request.getParameter("Marca");
+        String tipoProduto = request.getParameter("Tipo");
 //        float custo = Float.parseFloat(request.getParameter("custo"));
-        int fkFornecedor = Integer.parseInt(request.getParameter("fornecedor"));
+        int fkFornecedor = Integer.parseInt(request.getParameter("Fornecedor"));
         String dataCriacao = request.getParameter("data");
         String nomeFornecedor = request.getParameter("nomeFornecedor");
         String nomeUsuario = request.getParameter("nomeUsuario");
@@ -190,7 +198,7 @@ public class CadastrarProduto extends HttpServlet {
         HttpSession sessao = httpRequest.getSession();
         Usuario usuario = (Usuario) sessao.getAttribute("usuario");
         
-        cadastrarProduto(p, usuario);
+        cadastrarProduto(nomeFornecedor, p, usuario);
         
         System.out.println("> Fornecedor cadastrado.");
         response.sendRedirect("../resultado.jsp");

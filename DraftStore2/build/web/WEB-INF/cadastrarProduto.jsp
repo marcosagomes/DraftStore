@@ -101,7 +101,11 @@
         <div class="col-sm-9">
             <!-- ********************** Inserir o conteudo aqui! ********************** -->
 
-            <form id="formulario" class="form-inline" onSubmit="return validade(this)">
+            <form 
+                id="formulario"
+                class="form-inline"
+                onSubmit="return validade(this)"
+                action="CadastrarProduto">
                 
            <div id="campoTipoProduto" class="normal form-group" >
                     <label class="col-sm-3 control-label" for="Tipo"> Tipo do Produto </label>
@@ -163,7 +167,7 @@
                 <div id="campoPreco" class="normalidade form-group">
                     <label class="col-sm-3 control-label" for="Preco"> Preco de Venda </label>
                     <div class="col-sm-2">
-                        <input type="text" id="inputPreco" class="form-control" name="lucro" placeholder="R$ 00,00" readonly>
+                        <input type="text" id="inputPreco" class="form-control" name="preco" placeholder="R$ 00,00" readonly>
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
