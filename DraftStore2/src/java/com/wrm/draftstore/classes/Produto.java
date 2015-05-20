@@ -5,14 +5,12 @@
  */
 package com.wrm.draftstore.classes;
 
-import java.sql.Timestamp;
-
 /**
  *
  * @author ramon.ahonorio
  */
 public class Produto {
-  
+
   private int idProduto;
 
   private float precoVenda;
@@ -34,25 +32,8 @@ public class Produto {
   private String nomeFornecedor;
 
   private String nomeUsuario;
-
+  
   private int idFuncionario;
-  
-  
-      public float getCusto() {
-        return custo;
-    }
-
-    public void setCusto(float custo) {
-        this.custo = custo;
-    }
-
-    public int getIdFornecedor() {
-        return idFornecedor;
-    }
-
-    public void setIdFornecedor(int idFornecedor) {
-        this.idFornecedor = idFornecedor;
-    }
 
   public int getIdFuncionario() {
     return idFuncionario;
@@ -136,6 +117,22 @@ public class Produto {
     this.idProduto = idProduto;
   }
 
+  public float getCusto() {
+    return custo;
+  }
+
+  public void setCusto(float custo) {
+    this.custo = custo;
+  }
+
+  public int getIdFornecedor() {
+    return idFornecedor;
+  }
+
+  public void setIdFornecedor(int idFornecedor) {
+    this.idFornecedor = idFornecedor;
+  }
+
   public Produto(int idProduto, float precoVenda, float percentualLucro, String modelo, String marca, String tipoProduto, float custo, int idFornecedor, String dataCriacao, String nomeFornecedor, String nomeUsuario, int idFuncionario) {
     this.idProduto = idProduto;
     this.precoVenda = precoVenda;
@@ -150,8 +147,9 @@ public class Produto {
     this.nomeUsuario = nomeUsuario;
     this.idFuncionario = idFuncionario;
   }
+  
 
   public Produto() {
   }
-  
+
 }
