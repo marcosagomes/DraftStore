@@ -12,7 +12,7 @@ package com.wrm.draftstore.classes;
 public class Funcionario {
 
     //Construtor
-    public Funcionario(String nome, String dtNascimento, String sexo, String cpf, String rg, String telefone, String celular, String cargo, String email, String senha) {
+    public Funcionario(String nome, String dtNascimento, String sexo, String cpf, String rg, String telefone, String celular, int cargo, String email, String senha) {
         this.nome = nome;
         this.dtNascimento = dtNascimento;
         this.sexo = sexo;
@@ -39,7 +39,7 @@ public class Funcionario {
         private String rg;
         private String telefone;
         private String celular;
-        private String cargo;
+        private int cargo;
         private String email;
         private String senha;
         private String fkPapel;
@@ -123,11 +123,11 @@ public class Funcionario {
         this.celular = celular;
     }
 
-    public String getCargo() {
+    public int getCargo() {
         return cargo;
     }
 
-    public void setCargo(String cargo) {
+    public void setCargo(int cargo) {
         this.cargo = cargo;
     }
 

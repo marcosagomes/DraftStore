@@ -164,9 +164,10 @@
                     <div class="col-sm-3 from-group">
                         <select class="form-control" id="selectCargo" name="Cargo">
                            <option selected="selected"  value="">Selecione</option>
-                           <option  value="Retaguarda"> Retaguarda </option>
-                            <option  value="Suporte"> Suporte </option>
-                            <option  value="Venda"> Venda </option>
+                        
+                           <option  value="2"> Retaguarda </option>
+                            <option  value="3"> Suporte </option>
+                            <option  value="4"> Venda </option>
                         </select>
                     </div>
                 </div>

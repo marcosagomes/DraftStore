@@ -10,12 +10,17 @@ import com.wrm.draftstore.classes.Usuario;
 import com.wrm.draftstore.database.ConexaoBDJavaDB;
 import com.wrm.draftstore.servlets.busca.BuscarFornecedor;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -87,23 +92,34 @@ public class CadastrarFuncionario extends HttpServlet {
         Connection conn = null;
         
         String sql = "INSERT INTO TB_FUNCIONARIO " // Notar que antes de fechar aspas tem espaço em branco!
-                + "(SENHA, NOME, DATA_NASCIMENTO, SEXO, CPF, RG, FK_PAPEL, TELEFONE, CELULAR, EMAIL, DATA_CRIACAO) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + "(NOME, DATA_NASCIMENTO, SEXO, CPF, RG, TELEFONE, CELULAR,FK_PAPEL, EMAIL, SENHA, DATA_CRIACAO) "
+                + "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
         try {
         conn = conexaoBD.obterConexao();
         stmt = conn.prepareStatement(sql);
   
-        stmt.setString(1, f.getSenha());
-        stmt.setString(2, f.getNome());
-        stmt.setString(3, f.getDtNascimento());
-        stmt.setString(4, f.getSexo());
-        stmt.setString(5, f.getCpf());
-        stmt.setString(6, f.getRg());
-        stmt.setString(7, f.getCargo());
-        stmt.setString(8, f.getTelefone());
-        stmt.setString(9, f.getCelular());
-        stmt.setString(10, f.getEmail());
-        
+        stmt.setString(1, f.getNome());
+       
+        Date data = new Date();
+        String x = new Timestamp(data.getTime()).toString();
+        stmt.setString(2, x);
+        stmt.setString(3, f.getSexo());
+        stmt.setString(4, f.getCpf());
+        stmt.setString(5, f.getRg());
+        stmt.setInt(6, f.getCargo());
+        stmt.setString(7, f.getTelefone());
+        stmt.setString(8, f.getCelular());
+        stmt.setString(9, f.getEmail());
+        String senhaHash = f.getSenha();
+            try {
+                Usuario.gerarHashSenhaPBKDF2(senhaHash);
+            } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(CadastrarFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InvalidKeySpecException ex) {
+                Logger.getLogger(CadastrarFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        stmt.setString(10, f.getSenha());
+
         Date dataAtual = new Date();
         String timeStamp = new Timestamp(dataAtual.getTime()).toString();
         
@@ -111,7 +127,7 @@ public class CadastrarFuncionario extends HttpServlet {
         
         stmt.executeUpdate();
         
-        System.out.println("> Funcionario incluido com sucesso.");
+        log("OK, foi ! ");
 
       } catch (SQLException | ClassNotFoundException ex) {
         Logger.getLogger(CadastrarFuncionario.class.getName()).log(Level.SEVERE, null, ex);
@@ -155,11 +171,11 @@ public class CadastrarFuncionario extends HttpServlet {
         String rg = request.getParameter("RG");
         String telefone = request.getParameter("Telefone");
         String celular = request.getParameter("Celular");
-        String cargo = request.getParameter("Cargo");
+        int cargo = Integer.parseInt(request.getParameter("Cargo"));
         String email = request.getParameter("Email");
         String senha = request.getParameter("Senha");
         
-       
+        
         Funcionario f = new Funcionario(nome, dtNascimento, sexo, cpf, rg, telefone, celular, cargo, email, senha);
          
         // 1) OBTEM AS INFORMACOES DO USUARIO DA SESSAO
@@ -215,7 +231,7 @@ public class CadastrarFuncionario extends HttpServlet {
         String rg = request.getParameter("RG");
         String telefone = request.getParameter("Telefone");
         String celular = request.getParameter("Celular");
-        String cargo = request.getParameter("Cargo");
+        int cargo = Integer.parseInt(request.getParameter("Cargo"));
         String email = request.getParameter("Email");
         String senha = request.getParameter("Senha");
         
