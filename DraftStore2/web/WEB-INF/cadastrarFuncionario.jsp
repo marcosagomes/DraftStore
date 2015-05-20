@@ -163,11 +163,10 @@
                     <label class="col-sm-2 control-label" for="Cargo"> Cargo </label>
                     <div class="col-sm-3 from-group">
                         <select class="form-control" id="selectCargo" name="Cargo">
-                           <option selected="selected"  value="">Selecione</option>
-                        
-                           <option  value="2"> Retaguarda </option>
-                            <option  value="3"> Suporte </option>
-                            <option  value="4"> Venda </option>
+                            <option selected="selected" value="">Selecione</option>
+                            <option value="2"> Retaguarda </option>
+                            <option value="3"> Suporte </option>
+                            <option value="4"> Venda </option>
                         </select>
                     </div>
                 </div>
