@@ -153,46 +153,27 @@
                     </tr>
                 </thead>
             </table>
-            
+
             <div class="camposAbaixoCarrinho">
+
                 <form id="formVenda" 
                       action="RegistroVenda"
                       method="post"
                       charset=utf-8>
-                    <div class="col-sm-5" id="campoRegistrar">
+
+                    <div class="col-sm-2" id="campoRegistrar form-group">
                         <label for="totalVenda" id="labelTotalVenda">Total (R$)</label>
-                        <input id="totalVenda" name="totalVenda" type="text" class="btn btn-default" readonly/>
+                        <div class="col-sm-3">
+                            <input id="totalVenda" name="totalVenda" type="text" class="btn btn-default" readonly/>
+                        </div>
                     </div>
 
-                    <div class="col-sm-5" id="campoRegistrar">
+                    <div class="col-sm-5" id="btRegistrar">
                         <button type="submit" class="btn btn-default">Registrar</button>
                     </div>
                 </form>
             </div>
         </div>
-        <!--        <div class="form2">
-                    <form action="action" class="form-inline" id="fomulario2">
-                        <div id="campoData" class="normal form-group">
-                            <label class="col-sm-2 control-label" for="data"> Data </label>
-                            <div class="col-sm-3">
-                                <input type="date" id="inputData" class="form-control" name="data">
-                                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
-                            </div>
-                        </div>
-        
-                        <div id="campoPreco" class="normal form-group">
-                            <label class="col-sm-2 control-label" for="total"> Total </label>
-                            <div class="col-sm-3">
-                                <input type="text" id="inputTotal" class="form-control" name="total">
-                                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
-                            </div>
-                        </div>
-                        <div class="botao">
-                            <button class="btn btn-small btn-primary" type="button">Cancelar</button>
-                            <button class="btn btn-small" type="button">Confirmar Registro</button>
-                        </div>
-                    </form>
-                </div>-->
 
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

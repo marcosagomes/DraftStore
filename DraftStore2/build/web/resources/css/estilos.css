@@ -51,14 +51,6 @@ li {
 	font-size: 18px;
 }
 
-label {
-	float: center;
-	width: 40%;
-}
-input{
-    float: center;
-}
-
 select{
 	float: center;
 	margin-right: 25px;
@@ -119,4 +111,13 @@ tbody tr:hover {
 
 .fixed-table-toolbar{
 	margin-top: -53px;
+}
+#totalVenda{
+    position: absolute;
+    left: 80px;
+}
+#btRegistrar{
+    position: relative;
+    left: 120px;
+    width: 90px;
 }
