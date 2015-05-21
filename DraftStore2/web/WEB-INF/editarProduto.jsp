@@ -154,7 +154,7 @@
                 <div id="campoLucro" class="normal form-group">
                     <label class="col-sm-2 control-label" for="Lucro"> % de Lucro </label>
                     <div class="col-sm-3">
-                        <input type="number" min="1" step="0.1" value="50" id="inputLucro" class="form-control" name="lucro" value="${Produto.percentualLucro}">
+                        <input type="number" min="1" step="0.1" value="${Produto.percentualLucro}" id="inputLucro" class="form-control" name="lucro">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>

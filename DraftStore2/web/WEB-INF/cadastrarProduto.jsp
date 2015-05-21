@@ -121,15 +121,17 @@
                 </div>
 
                 <div id="campoFornecedor" class="normal form-group">
-                    <label class="col-sm-3 control-label" for="Fornecedor"> Fornecedor </label>
+                    <label class="col-sm-3 control-label" for="selectFornecedor"> Fornecedor </label>
                     <div class="col-sm-2 from-group">
                         <select class="form-control" id="selectFornecedor" name="Fornecedor">
-                             <option selected="selected" value="">Selecione</option>
+                            <option selected="selected" value="">Selecione</option>
                             <c:forEach items="${lista}" var="fornec" varStatus="stats">
                                 <option value="${fornec.idFornecedor}">${fornec.razaoSocial}</option>
-                                <input type="hidden" name="${fornec.idFornecedor}" value="${fornec.razaoSocial}">
                             </c:forEach>
                         </select>
+                        <c:forEach items="${lista}" var="fornec" varStatus="stats">
+                            <input type="hidden" name="${fornec.idFornecedor}" value="${fornec.razaoSocial}">
+                        </c:forEach>
                     </div>
                 </div>
 

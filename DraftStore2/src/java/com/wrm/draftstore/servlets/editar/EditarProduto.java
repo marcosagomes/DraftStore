@@ -209,16 +209,11 @@ public class EditarProduto extends HttpServlet {
         String Custo = request.getParameter("Custo");
         String Lucro = request.getParameter("lucro");
         String Preco = request.getParameter("preco");
-        float precoVenda = 0;
-        float percentualLucro = 0;
-        float custo = 0;
-        try {
-            precoVenda = (Long) NumberFormat.getIntegerInstance().parse(Preco.substring(3, Preco.length() - 3));
-            percentualLucro = (Long) NumberFormat.getNumberInstance().parse(Lucro);
-            custo = (Long) NumberFormat.getNumberInstance().parse(Custo.replace(',', '.'));
-        } catch (ParseException ex) {
-            Logger.getLogger(CadastrarProduto.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
+        float precoVenda = Float.parseFloat(Preco.substring(3, Preco.length()));
+        float percentualLucro = Float.parseFloat(Lucro);
+        float custo = Float.parseFloat(Custo);
+
         String Fornecedor = request.getParameter(idFornecedor);
         // 1) OBTEM AS INFORMACOES DO USUARIO DA SESSAO
         // A) CAST DOS PARÂMETROS RECEBIDOS
