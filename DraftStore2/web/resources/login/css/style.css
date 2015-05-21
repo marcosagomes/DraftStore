@@ -48,15 +48,12 @@ table {
 }
 
 .about {
-  margin: 70px auto 40px;
+  margin: auto;
   padding: 8px;
   width: 260px;
   font: 10px/18px 'Lucida Grande', Arial, sans-serif;
   color: #666;
   text-align: center;
-  text-shadow: 0 1px rgba(255, 255, 255, 0.25);
-  background: #eee;
-  background: rgba(250, 250, 250, 0.8);
   border-radius: 4px;
   background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1));
   background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1));
@@ -106,7 +103,7 @@ table {
  * http://www.opensource.org/licenses/mit-license.php
  */
 body, .login-submit, .login-submit:before, .login-submit:after {
-  background: #373737 url("../img/bg.png") 0 0 repeat;
+  background-color: white;
 }
 
 body {
@@ -129,7 +126,6 @@ a:hover {
   padding-right: 32px;
   font-weight: 300;
   color: #a8a7a8;
-  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
 }
 .login p {
   margin: 0 0 10px;
@@ -149,8 +145,6 @@ input[type=text], input[type=password] {
   width: 300px;
   height: 40px;
   color: #bbb;
-  text-shadow: 1px 1px 1px black;
-  background: rgba(0, 0, 0, 0.16);
   border: 0;
   border-radius: 5px;
   -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.06);
@@ -170,7 +164,7 @@ label {
   font-weight: 100;
   text-align: right;
   letter-spacing: 1px;
-  color: #FFFFFF;
+  color: black;
 }
 
 .forgot-password {
@@ -290,12 +284,12 @@ label {
 
 .logo_login {
    display: block;
-   background: url('../img/autenticacao_img.png') no-repeat;
-   width: 128px;
-   height: 128px;
+   background: url('../img/wrm-logoteste.png') no-repeat;
+   width: 220px;
+   height: 150px;
    position: relative;
-   padding-left: 30px;
+   padding-left: 20px;
    margin: 80px auto;
-   left: 50px;
+   left: -10px;
    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.8);
 }

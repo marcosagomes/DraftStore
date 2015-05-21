@@ -30,7 +30,7 @@
               class="login">
             <p>
                 <label for="login">Login </label>
-                <input type="text" name="login" id="login" placeholder="usuario@email.com">
+                <input type="text" name="login" id="login" placeholder="usuario@draftstore">
             </p>
 
             <p>

@@ -90,7 +90,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="#">Relatórios <span class="badge">0</span></a>
+                                <a href="#">Relatórios</a>
                             </li>
                         </ul>
                     </div>
