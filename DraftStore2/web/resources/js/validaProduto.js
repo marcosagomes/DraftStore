@@ -9,7 +9,7 @@ var campoCusto = document.getElementById("campoCusto");
 
 function validaTipoProduto() {
     var comboNome = document.getElementById("selectTipo");
-    if (comboNome.options[comboNome.selectedIndex].value === "") {
+    if (comboNome.options[comboNome.selectedIndex].value == "") {
         campoTipoProduto.classList.add("has-error");
         return false;
     } else {
@@ -20,7 +20,7 @@ function validaTipoProduto() {
 }
 function validaFornecedor() {
     var comboNome = document.getElementById("selectFornecedor");
-    if (comboNome.options[comboNome.selectedIndex].value === "") {
+    if (comboNome.options[comboNome.selectedIndex].value == "") {
         campoTipoFornecedor.classList.add("has-error");
         return false;
     } else {
@@ -31,7 +31,7 @@ function validaFornecedor() {
 }
 function validaMarca() {
     var nome = $("#inputMarca").val();
-    if (nome === "" && nome.length < 3) {
+    if (nome == "" && nome.length < 3) {
         campoMarca.classList.add("has-error");
         return false;
     } else {
@@ -41,8 +41,8 @@ function validaMarca() {
     }
 }
 function validaModelo() {
-    var valorModelo = $("#inputModelo").val();
-    if (valorModelo === "" && valorModelo.length < 3) {
+    var nome = $("#inputModelo").val();
+    if (nome == "" && nome.length < 3) {
         campoModelo.classList.add("has-error");
         return false;
     } else {
@@ -76,12 +76,12 @@ function validaLucro() {
 }
 
 
-function valida(form) {
+function validar(form) {
 
-   if(!validaTipoProduto()){
-       form.Tipo.focus();
-       return false;
-   }
+    if (!validaTipoProduto()) {
+        form.TipoProduto.focus();
+        return false;
+    }
     if (!validaFornecedor()) {
         form.Fornecedor.focus();
         return false;
@@ -92,9 +92,6 @@ function valida(form) {
     }
     if (!validaModelo()) {
         form.Modelo.focus();
-        return false;
-    }if (!validaPreco()) {
-        form.Custo.focus();
         return false;
     }
     if (!validaLucro()) {
