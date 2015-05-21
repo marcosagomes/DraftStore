@@ -5,7 +5,7 @@
  */
 
 function removerFornecedor(form){
-    if(confirm('Deseja realmente remover o fornecedor selecionado ?')){
+    if(confirm('Deseja realmente remover o registro selecionado?')){
         return true;
     }
     return false;

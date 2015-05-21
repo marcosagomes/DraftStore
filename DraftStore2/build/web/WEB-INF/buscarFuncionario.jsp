@@ -1,10 +1,9 @@
 <%-- 
-    Document   : cadastrarProdutos
-    Created on : 16/04/2015, 20:11:40
-    Author     : ramon.ahonorio
+Document   : cadastrarFornecedores
+Created on : 23/04/2015, 21:24:58
+Author     : ramon.ahonorio
 --%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -34,6 +33,7 @@
           </script>
         <![endif]-->
         <link href="../resources/css/estilos.css" type="text/css" rel="stylesheet">
+        <link href="../bootstrap-table/bootstrap-table.css" type="text/css" rel="stylesheet">
         <link rel="icon" href="../resources/img/draft.ico" type="image/x-icon">
         <link rel="shortcut icon" href="../resources/img/draft.ico" type="image/x-icon">
     </head>
@@ -97,7 +97,7 @@
                                     </ul>
                                 </li>
                                 <li class="dropdown">
-                                    <a href="RevistroVenda" class="dropdown-toggle" data-toggle="dropdown">Fornecedores <b class="caret"></b></a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Fornecedores <b class="caret"></b></a>
                                     <ul class="dropdown-menu dropdown-menu-right">
                                         <li>
                                             <a href="BuscarFornecedor">Buscar</a>
@@ -117,47 +117,67 @@
                 </div>
             </div>
             <div class="col-sm-9">
-                <div class="form">
-                    <form class="form-search">
-                        <div class="radioBusca">
-                            <input type="radio" name="radio" value=" " checked> Busca por Nome
-                            <input type="radio" name="radio" value=" "> Busca por CPF
-                            <input type="radio" name="radio" value=" "> Busca por Email
-                        </div>
-                        <input type="text" class="input-medium search-query">
-                        <button type="submit" class="btn">Buscar</button>
+
+                <table id="tabelita" 
+                       data-click-to-select="true"
+                       data-formatter="stateFormatter"
+                       data-select-item-name="radioSelecionado"
+                       data-pagination="true"
+                       data-search="true"
+                       data-height="460"
+                       data-toolbar="#toolbar"
+                       data-show-toggle="true"
+                       data-show-columns="true"
+                       data-query-params="queryParams"
+                       data-response-handler="responseHandler"
+                       data-sort-name="idFuncionario" data-sort-order="asc">
+                    <thead>
+                        <tr>
+                            <th data-field="state" data-radio="true"></th>
+                            <th data-field="idFuncionario" data-sortable="true">ID</th>
+                            <th data-field="nome" data-sortable="true">Nome</th>
+                            <th data-field="cpf" data-sortable="true">CPF</th>
+                            <th data-field="email" data-sortable="true">Email</th>
+                        </tr>
+                    </thead>
+                </table>
+
+
+                <div class="button-container">
+                    <form id="formEditar"
+                          class="form-search"
+                          method="GET"
+                          action="EditarFuncionario">
+                        <input id="inputHiddenEditar" type="hidden" name="idFuncionario" value="">
+                        <div class="botao">
+                            <button class="btn btn-default botaoDeAcao" type="submit">Editar</button>
+                        </div>	
+                    </form>
+
+                    <form id="formRemover" 
+                          action="RemoverFuncionario"
+                          method="GET"
+                          class="form-search" 
+                          onsubmit="return removerFornecedor(this)">
+                        <input id="inputHiddenRemover" type="hidden" name="idFuncionario" value="">
+                        <div class="botao">
+                            <button class="btn btn-small btn-danger botaoDeAcao" type="submit">Desativar</button>
+                        </div>	
                     </form>
                 </div>
-                <br>
-                <div class="tabela">
-                    <table class="table table">
-                        <caption>Funcionário</caption>
-                        <thead>
-                            <tr>
-                                <th>Nome</th>
-                                <th>Cargo</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="">
-                                <td>Fulano</td>
-                                <td>Vendedor</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="botao">
+            </div>
+        </div>
 
-                    <p>
-                        <button class="btn btn-small btn-primary" type="button">Editar</button>
-                        <button class="btn btn-small" type="button">Remover</button>
-                    </p>
-                </div>	
-                <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-                <!-- Include all compiled plugins (below), or include individual files as needed -->
-                <script src="../bootstrap/js/bootstrap.min.js"></script>
-                <script src="../resources/js/selecionarBusca.js"></script>
-                </body>
 
-                </html>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../bootstrap-table/bootstrap-table.min.js"></script>
+        <script src="../resources/js/selecionarBusca.js"></script>
+        <script src="../resources/js/jsonFuncionario.js"></script>
+
+    </body>
+
+</html>
