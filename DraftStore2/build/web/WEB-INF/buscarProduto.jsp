@@ -134,6 +134,7 @@
                     <thead>
                         <tr>
                             <th data-field="state" data-radio="true"></th>
+                            <th data-field="idProduto">ID</th>                            
                             <th data-field="tipoProduto">Tipo de Produto</th>
                             <th data-field="modelo">Modelo</th>
                             <th data-field="precoVenda">Preço de Venda</th>
@@ -145,19 +146,19 @@
                     <form id="formEditar"
                           class="form-search"
                           method="GET"
-                          action="EditarFornecedor">
-                        <input id="inputHiddenEditar" type="hidden" name="idFornecedor" value="">
+                          action="EditarProduto">
+                        <input id="inputHiddenEditar" type="hidden" name="idProduto" value="">
                         <div class="botao">
                             <button class="btn btn-default botaoDeAcao" type="submit">Editar</button>
                         </div>	
                     </form>
 
                     <form id="formRemover" 
-                          action="RemoverFornecedor"
+                          action="RemoverProduto"
                           method="GET"
                           class="form-search" 
-                          onsubmit="return removerFornecedor(this)">
-                        <input id="inputHiddenRemover" type="hidden" name="idFornecedor" value="">
+                          onsubmit="return removerProduto(this)">
+                        <input id="inputHiddenRemover" type="hidden" name="idProduto" value="">
                         <div class="botao">
                             <button class="btn btn-small btn-danger botaoDeAcao" type="submit">Remover</button>
                         </div>	

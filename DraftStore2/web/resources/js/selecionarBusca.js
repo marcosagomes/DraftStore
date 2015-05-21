@@ -4,8 +4,15 @@
  * and open the template in the editor.
  */
 
-function removerFornecedor(form){
-    if(confirm('Deseja realmente remover o fornecedor selecionado ?')){
+function removerFornecedor() {
+    if (confirm('Deseja realmente remover o fornecedor selecionado ?')) {
+        return true;
+    }
+    return false;
+}
+
+function removerProduto() {
+    if (confirm('Deseja realmente remover o fornecedor selecionado ?')) {
         return true;
     }
     return false;

@@ -105,17 +105,13 @@
                 id="formulario"
                 class="form-inline"
                 onSubmit="return validade(this)"
+                method="POST"
                 action="EditarProduto">
-
                 <div id="campoTipoProduto" class="normal form-group" >
                     <label class="col-sm-3 control-label" for="Tipo"> Tipo do Produto </label>
                     <div class="col-sm-2 from-group">
                         <select class="form-control" id="selectTipo" name="Tipo">
-                            <option selected="selected" calabel="0" value="0">Selecione</option>
-                            <option calabel="1" value="Processador"> Processador </option>
-                            <option calabel="2" value="Placa-Mae"> Placa-Mãe </option>
-                            <option calabel="3" value="Memoria"> Memoria </option>
-                            <option calabel="4" value="Fonte"> Fonte </option>
+                            <option value="${Produto.tipoProduto}">${Produto.tipoProduto}</option>
                         </select>
                     </div>
                 </div>
@@ -124,9 +120,8 @@
                     <label class="col-sm-3 control-label" for="Fornecedor"> Fornecedor </label>
                     <div class="col-sm-2 from-group">
                         <select class="form-control" id="selectFornecedor" name="Fornecedor">
-                            <c:forEach items="${lista}" var="fornec" varStatus="stats">
-                                <option value="${fornec.idFornecedor}">${fornec.razaoSocial}</option>
-                            </c:forEach>
+                            <option value="${Produto.idFornecedor}">${Produto.nomeFornecedor}</option>
+                            <input type="hidden" name="${Produto.idFornecedor}" value="${Produto.nomeFornecedor}">
                         </select>
                     </div>
                 </div>
@@ -135,7 +130,7 @@
                 <div id="campoMarca" class="normal form-group ">
                     <label class="col-sm-3 control-label" for="Marca"> Marca </label>
                     <div class="col-sm-7">
-                        <input type="text" id="inputMarca" class="form-control" name="Marca">
+                        <input type="text" id="inputMarca" class="form-control" name="Marca" value="${Produto.marca}">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -143,7 +138,7 @@
                 <div id="campoModelo" class="normal form-group ">
                     <label class="col-sm-3 control-label" for="Modelo"> Modelo </label>
                     <div class="col-sm-2">
-                        <input type="text" id="inputModelo" class="form-control" name="Modelo">
+                        <input type="text" id="inputModelo" class="form-control" name="Modelo" value="${Produto.modelo}">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -151,7 +146,7 @@
                 <div id="campoCusto" class="normal form-group ">
                     <label class="col-sm-3 control-label" for="Custo"> Custo </label>
                     <div class="col-sm-2">
-                        <input type="number" min="0.1" step="0.01" value="120" id="inputCusto" class="form-control" name="Custo">
+                        <input type="number" min="0.1" step="0.01" value="${Produto.custo}" id="inputCusto" class="form-control" name="Custo">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -159,7 +154,7 @@
                 <div id="campoLucro" class="normal form-group">
                     <label class="col-sm-2 control-label" for="Lucro"> % de Lucro </label>
                     <div class="col-sm-3">
-                        <input type="number" min="1" step="0.1" value="50" id="inputLucro" class="form-control" name="lucro">
+                        <input type="number" min="1" step="0.1" value="50" id="inputLucro" class="form-control" name="lucro" value="${Produto.percentualLucro}">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -167,24 +162,24 @@
                 <div id="campoPreco" class="normalidade form-group">
                     <label class="col-sm-3 control-label" for="Preco"> Preco de Venda </label>
                     <div class="col-sm-2">
-                        <input type="text" id="inputPreco" class="form-control" name="preco" placeholder="R$ 00,00" readonly>
+                        <input type="text" id="inputPreco" class="form-control" name="preco" placeholder="R$ 00,00" value="${Produto.precoVenda}" readonly>
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>         
                 <div class="botoesFormulario">
                     <button type="reset" class="btn btn-danger">Cancelar</button>
-                    <button type="submit" class="btn btn-default">Cadastrar</button>
+                    <button type="submit" class="btn btn-default">Efetuar Mudanças</button>
                 </div>
-        </div>
-    </form>
 
-</div>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
-<script src="../resources/js/validacoesCampos_1.js"></script>
-<script src="../resources/js/previsaoPrecoVenda.js"></script>
+            </form>
+        </div>
+
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+    <script src="../resources/js/previsaoPrecoVenda.js"></script>
 </body>
 </html>

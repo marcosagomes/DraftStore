@@ -39,55 +39,55 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "CadastrarProduto", urlPatterns = {"/Servlet/CadastrarProduto"})
 public class CadastrarProduto extends HttpServlet {
-  
-  public List<Fornecedor> listarFornecedores() {
-    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftstoredb");
-    Statement stmt = null;
-    Connection conn = null;
 
-    String sql = "SELECT ID_FORNECEDOR, RAZAO_SOCIAL FROM TB_FORNECEDOR";
-    try {
-      conn = conexaoBD.obterConexao();
-      stmt = conn.createStatement();
-      ResultSet resultados = stmt.executeQuery(sql);
-      
-      List<Fornecedor> lista = new ArrayList<>();
+    public List<Fornecedor> listarFornecedores() {
+        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftstoredb");
+        Statement stmt = null;
+        Connection conn = null;
 
-      while (resultados.next()) {
-          Fornecedor f = new Fornecedor();
-          f.setIdFornecedor(resultados.getString("ID_FORNECEDOR"));
-          f.setRazaoSocial(resultados.getString("RAZAO_SOCIAL"));
-          lista.add(f);
-      }
-      
-     return lista;
-
-    } catch (SQLException | ClassNotFoundException ex) {
-      Logger.getLogger(BuscarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
-    } finally {
-      if (stmt != null) {
+        String sql = "SELECT ID_FORNECEDOR, RAZAO_SOCIAL FROM TB_FORNECEDOR";
         try {
-          stmt.close();
-        } catch (SQLException ex) {
-          Logger.getLogger(BuscarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+            conn = conexaoBD.obterConexao();
+            stmt = conn.createStatement();
+            ResultSet resultados = stmt.executeQuery(sql);
+
+            List<Fornecedor> lista = new ArrayList<>();
+
+            while (resultados.next()) {
+                Fornecedor f = new Fornecedor();
+                f.setIdFornecedor(resultados.getString("ID_FORNECEDOR"));
+                f.setRazaoSocial(resultados.getString("RAZAO_SOCIAL"));
+                lista.add(f);
+            }
+
+            return lista;
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(BuscarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(BuscarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(BuscarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
-      }
-      if (conn != null) {
-        try {
-          conn.close();
-        } catch (SQLException ex) {
-          Logger.getLogger(BuscarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
-        }
-      }
+        return null;
     }
-    return null;
-  }
-  
-  public void cadastrarProduto(String razaoSocial, Produto p, Usuario u){
+
+    public void cadastrarProduto(String razaoSocial, Produto p, Usuario u) {
         ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftstoredb");
         PreparedStatement stmt = null;
         Connection conn = null;
-        
+
         String sql = "INSERT INTO ADM.TB_PRODUTO"
                 + "(PRECO_VENDA,"
                 + " PERCENTUAL_LUCRO,"
@@ -102,49 +102,49 @@ public class CadastrarProduto extends HttpServlet {
                 + " NOME_USUARIO) \n"
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
-        conn = conexaoBD.obterConexao();
-        stmt = conn.prepareStatement(sql);
-        
-        stmt.setFloat(1, p.getPrecoVenda());
-        stmt.setFloat(2, p.getPercentualLucro());
-        stmt.setString(3, p.getModelo());
-        stmt.setString(4, p.getMarca());
-        stmt.setString(5, p.getTipoProduto());
-        stmt.setFloat(6, p.getCusto());
-        stmt.setInt(7, p.getIdFornecedor());
-        stmt.setString(8, u.getIdUsuario());
-        
-        // Criando um Timestamp atual do sistema
-        stmt.setTimestamp(9, new Timestamp(new Date().getTime()));
-        
-        stmt.setString(10, p.getNomeFornecedor());
-        stmt.setString(11, razaoSocial);
+            conn = conexaoBD.obterConexao();
+            stmt = conn.prepareStatement(sql);
 
-        stmt.executeUpdate();
-        
-        System.out.println("> Produto cadastrado com sucesso.");
+            stmt.setFloat(1, p.getPrecoVenda());
+            stmt.setFloat(2, p.getPercentualLucro());
+            stmt.setString(3, p.getModelo());
+            stmt.setString(4, p.getMarca());
+            stmt.setString(5, p.getTipoProduto());
+            stmt.setFloat(6, p.getCusto());
+            stmt.setInt(7, p.getIdFornecedor());
+            stmt.setString(8, u.getIdUsuario());
 
-      } catch (SQLException | ClassNotFoundException ex) {
-        Logger.getLogger(EditarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+            // Criando um Timestamp atual do sistema
+            stmt.setTimestamp(9, new Timestamp(new Date().getTime()));
+
+            stmt.setString(10, p.getNomeFornecedor());
+            stmt.setString(11, razaoSocial);
+
+            stmt.executeUpdate();
+
+            System.out.println("> Produto cadastrado com sucesso.");
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(EditarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("ERRO! -> " + ex.getMessage());
-      } finally {
-        if (stmt != null) {
-          try {
-            stmt.close();
-          } catch (SQLException ex) {
-            Logger.getLogger(EditarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
-          }
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(EditarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(EditarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
-        if (conn != null) {
-          try {
-            conn.close();
-          } catch (SQLException ex) {
-            Logger.getLogger(EditarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
-          }
-        }
-      }
     }
-  
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -157,9 +157,9 @@ public class CadastrarProduto extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         request.setCharacterEncoding("UTF-8");
-        
+
         String stringPrecoVenda = request.getParameter("preco");
         String stringPercLucro = request.getParameter("lucro");
         String stringCusto = request.getParameter("Custo");
@@ -167,11 +167,11 @@ public class CadastrarProduto extends HttpServlet {
         float percentualLucro = 0;
         float custo = 0;
         try {
-          precoVenda = (Long) NumberFormat.getIntegerInstance().parse(stringPrecoVenda.substring(3, stringPrecoVenda.length()-3));
-          percentualLucro = (Long) NumberFormat.getNumberInstance().parse(stringPercLucro);
-          custo = (Long) NumberFormat.getNumberInstance().parse(stringCusto);
+            precoVenda = (Long) NumberFormat.getIntegerInstance().parse(stringPrecoVenda.substring(3, stringPrecoVenda.length() - 3));
+            percentualLucro = (Long) NumberFormat.getNumberInstance().parse(stringPercLucro);
+            custo = (Long) NumberFormat.getNumberInstance().parse(stringCusto);
         } catch (ParseException ex) {
-          Logger.getLogger(CadastrarProduto.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CadastrarProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
         // 1) OBTEM AS INFORMACOES DO USUARIO DA SESSAO
         // A) CAST DOS PARÂMETROS RECEBIDOS
@@ -179,7 +179,7 @@ public class CadastrarProduto extends HttpServlet {
         // B) TENTA RECUPERAR A SESSÃO DO USUÁRIO
         HttpSession sessao = httpRequest.getSession();
         Usuario usuario = (Usuario) sessao.getAttribute("usuario");
-        
+
 //        float precoVenda = Float.parseFloat(request.getParameter("precoVenda"));
 //        float percentualLucro = Float.parseFloat(request.getParameter("lucro"));
         String modelo = request.getParameter("Modelo");
@@ -187,22 +187,20 @@ public class CadastrarProduto extends HttpServlet {
         String tipoProduto = request.getParameter("Tipo");
 //        float custo = Float.parseFloat(request.getParameter("custo"));
         int fkFornecedor = Integer.parseInt(request.getParameter("Fornecedor"));
-        Date d = new Date();        
+        Date d = new Date();
         String dataCriacao = String.valueOf(d.getTime());
         String nomeFornecedor = request.getParameter(String.valueOf(fkFornecedor));
         String nomeUsuario = usuario.getNomeDoFuncionario();
         int fkFuncionario = Integer.parseInt(usuario.getIdUsuario());
-        
+
 //        Produto p = new Produto(precoVenda, percentualLucro, modelo, 
 //                marca, tipoProduto, custo, fkFornecedor);
-        Produto p = new Produto(0, precoVenda, percentualLucro, modelo, 
+        Produto p = new Produto(0, precoVenda, percentualLucro, modelo,
                 marca, tipoProduto, custo, fkFornecedor, dataCriacao, nomeFornecedor, nomeUsuario, fkFuncionario);
 
         cadastrarProduto(nomeFornecedor, p, usuario);
-        
-        System.out.println("> Fornecedor cadastrado.");
-        response.sendRedirect("../resultado.jsp");
-        
+        response.sendRedirect("CadastrarProduto");
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -235,7 +233,7 @@ public class CadastrarProduto extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
+
     }
 
     /**
