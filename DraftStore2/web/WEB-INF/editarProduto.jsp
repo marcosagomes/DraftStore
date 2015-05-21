@@ -31,7 +31,7 @@
 <body>
     <header>
         <img id="logo" src="../resources/img/wrm-logoteste.png">
-        <div class="texto" id="titulo"><h1>Cadastrar Produto</h1></div>
+        <div class="texto" id="titulo"><h1>Editar Produto</h1></div>
     </header>
     <div class="row">
         <div class="col-sm-3">
@@ -105,8 +105,8 @@
                 id="formulario"
                 class="form-inline"
                 onSubmit="return validade(this)"
-                action="CadastrarProduto"
-                method="POST">
+                action="EditarProduto">
+
                 <div id="campoTipoProduto" class="normal form-group" >
                     <label class="col-sm-3 control-label" for="Tipo"> Tipo do Produto </label>
                     <div class="col-sm-2 from-group">
@@ -126,7 +126,6 @@
                         <select class="form-control" id="selectFornecedor" name="Fornecedor">
                             <c:forEach items="${lista}" var="fornec" varStatus="stats">
                                 <option value="${fornec.idFornecedor}">${fornec.razaoSocial}</option>
-                                <input type="hidden" name="${fornec.idFornecedor}" value="${fornec.razaoSocial}">
                             </c:forEach>
                         </select>
                     </div>
@@ -171,13 +170,14 @@
                         <input type="text" id="inputPreco" class="form-control" name="preco" placeholder="R$ 00,00" readonly>
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
-                </div>
+                </div>         
                 <div class="botoesFormulario">
                     <button type="reset" class="btn btn-danger">Cancelar</button>
                     <button type="submit" class="btn btn-default">Cadastrar</button>
                 </div>
         </div>
     </form>
+
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

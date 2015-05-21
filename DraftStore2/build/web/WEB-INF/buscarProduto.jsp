@@ -36,6 +36,7 @@
         <![endif]-->
         <link href="../resources/css/estilos.css" type="text/css" rel="stylesheet">
         <link rel="icon" href="../resources/img/draft.ico" type="image/x-icon">
+        <link href="../bootstrap-table/bootstrap-table.css" type="text/css" rel="stylesheet">
         <link rel="shortcut icon" href="../resources/img/draft.ico" type="image/x-icon">
     </head>
 
@@ -118,63 +119,60 @@
                 </div>
             </div>
             <div class="col-sm-9">
-                <div class="form">
-                    <form class="form-search">
-                        <div class="radioBusca">
-                            <input type="radio" name="radio" value=" " checked> Nome
-                            <input type="radio" name="radio" value=" "> Código
-                            <input type="radio" name="radio" value=" "> Fornecedor
-                        </div>
-                        <input type="text" class="input-medium search-query">
-                        <button type="submit" class="btn">Buscar</button>
+                <table id="tabelitaProduto" 
+                       data-click-to-select="true"
+                       data-formatter="stateFormatter"
+                       data-select-item-name="radioSelecionado"
+                       data-pagination="true"
+                       data-search="true"
+                       data-height="460"
+                       data-toolbar="#toolbar"
+                       data-show-toggle="true"
+                       data-show-columns="true"
+                       data-query-params="queryParams"
+                       data-response-handler="responseHandler">
+                    <thead>
+                        <tr>
+                            <th data-field="state" data-radio="true"></th>
+                            <th data-field="tipoProduto">Tipo de Produto</th>
+                            <th data-field="modelo">Modelo</th>
+                            <th data-field="precoVenda">Preço de Venda</th>
+                        </tr>
+                    </thead>
+                </table>
+
+                <div class="button-container">
+                    <form id="formEditar"
+                          class="form-search"
+                          method="GET"
+                          action="EditarFornecedor">
+                        <input id="inputHiddenEditar" type="hidden" name="idFornecedor" value="">
+                        <div class="botao">
+                            <button class="btn btn-default botaoDeAcao" type="submit">Editar</button>
+                        </div>	
+                    </form>
+
+                    <form id="formRemover" 
+                          action="RemoverFornecedor"
+                          method="GET"
+                          class="form-search" 
+                          onsubmit="return removerFornecedor(this)">
+                        <input id="inputHiddenRemover" type="hidden" name="idFornecedor" value="">
+                        <div class="botao">
+                            <button class="btn btn-small btn-danger botaoDeAcao" type="submit">Remover</button>
+                        </div>	
                     </form>
                 </div>
-                <br>
-                <div class="tabela">
-                    <table class="table table">
-                        <caption>Produtos</caption>
-                        <thead>
-                            <tr>
-                                <th class="produtoTH">Tipo de produto</th>
-                                <th class="produtoTH">Marca</th>
-                                <th class="produtoTH">Modelo</th>
-                                <th class="produtoTH">Preço de venda</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach items="${lista}" var="produto" varStatus="stats">
-                                <tr id="lista[${stats.index}]">
-                                    <td>${produto.tipoProduto}</td>
-                                    <td>${produto.marca}</td>
-                                    <td>${produto.modelo}</td>
-                                    <td>${produto.precoVenda}</td>
-                                </tr>
-                            </c:forEach>
-                            <!--                            <tr class="">
-                                                            <td>Intel Core I5</td>
-                                                            <td>Intel do Brasil</td>
-                            
-                                                        </tr>
-                                                        <tr class="">
-                                                            <td> Placa Mãe Asus 201A </td>
-                                                            <td> Asus </td>
-                                                        </tr>-->
-                        </tbody>
-                    </table>
-                </div>
-                <div class="botao">
-                    <p>
-                        <button class="btn btn-small btn-primary" type="button">Editar</button>
-                        <button class="btn btn-small" type="button">Remover</button>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="../bootstrap/js/bootstrap.min.js"></script>
-        <script src="../resources/js/selecionarBusca.js"></script>
-    </body>
 
-</html>
+                <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+                <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+                <script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+                <!-- Include all compiled plugins (below), or include individual files as needed -->
+                <script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+                <script type="text/javascript" src="../bootstrap-table/bootstrap-table.min.js"></script>
+
+                <script src="../resources/js/selecionarBusca.js"></script>
+                <script src="../resources/js/jsonProdutos.js"></script>
+                </body>
+
+                </html>

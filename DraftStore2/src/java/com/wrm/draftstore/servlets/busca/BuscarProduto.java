@@ -96,8 +96,9 @@ public class BuscarProduto extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        request.setAttribute("lista", listarProdutos());
+        
+        List<Produto> produtosLista = listarProdutos();
+        request.setAttribute("lista", produtosLista);
         
         RequestDispatcher rd = request.getRequestDispatcher("../WEB-INF/buscarProduto.jsp");
         rd.forward(request, response);
