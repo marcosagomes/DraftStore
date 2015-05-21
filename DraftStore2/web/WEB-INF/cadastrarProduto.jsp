@@ -105,9 +105,9 @@
                 id="formulario"
                 class="form-inline"
                 onSubmit="return validade(this)"
-                action="CadastrarProduto">
-                
-           <div id="campoTipoProduto" class="normal form-group" >
+                action="CadastrarProduto"
+                method="POST">
+                <div id="campoTipoProduto" class="normal form-group" >
                     <label class="col-sm-3 control-label" for="Tipo"> Tipo do Produto </label>
                     <div class="col-sm-2 from-group">
                         <select class="form-control" id="selectTipo" name="Tipo">
@@ -119,19 +119,20 @@
                         </select>
                     </div>
                 </div>
-                
+
                 <div id="campoFornecedor" class="normal form-group">
                     <label class="col-sm-3 control-label" for="Fornecedor"> Fornecedor </label>
                     <div class="col-sm-2 from-group">
                         <select class="form-control" id="selectFornecedor" name="Fornecedor">
                             <c:forEach items="${lista}" var="fornec" varStatus="stats">
-                            <option value="${fornec.idFornecedor}">${fornec.razaoSocial}</option>
+                                <option value="${fornec.idFornecedor}">${fornec.razaoSocial}</option>
+                                <input type="hidden" name="${fornec.idFornecedor}" value="${fornec.razaoSocial}">
                             </c:forEach>
                         </select>
                     </div>
                 </div>
-                
-                
+
+
                 <div id="campoMarca" class="normal form-group ">
                     <label class="col-sm-3 control-label" for="Marca"> Marca </label>
                     <div class="col-sm-7">
@@ -139,7 +140,7 @@
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
-                
+
                 <div id="campoModelo" class="normal form-group ">
                     <label class="col-sm-3 control-label" for="Modelo"> Modelo </label>
                     <div class="col-sm-2">
@@ -147,7 +148,7 @@
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
-             
+
                 <div id="campoCusto" class="normal form-group ">
                     <label class="col-sm-3 control-label" for="Custo"> Custo </label>
                     <div class="col-sm-2">
@@ -163,7 +164,7 @@
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
-                
+
                 <div id="campoPreco" class="normalidade form-group">
                     <label class="col-sm-3 control-label" for="Preco"> Preco de Venda </label>
                     <div class="col-sm-2">
@@ -171,16 +172,12 @@
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
-         
                 <div class="botoesFormulario">
                     <button type="reset" class="btn btn-danger">Cancelar</button>
                     <button type="submit" class="btn btn-default">Cadastrar</button>
                 </div>
-
-
         </div>
     </form>
-
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
