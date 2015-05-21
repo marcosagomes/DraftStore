@@ -94,6 +94,10 @@ function validar(form) {
         form.Modelo.focus();
         return false;
     }
+    if(!validaPreco()){
+        form.Custo.focus();
+        return false;
+    }
     if (!validaLucro()) {
         form.lucro.focus();
         return false;
