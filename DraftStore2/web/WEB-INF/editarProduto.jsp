@@ -162,7 +162,7 @@
                 <div id="campoPreco" class="normalidade form-group">
                     <label class="col-sm-3 control-label" for="Preco"> Preco de Venda </label>
                     <div class="col-sm-2">
-                        <input type="text" id="inputPreco" class="form-control" name="preco" placeholder="R$ 00,00" value="${Produto.precoVenda}" readonly>
+                        <input type="text" id="inputPreco" class="form-control" name="preco" placeholder="R$ 00,00" value="R$ ${Produto.precoVenda}" readonly>
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>         

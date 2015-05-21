@@ -215,7 +215,7 @@ public class EditarProduto extends HttpServlet {
         try {
             precoVenda = (Long) NumberFormat.getIntegerInstance().parse(Preco.substring(3, Preco.length() - 3));
             percentualLucro = (Long) NumberFormat.getNumberInstance().parse(Lucro);
-            custo = (Long) NumberFormat.getNumberInstance().parse(Custo);
+            custo = (Long) NumberFormat.getNumberInstance().parse(Custo.replace(',', '.'));
         } catch (ParseException ex) {
             Logger.getLogger(CadastrarProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
