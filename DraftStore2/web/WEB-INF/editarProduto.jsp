@@ -104,7 +104,7 @@
             <form 
                 id="formulario"
                 class="form-inline"
-                onSubmit="return validar(this)"
+                onSubmit="return valida(this)"
                 method="POST"
                 action="EditarProduto">
                 <div id="campoTipoProduto" class="normal form-group" >
@@ -146,7 +146,7 @@
                 <div id="campoCusto" class="normal form-group ">
                     <label class="col-sm-3 control-label" for="Custo"> Custo </label>
                     <div class="col-sm-2">
-                        <input type="number" min="0.1" step="0.01" value="${Produto.custo}" id="inputCusto" class="form-control" name="Custo">
+                        <input type="text"value="${Produto.custo}" id="inputCusto" class="form-control" name="Custo">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -154,7 +154,7 @@
                 <div id="campoLucro" class="normal form-group">
                     <label class="col-sm-2 control-label" for="Lucro"> % de Lucro </label>
                     <div class="col-sm-3">
-                        <input type="number" min="1" step="0.1" value="${Produto.percentualLucro}" id="inputLucro" class="form-control" name="lucro">
+                        <input type="text" value="${Produto.percentualLucro}" id="inputLucro" class="form-control" name="lucro">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
