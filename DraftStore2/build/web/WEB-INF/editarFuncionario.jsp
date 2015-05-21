@@ -180,7 +180,7 @@
                     <div class="col-sm-3 from-group">
                         <select class="form-control" id="selectCargo" name="Cargo">
                             <option selected="selected" value="">Selecione</option>
-                            <c:set var="cargo" scope="session" value="${Funcionario.fkPapel}"/>
+                            <c:set var="cargo" scope="session" value="${Funcionario.cargo}"/>
                             <option value="2" 
                                     <c:if test="${cargo == '2'}">selected</c:if>> Retaguarda </option>
                             <option value="3"
