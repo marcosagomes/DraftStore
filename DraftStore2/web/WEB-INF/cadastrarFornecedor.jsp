@@ -214,6 +214,6 @@
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
-        <script src="../resources/js/validacoesCampos.js"></script>
+        <script src="../resources/js/validaFornecedor.js"></script>
 </body>
 </html>
