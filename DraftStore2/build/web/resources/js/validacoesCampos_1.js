@@ -173,7 +173,7 @@ function validar(form) {
         }
         
     }
-    if (!confirm('Tem certeza que deseja realizar o cadastro com essas informações?')) {
+    if (!confirm('Tem certeza que deseja efetuar o registro com essas informações?')) {
         return false;
     } else {
         alert('Operação realizada com sucesso!');

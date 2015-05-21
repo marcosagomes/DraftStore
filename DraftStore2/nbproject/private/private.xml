@@ -3,13 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/maikon_silva/Documents/GitHub/DraftStore/DraftStore2/src/java/com/wrm/draftstore/auxiliares/JsonVendasServlet.java</file>
-            <file>file:/C:/Users/maikon_silva/Documents/GitHub/DraftStore/DraftStore2/src/java/com/wrm/draftstore/servlets/cadastro/CadastrarFornecedor.java</file>
-            <file>file:/C:/Users/maikon_silva/Documents/GitHub/DraftStore/DraftStore2/src/java/com/wrm/draftstore/servlets/cadastro/CadastrarFuncionario.java</file>
-            <file>file:/C:/Users/maikon_silva/Documents/GitHub/DraftStore/DraftStore2/src/java/com/wrm/draftstore/classes/Produto.java</file>
-            <file>file:/C:/Users/maikon_silva/Documents/GitHub/DraftStore/DraftStore2/nbproject/build-impl.xml</file>
-            <file>file:/C:/Users/maikon_silva/Documents/GitHub/DraftStore/DraftStore2/web/WEB-INF/registroDeVenda.jsp</file>
-            <file>file:/C:/Users/maikon_silva/Documents/GitHub/DraftStore/DraftStore2/src/java/com/wrm/draftstore/servlets/cadastro/CadastrarProduto.java</file>
+            <file>file:/Users/ramonhonorio/Documents/TADS/Projeto%20Integrador%20III/DraftStoreMarcos/DraftStore2/web/resources/js/validacoesCampos.js</file>
+            <file>file:/Users/ramonhonorio/Documents/TADS/Projeto%20Integrador%20III/DraftStoreMarcos/DraftStore2/web/resources/js/validacoesCampos_1.js</file>
+            <file>file:/Users/ramonhonorio/Documents/TADS/Projeto%20Integrador%20III/DraftStoreMarcos/DraftStore2/web/WEB-INF/cadastrarProduto.jsp</file>
+            <file>file:/Users/ramonhonorio/Documents/TADS/Projeto%20Integrador%20III/DraftStoreMarcos/DraftStore2/web/resources/js/previsaoPrecoVenda.js</file>
         </group>
     </open-files>
 </project-private>

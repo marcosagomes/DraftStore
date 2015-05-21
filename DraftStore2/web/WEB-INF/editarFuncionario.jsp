@@ -14,7 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Draftstore - Cadastro de fornecedor</title>
+    <title>Draftstore - Edicao de Funcionario</title>
 
     <!-- Bootstrap -->
     <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -26,15 +26,12 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <link href="../resources/css/estiloCadastrarFornecedor.css" type="text/css" rel="stylesheet">
-    
-    <link rel="icon" href="../resources/img/draft.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="../resources/img/draft.ico" type="image/x-icon">
+    <link href="../resources/css/estiloFuncionario.css" type="text/css" rel="stylesheet">
 </head>
 <body>
     <header>
         <img id="logo" src="../resources/img/wrm-logoteste.png">
-        <div class="texto" id="titulo"><h1>Cadastrar Fornecedor</h1></div>
+        <div class="texto" id="titulo"><h1>Editar Funcionário</h1></div>
     </header>
     <div class="row">
         <div class="col-sm-3">
@@ -104,116 +101,131 @@
         <div class="col-sm-9">
             <!-- ********************** Inserir o conteudo aqui! ********************** -->
 
-            <form id="formulario" 
-                  class="form-inline" 
-                  method="POST"
-                  action="CadastrarFornecedor"
-                  onSubmit="return valida(this)">
+            <form id="formulario" class="form-inline" onSubmit="return validar(this)" 
+                  method="POST" action="EditarFuncionario">
 
-                <div id="campoRazaoSocial" class="normalidade form-group ">
-                    <label class="col-sm-3 control-label" for="RazaoSocial"> Razão Social </label>
+                <div id="campoNome" class="normalidade form-group ">
+                    <label class="col-sm-3 control-label" for="inputRazaoSocial"> Nome </label>
                     <div class="col-sm-7">
-                        <input type="text" id="inputRazaoSocial" class="form-control" name="RazaoSocial">
+                        <input type="text" id="inputRazaoSocial" class="form-control" name="Nome"
+                               value="<c:out value="${Funcionario.nome}"/>">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
 
-                <div id="campoCNPJ" class="normal form-group">
-                    <label class="col-sm-2 control-label cnpjMask" for="Cnpj"> CNPJ </label>
+                <div id="campoDtNascimento" class="normal form-group">
+                    <label class="col-sm-2 control-label" for="inputData"> Nascimento </label>
                     <div class="col-sm-3">
-                        <input type="text" id="inputCNPJ" class="form-control" data-mask="99.999.999/9999-99" 
-                               placeholder="__.___.___/____-__" name="Cnpj">
+                        <input type="text" id="inputData" class="form-control" name="Data" 
+                               data-mask="99/99/9999"
+                               value="<c:out value="${Funcionario.dtNascimento}"/>">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
+                <div id="campoSexo" class="normal form-group">
+                    <label class="col-sm-2 control-label" for="selectSexo"> Sexo </label>
+                    <div class="col-sm-3 from-group">
+                        <select class="form-control" id="selectSexo" name="Sexo">
+                            <option selected="selected" value="">Selecione</option>
+                            <c:set var="sexo" scope="session" value="${Funcionario.sexo}"/>
+                            <option value="Masculino" 
+                                    <c:if test="${sexo == 'Masculino'}">selected</c:if>> Masculino </option>
+                            <option value="Feminino"
+                                    <c:if test="${sexo == 'Feminino'}">selected</c:if>> Feminino </option>
+                        </select>
+                    </div>
+                </div>
 
-                <div id="campoCep" class="normal form-group">
-                    <label id="labelCep" class="col-sm-2 control-label" for="Cep"> CEP </label>
+                <div id="campoCPF" class="normal form-group">
+                    <label class="col-sm-2 control-label" for="inputCPF"> CPF </label>
                     <div class="col-sm-3">
-                        <input type="text" id="inputCep" class="form-control" data-mask="99999-999" placeholder="_____-___" name="Cep">
+                        <input type="text" id="inputCPF" class="form-control" 
+                               name="CPF" placeholder="___.___.___-__"  data-mask = "999.999.999-99"
+                               value="<c:out value="${Funcionario.cpf}"/>">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
 
-                <div id="campoEndereco" class="normalidade form-group campoEndereco">
-                    <label class="col-sm-3 control-label" for="Endereco"> Endereço </label>
-                    <div class="col-sm-7">
-                        <input type="text" id="inputEndereco" class="form-control" name="Endereco" readonly>
-                        <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
-                    </div>
-                </div>
-
-                <div id="campoNumero" class="normal form-group">
-                    <label class="col-sm-2 control-label" for="Numero"> Numero </label>
+                <div id="campoRG" class="normal form-group">
+                    <label class="col-sm-2 control-label" for="inputRg"> RG </label>
                     <div class="col-sm-3">
-                        <input type="text" id="inputNumero" class="form-control" name="Numero">
-                        <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
-                    </div>
-                </div>
-
-                <div id="campoBairro" class="normal form-group">
-                    <label id="labelBairro" class="col-sm-2 control-label" for="Bairro"> Bairro </label>
-                    <div class="col-sm-3">
-                        <input type="text" id="inputBairro" class="form-control" name="Bairro" readonly>
-                        <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
-                    </div>
-                </div>
-
-                <div id="campoCidade" class="normal form-group">
-                    <label class="col-sm-2 control-label" for="Cidade"> Cidade </label>
-                    <div class="col-sm-3">
-                        <input type="text" id="inputCidade" class="form-control" name="Cidade" readonly>
-                        <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
-                    </div>
-                </div>
-
-                <div id="campoUf" class="normal form-group">
-                    <label id="labelUf" class="col-sm-2 control-label" for="UF"> UF </label>
-                    <div class="col-sm-3">
-                        <input type="text" id="inputUF" class="form-control" name="UF" readonly>
+                        <input type="text" id="inputRg" class="form-control" 
+                               name="RG" placeholder="__.___.___-_"  data-mask = "99.999.999-*"
+                               value="<c:out value="${Funcionario.rg}"/>">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
 
                 <div id="campoTelefone" class="normal form-group">
-                    <label class="col-sm-2 control-label" for="Telefone"> Telefone </label>
+                    <label class="col-sm-2 control-label" for="inputTelefone"> Telefone </label>
                     <div class="col-sm-3">
                         <input type="text" id="inputTelefone" class="form-control" 
-                               data-mask="(99) 9999-9999" placeholder="(__) ____-____" name="Telefone">
+                               name="Telefone"  data-mask="(99) 9999-9999" 
+                               placeholder="( ) ____-____"
+                               value="<c:out value="${Funcionario.telefone}"/>">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
-
-                <div id="campoEmail" class="normal form-group">
-                    <label id="labelEmail" class="col-sm-2 control-label" for="Email"> Email </label>
-                    <div class=" col-sm-3 ">
-                        <input type="text" id="inputEmail" class="form-control" name="Email">
+                <div id="campoCelular" class="normal form-group">
+                    <label class="col-sm-2 control-label" for="inputCelular"> Celular </label>
+                    <div class="col-sm-3">
+                        <input type="text" id="inputCelular" class="form-control" 
+                               name="Celular" data-mask="(99) 9999-9999?9"
+                               value="<c:out value="${Funcionario.celular}"/>">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
-
-
-                <div id="campoSite" class="normalidade form-group">
-                    <label class="col-sm-3 control-label" for="Site"> URL do Site </label>
+                <div id="campoCargo" class="normal form-group">
+                    <label class="col-sm-2 control-label" for="selectCargo"> Cargo </label>
+                    <div class="col-sm-3 from-group">
+                        <select class="form-control" id="selectCargo" name="Cargo">
+                            <option selected="selected" value="">Selecione</option>
+                            <c:set var="cargo" scope="session" value="${Funcionario.fkPapel}"/>
+                            <option value="2" 
+                                    <c:if test="${cargo == '2'}">selected</c:if>> Retaguarda </option>
+                            <option value="3"
+                                    <c:if test="${cargo == '3'}">selected</c:if>> Suporte </option>
+                            <option value="4"
+                                    <c:if test="${cargo == '4'}">selected</c:if>> Venda </option>
+                        </select>
+                    </div>
+                </div>
+                <div id="campoEmail" class="normal form-group ">
+                    <label class="col-sm-3 control-label" for="inputEmail"> Email </label>
                     <div class="col-sm-7">
-                        <input type="text" id="inputSite" class="form-control" name="Site">
+                        <input type="text" id="inputEmail" class="form-control" name="Email"
+                               value="<c:out value="${Funcionario.email}"/>">
+                        <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
+                    </div>
+                </div>
+                <div id="campoSenha" class="normal form-group">
+                    <label class="col-sm-2 control-label" for="inputSenha"> Senha </label>
+                    <div class="col-sm-3">
+                        <input type="password" id="inputSenha" class="form-control" name="Senha">
+                        <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
+                    </div>
+                </div>
+                <div id="campoSenhaC" class="normal form-group">
+                    <label class="col-sm-2 control-label" for="inputSenhaC"> Confirme </label>
+                    <div class="col-sm-3">
+                        <input type="password" id="inputSenhaC" class="form-control" name="ConfirmeSenha">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
                 <div class="botoesFormulario">
                     <button type="reset" class="btn btn-danger">Cancelar</button>
-                    <button type="submit" class="btn btn-default">Cadastrar</button>
+                    <button type="submit" class="btn btn-default">Efetuar mudanças</button>
                 </div>
-
             </form>
-
         </div>
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    </div>
 
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
-        <script src="../resources/js/validacoesCampos.js"></script>
+</div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+<script src="../resources/js/validacoesCampos_1.js"></script>
 </body>
 </html>

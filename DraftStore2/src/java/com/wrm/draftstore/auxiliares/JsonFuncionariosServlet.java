@@ -6,9 +6,8 @@
 package com.wrm.draftstore.auxiliares;
 
 import com.google.gson.Gson;
-import com.wrm.draftstore.classes.Fornecedor;
+import com.wrm.draftstore.classes.*;
 import com.wrm.draftstore.database.ConexaoBDJavaDB;
-import com.wrm.draftstore.servlets.busca.BuscarFornecedor;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -31,8 +30,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ramonhonorio
  */
-@WebServlet(name = "JsonFornecedoresServlet", urlPatterns = {"/Servlet/JsonFornecedoresServlet"})
-public class JsonFornecedoresServlet extends HttpServlet {
+@WebServlet(name = "JsonFuncionariosServlet", urlPatterns = {"/Servlet/JsonFuncionariosServlet"})
+public class JsonFuncionariosServlet extends HttpServlet {
 
   /**
    * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,32 +44,34 @@ public class JsonFornecedoresServlet extends HttpServlet {
    */
   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-
-    List<Fornecedor> fornecedoresLista = listarFornecedores();
-    request.setAttribute("lista", fornecedoresLista);
-
-    // Gerando a String JSON
-    String json = new Gson().toJson(fornecedoresLista);
+    
+    List<Funcionario> funcionariosLista = listarFuncionarios();
+    request.setAttribute("lista", funcionariosLista);
+    
+    String json = new Gson().toJson(funcionariosLista);
     PrintWriter out = response.getWriter();
-
+    
     try {
-      // Enviando o JSON para o cliente (Será tratado no JS)
       response.setContentType("application/json");
+//      out.write(json);
       out.print(json);
+//      System.out.println(json);
     } catch (JsonException e) {
-      System.out.println("ERRO! -> [Json]: " + e);
+      System.out.println("ERRO! -> [Json]: "+e);
     }
     
-    // Tentativa de criacao de arquivo
-    FileWriter file = new FileWriter("fornec.json");
-    try {
-      file.write(json);
-    } catch (IOException e) {
-      e.printStackTrace();
-    } finally {
-      file.flush();
-      file.close();
-    }
+    FileWriter file = new FileWriter("func.json");
+        try {
+            file.write(json);
+ 
+        } catch (IOException e) {
+            e.printStackTrace();
+ 
+        } finally {
+            file.flush();
+            file.close();
+        }
+    
   }
 
   // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -112,51 +113,55 @@ public class JsonFornecedoresServlet extends HttpServlet {
     return "Short description";
   }// </editor-fold>
 
-  public List<Fornecedor> listarFornecedores() {
+  public List<Funcionario> listarFuncionarios() {
     ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftstoredb");
     Statement stmt = null;
     Connection conn = null;
 
-    String sql = "SELECT RAZAO_SOCIAL,"
-            + "          CNPJ,"
-            + "          ID_FORNECEDOR"
-            + "     FROM TB_FORNECEDOR";
+    String sql = "SELECT ID_FUNCIONARIO,\n" +
+                "        NOME,\n" +
+                "        CPF,\n" +
+                "        EMAIL\n" +
+                "    FROM TB_FUNCIONARIO "
+            + " WHERE ATIVO = TRUE";
     try {
       conn = conexaoBD.obterConexao();
       stmt = conn.createStatement();
       ResultSet resultados = stmt.executeQuery(sql);
 
-      List<Fornecedor> lista = new ArrayList<>();
+      List<Funcionario> lista = new ArrayList<>();
 
       while (resultados.next()) {
-        Fornecedor f = new Fornecedor();
-        f.setRazaoSocial(resultados.getString("RAZAO_SOCIAL"));
-        f.setCnpj(resultados.getString("CNPJ"));
-        f.setIdFornecedor(resultados.getString("ID_FORNECEDOR"));
+        Funcionario f = new Funcionario();
+        f.setIdFuncionario(resultados.getString("ID_FUNCIONARIO"));
+        f.setNome(resultados.getString("NOME"));
+        f.setCpf(resultados.getString("CPF"));
+        f.setEmail(resultados.getString("EMAIL"));
+        
         lista.add(f);
       }
 
       return lista;
 
     } catch (SQLException | ClassNotFoundException ex) {
-      Logger.getLogger(BuscarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+      Logger.getLogger(JsonFuncionariosServlet.class.getName()).log(Level.SEVERE, null, ex);
     } finally {
       if (stmt != null) {
         try {
           stmt.close();
         } catch (SQLException ex) {
-          Logger.getLogger(BuscarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+          Logger.getLogger(JsonFuncionariosServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
       }
       if (conn != null) {
         try {
           conn.close();
         } catch (SQLException ex) {
-          Logger.getLogger(BuscarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+          Logger.getLogger(JsonFuncionariosServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
       }
     }
     return null;
   }
-
+  
 }

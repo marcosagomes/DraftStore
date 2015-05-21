@@ -61,7 +61,7 @@ public class LoginServlet extends HttpServlet {
                 "    JOIN TB_PAPEL\n" +
                 "    ON FK_PAPEL = ID_PAPEL\n" +
                 "    WHERE EMAIL = '"+nome+"'\n" +
-                "    AND SENHA = '"+hashSenha+"'";
+                "    AND SENHA = '"+hashSenha+"' AND ATIVO = TRUE";
         try {
             conn = conexaoBD.obterConexao();
             stmt = conn.createStatement();

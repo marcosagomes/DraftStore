@@ -5,17 +5,7 @@
  */
 package com.wrm.draftstore.servlets.busca;
 
-import com.wrm.draftstore.classes.Fornecedor;
-import com.wrm.draftstore.database.ConexaoBDJavaDB;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
