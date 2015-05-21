@@ -14,7 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>WRM - Sistema de Gerenciamento</title>
+    <title>Draftstore - Editar Produto</title>
 
     <!-- Bootstrap -->
     <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -104,7 +104,7 @@
             <form 
                 id="formulario"
                 class="form-inline"
-                onSubmit="return validade(this)"
+                onSubmit="return validar(this)"
                 method="POST"
                 action="EditarProduto">
                 <div id="campoTipoProduto" class="normal form-group" >
@@ -160,7 +160,7 @@
                 </div>
 
                 <div id="campoPreco" class="normalidade form-group">
-                    <label class="col-sm-3 control-label" for="Preco"> Preco de Venda </label>
+                    <label class="col-sm-3 control-label" for="Preco"> Preço de Venda </label>
                     <div class="col-sm-2">
                         <input type="text" id="inputPreco" class="form-control" name="preco" placeholder="R$ 00,00" value="R$ ${Produto.precoVenda}" readonly>
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
@@ -168,7 +168,7 @@
                 </div>         
                 <div class="botoesFormulario">
                     <button type="reset" class="btn btn-danger">Cancelar</button>
-                    <button type="submit" class="btn btn-default">Efetuar Mudanças</button>
+                    <button type="submit" class="btn btn-default">Efetuar mudanças</button>
                 </div>
 
             </form>
@@ -180,6 +180,7 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+    <script src="../resources/js/validaProduto.js"></script>
     <script src="../resources/js/previsaoPrecoVenda.js"></script>
 </body>
 </html>

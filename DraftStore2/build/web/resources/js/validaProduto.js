@@ -50,73 +50,77 @@ function validaModelo() {
         campoModelo.classList.add("has-success");
         return true;
     }
+}
+function validaPreco() {
+    var valor = $("#inputCusto").val();
+    if (valor <= 0 || valor === "") {
+        campoCusto.classList.add("has-error");
+        return false;
+    } else {
+        campoCusto.classList.remove("has-error");
+        campoCusto.classList.add("has-success");
+        return true;
     }
-      function validaPreco() {
-        var valor = $("#inputCusto").val();
-        if(valor <= 0 || valor === ""){
-            campoCusto.classList.add("has-error");
-            return false;
-        }else {
-            campoCusto.classList.remove("has-error");
-            campoCusto.classList.add("has-success");
+}
+
+function validaLucro() {
+    var valor = $("#inputLucro").val();
+    if (valor <= 0 || valor === "") {
+        campoLucro.classList.add("has-error");
+        return false;
+    } else {
+        campoLucro.classList.remove("has-error");
+        campoLucro.classList.add("has-success");
+        return true;
+    }
+}
+
+
+function validar(form) {
+
+    if (!validaTipoProduto()) {
+        form.TipoProduto.focus();
+        return false;
+    }
+    if (!validaFornecedor()) {
+        form.Fornecedor.focus();
+        return false;
+    }
+    if (!validaMarca()) {
+        form.Marca.focus();
+        return false;
+    }
+    if (!validaModelo()) {
+        form.Modelo.focus();
+        return false;
+    }
+    if (!validaLucro()) {
+        form.lucro.focus();
+        return false;
+    }
+
+    if (!confirm('Tem certeza que deseja efetuar o registro com essas informações?')) {
+        return false;
+    } else {
+        alert('Operação realizada com sucesso!');
+    }
+
+}
+$("#selectTipo").blur(validaTipoProduto);
+$("#selectFornecedor").blur(validaFornecedor);
+$("#inputMarca").blur(validaMarca);
+$("#inputModelo").blur(validaModelo);
+$("#inputCusto").blur(validaPreco);
+$("#inputLucro").blur(validaLucro);
+
+function SomenteNumero(e) {
+    var tecla = (window.event) ? event.keyCode : e.which;
+    if ((tecla > 47 && tecla < 58))
+        return true;
+    else {
+        if (tecla == 8 || tecla == 0)
             return true;
-        }
-    }
-    
-    function validaLucro() {
-        var valor = $("#inputLucro").val();
-        if(valor <= 0|| valor === ""){
-            campoLucro.classList.add("has-error");
+        else
             return false;
-        }else {
-            campoLucro.classList.remove("has-error");
-            campoLucro.classList.add("has-success");
-            return true;
-        }
-    }
-    
-
-    function validar(form) {
-
-        if (!validaTipoProduto()) {
-            form.TipoProduto.focus();
-            return false;
-        }
-        if (!validaFornecedor()) {
-            form.Fornecedor.focus();
-            return false;
-        }
-        if (!validaMarca()) {
-            form.Marca.focus();
-            return false;
-        }
-        if (!validaModelo()) {
-            form.Modelo.focus();
-            return false;
-        }if(!validaLucro()){
-            form.lucro.focus();
-            return false;
-        }
-
-        if (!confirm('Tem certeza que deseja realizar o cadastro com essas informações?')) {
-            return false;
-        } else {
-            alert('Operação realizada com sucesso!');
-        }
-
-    }
-    $("#selectTipo").blur(validaTipoProduto);
-    $("#selectFornecedor").blur(validaFornecedor);
-    $("#inputMarca").blur(validaMarca);
-    $("#inputModelo").blur(validaModelo);
-    $("#inputCusto").blur(validaPreco);
-    $("#inputLucro").blur(validaLucro);
-
-  function SomenteNumero(e){
-    var tecla=(window.event)?event.keyCode:e.which;
-    if((tecla>47 && tecla<58)) return true;
-    else{
-    if (tecla==8 || tecla==0) return true;
-    else  return false;
     }
 }
