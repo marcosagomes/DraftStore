@@ -111,11 +111,11 @@
                     <label class="col-sm-3 control-label" for="Tipo"> Tipo do Produto </label>
                     <div class="col-sm-2 from-group">
                         <select class="form-control" id="selectTipo" name="Tipo">
-                            <option selected="selected" calabel="0" value="0">Selecione</option>
-                            <option calabel="1" value="Processador"> Processador </option>
-                            <option calabel="2" value="Placa-Mae"> Placa-Mãe </option>
-                            <option calabel="3" value="Memoria"> Memoria </option>
-                            <option calabel="4" value="Fonte"> Fonte </option>
+                            <option selected="selected"  value="">Selecione</option>
+                            <option value="Processador"> Processador </option>
+                            <option value="Placa-Mae"> Placa-Mãe </option>
+                            <option value="Memoria"> Memoria </option>
+                            <option value="Fonte"> Fonte </option>
                         </select>
                     </div>
                 </div>
@@ -124,6 +124,7 @@
                     <label class="col-sm-3 control-label" for="Fornecedor"> Fornecedor </label>
                     <div class="col-sm-2 from-group">
                         <select class="form-control" id="selectFornecedor" name="Fornecedor">
+                             <option selected="selected" value="">Selecione</option>
                             <c:forEach items="${lista}" var="fornec" varStatus="stats">
                                 <option value="${fornec.idFornecedor}">${fornec.razaoSocial}</option>
                                 <input type="hidden" name="${fornec.idFornecedor}" value="${fornec.razaoSocial}">
@@ -152,7 +153,7 @@
                 <div id="campoCusto" class="normal form-group ">
                     <label class="col-sm-3 control-label" for="Custo"> Custo </label>
                     <div class="col-sm-2">
-                        <input type="number" min="0.1" step="0.01" value="120" id="inputCusto" class="form-control" name="Custo">
+                        <input type="number" min="1" step="0.01" value="0" id="inputCusto" class="form-control" name="Custo">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -160,7 +161,7 @@
                 <div id="campoLucro" class="normal form-group">
                     <label class="col-sm-2 control-label" for="Lucro"> % de Lucro </label>
                     <div class="col-sm-3">
-                        <input type="number" min="1" step="0.1" value="50" id="inputLucro" class="form-control" name="lucro">
+                        <input type="number" min="1" step="0.1" value="0" id="inputLucro" class="form-control" name="lucro">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -184,7 +185,7 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
-<script src="../resources/js/validacoesCampos_1.js"></script>
+<script src="../resources/js/validaProduto.js"></script>
 <script src="../resources/js/previsaoPrecoVenda.js"></script>
 </body>
 </html>

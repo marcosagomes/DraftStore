@@ -10,3 +10,5 @@ DraftStore2/build/web/gfv3ee6.dpf
 *.properties
 
 *.class
+*.class
+DraftStore2/build/web/WEB-INF/classes/com/wrm/draftstore/classes/Fornecedor.class
