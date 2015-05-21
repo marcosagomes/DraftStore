@@ -152,7 +152,7 @@ Author     : ramon.ahonorio
                         </div>	
                     </form>
 
-                    <form id="formRemover" 
+<!--                    <form id="formRemover" 
                           action="RemoverFornecedor"
                           method="GET"
                           class="form-search" 
@@ -161,7 +161,7 @@ Author     : ramon.ahonorio
                         <div class="botao">
                             <button class="btn btn-small btn-danger botaoDeAcao" type="submit">Remover</button>
                         </div>	
-                    </form>
+                    </form>-->
                 </div>
                 
 

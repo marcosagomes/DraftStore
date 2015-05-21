@@ -153,7 +153,7 @@
                         </div>	
                     </form>
 
-                    <form id="formRemover" 
+<!--                    <form id="formRemover" 
                           action="RemoverProduto"
                           method="GET"
                           class="form-search" 
@@ -162,7 +162,7 @@
                         <div class="botao">
                             <button class="btn btn-small btn-danger botaoDeAcao" type="submit">Remover</button>
                         </div>	
-                    </form>
+                    </form>-->
                 </div>
 
                 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

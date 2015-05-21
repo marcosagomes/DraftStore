@@ -81,7 +81,7 @@ public class RemoverFornecedor extends HttpServlet {
                 + "          EMAIL,\n"
                 + "          SITE,\n"
                 + "          NUMERO,\n"
-                + "          FK_USUARIO,\n"
+                + "          FK_FUNCIONARIO,\n"
                 + "          DATA_CRIACAO,\n"
                 + "          RAZAO_SOCIAL,\n"
                 + "          CNPJ\n"
