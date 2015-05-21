@@ -17,9 +17,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -113,7 +115,7 @@ public class CadastrarProduto extends HttpServlet {
         stmt.setString(8, u.getIdUsuario());
         
         // Criando um Timestamp atual do sistema
-        stmt.setString(9, "current_timestamp");
+        stmt.setTimestamp(9, new Timestamp(new Date().getTime()));
         
         stmt.setString(10, p.getNomeFornecedor());
         stmt.setString(11, razaoSocial);
@@ -165,13 +167,18 @@ public class CadastrarProduto extends HttpServlet {
         float percentualLucro = 0;
         float custo = 0;
         try {
-          precoVenda = (Long) NumberFormat.getIntegerInstance().parse(stringPrecoVenda);
+          precoVenda = (Long) NumberFormat.getIntegerInstance().parse(stringPrecoVenda.substring(3, stringPrecoVenda.length()-3));
           percentualLucro = (Long) NumberFormat.getNumberInstance().parse(stringPercLucro);
           custo = (Long) NumberFormat.getNumberInstance().parse(stringCusto);
         } catch (ParseException ex) {
           Logger.getLogger(CadastrarProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        // 1) OBTEM AS INFORMACOES DO USUARIO DA SESSAO
+        // A) CAST DOS PARÂMETROS RECEBIDOS
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        // B) TENTA RECUPERAR A SESSÃO DO USUÁRIO
+        HttpSession sessao = httpRequest.getSession();
+        Usuario usuario = (Usuario) sessao.getAttribute("usuario");
         
 //        float precoVenda = Float.parseFloat(request.getParameter("precoVenda"));
 //        float percentualLucro = Float.parseFloat(request.getParameter("lucro"));
@@ -180,24 +187,17 @@ public class CadastrarProduto extends HttpServlet {
         String tipoProduto = request.getParameter("Tipo");
 //        float custo = Float.parseFloat(request.getParameter("custo"));
         int fkFornecedor = Integer.parseInt(request.getParameter("Fornecedor"));
-        String dataCriacao = request.getParameter("data");
-        String nomeFornecedor = request.getParameter("nomeFornecedor");
-        String nomeUsuario = request.getParameter("nomeUsuario");
-        int fkFuncionario = Integer.parseInt(request.getParameter("funcionario"));
+        Date d = new Date();        
+        String dataCriacao = String.valueOf(d.getTime());
+        String nomeFornecedor = request.getParameter(String.valueOf(fkFornecedor));
+        String nomeUsuario = usuario.getNomeDoFuncionario();
+        int fkFuncionario = Integer.parseInt(usuario.getIdUsuario());
         
 //        Produto p = new Produto(precoVenda, percentualLucro, modelo, 
 //                marca, tipoProduto, custo, fkFornecedor);
         Produto p = new Produto(0, precoVenda, percentualLucro, modelo, 
                 marca, tipoProduto, custo, fkFornecedor, dataCriacao, nomeFornecedor, nomeUsuario, fkFuncionario);
 
-        
-        // 1) OBTEM AS INFORMACOES DO USUARIO DA SESSAO
-        // A) CAST DOS PARÂMETROS RECEBIDOS
-        HttpServletRequest httpRequest = (HttpServletRequest) request;
-        // B) TENTA RECUPERAR A SESSÃO DO USUÁRIO
-        HttpSession sessao = httpRequest.getSession();
-        Usuario usuario = (Usuario) sessao.getAttribute("usuario");
-        
         cadastrarProduto(nomeFornecedor, p, usuario);
         
         System.out.println("> Fornecedor cadastrado.");
