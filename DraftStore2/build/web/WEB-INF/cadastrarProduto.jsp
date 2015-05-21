@@ -104,7 +104,7 @@
             <form 
                 id="formulario"
                 class="form-inline"
-                onSubmit="return validade(this)"
+                onSubmit="return valida(this)"
                 action="CadastrarProduto"
                 method="POST">
                 <div id="campoTipoProduto" class="normal form-group" >
@@ -155,7 +155,7 @@
                 <div id="campoCusto" class="normal form-group ">
                     <label class="col-sm-3 control-label" for="Custo"> Custo </label>
                     <div class="col-sm-2">
-                        <input type="number" min="1" step="0.01" value="0" id="inputCusto" class="form-control" name="Custo">
+                        <input type="text" value="0" id="inputCusto" class="form-control" name="Custo">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -163,7 +163,7 @@
                 <div id="campoLucro" class="normal form-group">
                     <label class="col-sm-2 control-label" for="Lucro"> % de Lucro </label>
                     <div class="col-sm-3">
-                        <input type="number" min="1" step="0.1" value="0" id="inputLucro" class="form-control" name="lucro">
+                        <input type="text"  value="0" id="inputLucro" class="form-control" name="lucro">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -179,7 +179,6 @@
                     <button type="reset" class="btn btn-danger">Cancelar</button>
                     <button type="submit" class="btn btn-default">Cadastrar</button>
                 </div>
-        </div>
     </form>
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
