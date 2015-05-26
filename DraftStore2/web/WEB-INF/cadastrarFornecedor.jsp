@@ -81,6 +81,7 @@
 
                                 </ul>
                             </li>
+                            
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Fornecedores <b class="caret"></b></a>
                                 <ul class="dropdown-menu dropdown-menu-right">
@@ -92,6 +93,7 @@
                                     </li>
                                 </ul>
                             </li>
+                            
                             <li>
                                 <a href="#">Relatórios <span class="badge">4</span></a>
                             </li>

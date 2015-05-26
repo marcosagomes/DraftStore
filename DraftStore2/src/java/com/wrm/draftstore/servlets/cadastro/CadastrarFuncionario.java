@@ -202,7 +202,7 @@ public class CadastrarFuncionario extends HttpServlet {
 
     cadastrarFuncionario(f, usuario);
 
-    response.sendRedirect("../resultado.jsp");
+    response.sendRedirect("CadastrarFuncionario");
 
   }
 
@@ -260,7 +260,7 @@ public class CadastrarFuncionario extends HttpServlet {
 
     cadastrarFuncionario(f, usuario);
 
-    response.sendRedirect("../resultado.jsp");
+    response.sendRedirect("CadastrarFuncionario");
   }
 
   /**
