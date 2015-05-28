@@ -94,9 +94,10 @@ tbody tr:hover {
 }
 
 .botaoDeAcao {
-    width: 20%;
-    display: inline-block;
-    margin-left: 20%;
+  position: relative;
+  width: 140px;
+  left: 30%;
+  top: 15px;
 }
 
 .button-container form,
@@ -120,4 +121,9 @@ tbody tr:hover {
     position: relative;
     left: 120px;
     width: 90px;
+}
+.camposAbaixoCarrinho{
+    position: relative;
+    padding-top: 10px;
+    left: 150px;
 }

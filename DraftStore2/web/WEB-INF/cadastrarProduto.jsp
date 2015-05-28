@@ -67,7 +67,7 @@
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Funcionarios <b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Funcionários <b class="caret"></b></a>
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <li>
                                         <a href="BuscarFuncionario">Buscar </a>
@@ -176,8 +176,8 @@
                     </div>
                 </div>
                 <div class="botoesFormulario">
-                    <button type="reset" class="btn btn-danger">Cancelar</button>
-                    <button type="submit" class="btn btn-default">Cadastrar</button>
+                    <button type="reset" class="btn btn-default" >Cancelar</button>
+                    <button type="submit" class="btn btn-primary" id="btCadastrar">Cadastrar</button>
                 </div>
     </form>
 </div>

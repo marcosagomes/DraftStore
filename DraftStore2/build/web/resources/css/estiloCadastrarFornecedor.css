@@ -1,13 +1,4 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : May 17, 2015, 10:01:39 PM
-    Author     : ramonhonorio
-*/
-
+/* make sidebar nav vertical */
 @media (min-width: 768px) {
   .sidebar-nav .navbar .navbar-collapse {
     padding: 0;
@@ -25,32 +16,39 @@ and open the template in the editor.
   }
   .sidebar-nav .navbar li a {
     padding-top: 15px;
-    padding-bottom: 15px;
+    padding-bottom: 10px;
   }
 }
-.glyphicon{
-  line-height: 1em;
+td .hidden
+{
+    display: none;
 }
 
-li {
- font-size: 18px;
-}
 #logo {
- display: inline-block;
- margin-bottom: 30px;
- margin-left: 2%;
+	display: inline-block;
+	margin-bottom: 30px;
+	margin-left: 2%;
 }
 
 #titulo {
- margin-top: 1%;
- margin-left: 80px;
- display: inline-block;
-    padding-bottom: 20px;
+	margin-top: 1%;
+	margin-left: 80px;
+	display: inline-block;
+}
+
+body {
+	font-size: 20px;
+	width: auto;
+	height: auto;
 }
 
 h1 {
-    font-size: 64px;
-    margin-top: 20px;
+	font-size: 64px;
+	margin-top: 20px;
+}
+
+li {
+	font-size: 18px;
 }
 
 .form-group{
@@ -64,14 +62,12 @@ h1 {
   margin-left: -35px;
   padding-left: 40px;
 }
-.normalidade{
-  width: 1030px;
-}
-
 #inputRazaoSocial, #inputEndereco, #inputSite {
   width: 100%;
 }
-
+.normalidade{
+  width: 1030px;
+}
 button {
     margin-left: 120px;
     margin-right: 100px;

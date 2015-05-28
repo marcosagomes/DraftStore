@@ -222,7 +222,7 @@
                       class="form-search"
                       onsubmit="return true">
                     <div class="botao">
-                        <button id="btnCancelar" class="btn btn-small btn-danger botaoDeAcao cancelar" type="submit">Cancelar</button>
+                        <button id="btnCancelar" class="btn btn-small btn-default botaoDeAcao cancelar" type="submit">Cancelar</button>
                     </div>	
                 </form>
             </div>

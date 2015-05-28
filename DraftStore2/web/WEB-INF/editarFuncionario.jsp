@@ -213,8 +213,8 @@
                     </div>
                 </div>
                 <div class="botoesFormulario">
-                    <button type="reset" class="btn btn-danger">Cancelar</button>
-                    <button type="submit" class="btn btn-default">Efetuar mudanças</button>
+                    <button type="reset" class="btn btn-default">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Efetuar mudanças</button>
                 </div>
             </form>
         </div>

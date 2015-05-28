@@ -154,7 +154,7 @@
                 </thead>
             </table>
 
-            <div class="camposAbaixoCarrinho">
+            <div class="camposAbaixoCarrinho" >
 
                 <form id="formVenda" 
                       action="RegistroVenda"
@@ -169,7 +169,7 @@
                     </div>
 
                     <div class="col-sm-5" id="btRegistrar">
-                        <button type="submit" class="btn btn-default">Registrar</button>
+                        <button type="submit" class="btn btn-primary">Registrar</button>
                     </div>
                 </form>
             </div>

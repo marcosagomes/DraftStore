@@ -1,3 +1,4 @@
+/* make sidebar nav vertical */
 @media (min-width: 768px) {
   .sidebar-nav .navbar .navbar-collapse {
     padding: 0;
@@ -15,16 +16,14 @@
   }
   .sidebar-nav .navbar li a {
     padding-top: 15px;
-    padding-bottom: 15px;
+    padding-bottom: 10px;
   }
 }
-.glyphicon{
-  line-height: 1em;
+td .hidden
+{
+    display: none;
 }
 
-li {
-	font-size: 18px;
-}
 #logo {
 	display: inline-block;
 	margin-bottom: 30px;
@@ -35,13 +34,23 @@ li {
 	margin-top: 1%;
 	margin-left: 80px;
 	display: inline-block;
-    padding-bottom: 20px;
+}
+
+body {
+	font-size: 20px;
+	width: auto;
+	height: auto;
 }
 
 h1 {
-    font-size: 64px;
-    margin-top: 20px;
+	font-size: 64px;
+	margin-top: 20px;
 }
+
+li {
+	font-size: 18px;
+}
+
 .form-group{
   display: block;
   padding-bottom:1.5em;
@@ -58,4 +67,9 @@ h1 {
 }
 #campoFornecedor{
     width: 400px;
+}
+button{
+    margin-left: 120px;
+    margin-right: 100px;
+    width: 140px;
 }
