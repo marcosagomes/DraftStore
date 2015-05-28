@@ -148,7 +148,7 @@ Author     : ramon.ahonorio
                           action="EditarFornecedor">
                         <input id="inputHiddenEditar" type="hidden" name="idFornecedor" value="">
                         <div class="botao">
-                            <button class="btn btn-default botaoDeAcao" type="submit">Editar</button>
+                            <button class="btn btn-primary botaoDeAcao" type="submit">Editar</button>
                         </div>	
                     </form>
 

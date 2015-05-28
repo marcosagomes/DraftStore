@@ -32,7 +32,7 @@ Author     : ramon.ahonorio
                                                 
           </script>
         <![endif]-->
-        <link href="../resources/css/estilos.css" type="text/css" rel="stylesheet">
+        <link href="../resources/css/estiloBuscarFuncionario.css" type="text/css" rel="stylesheet">
         <link href="../bootstrap-table/bootstrap-table.css" type="text/css" rel="stylesheet">
         <link rel="icon" href="../resources/img/draft.ico" type="image/x-icon">
         <link rel="shortcut icon" href="../resources/img/draft.ico" type="image/x-icon">
@@ -150,7 +150,7 @@ Author     : ramon.ahonorio
                           action="EditarFuncionario">
                         <input id="inputHiddenEditar" type="hidden" name="idFuncionario" value="">
                         <div class="botao">
-                            <button class="btn btn-default botaoDeAcao" type="submit">Editar</button>
+                            <button class="btn btn-primary botaoDeAcao" type="submit">Editar</button>
                         </div>	
                     </form>
 
@@ -161,7 +161,7 @@ Author     : ramon.ahonorio
                           onsubmit="return removerFornecedor(this)">
                         <input id="inputHiddenRemover" type="hidden" name="idFuncionario" value="">
                         <div class="botao">
-                            <button class="btn btn-small btn-danger botaoDeAcao" type="submit">Desativar</button>
+                            <button class="btn btn-small btn-default botaoDeAcao" type="submit">Desativar</button>
                         </div>	
                     </form>
                 </div>
