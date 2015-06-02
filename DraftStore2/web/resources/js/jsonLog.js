@@ -1,22 +1,18 @@
 // Requisitando o JSON do Servlet
 var xhr = new XMLHttpRequest();
-xhr.open("GET", "JsonFuncionariosServlet", true);
+xhr.open("GET", "Log", true);
 xhr.setRequestHeader("Content-type", "application/json");
-xhr.addEventListener("load", carregarJSONFornecedores);
+xhr.addEventListener("load", carregarJsonLog);
 xhr.send();
 
-var funcionarios;
-var idFuncionario;
-var barraSearch = document.getElementsByClassName("pull-right search");
+var caminho;
 
-function carregarJSONFornecedores() {
-    funcionarios = JSON.parse(this.responseText);
-//    console.log("JSON Object:"+funcionarios);
-//    console.log("JSON String:"+JSON.stringify(funcionarios));
+function carregarJsonLog() {
+    caminho = this.responseText;
 
     $(function () {
         $('#tabelita').bootstrapTable({
-            data: funcionarios
+            data: fornecedores
         });
     });
     
@@ -33,11 +29,22 @@ function queryParams() {
     };
 }
 
+var data = [
+    {"razaoSocial": "Fornecedor X",
+        "cnpj": "111.456.789-00"},
+    {"razaoSocial": "Fornecedor Y",
+        "cnpj": "222.456.789-00"},
+    {"razaoSocial": "Fornecedor Z",
+        "cnpj": "333.456.789-00"},
+    {"razaoSocial": "Fornecedor K",
+        "cnpj": "444.456.789-00"}
+];
+
  $('#tabelita').on('click', 'tr' , function (event) {
 //    console.log(this.childNodes[1].textContent);
-    idFuncionario = this.childNodes[1].textContent;
+    idFornec = this.childNodes[1].textContent;
     var inputEditar = document.getElementById("inputHiddenEditar");
-    inputEditar.setAttribute("value", idFuncionario);
+    inputEditar.setAttribute("value", idFornec);
     var inputRemover = document.getElementById("inputHiddenRemover");
-    inputRemover.setAttribute("value", idFuncionario);
+    inputRemover.setAttribute("value", idFornec);
 });
