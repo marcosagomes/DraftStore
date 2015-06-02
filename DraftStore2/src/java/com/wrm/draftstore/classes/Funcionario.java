@@ -24,32 +24,32 @@ public class Funcionario {
         this.email = email;
         this.senha = senha;
     }
-    
-    
-    public Funcionario(){
-    }
-    
-    
-        //Atributos
-        private String idFuncionario;
-        private String nome;
-        private String dtNascimento;
-        private String sexo;
-        private String cpf;
-        private String rg;
-        private String telefone;
-        private String celular;
-        private int cargo;
-        private String email;
-        private String senha;
-        private String fkPapel;
 
- 
-        
-        
-        
-        //Métodos
-        
+    public Funcionario(String nome, float valorVendas) {
+        this.nome = nome;
+        this.valorVendas = valorVendas;
+
+    }
+
+    public Funcionario() {
+    }
+
+    //Atributos
+    private String idFuncionario;
+    private String nome;
+    private String dtNascimento;
+    private String sexo;
+    private String cpf;
+    private String rg;
+    private String telefone;
+    private String celular;
+    private int cargo;
+    private String email;
+    private String senha;
+    private String fkPapel;
+    private float valorVendas;
+
+    //Métodos
     public String getFkPapel() {
         return fkPapel;
     }
@@ -57,8 +57,15 @@ public class Funcionario {
     public void setFkPapel(String fkPapel) {
         this.fkPapel = fkPapel;
     }
-        
-        
+
+    public float getValorVendas() {
+        return valorVendas;
+    }
+
+    public void setValorVendas(float valorVendas) {
+        this.valorVendas = valorVendas;
+    }
+
     public String getIdFuncionario() {
         return idFuncionario;
     }
@@ -146,8 +153,5 @@ public class Funcionario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
-    
 
-        
 }

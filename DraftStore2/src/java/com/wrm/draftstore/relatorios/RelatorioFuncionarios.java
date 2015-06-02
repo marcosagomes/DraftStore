@@ -5,6 +5,7 @@
  */
 package com.wrm.draftstore.relatorios;
 
+import com.wrm.draftstore.classes.Funcionario;
 import com.wrm.draftstore.database.ConexaoBDJavaDB;
 import com.wrm.draftstore.servlets.busca.BuscarFornecedor;
 import java.io.IOException;
@@ -13,8 +14,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -27,17 +30,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author wilson.aoliveira
  */
-@WebServlet(name = "RelatorioVendas", urlPatterns = {"/Servlet/RelatorioVendas"})
-public class RelatorioVendas extends HttpServlet {
+@WebServlet(name = "RelatorioFuncionarios", urlPatterns = {"/Servlet/RelatorioFuncionarios"})
+public class RelatorioFuncionarios extends HttpServlet {
 
-    private float vendaMesAtual;
-    private float vendaMesAnterior;
-
-    public void buscarVendas(String mesAtual, String mesAnterior) {
-        String auxAtual, auxAnterior;
-
-        auxAtual = "20" + mesAtual.substring(6, 8) + "-" + mesAtual.substring(3, 5);
-        auxAnterior = "20" + mesAnterior.substring(6, 8) + "-" + mesAnterior.substring(3, 5);
+    public void buscarVendas(List<Funcionario> funcionarios) {
 
         ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftstoredb");
         Statement stmt = null;
@@ -45,25 +41,19 @@ public class RelatorioVendas extends HttpServlet {
 
         String sql
                 = "select  sum(produto.PRECO) as VALOR,\n"
-                + "        SUBSTR((CAST((CAST(venda.DATA_CRIACAO as DATE)) as VARCHAR(10))),1,7) as MES\n"
+                + "        FK_FUNCIONARIO ,\n"
+                + "        NOME_USUARIO as FUNCIONARIO\n"
                 + "        from ADM.TB_VENDA venda, \n"
                 + "            ADM.TB_ITEM_VENDA produto\n"
-                + "        where venda.ID_VENDA = produto.FK_VENDA\n"
-                + "        and (CAST((SUBSTR((CAST((CAST(venda.DATA_CRIACAO as DATE)) as VARCHAR(10))),1,8)||'01') AS DATE)) "
-                + "        BETWEEN '" + auxAnterior + "-01'" + " AND '" + auxAtual + "-01'" + " group\n"
-                + "        by SUBSTR((CAST((CAST(venda.DATA_CRIACAO as DATE)) as VARCHAR(10))),1,7)\n";
+                + "        where venda.ID_VENDA = produto.FK_VENDA group\n"
+                + "        by FK_FUNCIONARIO, NOME_USUARIO order by VALOR desc";
         try {
             conn = conexaoBD.obterConexao();
             stmt = conn.createStatement();
             ResultSet resultados = stmt.executeQuery(sql);
 
             while (resultados.next()) {
-                if (auxAtual.equals(resultados.getString("MES"))) {
-                    vendaMesAtual = resultados.getFloat("VALOR");
-                } else {
-                    vendaMesAnterior = resultados.getFloat("VALOR");
-                }
-
+                funcionarios.add(new Funcionario(resultados.getString("FUNCIONARIO"), resultados.getFloat("VALOR")));
             }
 
         } catch (SQLException | ClassNotFoundException ex) {
@@ -97,19 +87,15 @@ public class RelatorioVendas extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Calendar atual = Calendar.getInstance();
-        Calendar anterior = Calendar.getInstance();
-        anterior.add(Calendar.MONTH, -1);
 
-        buscarVendas(new SimpleDateFormat().format(
-                new Date(atual.getTimeInMillis())),
-                new SimpleDateFormat().format(new Date(anterior.getTimeInMillis()))
-        );
-        System.out.println("Venda mes atual " + vendaMesAtual);
-        System.out.println("Venda mes anterior " + vendaMesAnterior);
+        List<Funcionario> funcionarios = new ArrayList();
+        buscarVendas(funcionarios);
+        
+        request.setAttribute("Funcionarios", funcionarios);
 
-        request.setAttribute("vendaMesAtual", vendaMesAtual);
-        request.setAttribute("vendaMesAnterior", vendaMesAnterior);
+        for (Funcionario f : funcionarios) {
+            System.out.println("Funcionario: " + f.getNome() + "\nValor: " + f.getValorVendas());
+        }
 
     }
 
@@ -139,19 +125,6 @@ public class RelatorioVendas extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Calendar atual = Calendar.getInstance();
-        Calendar anterior = Calendar.getInstance();
-        anterior.add(Calendar.MONTH, -1);
-
-        buscarVendas(new SimpleDateFormat().format(
-                new Date(atual.getTimeInMillis())),
-                new SimpleDateFormat().format(new Date(anterior.getTimeInMillis()))
-        );
-        System.out.println("Venda mes atual " + vendaMesAtual);
-        System.out.println("Venda mes anterior " + vendaMesAnterior);
-
-        request.setAttribute("vendaMesAtual", vendaMesAtual);
-        request.setAttribute("vendaMesAnterior", vendaMesAnterior);
     }
 
     /**
