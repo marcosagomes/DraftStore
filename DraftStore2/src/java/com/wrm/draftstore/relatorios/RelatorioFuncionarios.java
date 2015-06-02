@@ -13,10 +13,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -90,7 +87,7 @@ public class RelatorioFuncionarios extends HttpServlet {
 
         List<Funcionario> funcionarios = new ArrayList();
         buscarVendas(funcionarios);
-        
+
         request.setAttribute("Funcionarios", funcionarios);
 
         for (Funcionario f : funcionarios) {

@@ -5,8 +5,22 @@
  */
 package com.wrm.draftstore.relatorios;
 
+import com.wrm.draftstore.database.ConexaoBDJavaDB;
+import com.wrm.draftstore.servlets.busca.BuscarFornecedor;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,6 +34,59 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "Log", urlPatterns = {"/Servlet/Log"})
 public class Log extends HttpServlet {
 
+    public void buscarDados(String mesAtual) {
+        String auxAtual;
+
+        auxAtual = "20" + mesAtual.substring(6, 8) + "-" + mesAtual.substring(3, 5);
+        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftstoredb");
+        Statement stmt = null;
+        Connection conn = null;
+
+        String sql
+                = "select 'DESCRIÇÃO DO LOG: '||log.DESCRICAO_LOG||\n"
+                + "       '   -  DATA DO LOG: '||log.DATA_CRIACAO||\n"
+                + "       '   -  USUÁRIO ENVOLVIDO: '||log.NOME_USUARIO as DESCRICAO\n"
+                + "        from ADM.TB_LOG log\n"
+                + "       where SUBSTR((CAST((CAST(log.data_criacao AS DATE)) AS VARCHAR(10))),1,7) = '" + auxAtual + "'";
+        try {
+            conn = conexaoBD.obterConexao();
+            stmt = conn.createStatement();
+            ResultSet resultados = stmt.executeQuery(sql);
+            try (PrintWriter writer = new PrintWriter("C:\\Users\\Edson\\Documents\\GitHub\\DraftStore\\DraftStore2\\web\\Log\\logCorrente.txt", "UTF-8")) {
+
+                writer.println(" ------ ARQUIVO DE LOG REFERENTE AO ANO-MÊS " + auxAtual + " ------ ");
+
+                while (resultados.next()) {
+                    writer.println(resultados.getString("DESCRICAO"));
+                }
+
+                writer.println("------ FIM DO ARQUIVO ------");
+                writer.flush();
+                writer.close();
+            }
+
+        } catch (FileNotFoundException | UnsupportedEncodingException f) {
+            Logger.getLogger(BuscarFornecedor.class.getName()).log(Level.SEVERE, null, f);
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(BuscarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(BuscarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(BuscarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -31,22 +98,13 @@ public class Log extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Log</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Log at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+
+        Calendar atual = Calendar.getInstance();
+        buscarDados(new SimpleDateFormat().format(new Date(atual.getTimeInMillis())));
+
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -72,7 +130,6 @@ public class Log extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
     }
 
     /**
