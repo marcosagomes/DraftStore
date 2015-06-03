@@ -95,7 +95,7 @@
                             </li>
                             
                             <li>
-                                <a href="#">Relatórios</a>
+                                <a href="Log">Relatórios</a>
                             </li>
                         </ul>
                     </div>

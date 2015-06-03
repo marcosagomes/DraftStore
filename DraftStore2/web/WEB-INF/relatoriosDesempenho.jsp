@@ -56,16 +56,16 @@
                                     <a href="Home">Home</a>
                                 </li>
                                 <li>
-                                    <a href="Servlet/RegistroVenda">Registro de vendas</a>
+                                    <a href="RegistroVenda">Registro de vendas</a>
                                 </li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produtos <b class="caret"></b></a>
                                     <ul class="dropdown-menu dropdown-menu-right">
                                         <li>
-                                            <a href="Servlet/BuscarProduto">Buscar </a>
+                                            <a href="BuscarProduto">Buscar </a>
                                         </li>
                                         <li>
-                                            <a href="Servlet/CadastrarProduto">Cadastrar</a>
+                                            <a href="CadastrarProduto">Cadastrar</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -73,10 +73,10 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Funcionários <b class="caret"></b></a>
                                     <ul class="dropdown-menu dropdown-menu-right">
                                         <li>
-                                            <a href="Servlet/BuscarFuncionario">Buscar </a>
+                                            <a href="BuscarFuncionario">Buscar </a>
                                         </li>
                                         <li>
-                                            <a href="Servlet/CadastrarFuncionario">Cadastrar</a>
+                                            <a href="CadastrarFuncionario">Cadastrar</a>
                                         </li>
 
                                     </ul>
@@ -85,15 +85,15 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Fornecedores <b class="caret"></b></a>
                                     <ul class="dropdown-menu dropdown-menu-right">
                                         <li>
-                                            <a href="Servlet/BuscarFornecedor" >Buscar </a>
+                                            <a href="BuscarFornecedor" >Buscar </a>
                                         </li>
                                         <li>
-                                            <a href="Servlet/CadastrarFornecedor">Cadastrar</a>
+                                            <a href="CadastrarFornecedor">Cadastrar</a>
                                         </li>
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="#">Relatórios</a>
+                                    <a href="Log">Relatórios</a>
                                 </li>
                             </ul>
                         </div>

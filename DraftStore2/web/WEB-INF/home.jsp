@@ -92,7 +92,7 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="#">Relatórios</a>
+                                    <a href="Servlet/Log">Relatórios</a>
                                 </li>
                             </ul>
                         </div>
