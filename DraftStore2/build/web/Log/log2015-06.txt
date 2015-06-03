@@ -1,0 +1,5 @@
+------ ARQUIVO DE LOG REFERENTE AO ANO-MÊS 2015-06 ------
+DESCRIÇÃO DO LOG: Fornecedor: Teste  inserido.  -  DATA DO LOG: 2015-06-03 03:18:47.256  -  USUÁRIO ENVOLVIDO: Administrador
+DESCRIÇÃO DO LOG: Produto: MQ32 inserido.  -  DATA DO LOG: 2015-06-03 03:19:24.95  -  USUÁRIO ENVOLVIDO: Teste 
+DESCRIÇÃO DO LOG: Nova venda realizada.  -  DATA DO LOG: 2015-06-03 03:19:34.179  -  USUÁRIO ENVOLVIDO: Administrador
+------ FIM DO ARQUIVO ------

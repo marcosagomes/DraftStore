@@ -1,0 +1,124 @@
+/* make sidebar nav vertical */
+@media (min-width: 768px) {
+  .sidebar-nav .navbar .navbar-collapse {
+    padding: 0;
+    max-height: none;
+  }
+  .sidebar-nav .navbar ul {
+    float: none;
+  }
+  .sidebar-nav .navbar ul:not {
+    display: block;
+  }
+  .sidebar-nav .navbar li {
+    float: none;
+    display: block;
+  }
+  .sidebar-nav .navbar li a {
+    padding-top: 15px;
+    padding-bottom: 10px;
+  }
+}
+td .hidden
+{
+    display: none;
+}
+
+#logo {
+	display: inline-block;
+	margin-bottom: 30px;
+	margin-left: 2%;
+}
+
+#titulo {
+	margin-top: 1%;
+	margin-left: 80px;
+	display: inline-block;
+}
+
+body {
+	font-size: 20px;
+	width: auto;
+	height: auto;
+}
+
+h1 {
+	font-size: 64px;
+	margin-top: 20px;
+}
+
+li {
+	font-size: 18px;
+}
+
+select{
+	float: center;
+	margin-right: 25px;
+	-webkit-appearance: menulist-button;
+}
+
+
+.highlighted {
+    color: #DCDCDC;
+    background-color: #0000FF;
+}
+tbody tr:hover {
+    color: #DCDCDC;
+    background-color: #1E90FF;
+}
+
+.comboBox{
+	display: inline-block;
+	width: 400px;
+}
+
+.textField.number {
+	width: 50%;
+	margin-left: 25px;
+}
+.number {
+	float:left;
+	width: 120%;
+}
+
+.textField.custo {
+	width: 40%;
+}
+
+.inputCusto {
+    float: right;
+}
+
+.produtoTH {
+    width: 25%;
+}
+
+.botaoDeAcao {
+  position: relative;
+  width: 140px;
+  left: 10%;
+  top: 15px;
+}
+
+.button-container form,
+.button-container form div {
+    display: inline;
+}
+
+.button-container button {
+    display: inline;
+    vertical-align: middle;
+}
+
+.fixed-table-toolbar{
+	margin-top: -53px;
+}
+#totalVenda{
+    position: absolute;
+    left: 80px;
+}
+#btRegistrar{
+    position: relative;
+    left: 120px;
+    width: 90px;
+}
