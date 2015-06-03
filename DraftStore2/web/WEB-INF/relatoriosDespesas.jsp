@@ -36,7 +36,7 @@
     <body>
         <header>
             <img id="logo" src="../resources/img/wrm-logoteste.png">
-            <div class="texto" id="titulo"><h1> Relatórios</h1></div>
+            <div class="texto" id="titulo"><h1> Despesas</h1></div>
         </header>
         <div class="row">
             <div class="col-sm-3">
