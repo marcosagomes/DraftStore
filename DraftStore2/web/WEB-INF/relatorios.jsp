@@ -15,12 +15,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>
-            Draftstore - Inicio
-        </title>
+        <title>Draftstore - Registro de venda</title>
 
         <!-- Bootstrap -->
-        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,13 +27,13 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
-        <link href="resources/css/estiloRelatorio.css" type="text/css" rel="stylesheet">
-        <link rel="icon" href="resources/img/draft.ico" type="image/x-icon">
-        <link rel="shortcut icon" href="resources/img/draft.ico" type="image/x-icon">
+        <!--<link href="../resources/css/estiloRegistra.css" type="text/css" rel="stylesheet">-->
+        <link href="../resources/css/estiloRelatorio.css" type="text/css" rel="stylesheet">
+        <link href="../bootstrap-table/bootstrap-table.css" type="text/css" rel="stylesheet">
     </head>
     <body>
         <header>
-            <img id="logo" src="resources/img/wrm-logoteste.png">
+            <img id="logo" src="../resources/img/wrm-logoteste.png">
             <div class="texto" id="titulo"><h1> Relatórios</h1></div>
         </header>
         <div class="row">
@@ -102,37 +101,34 @@
                 </div>
             </div>
             <div class="col-sm-9">
-            <div id="tdImg">
-                 <div class="log">
-                <a href="log.png" download>
-                    <img src="log.png">   
-                         <p class="nome" > Logs </p>
-                </a>
-                
-            </div>
-            <div class="desempenho">
-                <a href="">
-                    <img src="desempenho.png">   
-                        <p class="nome">Desempenho </p>
-                </a>                
-            </div>
-            <div class="despesas">
-                <a href="">
-                    <img src="gastos.png">   
-                         <p class="nome">Despesas </p>
-                </a>                
-            </div>
-                
+                <div id="tdImg">
+                    <div class="log">
+                        <a href="${Caminho}" download>
+                            <img src="../resources/img/log.png">   
+                            <p class="nome" > Logs </p>
+                        </a>
+
+                    </div>
+                    <div class="desempenho">
+                        <a href="">
+                            <img src="../resources/img/desempenho.png">   
+                            <p class="nome">Desempenho </p>
+                        </a>                
+                    </div>
+                    <div class="despesas">
+                        <a href="">
+                            <img src="../resources/img/gastos.png">   
+                            <p class="nome">Despesas </p>
+                        </a>                
+                    </div>
+
                 </div>
-               
-           
-            
-                
-               
+
+
             </div>
             <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
             <!-- Include all compiled plugins (below), or include individual files as needed -->
-            <script src="bootstrap/js/bootstrap.min.js"></script>
+            <script src="../bootstrap/js/bootstrap.min.js"></script>
     </body>
 </html>

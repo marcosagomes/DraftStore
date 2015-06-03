@@ -22,6 +22,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -54,7 +55,8 @@ public class Log extends HttpServlet {
             stmt = conn.createStatement();
             ResultSet resultados = stmt.executeQuery(sql);
 
-            File file = new File("log" + auxAtual + ".txt");
+            String oCaminho = getServletConfig().getServletContext().getRealPath("");
+            File file = new File(oCaminho + "/log" + auxAtual + ".txt");
             try (PrintWriter writer = new PrintWriter(file.getPath(), "UTF-8")) {
                 writer.println(" ------ ARQUIVO DE LOG REFERENTE AO ANO-MÊS " + auxAtual + " ------ ");
 
@@ -64,9 +66,10 @@ public class Log extends HttpServlet {
 
                 writer.println("------ FIM DO ARQUIVO ------");
                 writer.flush();
+                writer.close();
             }
 
-            return new File("log" + auxAtual + ".txt").getAbsolutePath();
+            return file.getPath();
 
         } catch (IOException f) {
             Logger.getLogger(BuscarFornecedor.class.getName()).log(Level.SEVERE, null, f);
@@ -104,7 +107,8 @@ public class Log extends HttpServlet {
             throws ServletException, IOException {
 
         Calendar atual = Calendar.getInstance();
-        request.setAttribute("Caminho", buscarDados(new SimpleDateFormat().format(new Date(atual.getTimeInMillis()))));
+        String s = buscarDados(new SimpleDateFormat().format(new Date(atual.getTimeInMillis())));
+        request.setAttribute("Caminho", s);
 
     }
 
@@ -121,6 +125,9 @@ public class Log extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/relatorios.jsp");
+        rd.forward(request, response);
     }
 
     /**
