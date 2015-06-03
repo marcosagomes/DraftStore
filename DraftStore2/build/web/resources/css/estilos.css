@@ -126,9 +126,3 @@ tbody tr:hover {
     padding-top: 10px;
     left: 150px;
 }
-#logout{
-   position: relative;
-   top: -150px;
-   float: right;
-   right: 70px;
-}

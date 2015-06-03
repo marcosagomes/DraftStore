@@ -96,7 +96,7 @@ tbody tr:hover {
 .botaoDeAcao {
   position: relative;
   width: 140px;
-  left: 30%;
+  left: 10%;
   top: 15px;
 }
 
@@ -109,6 +109,7 @@ tbody tr:hover {
     display: inline;
     vertical-align: middle;
 }
+
 .fixed-table-toolbar{
 	margin-top: -53px;
 }
@@ -120,9 +121,4 @@ tbody tr:hover {
     position: relative;
     left: 120px;
     width: 90px;
-}
-.camposAbaixoCarrinho{
-    position: relative;
-    padding-top: 10px;
-    left: 150px;
 }

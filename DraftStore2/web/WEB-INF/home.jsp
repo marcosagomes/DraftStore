@@ -94,6 +94,9 @@
                                 <li>
                                     <a href="Servlet/Log">Relatórios</a>
                                 </li>
+                                <li>
+                                    <a href="Logout" id="logout"> Logout </a>
+                                </li>
                             </ul>
                         </div>
                         <!--/.nav-collapse -->
@@ -101,7 +104,7 @@
                 </div>
             </div>
          
-             <a href="rs" id="logout"> Logout </a>
+             
              <div class="col-sm-9">
                 <!-- ********************** Inserir o conteudo aqui! ********************** -->
                 <p>
