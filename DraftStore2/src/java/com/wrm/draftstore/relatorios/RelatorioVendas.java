@@ -36,8 +36,14 @@ public class RelatorioVendas extends HttpServlet {
     private float vendaMesAtual;
     private float vendaMesAnterior;
 
+    String auxAtual, auxAnterior;
+
+    public static String theMonth(int month) {
+        String[] monthNames = {"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"};
+        return monthNames[month-1];
+    }
+
     public void buscarVendas(String mesAtual, String mesAnterior) {
-        String auxAtual, auxAnterior;
 
         auxAtual = "20" + mesAtual.substring(6, 8) + "-" + mesAtual.substring(3, 5);
         auxAnterior = "20" + mesAnterior.substring(6, 8) + "-" + mesAnterior.substring(3, 5);
@@ -119,7 +125,10 @@ public class RelatorioVendas extends HttpServlet {
 
         request.setAttribute("vendaMesAtual", vendaMesAtual);
         request.setAttribute("vendaMesAnterior", vendaMesAnterior);
-        
+
+        request.setAttribute("mesAnterior", theMonth(Integer.parseInt(auxAnterior.substring(5, 7))));
+        request.setAttribute("mesAtual", theMonth(Integer.parseInt(auxAtual.substring(5, 7))));
+
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/relatoriosDespesas.jsp");
         rd.forward(request, response);
     }

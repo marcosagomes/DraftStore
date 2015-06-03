@@ -110,6 +110,23 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="../bootstrap/js/bootstrap.min.js"></script>
-        <script src="../resources/js/relatorioDespesas.js"></script>
+        <script>
+            var riceData = {
+                labels: ["${mesAnterior}", "${mesAtual}"],
+                datasets:
+                        [
+                            {
+                                fillColor: "rgba(172,194,132,0.4)",
+                                strokeColor: "#ACC26D",
+                                pointColor: "#fff",
+                                pointStrokeColor: "#9DB86D",
+                                data: [${vendaMesAnterior}, ${vendaMesAtual}]
+                            }
+                        ]
+            };
+
+            var rice = document.getElementById('rice').getContext('2d');
+            new Chart(rice).Bar(riceData);
+        </script>
     </body>
 </html>
