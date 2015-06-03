@@ -100,7 +100,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-9">
+         
+             <a href="rs" id="logout"> Logout </a>
+             <div class="col-sm-9">
                 <!-- ********************** Inserir o conteudo aqui! ********************** -->
                 <p>
                     Seja bem-vindo ao Sistema Draftstore, <b><c:out value="${usuario.nomeDoFuncionario}"/></b>!
@@ -109,6 +111,7 @@
                     Utilize o menu lateral para navegar pelas funcionalidades do sistema. <br>
                     Lembre-se: as páginas estão liberadas de acordo com o seu papel.
                 </p> 
+               
                 
             </div>
             <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
