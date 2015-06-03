@@ -108,22 +108,7 @@
                 <script src="../bootstrap/js/bootstrap.min.js"></script>
                 <script src="../amcharts/amcharts.js" type="text/javascript"></script>
                 <script src="../amcharts/serial.js" type="text/javascript"></script>
-                <script src="../amcharts/themes/light.js" type="text/javascript"></script>
-                <form  class="form-inline" >
-                    <div class="meses">
-                    <div  clas="form-group" id="primeiro">
-                        <label class="col-sm-2 control-label"> 1º Data </label>
-                        <input type="number"class="form-control"min="1" max="12" > 
-                    </div>
-                    <div clas="form-group" id="segundo">
-                        <label class="col-sm-2 control-label"> 2º Data </label>
-                        <input type="number" class="form-control" min="1" max="12" > 
-                    </div>
-                    </div>
-                    <div >
-                        <button id="botaoRelatorio" class="btn btn-primary" type="submit">Gerar Relatório</button>
-                    </div>
-                </form>
+                <script src="../amcharts/themes/light.js" type="text/javascript"></script>                
                 <div id="chartdiv"></div>
                 <div class="container-fluid">
                     <div class="row text-center" style="overflow:hidden;">
@@ -137,7 +122,23 @@
                             <input class="chart-input" data-property="depth3D" type="range" min="1" max="120" value="20" step="1"/>
                         </div>
                     </div>
-                </div>	
+                </div>
+                <form class="form-inline" id="formRelatorio" name="formRelatorio" method="post" action="RelatorioVendas">
+                    <div class="row text-center" style="overflow:hidden;">
+                        <div class="col-sm-3 form-group" style="float: none !important;display: inline-block;" id="primeiro">
+                            <label> Mês Início: </label>
+                            <input type="number"class="form-control" name="primeiro" min="1" max="12" > 
+                        </div>
+                        <div class="col-sm-3 form-group" style="float: none !important;display: inline-block;" id="segundo">
+                            <label> Mês Fim: </label>
+                            <input type="number" class="form-control" name="segundo" min="1" max="12" > 
+                        </div>
+                        <div>
+                            <button id="botaoRelatorio" class="btn btn-primary" type="submit">Gerar Relatório</button>
+                        </div>
+                    </div>
+
+                </form>
                 <script>
                     var chart = AmCharts.makeChart("chartdiv", {
                         "theme": "light",
