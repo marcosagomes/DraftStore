@@ -13,19 +13,19 @@
         <title>
             Draftstore - Falha na autenticação
         </title>
-        <link href="resources/css/estiloLogin.css" type="text/css" rel="stylesheet">
+        <link href="../DraftStore/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
+        <link href="resources/css/estiloErros.css" type="text/css" rel="stylesheet">
         <link rel="icon" href="../DraftStore/resources/img/draft.ico" type="image/x-icon">
         <link rel="shortcut icon" href="../DraftStore/resources/img/draft.ico" type="image/x-icon">
 
     </head>
     <body>
         <div id="logo">
+            </div>
             <h1> Falha na Autenticação </h1>
             <h3>O nome de conta e/ou senha estão incorretos</h3>
-        </div>
-        <div>
-            <a href="login.jsp" id="voltar">Voltar</a>
-        </div>
+            <a href="login.jsp" class="btn btn-primary" role="button">Voltar</a>
 
 
     </body>

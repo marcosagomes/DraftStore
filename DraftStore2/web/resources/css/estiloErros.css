@@ -1,0 +1,29 @@
+#logo{
+    background-image: url('../img/wrm-logoteste.png');
+    background-repeat: no-repeat;
+    display: block;
+    width: 250px;
+    height: 150px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-top: 50px;
+}
+
+h1{
+    font-family: Helvetica;
+    text-align: center;
+    color: #286090;
+}
+
+h3{
+    font-family: Helvetica;
+    text-align: center;
+}
+
+.btn.btn-primary{
+    position: relative;
+    left: 35%;
+    margin-top: 50px;
+}
