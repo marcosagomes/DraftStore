@@ -95,7 +95,7 @@
                                     <a href="Servlet/Log">Relatórios</a>
                                 </li>
                                 <li>
-                                    <a href="Logout" id="logout"> Logout </a>
+                                    <a href="" onclick="javascript:getLogout(this, 'Logout')"> Logout </a>
                                 </li>
                             </ul>
                         </div>
@@ -103,9 +103,9 @@
                     </div>
                 </div>
             </div>
-         
-             
-             <div class="col-sm-9">
+
+
+            <div class="col-sm-9">
                 <!-- ********************** Inserir o conteudo aqui! ********************** -->
                 <p>
                     Seja bem-vindo ao Sistema Draftstore, <b><c:out value="${usuario.nomeDoFuncionario}"/></b>!
@@ -114,12 +114,13 @@
                     Utilize o menu lateral para navegar pelas funcionalidades do sistema. <br>
                     Lembre-se: as páginas estão liberadas de acordo com o seu papel.
                 </p> 
-               
-                
+
+
             </div>
             <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
             <!-- Include all compiled plugins (below), or include individual files as needed -->
             <script src="bootstrap/js/bootstrap.min.js"></script>
+            <script src="resources/js/selecionarBusca.js" type="text/javascript"></script>
     </body>
 </html>

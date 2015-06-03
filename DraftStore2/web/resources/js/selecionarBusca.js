@@ -17,3 +17,14 @@ function removerProduto() {
     }
     return false;
 }
+
+function getLogout(s, e) {
+    if (confirm("Deseja realmente encessar sua sessão ?")) {
+        s.removeAttribute('href');
+        s.setAttribute('href', e);
+    }
+    else {
+        s.removeAttribute('href');
+        s.setAttribute('href', '');
+    }
+}

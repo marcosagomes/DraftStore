@@ -52,7 +52,7 @@
                         <div class="navbar-collapse collapse sidebar-navbar-collapse">
                             <ul class="nav navbar-nav">
                                 <li>
-                                    <a href="Home">Home</a>
+                                    <a href="../Home">Home</a>
                                 </li>
                                 <li>
                                     <a href="RegistroVenda">Registro de vendas</a>
@@ -103,7 +103,7 @@
             <div class="col-sm-9">
                 <div id="tdImg">
                     <div class="log">
-                        <a onclick="javascript:getString(this, '${Caminho}');">
+                        <a href="" onclick="javascript:getString(this, '${Caminho}');">
                             <img src="../resources/img/log.png">   
                             <p class="nome" > Logs </p>
                         </a>
