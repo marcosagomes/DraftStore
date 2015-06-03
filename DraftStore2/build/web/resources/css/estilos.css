@@ -109,7 +109,6 @@ tbody tr:hover {
     display: inline;
     vertical-align: middle;
 }
-
 .fixed-table-toolbar{
 	margin-top: -53px;
 }
@@ -126,4 +125,10 @@ tbody tr:hover {
     position: relative;
     padding-top: 10px;
     left: 150px;
+}
+#logout{
+   position: relative;
+   top: -150px;
+   float: right;
+   right: 70px;
 }
