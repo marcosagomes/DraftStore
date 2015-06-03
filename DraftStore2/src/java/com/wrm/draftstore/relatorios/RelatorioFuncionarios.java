@@ -87,7 +87,7 @@ public class RelatorioFuncionarios extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         HttpServletRequest httpRequest = (HttpServletRequest) request;
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
         // B) TENTA RECUPERAR A SESSÃO DO USUÁRIO
         HttpSession sessao = httpRequest.getSession();
         Usuario usuario = (Usuario) sessao.getAttribute("usuario");
@@ -99,9 +99,8 @@ public class RelatorioFuncionarios extends HttpServlet {
         for (Funcionario f : funcionarios) {
             System.out.println("Funcionario: " + f.getNome() + "\nValor: " + f.getValorVendas());
         }
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/relatoriosDespesas.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/relatoriosDesempenho.jsp");
         rd.forward(request, response);
-        
 
     }
 

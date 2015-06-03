@@ -119,7 +119,8 @@ public class RelatorioVendas extends HttpServlet {
 
         request.setAttribute("vendaMesAtual", vendaMesAtual);
         request.setAttribute("vendaMesAnterior", vendaMesAnterior);
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/relatoriosDesempenho.jsp");
+        
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/relatoriosDespesas.jsp");
         rd.forward(request, response);
     }
 

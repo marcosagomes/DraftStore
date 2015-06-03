@@ -53,7 +53,7 @@
                         <div class="navbar-collapse collapse sidebar-navbar-collapse">
                             <ul class="nav navbar-nav">
                                 <li>
-                                    <a href="Home">Home</a>
+                                    <a href="../Home">Home</a>
                                 </li>
                                 <li>
                                     <a href="RegistroVenda">Registro de vendas</a>
@@ -102,14 +102,92 @@
                 </div>
             </div>
             <div class="col-sm-9">
-             <canvas id="rice" width="600" height="400"></canvas>
-
-                </div>
+                <div id="pieChart"></div>
+                <script src="../d3/d3.min.js" type="text/javascript"></script>
+                <script src="../d3/d3pie.min.js" type="text/javascript"></script>
+                <script>
+                    var pie = new d3pie("pieChart", {
+                        "header": {
+                            "title": {
+                                "text": "Relatorio de desempenho dos funcionários",
+                                "fontSize": 24,
+                                "font": "open sans"
+                            },
+                            "subtitle": {
+                                "text": "Cada funcionário terá seu percentual de vendas, visando buscar um aspecto geral da empresa",
+                                "color": "#999999",
+                                "fontSize": 12,
+                                "font": "open sans"
+                            },
+                            "titleSubtitlePadding": 9
+                        },
+                        "footer": {
+                            "color": "#999999",
+                            "fontSize": 10,
+                            "font": "open sans",
+                            "location": "bottom-left"
+                        },
+                        "size": {
+                            "canvasWidth": 590,
+                            "pieOuterRadius": "90%"
+                        },
+                        "data": {
+                            "sortOrder": "value-desc",
+                            "content": [
+                    <c:forEach items="${Funcionarios}" var="func" varStatus="stats">
+                                {
+                                    "label": "${func.nome}",
+                                    "value": ${func.valorVendas},
+                                    "color": "${func.corRelatorio}"
+                                },
+                    </c:forEach>
+                            ]
+                        },
+                        "labels": {
+                            "outer": {
+                                "pieDistance": 32
+                            },
+                            "inner": {
+                                "hideWhenLessThanPercentage": 3
+                            },
+                            "mainLabel": {
+                                "fontSize": 11
+                            },
+                            "percentage": {
+                                "color": "#ffffff",
+                                "decimalPlaces": 0
+                            },
+                            "value": {
+                                "color": "#adadad",
+                                "fontSize": 11
+                            },
+                            "lines": {
+                                "enabled": true
+                            },
+                            "truncation": {
+                                "enabled": true
+                            }
+                        },
+                        "effects": {
+                            "pullOutSegmentOnClick": {
+                                "effect": "linear",
+                                "speed": 400,
+                                "size": 8
+                            }
+                        },
+                        "misc": {
+                            "gradient": {
+                                "enabled": true,
+                                "percentage": 100
+                            }
+                        }
+                    });</script>
             </div>
-            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-            <!-- Include all compiled plugins (below), or include individual files as needed -->
-            <script src="../bootstrap/js/bootstrap.min.js"></script>
-            <script src="../resources/js/relatorioDesempenho.js"></script>
+        </div>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="../bootstrap/js/bootstrap.min.js"></script>
+        <script src="../resources/js/relatorioDesempenho.js"></script>
     </body>
 </html>

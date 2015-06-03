@@ -110,13 +110,13 @@
 
                     </div>
                     <div class="desempenho">
-                        <a href="Servlet/RelatorioFuncionarios">
+                        <a href="RelatorioFuncionarios">
                             <img src="../resources/img/desempenho.png">   
                             <p class="nome">Desempenho </p>
                         </a>                
                     </div>
                     <div class="despesas">
-                        <a href="Servlet/RelatorioVendas">
+                        <a href="RelatorioVendas">
                             <img src="../resources/img/gastos.png">   
                             <p class="nome">Despesas </p>
                         </a>                

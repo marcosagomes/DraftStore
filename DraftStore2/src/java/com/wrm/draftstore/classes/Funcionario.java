@@ -5,6 +5,8 @@
  */
 package com.wrm.draftstore.classes;
 
+import java.util.Random;
+
 /**
  *
  * @author Maikon Evangelista
@@ -28,6 +30,9 @@ public class Funcionario {
     public Funcionario(String nome, float valorVendas) {
         this.nome = nome;
         this.valorVendas = valorVendas;
+        Random randCol = new Random();
+        String html = String.format("#%06X", randCol.nextInt(0xFFFFFF + 1));
+        this.corRelatorio = html;
 
     }
 
@@ -48,6 +53,7 @@ public class Funcionario {
     private String senha;
     private String fkPapel;
     private float valorVendas;
+    private String corRelatorio;
 
     //Métodos
     public String getFkPapel() {
@@ -56,6 +62,10 @@ public class Funcionario {
 
     public void setFkPapel(String fkPapel) {
         this.fkPapel = fkPapel;
+    }
+
+    public String getCorRelatorio() {
+        return this.corRelatorio;
     }
 
     public float getValorVendas() {
