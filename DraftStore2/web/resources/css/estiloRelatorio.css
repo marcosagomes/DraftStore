@@ -87,3 +87,22 @@ a:link{
 .log :hover,.despesas :hover,.desempenho :hover{
     color: blue;
 }
+.control-label{
+  width: 150px;
+  margin-right: -18px;
+  margin-left: -35px;
+  padding-left: 40px;
+}
+.meses{
+  width: 950px;
+}
+#primeiro, #segundo{
+    width: 380px;
+}
+#segundo{
+    margin-top: 10px;
+}
+#botaoRelatorio{   
+   margin-left:8px; 
+   margin-top: 15px;
+}

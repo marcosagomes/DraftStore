@@ -109,6 +109,21 @@
                 <script src="../amcharts/amcharts.js" type="text/javascript"></script>
                 <script src="../amcharts/serial.js" type="text/javascript"></script>
                 <script src="../amcharts/themes/light.js" type="text/javascript"></script>
+                <form  class="form-inline" >
+                    <div class="meses">
+                    <div  clas="form-group" id="primeiro">
+                        <label class="col-sm-2 control-label"> 1º Data </label>
+                        <input type="number"class="form-control"min="1" max="12" > 
+                    </div>
+                    <div clas="form-group" id="segundo">
+                        <label class="col-sm-2 control-label"> 2º Data </label>
+                        <input type="number" class="form-control" min="1" max="12" > 
+                    </div>
+                    </div>
+                    <div >
+                        <button id="botaoRelatorio" class="btn btn-primary" type="submit">Gerar Relatório</button>
+                    </div>
+                </form>
                 <div id="chartdiv"></div>
                 <div class="container-fluid">
                     <div class="row text-center" style="overflow:hidden;">
