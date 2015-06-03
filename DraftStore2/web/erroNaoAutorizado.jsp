@@ -25,7 +25,7 @@
             </div>
             <h1> Falha ao acessar a Página </h1>
             <h3>Usuário não possui privilégios suficientes</h3>
-            <a href="login.jsp" class="btn btn-primary" role="button">Voltar</a>
+            <a href="Home" class="btn btn-primary" role="button">Voltar</a>
 
 
     </body>
