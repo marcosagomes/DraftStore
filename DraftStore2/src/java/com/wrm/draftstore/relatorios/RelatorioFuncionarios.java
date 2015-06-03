@@ -6,6 +6,7 @@
 package com.wrm.draftstore.relatorios;
 
 import com.wrm.draftstore.classes.Funcionario;
+import com.wrm.draftstore.classes.Usuario;
 import com.wrm.draftstore.database.ConexaoBDJavaDB;
 import com.wrm.draftstore.servlets.busca.BuscarFornecedor;
 import java.io.IOException;
@@ -17,11 +18,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -84,7 +87,10 @@ public class RelatorioFuncionarios extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+         HttpServletRequest httpRequest = (HttpServletRequest) request;
+        // B) TENTA RECUPERAR A SESSÃO DO USUÁRIO
+        HttpSession sessao = httpRequest.getSession();
+        Usuario usuario = (Usuario) sessao.getAttribute("usuario");
         List<Funcionario> funcionarios = new ArrayList();
         buscarVendas(funcionarios);
 
@@ -93,6 +99,9 @@ public class RelatorioFuncionarios extends HttpServlet {
         for (Funcionario f : funcionarios) {
             System.out.println("Funcionario: " + f.getNome() + "\nValor: " + f.getValorVendas());
         }
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/relatoriosDespesas.jsp");
+        rd.forward(request, response);
+        
 
     }
 

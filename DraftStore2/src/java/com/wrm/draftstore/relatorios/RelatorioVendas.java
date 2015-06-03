@@ -5,6 +5,7 @@
  */
 package com.wrm.draftstore.relatorios;
 
+import com.wrm.draftstore.classes.Usuario;
 import com.wrm.draftstore.database.ConexaoBDJavaDB;
 import com.wrm.draftstore.servlets.busca.BuscarFornecedor;
 import java.io.IOException;
@@ -17,11 +18,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -97,6 +100,12 @@ public class RelatorioVendas extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        // 1) OBTEM AS INFORMACOES DO USUARIO DA SESSAO
+        // A) CAST DOS PARÂMETROS RECEBIDOS
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        // B) TENTA RECUPERAR A SESSÃO DO USUÁRIO
+        HttpSession sessao = httpRequest.getSession();
+        Usuario usuario = (Usuario) sessao.getAttribute("usuario");
         Calendar atual = Calendar.getInstance();
         Calendar anterior = Calendar.getInstance();
         anterior.add(Calendar.MONTH, -1);
@@ -110,7 +119,8 @@ public class RelatorioVendas extends HttpServlet {
 
         request.setAttribute("vendaMesAtual", vendaMesAtual);
         request.setAttribute("vendaMesAnterior", vendaMesAnterior);
-
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/relatoriosDesempenho.jsp");
+        rd.forward(request, response);
     }
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
