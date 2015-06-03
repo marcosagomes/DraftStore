@@ -31,6 +31,7 @@
         <link href="../resources/css/estiloRelatorio.css" type="text/css" rel="stylesheet">
         <link href="../bootstrap-table/bootstrap-table.css" type="text/css" rel="stylesheet">
         <script type="text/javascript" src="../chartjs/Chart.js"></script>
+        <link href="../resources/css/relatorioVendas.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <header>
@@ -102,31 +103,81 @@
                 </div>
             </div>
             <div class="col-sm-9">
-                <canvas id="rice" width="600" height="400"></canvas>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+                <!-- Include all compiled plugins (below), or include individual files as needed -->
+                <script src="../bootstrap/js/bootstrap.min.js"></script>
+                <script src="../amcharts/amcharts.js" type="text/javascript"></script>
+                <script src="../amcharts/serial.js" type="text/javascript"></script>
+                <script src="../amcharts/themes/light.js" type="text/javascript"></script>
+                <div id="chartdiv"></div>
+                <div class="container-fluid">
+                    <div class="row text-center" style="overflow:hidden;">
+                        <div class="col-sm-3" style="float: none !important;display: inline-block;">
+                            <label class="text-left">Angulo:</label>
+                            <input class="chart-input" data-property="angle" type="range" min="0" max="89" value="30" step="1"/>	
+                        </div>
 
+                        <div class="col-sm-3" style="float: none !important;display: inline-block;">
+                            <label class="text-left">Profundidade:</label>
+                            <input class="chart-input" data-property="depth3D" type="range" min="1" max="120" value="20" step="1"/>
+                        </div>
+                    </div>
+                </div>	
+                <script>
+                    var chart = AmCharts.makeChart("chartdiv", {
+                        "theme": "light",
+                        "type": "serial",
+                        "path": "http://www.amcharts.com/lib/3/",
+                        "dataProvider": [{
+                                "year": "${mesAnterior}",
+                                "income": ${vendaMesAnterior}
+                            }, {
+                                "year": "${mesAtual}",
+                                "income": ${vendaMesAtual}
+                            }],
+                        "valueAxes": [{
+                                "title": "Relatório de vendas"
+                            }],
+                        "graphs": [{
+                                "balloonText": "Encontra-se em: [[category]]:[[value]]",
+                                "fillAlphas": 1,
+                                "lineAlpha": 0.2,
+                                "title": "Income",
+                                "type": "column",
+                                "valueField": "income"
+                            }],
+                        "depth3D": 20,
+                        "angle": 30,
+                        "rotate": true,
+                        "categoryField": "year",
+                        "categoryAxis": {
+                            "gridPosition": "start",
+                            "fillAlpha": 0.05,
+                            "position": "left"
+                        },
+                        "export": {
+                            "enabled": true
+                        }
+                    });
+                    jQuery('.chart-input').off().on('input change', function () {
+                        var property = jQuery(this).data('property');
+                        var target = chart;
+                        chart.startDuration = 0;
+
+                        if (property == 'topRadius') {
+                            target = chart.graphs[0];
+                            if (this.value == 0) {
+                                this.value = undefined;
+                            }
+                        }
+
+                        target[property] = this.value;
+                        chart.validateNow();
+                    });
+                </script>
             </div>
         </div>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="../bootstrap/js/bootstrap.min.js"></script>
-        <script>
-            var riceData = {
-                labels: ["${mesAnterior}", "${mesAtual}"],
-                datasets:
-                        [
-                            {
-                                fillColor: "rgba(172,194,132,0.4)",
-                                strokeColor: "#ACC26D",
-                                pointColor: "#fff",
-                                pointStrokeColor: "#9DB86D",
-                                data: [${vendaMesAnterior}, ${vendaMesAtual}]
-                            }
-                        ]
-            };
 
-            var rice = document.getElementById('rice').getContext('2d');
-            new Chart(rice).Bar(riceData);
-        </script>
     </body>
 </html>
