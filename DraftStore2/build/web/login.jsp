@@ -42,7 +42,7 @@
                 <button type="submit" class="login-button">Login</button>
             </p>
 
-            <p class="forgot-password"><a href="#">Esqueceu sua senha?<br>Contate a equipe de suporte.</a></p>
+            <p class="forgot-password"></p>
         </form>
 
         <section class="about">
