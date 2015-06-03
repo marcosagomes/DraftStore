@@ -103,7 +103,7 @@
             <div class="col-sm-9">
                 <div id="tdImg">
                     <div class="log">
-                        <a href="${Caminho}" download>
+                        <a onclick="javascript:getString(this, '${Caminho}');">
                             <img src="../resources/img/log.png">   
                             <p class="nome" > Logs </p>
                         </a>
@@ -130,5 +130,6 @@
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
             <!-- Include all compiled plugins (below), or include individual files as needed -->
             <script src="../bootstrap/js/bootstrap.min.js"></script>
+            <script src="../resources/js/jsonLog.js" type="text/javascript"></script>
     </body>
 </html>

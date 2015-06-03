@@ -46,8 +46,8 @@ public class Log extends HttpServlet {
 
         String sql
                 = "select 'DESCRIÇÃO DO LOG: '||log.DESCRICAO_LOG||\n"
-                + "       '   -  DATA DO LOG: '||log.DATA_CRIACAO||\n"
-                + "       '   -  USUÁRIO ENVOLVIDO: '||log.NOME_USUARIO as DESCRICAO\n"
+                + "       '  -  DATA DO LOG: '||log.DATA_CRIACAO||\n"
+                + "       '  -  USUÁRIO ENVOLVIDO: '||log.NOME_USUARIO as DESCRICAO\n"
                 + "        from ADM.TB_LOG log\n"
                 + "       where SUBSTR((CAST((CAST(log.data_criacao AS DATE)) AS VARCHAR(10))),1,7) = '" + auxAtual + "'";
         try {
@@ -56,9 +56,9 @@ public class Log extends HttpServlet {
             ResultSet resultados = stmt.executeQuery(sql);
 
             String oCaminho = getServletConfig().getServletContext().getRealPath("");
-            File file = new File(oCaminho + "/log" + auxAtual + ".txt");
+            File file = new File(oCaminho + "/Log/log" + auxAtual + ".txt");
             try (PrintWriter writer = new PrintWriter(file.getPath(), "UTF-8")) {
-                writer.println(" ------ ARQUIVO DE LOG REFERENTE AO ANO-MÊS " + auxAtual + " ------ ");
+                writer.println("------ ARQUIVO DE LOG REFERENTE AO ANO-MÊS " + auxAtual + " ------");
 
                 while (resultados.next()) {
                     writer.println(resultados.getString("DESCRICAO"));
@@ -69,7 +69,7 @@ public class Log extends HttpServlet {
                 writer.close();
             }
 
-            return file.getPath();
+            return "../Log/" + file.getName();
 
         } catch (IOException f) {
             Logger.getLogger(BuscarFornecedor.class.getName()).log(Level.SEVERE, null, f);
