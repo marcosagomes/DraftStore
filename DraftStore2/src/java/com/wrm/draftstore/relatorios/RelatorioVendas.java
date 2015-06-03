@@ -32,26 +32,26 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "RelatorioVendas", urlPatterns = {"/Servlet/RelatorioVendas"})
 public class RelatorioVendas extends HttpServlet {
-
+    
     private float vendaMesAtual;
     private float vendaMesAnterior;
-
+    
     String auxAtual, auxAnterior;
-
+    
     public static String theMonth(int month) {
         String[] monthNames = {"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"};
         return monthNames[month - 1];
     }
-
+    
     public void buscarVendas(String mesAtual, String mesAnterior) {
-
+        
         auxAtual = "20" + mesAtual.substring(6, 8) + "-" + mesAtual.substring(3, 5);
         auxAnterior = "20" + mesAnterior.substring(6, 8) + "-" + mesAnterior.substring(3, 5);
-
+        
         ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftstoredb");
         Statement stmt = null;
         Connection conn = null;
-
+        
         String sql
                 = "select  sum(produto.PRECO) as VALOR,\n"
                 + "        SUBSTR((CAST((CAST(venda.DATA_CRIACAO as DATE)) as VARCHAR(10))),1,7) as MES\n"
@@ -65,16 +65,16 @@ public class RelatorioVendas extends HttpServlet {
             conn = conexaoBD.obterConexao();
             stmt = conn.createStatement();
             ResultSet resultados = stmt.executeQuery(sql);
-
+            
             while (resultados.next()) {
                 if (auxAtual.equals(resultados.getString("MES"))) {
                     vendaMesAtual = resultados.getFloat("VALOR");
                 } else {
                     vendaMesAnterior = resultados.getFloat("VALOR");
                 }
-
+                
             }
-
+            
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(BuscarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -94,22 +94,22 @@ public class RelatorioVendas extends HttpServlet {
             }
         }
     }
-
+    
     public void buscarVendas(String anoAtual, String mesAtual, String anoAnterior, String mesAnterior) {
-
+        
         vendaMesAtual = 0;
         vendaMesAnterior = 0;
-
+        
         mesAtual = mesAtual.length() == 1 ? "0" + mesAtual : mesAtual;
         auxAtual = "20" + anoAtual.substring(6, 8) + "-" + mesAtual;
-
+        
         mesAnterior = mesAnterior.length() == 1 ? "0" + mesAnterior : mesAnterior;
         auxAnterior = "20" + anoAnterior.substring(6, 8) + "-" + mesAnterior;
-
+        
         ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftstoredb");
         Statement stmt = null;
         Connection conn = null;
-
+        
         String sql
                 = "select  sum(produto.PRECO) as VALOR,\n"
                 + "        SUBSTR((CAST((CAST(venda.DATA_CRIACAO as DATE)) as VARCHAR(10))),1,7) as MES\n"
@@ -123,15 +123,15 @@ public class RelatorioVendas extends HttpServlet {
             conn = conexaoBD.obterConexao();
             stmt = conn.createStatement();
             ResultSet resultados = stmt.executeQuery(sql);
-
+            
             while (resultados.next()) {
                 if (auxAtual.equals(resultados.getString("MES"))) {
                     vendaMesAtual = resultados.getFloat("VALOR");
-                } else {
+                } else if (auxAnterior.equals(resultados.getString("MES"))) {
                     vendaMesAnterior = resultados.getFloat("VALOR");
                 }
             }
-
+            
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(BuscarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -172,20 +172,20 @@ public class RelatorioVendas extends HttpServlet {
         Calendar atual = Calendar.getInstance();
         Calendar anterior = Calendar.getInstance();
         anterior.add(Calendar.MONTH, -1);
-
+        
         buscarVendas(new SimpleDateFormat().format(
                 new Date(atual.getTimeInMillis())),
                 new SimpleDateFormat().format(new Date(anterior.getTimeInMillis()))
         );
         System.out.println("Venda mes atual " + vendaMesAtual);
         System.out.println("Venda mes anterior " + vendaMesAnterior);
-
+        
         request.setAttribute("vendaMesAtual", vendaMesAtual);
         request.setAttribute("vendaMesAnterior", vendaMesAnterior);
-
+        
         request.setAttribute("mesAnterior", theMonth(Integer.parseInt(auxAnterior.substring(5, 7))));
         request.setAttribute("mesAtual", theMonth(Integer.parseInt(auxAtual.substring(5, 7))));
-
+        
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/relatoriosDespesas.jsp");
         rd.forward(request, response);
     }
@@ -222,13 +222,13 @@ public class RelatorioVendas extends HttpServlet {
         // B) TENTA RECUPERAR A SESSÃO DO USUÁRIO
         HttpSession sessao = httpRequest.getSession();
         Usuario usuario = (Usuario) sessao.getAttribute("usuario");
-
+        
         String primeiro = request.getParameter("primeiro");
         String segundo = request.getParameter("segundo");
-
+        
         Calendar atual = Calendar.getInstance();
         Calendar anterior = Calendar.getInstance();
-
+        
         buscarVendas(new SimpleDateFormat().format(new Date(atual.getTimeInMillis())),
                 segundo,
                 new SimpleDateFormat().format(new Date(anterior.getTimeInMillis())),
@@ -236,13 +236,13 @@ public class RelatorioVendas extends HttpServlet {
         );
         System.out.println("Venda mes atual " + vendaMesAtual);
         System.out.println("Venda mes anterior " + vendaMesAnterior);
-
+        
         request.setAttribute("vendaMesAtual", vendaMesAtual);
         request.setAttribute("vendaMesAnterior", vendaMesAnterior);
-
+        
         request.setAttribute("mesAnterior", theMonth(Integer.parseInt(primeiro)));
         request.setAttribute("mesAtual", theMonth(Integer.parseInt(segundo)));
-
+        
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/relatoriosDespesas.jsp");
         rd.forward(request, response);
     }
