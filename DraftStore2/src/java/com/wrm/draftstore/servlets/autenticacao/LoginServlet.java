@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.wrm.draftstore.classes.*;
-import com.wrm.draftstore.database.ConexaoBDJavaDB;
+import com.wrm.draftstore.database.ConexaoBDMySQL;
 import com.wrm.draftstore.servlets.busca.BuscarFornecedor;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet {
     public static HashMap<String, Usuario> carregarUsuarios(String nome, String senha) {
 
         String hashSenha = "";
-        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftstoredb");
+        ConexaoBDMySQL conexaoBD = new ConexaoBDMySQL("DraftOfficeDB");
         Statement stmt = null;
         Connection conn = null;
 

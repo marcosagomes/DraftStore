@@ -7,7 +7,7 @@ package com.wrm.draftstore.servlets.editar;
 
 import com.wrm.draftstore.classes.Funcionario;
 import com.wrm.draftstore.classes.Usuario;
-import com.wrm.draftstore.database.ConexaoBDJavaDB;
+import com.wrm.draftstore.database.ConexaoBDMySQL;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -38,7 +38,7 @@ public class EditarFuncionario extends HttpServlet {
   static String idFuncionario;
 
   public void editarFuncionario(Funcionario f, Usuario u) {
-    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftstoredb");
+    ConexaoBDMySQL conexaoBD = new ConexaoBDMySQL("DraftOfficeDB");
     PreparedStatement stmt = null;
     Connection conn = null;
     Date data = new Date();
@@ -93,7 +93,7 @@ public class EditarFuncionario extends HttpServlet {
   }
 
   public Funcionario buscarFuncionario(Object idFuncionario, Usuario u) {
-    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftstoredb");
+    ConexaoBDMySQL conexaoBD = new ConexaoBDMySQL("DraftOfficeDB");
     Statement stmt = null;
     Connection conn = null;
 

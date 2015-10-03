@@ -6,7 +6,7 @@
 package com.wrm.draftstore.servlets.busca;
 
 import com.wrm.draftstore.classes.Produto;
-import com.wrm.draftstore.database.ConexaoBDJavaDB;
+import com.wrm.draftstore.database.ConexaoBDMySQL;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -32,7 +32,7 @@ import javax.servlet.http.HttpServletResponse;
 public class BuscarProduto extends HttpServlet {
 
   public List<Produto> listarProdutos() {
-    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftstoredb");
+    ConexaoBDMySQL conexaoBD = new ConexaoBDMySQL("DraftOfficeDB");
     Statement stmt = null;
     Connection conn = null;
 

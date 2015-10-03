@@ -7,7 +7,7 @@ package com.wrm.draftstore.servlets.cadastro;
 
 import com.wrm.draftstore.classes.Fornecedor;
 import com.wrm.draftstore.classes.Usuario;
-import com.wrm.draftstore.database.ConexaoBDJavaDB;
+import com.wrm.draftstore.database.ConexaoBDMySQL;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -32,7 +32,7 @@ import javax.servlet.http.HttpSession;
 public class CadastrarFornecedor extends HttpServlet {
 
     public void cadastrarFornecedor(Fornecedor f, Usuario u){
-        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftstoredb");
+        ConexaoBDMySQL conexaoBD = new ConexaoBDMySQL("DraftOfficeDB");
         PreparedStatement stmt = null;
         Connection conn = null;
         

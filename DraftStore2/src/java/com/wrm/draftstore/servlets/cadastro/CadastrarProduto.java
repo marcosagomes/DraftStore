@@ -9,7 +9,7 @@ import com.wrm.draftstore.servlets.editar.EditarFornecedor;
 import com.wrm.draftstore.classes.Fornecedor;
 import com.wrm.draftstore.classes.Produto;
 import com.wrm.draftstore.classes.Usuario;
-import com.wrm.draftstore.database.ConexaoBDJavaDB;
+import com.wrm.draftstore.database.ConexaoBDMySQL;
 import com.wrm.draftstore.servlets.busca.BuscarFornecedor;
 import java.io.IOException;
 import java.sql.Connection;
@@ -41,7 +41,7 @@ import javax.servlet.http.HttpSession;
 public class CadastrarProduto extends HttpServlet {
 
     public List<Fornecedor> listarFornecedores() {
-        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftstoredb");
+        ConexaoBDMySQL conexaoBD = new ConexaoBDMySQL("DraftOfficeDB");
         Statement stmt = null;
         Connection conn = null;
 
@@ -84,7 +84,7 @@ public class CadastrarProduto extends HttpServlet {
     }
 
     public void cadastrarProduto(String razaoSocial, Produto p, Usuario u) {
-        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftstoredb");
+        ConexaoBDMySQL conexaoBD = new ConexaoBDMySQL("DraftOfficeDB");
         PreparedStatement stmt = null;
         Connection conn = null;
 

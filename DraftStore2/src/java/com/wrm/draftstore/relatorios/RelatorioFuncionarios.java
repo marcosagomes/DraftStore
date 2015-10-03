@@ -7,7 +7,7 @@ package com.wrm.draftstore.relatorios;
 
 import com.wrm.draftstore.classes.Funcionario;
 import com.wrm.draftstore.classes.Usuario;
-import com.wrm.draftstore.database.ConexaoBDJavaDB;
+import com.wrm.draftstore.database.ConexaoBDMySQL;
 import com.wrm.draftstore.servlets.busca.BuscarFornecedor;
 import java.io.IOException;
 import java.sql.Connection;
@@ -35,7 +35,7 @@ public class RelatorioFuncionarios extends HttpServlet {
 
     public void buscarVendas(List<Funcionario> funcionarios) {
 
-        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftstoredb");
+        ConexaoBDMySQL conexaoBD = new ConexaoBDMySQL("DraftOfficeDB");
         Statement stmt = null;
         Connection conn = null;
 
