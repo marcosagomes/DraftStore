@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.wrm.draftstore.classes.*;
-import com.wrm.draftstore.database.ConexaoBDMySQL;
+import com.wrm.draftstore.database.ConexaoBDJavaDB;
 import java.lang.reflect.Type;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -106,7 +106,7 @@ public class RegistroVenda extends HttpServlet {
   }
 
   public int selectIdVenda() {
-    ConexaoBDMySQL conexaoBD = new ConexaoBDMySQL("DraftOfficeDB");
+    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
     Statement stmt = null;
     Connection conn = null;
     int idVenda = -1;
@@ -145,7 +145,7 @@ public class RegistroVenda extends HttpServlet {
   }
 
   public void inserirVenda(Usuario u) {
-    ConexaoBDMySQL conexaoBD = new ConexaoBDMySQL("DraftOfficeDB");
+    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
     PreparedStatement stmt = null;
     Connection conn = null;
 
@@ -190,7 +190,7 @@ public class RegistroVenda extends HttpServlet {
   }
 
   public void cadastrarItensVenda(Usuario u, List<ItemVenda> lista) {
-    ConexaoBDMySQL conexaoBD = new ConexaoBDMySQL("DraftOfficeDB");
+    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
     PreparedStatement stmt = null;
     Connection conn = null;
 

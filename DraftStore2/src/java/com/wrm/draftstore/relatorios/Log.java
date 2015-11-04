@@ -6,7 +6,7 @@
 package com.wrm.draftstore.relatorios;
 
 import com.wrm.draftstore.classes.Usuario;
-import com.wrm.draftstore.database.ConexaoBDMySQL;
+import com.wrm.draftstore.database.ConexaoBDJavaDB;
 import com.wrm.draftstore.servlets.busca.BuscarFornecedor;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -42,7 +42,7 @@ public class Log extends HttpServlet {
         String auxAtual;
 
         auxAtual = "20" + mesAtual.substring(6, 8) + "-" + mesAtual.substring(3, 5);
-        ConexaoBDMySQL conexaoBD = new ConexaoBDMySQL("DraftOfficeDB");
+        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
         Statement stmt = null;
         Connection conn = null;
 

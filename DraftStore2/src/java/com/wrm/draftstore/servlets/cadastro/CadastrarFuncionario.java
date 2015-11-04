@@ -7,7 +7,7 @@ package com.wrm.draftstore.servlets.cadastro;
 
 import com.wrm.draftstore.classes.Funcionario;
 import com.wrm.draftstore.classes.Usuario;
-import com.wrm.draftstore.database.ConexaoBDMySQL;
+import com.wrm.draftstore.database.ConexaoBDJavaDB;
 import com.wrm.draftstore.servlets.busca.BuscarFornecedor;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -44,7 +44,7 @@ public class CadastrarFuncionario extends HttpServlet {
 
   //Metódo para tentar comparar CARGO > FK_PAPEL
   public List<Funcionario> listarFuncionarios() {
-    ConexaoBDMySQL conexaoBD = new ConexaoBDMySQL("DraftOfficeDB");
+    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
     Statement stmt = null;
     Connection conn = null;
 
@@ -87,8 +87,8 @@ public class CadastrarFuncionario extends HttpServlet {
   }
 
   public void cadastrarFuncionario(Funcionario f, Usuario u) {
-    ConexaoBDMySQL conexaoBD
-            = new ConexaoBDMySQL("DraftOfficeDB");
+    ConexaoBDJavaDB conexaoBD
+            = new ConexaoBDJavaDB("DraftOfficeDB");
     PreparedStatement stmt = null;
     Connection conn = null;
 

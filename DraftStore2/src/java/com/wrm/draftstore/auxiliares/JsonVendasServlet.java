@@ -7,7 +7,7 @@ package com.wrm.draftstore.auxiliares;
 
 import com.google.gson.Gson;
 import com.wrm.draftstore.classes.Produto;
-import com.wrm.draftstore.database.ConexaoBDMySQL;
+import com.wrm.draftstore.database.ConexaoBDJavaDB;
 import com.wrm.draftstore.servlets.busca.BuscarFornecedor;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -117,7 +117,7 @@ public class JsonVendasServlet extends HttpServlet {
   }// </editor-fold>
 
   public List<Produto> listarProdutos() {
-    ConexaoBDMySQL conexaoBD = new ConexaoBDMySQL("DraftOfficeDB");
+    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
     Statement stmt = null;
     Connection conn = null;
 

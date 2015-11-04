@@ -8,7 +8,7 @@ package com.wrm.draftstore.servlets.editar;
 import com.wrm.draftstore.classes.Fornecedor;
 import com.wrm.draftstore.classes.Produto;
 import com.wrm.draftstore.classes.Usuario;
-import com.wrm.draftstore.database.ConexaoBDMySQL;
+import com.wrm.draftstore.database.ConexaoBDJavaDB;
 import com.wrm.draftstore.servlets.cadastro.CadastrarProduto;
 import java.io.IOException;
 import java.sql.Connection;
@@ -40,7 +40,7 @@ public class EditarProduto extends HttpServlet {
     static Object idProduto;
 
     public void editarProduto(Produto p, Usuario u) {
-        ConexaoBDMySQL conexaoBD = new ConexaoBDMySQL("DraftOfficeDB");
+        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
         PreparedStatement stmt = null;
         Connection conn = null;
 
@@ -80,7 +80,7 @@ public class EditarProduto extends HttpServlet {
     }
 
     public Produto buscarProduto(Object idProduto, Usuario u) {
-        ConexaoBDMySQL conexaoBD = new ConexaoBDMySQL("DraftOfficeDB");
+        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
         Statement stmt = null;
         Connection conn = null;
 

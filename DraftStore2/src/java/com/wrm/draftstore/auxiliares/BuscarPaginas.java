@@ -6,7 +6,7 @@
 package com.wrm.draftstore.auxiliares;
 
 import com.wrm.draftstore.classes.Usuario;
-import com.wrm.draftstore.database.ConexaoBDMySQL;
+import com.wrm.draftstore.database.ConexaoBDJavaDB;
 import com.wrm.draftstore.servlets.busca.BuscarFornecedor;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -36,7 +36,7 @@ public class BuscarPaginas {
   }
 
   public List<String> listaDePaginas(Usuario usuario) {
-    ConexaoBDMySQL conexaoBD = new ConexaoBDMySQL("DraftOfficeDB");
+    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
     Statement stmt = null;
     Connection conn = null;
     
