@@ -8,7 +8,7 @@ package com.wrm.draftstore.servlets.autenticacao;
 import com.wrm.draftstore.servlets.cadastro.*;
 import com.wrm.draftstore.classes.Fornecedor;
 import com.wrm.draftstore.classes.Usuario;
-import com.wrm.draftstore.database.ConexaoBDMySQL;
+import com.wrm.draftstore.database.ConexaoBDJavaDB;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

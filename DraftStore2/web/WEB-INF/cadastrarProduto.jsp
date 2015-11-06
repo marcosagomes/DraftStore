@@ -175,18 +175,43 @@
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
+
+                <div id="campoQuantidade" class="normal form-group" >
+                    <label class="col-sm-3 control-label" for="quantidade"> Quantidade </label>
+                    <div class="col-sm-2 from-group">
+                        <input type="number" class="form-control" id="numberQuantidade" name="quantidade">
+                        </input>
+                    </div>
+                </div>
+
+                <div id="campoImagem" class="normal form-group" >
+                    <label class="col-sm-3 control-label" for="imagem"> Caminho da imagem </label>
+                    <div class="col-sm-2 from-group">
+                        <input type="image" class="form-control" id="imageCaminho" name="imagem">
+                        </input>
+                    </div>
+                </div>
+
+                <div id="campoDescricao" class="normal form-group" >
+                    <label class="col-sm-3 control-label" for="descricao"> Descricao </label>
+                    <div class="col-sm-2 from-group">
+                        <textarea class="form-control" id="textareaDescricao" name="descricao">
+                        </textarea>
+                    </div>
+                </div>
                 <div class="botoesFormulario">
                     <button type="reset" class="btn btn-default" >Cancelar</button>
                     <button type="submit" class="btn btn-primary" id="btCadastrar">Cadastrar</button>
                 </div>
-    </form>
-</div>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
-<script src="../resources/js/validaProduto.js"></script>
-<script src="../resources/js/previsaoPrecoVenda.js"></script>
+            </form>
+        </div>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+    <script src="../resources/js/validaProduto.js"></script>
+    <script src="../resources/js/previsaoPrecoVenda.js"></script>
 </body>
 </html>

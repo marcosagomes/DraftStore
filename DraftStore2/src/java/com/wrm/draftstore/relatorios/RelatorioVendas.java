@@ -6,7 +6,7 @@
 package com.wrm.draftstore.relatorios;
 
 import com.wrm.draftstore.classes.Usuario;
-import com.wrm.draftstore.database.ConexaoBDMySQL;
+import com.wrm.draftstore.database.ConexaoBDJavaDB;
 import com.wrm.draftstore.servlets.busca.BuscarFornecedor;
 import java.io.IOException;
 import java.sql.Connection;
@@ -48,7 +48,7 @@ public class RelatorioVendas extends HttpServlet {
         auxAtual = "20" + mesAtual.substring(6, 8) + "-" + mesAtual.substring(3, 5);
         auxAnterior = "20" + mesAnterior.substring(6, 8) + "-" + mesAnterior.substring(3, 5);
         
-        ConexaoBDMySQL conexaoBD = new ConexaoBDMySQL("DraftOfficeDB");
+        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
         Statement stmt = null;
         Connection conn = null;
         
@@ -106,7 +106,7 @@ public class RelatorioVendas extends HttpServlet {
         mesAnterior = mesAnterior.length() == 1 ? "0" + mesAnterior : mesAnterior;
         auxAnterior = "20" + anoAnterior.substring(6, 8) + "-" + mesAnterior;
         
-        ConexaoBDMySQL conexaoBD = new ConexaoBDMySQL("DraftOfficeDB");
+        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
         Statement stmt = null;
         Connection conn = null;
         

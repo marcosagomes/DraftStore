@@ -5,151 +5,180 @@
  */
 package com.wrm.draftstore.classes;
 
+import java.util.List;
+
 /**
  *
  * @author ramon.ahonorio
  */
 public class Produto {
 
-  private int idProduto;
+    private int idProduto;
 
-  private float precoVenda;
+    private float precoVenda;
 
-  private float percentualLucro;
+    private float percentualLucro;
 
-  private String modelo;
+    private String modelo;
 
-  private String marca;
+    private String marca;
 
-  private String tipoProduto;
+    private String tipoProduto;
 
-  private float custo;
+    private float custo;
 
-  private int idFornecedor;
+    private int idFornecedor;
 
-  private String dataCriacao;
+    private String dataCriacao;
 
-  private String nomeFornecedor;
+    private String nomeFornecedor;
 
-  private String nomeUsuario;
-  
-  private int idFuncionario;
+    private String nomeUsuario;
 
-  public int getIdFuncionario() {
-    return idFuncionario;
-  }
+    private int idFuncionario;
 
-  public void setIdFuncionario(int idFuncionario) {
-    this.idFuncionario = idFuncionario;
-  }
-  
-  
+    private int quantidade;
 
-  public String getDataCriacao() {
-    return dataCriacao;
-  }
+    private Imagem imagem;
 
-  public void setDataCriacao(String dataCriacao) {
-    this.dataCriacao = dataCriacao;
-  }
+    public int getQuantidade() {
+        return quantidade;
+    }
 
-  public String getNomeFornecedor() {
-    return nomeFornecedor;
-  }
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
 
-  public void setNomeFornecedor(String nomeFornecedor) {
-    this.nomeFornecedor = nomeFornecedor;
-  }
+    public Imagem getImagem() {
+        return imagem;
+    }
 
-  public String getNomeUsuario() {
-    return nomeUsuario;
-  }
+    public void setImagem(Imagem imagem) {
+        this.imagem = imagem;
+    }
 
-  public void setNomeUsuario(String nomeUsuario) {
-    this.nomeUsuario = nomeUsuario;
-  }
+    public String getDescricao() {
+        return descricao;
+    }
 
-  public float getPercentualLucro() {
-    return percentualLucro;
-  }
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 
-  public void setPercentualLucro(float percentualLucro) {
-    this.percentualLucro = percentualLucro;
-  }
+    private String descricao;
 
-  public float getPrecoVenda() {
-    return precoVenda;
-  }
+    public int getIdFuncionario() {
+        return idFuncionario;
+    }
 
-  public void setPrecoVenda(float precoVenda) {
-    this.precoVenda = precoVenda;
-  }
+    public void setIdFuncionario(int idFuncionario) {
+        this.idFuncionario = idFuncionario;
+    }
 
-  public String getTipoProduto() {
-    return tipoProduto;
-  }
+    public String getDataCriacao() {
+        return dataCriacao;
+    }
 
-  public void setTipoProduto(String tipoProduto) {
-    this.tipoProduto = tipoProduto;
-  }
+    public void setDataCriacao(String dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
 
-  public String getModelo() {
-    return modelo;
-  }
+    public String getNomeFornecedor() {
+        return nomeFornecedor;
+    }
 
-  public void setModelo(String modelo) {
-    this.modelo = modelo;
-  }
+    public void setNomeFornecedor(String nomeFornecedor) {
+        this.nomeFornecedor = nomeFornecedor;
+    }
 
-  public String getMarca() {
-    return marca;
-  }
+    public String getNomeUsuario() {
+        return nomeUsuario;
+    }
 
-  public void setMarca(String marca) {
-    this.marca = marca;
-  }
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
+    }
 
-  public int getIdProduto() {
-    return idProduto;
-  }
+    public float getPercentualLucro() {
+        return percentualLucro;
+    }
 
-  public void setIdProduto(int idProduto) {
-    this.idProduto = idProduto;
-  }
+    public void setPercentualLucro(float percentualLucro) {
+        this.percentualLucro = percentualLucro;
+    }
 
-  public float getCusto() {
-    return custo;
-  }
+    public float getPrecoVenda() {
+        return precoVenda;
+    }
 
-  public void setCusto(float custo) {
-    this.custo = custo;
-  }
+    public void setPrecoVenda(float precoVenda) {
+        this.precoVenda = precoVenda;
+    }
 
-  public int getIdFornecedor() {
-    return idFornecedor;
-  }
+    public String getTipoProduto() {
+        return tipoProduto;
+    }
 
-  public void setIdFornecedor(int idFornecedor) {
-    this.idFornecedor = idFornecedor;
-  }
+    public void setTipoProduto(String tipoProduto) {
+        this.tipoProduto = tipoProduto;
+    }
 
-  public Produto(int idProduto, float precoVenda, float percentualLucro, String modelo, String marca, String tipoProduto, float custo, int idFornecedor, String dataCriacao, String nomeFornecedor, String nomeUsuario, int idFuncionario) {
-    this.idProduto = idProduto;
-    this.precoVenda = precoVenda;
-    this.percentualLucro = percentualLucro;
-    this.modelo = modelo;
-    this.marca = marca;
-    this.tipoProduto = tipoProduto;
-    this.custo = custo;
-    this.idFornecedor = idFornecedor;
-    this.dataCriacao = dataCriacao;
-    this.nomeFornecedor = nomeFornecedor;
-    this.nomeUsuario = nomeUsuario;
-    this.idFuncionario = idFuncionario;
-  }
-  
+    public String getModelo() {
+        return modelo;
+    }
 
-  public Produto() {
-  }
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public int getIdProduto() {
+        return idProduto;
+    }
+
+    public void setIdProduto(int idProduto) {
+        this.idProduto = idProduto;
+    }
+
+    public float getCusto() {
+        return custo;
+    }
+
+    public void setCusto(float custo) {
+        this.custo = custo;
+    }
+
+    public int getIdFornecedor() {
+        return idFornecedor;
+    }
+
+    public void setIdFornecedor(int idFornecedor) {
+        this.idFornecedor = idFornecedor;
+    }
+
+    public Produto(int idProduto, float precoVenda, float percentualLucro, String modelo, String marca, String tipoProduto, float custo, int idFornecedor, String dataCriacao, String nomeFornecedor, String nomeUsuario, int idFuncionario) {
+        this.idProduto = idProduto;
+        this.precoVenda = precoVenda;
+        this.percentualLucro = percentualLucro;
+        this.modelo = modelo;
+        this.marca = marca;
+        this.tipoProduto = tipoProduto;
+        this.custo = custo;
+        this.idFornecedor = idFornecedor;
+        this.dataCriacao = dataCriacao;
+        this.nomeFornecedor = nomeFornecedor;
+        this.nomeUsuario = nomeUsuario;
+        this.idFuncionario = idFuncionario;
+    }
+
+    public Produto() {
+    }
 
 }

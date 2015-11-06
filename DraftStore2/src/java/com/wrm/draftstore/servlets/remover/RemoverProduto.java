@@ -7,7 +7,7 @@ package com.wrm.draftstore.servlets.remover;
 
 import com.wrm.draftstore.classes.Produto;
 import com.wrm.draftstore.classes.Usuario;
-import com.wrm.draftstore.database.ConexaoBDMySQL;
+import com.wrm.draftstore.database.ConexaoBDJavaDB;
 import com.wrm.draftstore.servlets.editar.EditarFornecedor;
 import java.io.IOException;
 import java.sql.Connection;
@@ -33,7 +33,7 @@ public class RemoverProduto extends HttpServlet {
     static Object idProduto;
 
     public void removerProduto() {
-        ConexaoBDMySQL conexaoBD = new ConexaoBDMySQL("DraftOfficeDB");
+        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
         PreparedStatement stmt = null;
         Connection conn = null;
 
@@ -66,7 +66,7 @@ public class RemoverProduto extends HttpServlet {
     }
 
     public Produto buscarProduto(Object idProduto, Usuario u) {
-        ConexaoBDMySQL conexaoBD = new ConexaoBDMySQL("DraftOfficeDB");
+        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
         Statement stmt = null;
         Connection conn = null;
 

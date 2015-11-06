@@ -7,7 +7,7 @@ package com.wrm.draftstore.servlets.editar;
 
 import com.wrm.draftstore.classes.Fornecedor;
 import com.wrm.draftstore.classes.Usuario;
-import com.wrm.draftstore.database.ConexaoBDMySQL;
+import com.wrm.draftstore.database.ConexaoBDJavaDB;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -34,7 +34,7 @@ import javax.servlet.http.HttpSession;
 public class EditarFornecedor extends HttpServlet {
     static String idFornec;
     public void editarFornecedor(Fornecedor f, Usuario u) {
-        ConexaoBDMySQL conexaoBD = new ConexaoBDMySQL("DraftOfficeDB");
+        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
         PreparedStatement stmt = null;
         Connection conn = null; 
         System.out.println("RAZAO: "+f.getRazaoSocial());
@@ -85,7 +85,7 @@ public class EditarFornecedor extends HttpServlet {
     }
 
     public Fornecedor buscarFornecedor(Object idFornecedor, Usuario u) {
-        ConexaoBDMySQL conexaoBD = new ConexaoBDMySQL("DraftOfficeDB");
+        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
         Statement stmt = null;
         Connection conn = null;
 

@@ -8,7 +8,7 @@ package com.wrm.draftstore.servlets.remover;
 import com.wrm.draftstore.classes.Fornecedor;
 import com.wrm.draftstore.classes.Funcionario;
 import com.wrm.draftstore.classes.Usuario;
-import com.wrm.draftstore.database.ConexaoBDMySQL;
+import com.wrm.draftstore.database.ConexaoBDJavaDB;
 import com.wrm.draftstore.servlets.editar.EditarFuncionario;
 import java.io.IOException;
 import java.sql.Connection;
@@ -36,7 +36,7 @@ import javax.servlet.http.HttpSession;
 public class RemoverFuncionario extends HttpServlet {
     static String idFuncionario;
     public void removerFuncionario(Funcionario f, Usuario u) {
-        ConexaoBDMySQL conexaoBD = new ConexaoBDMySQL("DraftOfficeDB");
+        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
         PreparedStatement stmt = null;
         Connection conn = null;
         
@@ -73,7 +73,7 @@ public class RemoverFuncionario extends HttpServlet {
     }
     
     public Funcionario buscarFuncionario(Object idFuncionario, Usuario u) {
-    ConexaoBDMySQL conexaoBD = new ConexaoBDMySQL("DraftOfficeDB");
+    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
     Statement stmt = null;
     Connection conn = null;
 
