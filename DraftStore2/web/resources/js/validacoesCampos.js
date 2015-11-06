@@ -10,9 +10,9 @@ var campoEmail = document.getElementById("campoEmail");
 var campoSite = document.getElementById("campoSite");
 var campoNumero = document.getElementById("campoNumero");
 
-function validaNumero(){
+function validaNumero() {
     var valorDoCampo = $("#inputNumero").val();
-    if(valorDoCampo == "" || valorDoCampo.length<1){
+    if (valorDoCampo == "" || valorDoCampo.length < 1) {
         campoNumero.classList.add("has-error");
         return false;
     } else {
@@ -20,9 +20,9 @@ function validaNumero(){
         return true;
     }
 }
-function validaRazaoSocial(){
+function validaRazaoSocial() {
     var valorDoCampo = $("#inputRazaoSocial").val();
-    if(valorDoCampo == "" || valorDoCampo.length<3){
+    if (valorDoCampo == "" || valorDoCampo.length < 3) {
         campoRazaoSocial.classList.add("has-error");
         return false;
     } else {
@@ -31,109 +31,115 @@ function validaRazaoSocial(){
     }
 }
 function validaCNPJ() {
- var regex = /^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/;  
- var valorDoCampo = $("#inputCNPJ").val();
- if(!regex.test(valorDoCampo) || !isCNPJValid(valorDoCampo)) {
-    campoCNPJ.classList.add("has-error");
-     return false;
- } else {
-    campoCNPJ.classList.remove("has-error");
-     return true;
- }
+    var regex = /^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/;
+    var valorDoCampo = $("#inputCNPJ").val();
+    if (!regex.test(valorDoCampo) || !isCNPJValid(valorDoCampo)) {
+        campoCNPJ.classList.add("has-error");
+        return false;
+    } else {
+        campoCNPJ.classList.remove("has-error");
+        return true;
+    }
 }
 function validaCEP() {
- var regex = /^\d{5}-\d{3}$/;  
- var valorDoCampo = $("#inputCep").val();
- if(!regex.test(valorDoCampo)) {
-    campoCep.classList.add("has-error");
-     return false;
- } else {
-    campoCep.classList.remove("has-error");
-     return true;
- }
+    var regex = /^\d{5}-\d{3}$/;
+    var valorDoCampo = $("#inputCep").val();
+    if (!regex.test(valorDoCampo)) {
+        campoCep.classList.add("has-error");
+        return false;
+    } else {
+        campoCep.classList.remove("has-error");
+        return true;
+    }
 }
 function validaTelefone() {
- var regex = /\(\d{2}\) \d{4}-\d{4}/;  
- var valorDoCampo = $("#inputTelefone").val();
- if(!regex.test(valorDoCampo)) {
-    campoTelefone.classList.add("has-error");
-     return false;
- } else {
-    campoTelefone.classList.remove("has-error");
-     return true;
- }
+    var regex = /\(\d{2}\) \d{4}-\d{4}/;
+    var valorDoCampo = $("#inputTelefone").val();
+    if (!regex.test(valorDoCampo)) {
+        campoTelefone.classList.add("has-error");
+        return false;
+    } else {
+        campoTelefone.classList.remove("has-error");
+        return true;
+    }
 }
 function validaEmail() {
- var regex = /^.+@.+\..{2,3}$/;  
- var valorDoCampo = $("#inputEmail").val();
- if(!regex.test(valorDoCampo)) {
-    campoEmail.classList.add("has-error");
-     return false;
- } else {
-    campoEmail.classList.remove("has-error");
-     return true;
- }
+    var regex = /^.+@.+\..{2,3}$/;
+    var valorDoCampo = $("#inputEmail").val();
+    if (!regex.test(valorDoCampo)) {
+        campoEmail.classList.add("has-error");
+        return false;
+    } else {
+        campoEmail.classList.remove("has-error");
+        return true;
+    }
 }
 function validaSite() {
- var regex = /^(https?):\/\/([a-zA-Z0-9_-]+)(\.[a-zA-Z0-9_-]+)+(\/[a-zA-Z0-9_-]+)*\/?$/gi;  
- var valorDoCampo = $("#inputSite").val();
- if(!regex.test(valorDoCampo)) {
-    campoSite.classList.add("has-error");
-     return false;
- } else {
-    campoSite.classList.remove("has-error");
-     return true;
- }
+    var regex = /^(https?):\/\/([a-zA-Z0-9_-]+)(\.[a-zA-Z0-9_-]+)+(\/[a-zA-Z0-9_-]+)*\/?$/gi;
+    var valorDoCampo = $("#inputSite").val();
+    if (!regex.test(valorDoCampo)) {
+        campoSite.classList.add("has-error");
+        return false;
+    } else {
+        campoSite.classList.remove("has-error");
+        return true;
+    }
 }
 
-function valida(form){
-    if(!validaRazaoSocial()){
+function valida(form) {
+    if (!validaRazaoSocial()) {
         form.RazaoSocial.focus();
         return false;
     }
-    if(!validaCNPJ()){
+    if (!validaCNPJ()) {
         form.Cnpj.focus();
         return false;
-    } if(!validaNumero()){
+    }
+    if (!validaNumero()) {
         form.Numero.focus();
         return false;
-    } if(!validaTelefone()){
+    }
+    if (!validaTelefone()) {
         form.Telefone.focus();
         return false;
-    } if(!validaEmail()){
+    }
+    if (!validaEmail()) {
         form.Email.focus();
         return false;
-    } if(!validaSite()){
+    }
+    if (!validaSite()) {
         form.Site.focus();
         return false;
-    } if(!validaCEP()){
+    }
+    if (!validaCEP()) {
         form.Cep.focus();
         return false;
-    } 
-    
-    if(!confirm('Tem certeza que deseja efetuar o registro com essas informações?')){
+    }
+
+    if (!confirm('Tem certeza que deseja efetuar o registro com essas informações?')) {
         return false;
     } else {
         alert('Operação realizada com sucesso!');
     }
 }
 
-function buscarCep(){
+function buscarCep() {
     var cep_code = $(this).val();
-    if( cep_code.length <= 0 ) return;
-    $.get("http://apps.widenet.com.br/busca-cep/api/cep.json", { code: cep_code },
-     function(result){
-        if(result.status!=1 ){
-           //alert(result.message || "Houve um erro desconhecido");
+    if (cep_code.length <= 0)
+        return;
+    $.get("http://apps.widenet.com.br/busca-cep/api/cep.json", {code: cep_code},
+    function (result) {
+        if (result.status != 1) {
+            //alert(result.message || "Houve um erro desconhecido");
             console.log(result.message || "Houve um erro desconhecido");
-           return;
+            return;
         }
-        $("input#inputCep").val( result.code );
-        $("input#inputUF").val( result.state );
-        $("input#inputCidade").val( result.city );
-        $("input#inputBairro").val( result.district );
-        $("input#inputEndereco").val( result.address );
-     });
+        $("input#inputCep").val(result.code);
+        $("input#inputUF").val(result.state);
+        $("input#inputCidade").val(result.city);
+        $("input#inputBairro").val(result.district);
+        $("input#inputEndereco").val(result.address);
+    });
 }
 function isCNPJValid(cnpj) {
     cnpj = cnpj.replace(/[^\d]+/g, '');
@@ -194,15 +200,15 @@ $("#inputEmail").blur(validaEmail);
 $("#inputSite").blur(validaSite);
 $("#inputNumero").blur(validaNumero);
 
-$("#inputTelefone").on("blur", function() {
-    var last = $(this).val().substr( $(this).val().indexOf("-") + 1 );
+$("#inputTelefone").on("blur", function () {
+    var last = $(this).val().substr($(this).val().indexOf("-") + 1);
 
-    if( last.length == 3 ) {
-        var move = $(this).val().substr( $(this).val().indexOf("-") - 1, 1 );
+    if (last.length == 3) {
+        var move = $(this).val().substr($(this).val().indexOf("-") - 1, 1);
         var lastfour = move + last;
-        var first = $(this).val().substr( 0, 9 );
+        var first = $(this).val().substr(0, 9);
 
-        $(this).val( first + '-' + lastfour );
+        $(this).val(first + '-' + lastfour);
     }
 });
 

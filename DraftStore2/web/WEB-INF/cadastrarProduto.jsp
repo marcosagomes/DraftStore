@@ -180,17 +180,31 @@
                     <label class="col-sm-3 control-label" for="quantidade"> Quantidade </label>
                     <div class="col-sm-2 from-group">
                         <input type="number" class="form-control" id="numberQuantidade" name="quantidade">
-                        </input>
                     </div>
                 </div>
 
                 <div id="campoImagem" class="normal form-group" >
                     <label class="col-sm-3 control-label" for="imagem"> Caminho da imagem </label>
                     <div class="col-sm-2 from-group">
-                        <input type="image" class="form-control" id="imageCaminho" name="imagem">
-                        </input>
+                        <input type="text" class="form-control" id="imageCaminho" name="imagem">
                     </div>
                 </div>
+
+                <div id="campoImagem" class="normal form-group" >
+                    <label class="col-sm-3 control-label" for="imagem"> Caminho da imagem </label>
+                    <div class="col-sm-2 from-group">
+                        <input type="text" class="form-control" id="imageCaminho" name="imagem">
+                    </div>
+                </div>
+
+                <div id="campoDescricao" class="normal form-group" >
+                    <label class="col-sm-3 control-label" for="btnTeste"> Preview </label>
+                    <div class="col-sm-2 from-group">
+                        <input type="button" class="form-control" id="textareaDescricao" name="btnTeste" onclick="setSourceOnImg()">
+                    </div>
+                </div>
+
+                <img id="imgTeste"/>
 
                 <div id="campoDescricao" class="normal form-group" >
                     <label class="col-sm-3 control-label" for="descricao"> Descricao </label>
@@ -206,6 +220,14 @@
             </form>
         </div>
     </div>
+    <script>
+        function setSourceOnImg() {
+            var url = document.getElementById("imageCaminho").value;
+            var img = document.getElementById("imgTeste");
+
+            img.setAttribute("src", url);
+        }
+    </script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->

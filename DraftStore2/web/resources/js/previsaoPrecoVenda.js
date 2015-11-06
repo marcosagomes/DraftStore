@@ -6,8 +6,9 @@ var previsto = document.getElementById("inputPreco");
 custo.addEventListener("input", atualizarPrevisto);
 percentLucro.addEventListener("input", atualizarPrevisto);
 
-function atualizarPrevisto(){
+function atualizarPrevisto() {
     var valor = parseFloat(custo.value) + parseFloat(custo.value) * parseFloat(percentLucro.value) / 100;
-    previsto.value = "R$ "+valor.toFixed(2);
+    previsto.value = "R$ " + valor.toFixed(2);
 }
+
 // ------------------------------------------------------------

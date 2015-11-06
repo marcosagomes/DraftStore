@@ -75,13 +75,12 @@ function validaLucro() {
     }
 }
 
-
 function valida(form) {
 
-   if(!validaTipoProduto()){
-       form.Tipo.focus();
-       return false;
-   }
+    if (!validaTipoProduto()) {
+        form.Tipo.focus();
+        return false;
+    }
     if (!validaFornecedor()) {
         form.Fornecedor.focus();
         return false;
@@ -93,7 +92,8 @@ function valida(form) {
     if (!validaModelo()) {
         form.Modelo.focus();
         return false;
-    }if (!validaPreco()) {
+    }
+    if (!validaPreco()) {
         form.Custo.focus();
         return false;
     }
