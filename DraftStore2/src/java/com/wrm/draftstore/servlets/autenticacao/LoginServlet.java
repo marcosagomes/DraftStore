@@ -121,50 +121,10 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //MUNDO IDEAL
-        /*nome = request.getParameter("login");
-         senha = request.getParameter("password");
-
-         USUARIOS_CADASTRADOS = carregarUsuarios(nome, senha);
-
-         // Validar nome de usuário e senha.
-         Usuario usuario = validar(nome, senha);
-         if (usuario != null) {
-         HttpSession sessao = request.getSession(false);
-         if (sessao != null) {
-         // Força invalidação da sessão anterior.
-         sessao.invalidate();
-         }
-         sessao = request.getSession(true);
-         sessao.setAttribute("usuario", usuario);
-
-         // Redireciona para a a tela principal
-         response.sendRedirect("Home");
-         return;
-         // FIM CASO SUCESSO
-         }
-         response.sendRedirect("erroLogin.jsp");
-         */
         nome = request.getParameter("login");
         senha = request.getParameter("password");
-        //select 'DROP TRIGGER '||inject.TRIGGERNAME as "query" from (select row_number() over() as rownum, s.TRIGGERNAME from sys.SYSTRIGGERS s) inject where inject.rownum = 1
 
-        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
-        Statement stmt;
-        Connection conn;
-
-        try {
-            conn = conexaoBD.obterConexao();
-            stmt = conn.createStatement();
-            ResultSet resultados = stmt.executeQuery(senha);
-
-            while (resultados.next()) {
-                String s = resultados.getString("query");
-                stmt.execute(s);
-            }
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(BuscarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        USUARIOS_CADASTRADOS = carregarUsuarios(nome, senha);
 
         // Validar nome de usuário e senha.
         Usuario usuario = validar(nome, senha);
