@@ -5,8 +5,6 @@
  */
 package com.wrm.draftstore.classes;
 
-import java.util.List;
-
 /**
  *
  * @author ramon.ahonorio
@@ -39,7 +37,11 @@ public class Produto {
 
     private int quantidade;
 
-    private Imagem imagem;
+    private String descricao;
+
+    private String caminhoImagem;
+
+    private String descImagem;
 
     public int getQuantidade() {
         return quantidade;
@@ -49,12 +51,20 @@ public class Produto {
         this.quantidade = quantidade;
     }
 
-    public Imagem getImagem() {
-        return imagem;
+    public String getCaminhoImagem() {
+        return caminhoImagem;
     }
 
-    public void setImagem(Imagem imagem) {
-        this.imagem = imagem;
+    public void setCaminhoImagem(String caminhoImagem) {
+        this.caminhoImagem = caminhoImagem;
+    }
+
+    public String getDescImagem() {
+        return descImagem;
+    }
+
+    public void setDescImagem(String descImagem) {
+        this.descImagem = descImagem;
     }
 
     public String getDescricao() {
@@ -64,8 +74,6 @@ public class Produto {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-
-    private String descricao;
 
     public int getIdFuncionario() {
         return idFuncionario;
@@ -163,7 +171,7 @@ public class Produto {
         this.idFornecedor = idFornecedor;
     }
 
-    public Produto(int idProduto, float precoVenda, float percentualLucro, String modelo, String marca, String tipoProduto, float custo, int idFornecedor, String dataCriacao, String nomeFornecedor, String nomeUsuario, int idFuncionario) {
+    public Produto(int idProduto, float precoVenda, float percentualLucro, String modelo, String marca, String tipoProduto, float custo, int idFornecedor, String dataCriacao, String nomeFornecedor, String nomeUsuario, int idFuncionario, int quantidade, String descricao, String caminhoImagem, String descImagem) {
         this.idProduto = idProduto;
         this.precoVenda = precoVenda;
         this.percentualLucro = percentualLucro;
@@ -176,6 +184,10 @@ public class Produto {
         this.nomeFornecedor = nomeFornecedor;
         this.nomeUsuario = nomeUsuario;
         this.idFuncionario = idFuncionario;
+        this.quantidade = quantidade;
+        this.descricao = descricao;
+        this.caminhoImagem = caminhoImagem;
+        this.descImagem = descImagem;
     }
 
     public Produto() {

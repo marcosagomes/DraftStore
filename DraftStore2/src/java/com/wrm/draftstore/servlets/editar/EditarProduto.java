@@ -5,7 +5,6 @@
  */
 package com.wrm.draftstore.servlets.editar;
 
-import com.wrm.draftstore.classes.Fornecedor;
 import com.wrm.draftstore.classes.Produto;
 import com.wrm.draftstore.classes.Usuario;
 import com.wrm.draftstore.database.ConexaoBDJavaDB;
@@ -91,11 +90,15 @@ public class EditarProduto extends HttpServlet {
                 + "          MARCA ,\n"
                 + "          TIPO_PRODUTO ,\n"
                 + "          CUSTO ,\n"
+                + "          QUANTIDADE ,\n"
+                + "          CAMINHO_IMAGEM ,\n"
+                + "          DESCRICAO ,\n"
                 + "          FK_FORNECEDOR ,\n"
                 + "          FK_FUNCIONARIO ,\n"
                 + "          DATA_CRIACAO ,\n"
                 + "          NOME_FORNECEDOR ,\n"
-                + "          NOME_USUARIO\n"
+                + "          NOME_USUARIO, \n"
+                + "          DESCRICAO_IMAGEM\n"
                 + "     FROM TB_PRODUTO\n"
                 + "    WHERE TB_PRODUTO.ID_PRODUTO = " + idProduto.toString();
         try {
@@ -112,11 +115,15 @@ public class EditarProduto extends HttpServlet {
                 p.setMarca(resultados.getString("MARCA"));
                 p.setTipoProduto(resultados.getString("TIPO_PRODUTO"));
                 p.setCusto(Float.parseFloat(resultados.getString("CUSTO")));
+                p.setQuantidade(Integer.parseInt(resultados.getString("QUANTIDADE")));
+                p.setCaminhoImagem(resultados.getString("CAMINHO_IMAGEM"));
+                p.setDescricao(resultados.getString("DESCRICAO"));
                 p.setIdFornecedor(Integer.parseInt(resultados.getString("FK_FORNECEDOR")));
                 p.setIdFuncionario(Integer.parseInt(resultados.getString("FK_FUNCIONARIO")));
                 p.setDataCriacao(resultados.getString("DATA_CRIACAO"));
                 p.setNomeUsuario(resultados.getString("NOME_FORNECEDOR"));
-                p.setNomeFornecedor(resultados.getString("NOME_USUARIO"));
+                p.setNomeFornecedor(resultados.getString("NOME_USUARIO"));                
+                p.setDescImagem(resultados.getString("DESCRICAO_IMAGEM"));
             }
             return p;
         } catch (SQLException | ClassNotFoundException ex) {
@@ -200,40 +207,44 @@ public class EditarProduto extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+
         request.setCharacterEncoding("UTF-8");
 
-        String tipoProduto = request.getParameter("Tipo");
-        String idFornecedor = request.getParameter("Fornecedor");
-        String Marca = request.getParameter("Marca");
-        String Modelo = request.getParameter("Modelo");
-        String Custo = request.getParameter("Custo");
-        String Lucro = request.getParameter("lucro");
-        String Preco = request.getParameter("preco");
-        
-        float precoVenda = Float.parseFloat(Preco.substring(3, Preco.length()));
-        float percentualLucro = Float.parseFloat(Lucro);
-        float custo = Float.parseFloat(Custo);
-
-        String Fornecedor = request.getParameter(idFornecedor);
+        String stringPrecoVenda = request.getParameter("preco");
+        String teste = request.getParameter("Teste");
+        String stringPercLucro = request.getParameter("lucro");
+        String stringCusto = request.getParameter("Custo");
+        float precoVenda = 0;
+        float percentualLucro = 0;
+        float custo = 0;
+        try {
+            precoVenda = (Long) NumberFormat.getIntegerInstance().parse(stringPrecoVenda.substring(3, stringPrecoVenda.length() - 3));
+            percentualLucro = (Long) NumberFormat.getNumberInstance().parse(stringPercLucro);
+            custo = (Long) NumberFormat.getNumberInstance().parse(stringCusto);
+        } catch (ParseException ex) {
+            Logger.getLogger(CadastrarProduto.class.getName()).log(Level.SEVERE, null, ex);
+        }
         // 1) OBTEM AS INFORMACOES DO USUARIO DA SESSAO
         // A) CAST DOS PARÂMETROS RECEBIDOS
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         // B) TENTA RECUPERAR A SESSÃO DO USUÁRIO
         HttpSession sessao = httpRequest.getSession();
         Usuario usuario = (Usuario) sessao.getAttribute("usuario");
+        String modelo = request.getParameter("Modelo");
+        String marca = request.getParameter("Marca");
+        String tipoProduto = request.getParameter("Tipo");
+        int fkFornecedor = Integer.parseInt(request.getParameter("Fornecedor"));
+        Date d = new Date();
+        String dataCriacao = String.valueOf(d.getTime());
+        String nomeFornecedor = request.getParameter(String.valueOf(fkFornecedor));
+        String nomeUsuario = usuario.getNomeDoFuncionario();
+        int fkFuncionario = Integer.parseInt(usuario.getIdUsuario());
+        int quantidade = Integer.parseInt(request.getParameter("quantidade"));
+        String caminhoImagem = request.getParameter(String.valueOf("imagem"));
+        String descImagem = request.getParameter(String.valueOf("descImagem"));
+        String descricao = request.getParameter(String.valueOf("descricao"));
 
-        Produto p = new Produto(0,
-                precoVenda,
-                percentualLucro,
-                Modelo,
-                Marca,
-                tipoProduto,
-                custo,
-                Integer.parseInt(idFornecedor),
-                String.valueOf(new Date().getTime()),
-                Fornecedor,
-                usuario.getNomeDoFuncionario(),
-                Integer.parseInt(usuario.getIdUsuario()));
+        Produto p = new Produto(0, precoVenda, percentualLucro, modelo, marca, tipoProduto, custo, fkFornecedor, dataCriacao, nomeFornecedor, nomeUsuario, fkFuncionario, quantidade, descricao, caminhoImagem, descImagem);
 
         editarProduto(p, usuario);
 

@@ -191,9 +191,9 @@
                 </div>
 
                 <div id="campoImagem" class="normal form-group" >
-                    <label class="col-sm-3 control-label" for="imagem"> Caminho da imagem </label>
+                    <label class="col-sm-3 control-label" for="descImagem"> Descrição da imagem </label>
                     <div class="col-sm-2 from-group">
-                        <input type="text" class="form-control" id="imageCaminho" name="imagem">
+                        <input type="text" class="form-control" id="imageCaminho" name="descImagem">
                     </div>
                 </div>
 
@@ -204,7 +204,12 @@
                     </div>
                 </div>
 
-                <img id="imgTeste"/>
+                <div id="campoImagem" class="normal form-group" >
+                    <div class="col-sm-2 from-group">
+                        <img id="imgTeste"/>
+                    </div>
+                </div>
+
 
                 <div id="campoDescricao" class="normal form-group" >
                     <label class="col-sm-3 control-label" for="descricao"> Descricao </label>
@@ -223,9 +228,11 @@
     <script>
         function setSourceOnImg() {
             var url = document.getElementById("imageCaminho").value;
+            var desc = document.getElementById("descImagem").value;
             var img = document.getElementById("imgTeste");
 
             img.setAttribute("src", url);
+            img.setAttribute("alt", desc);
         }
     </script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

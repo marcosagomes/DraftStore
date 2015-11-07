@@ -39,29 +39,29 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "CadastrarProduto", urlPatterns = {"/Servlet/CadastrarProduto"})
 public class CadastrarProduto extends HttpServlet {
-
+    
     public List<Fornecedor> listarFornecedores() {
         ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
         Statement stmt = null;
         Connection conn = null;
-
+        
         String sql = "SELECT ID_FORNECEDOR, RAZAO_SOCIAL FROM TB_FORNECEDOR";
         try {
             conn = conexaoBD.obterConexao();
             stmt = conn.createStatement();
             ResultSet resultados = stmt.executeQuery(sql);
-
+            
             List<Fornecedor> lista = new ArrayList<>();
-
+            
             while (resultados.next()) {
                 Fornecedor f = new Fornecedor();
                 f.setIdFornecedor(resultados.getString("ID_FORNECEDOR"));
                 f.setRazaoSocial(resultados.getString("RAZAO_SOCIAL"));
                 lista.add(f);
             }
-
+            
             return lista;
-
+            
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(BuscarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -82,12 +82,12 @@ public class CadastrarProduto extends HttpServlet {
         }
         return null;
     }
-
+    
     public void cadastrarProduto(String razaoSocial, Produto p, Usuario u) {
         ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
         PreparedStatement stmt = null;
         Connection conn = null;
-
+        
         String sql = "INSERT INTO ADM.TB_PRODUTO"
                 + "(PRECO_VENDA,"
                 + " PERCENTUAL_LUCRO,"
@@ -102,31 +102,36 @@ public class CadastrarProduto extends HttpServlet {
                 + " FK_FUNCIONARIO,"
                 + " DATA_CRIACAO,"
                 + " NOME_FORNECEDOR,"
-                + " NOME_USUARIO) \n"
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + " NOME_USUARIO,"
+                + " DESCRICAO_IMAGEM) \n"
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             conn = conexaoBD.obterConexao();
             stmt = conn.prepareStatement(sql);
-
+            
             stmt.setFloat(1, p.getPrecoVenda());
             stmt.setFloat(2, p.getPercentualLucro());
             stmt.setString(3, p.getModelo());
             stmt.setString(4, p.getMarca());
             stmt.setString(5, p.getTipoProduto());
             stmt.setFloat(6, p.getCusto());
-            stmt.setInt(7, p.getIdFornecedor());
-            stmt.setString(8, u.getIdUsuario());
+            stmt.setInt(7, p.getQuantidade());
+            stmt.setString(8, p.getCaminhoImagem());
+            stmt.setString(9, p.getDescricao());
+            stmt.setInt(10, p.getIdFornecedor());
+            stmt.setString(11, u.getIdUsuario());
 
             // Criando um Timestamp atual do sistema
-            stmt.setTimestamp(9, new Timestamp(new Date().getTime()));
-
-            stmt.setString(10, p.getNomeFornecedor());
-            stmt.setString(11, razaoSocial);
-
+            stmt.setTimestamp(12, new Timestamp(new Date().getTime()));
+            
+            stmt.setString(13, p.getNomeFornecedor());
+            stmt.setString(14, u.getNomeDoFuncionario());
+            stmt.setString(15, p.getDescImagem());
+            
             stmt.executeUpdate();
-
+            
             System.out.println("> Produto cadastrado com sucesso.");
-
+            
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(EditarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("ERRO! -> " + ex.getMessage());
@@ -160,9 +165,9 @@ public class CadastrarProduto extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        
         request.setCharacterEncoding("UTF-8");
-
+        
         String stringPrecoVenda = request.getParameter("preco");
         String teste = request.getParameter("Teste");
         String stringPercLucro = request.getParameter("lucro");
@@ -183,28 +188,25 @@ public class CadastrarProduto extends HttpServlet {
         // B) TENTA RECUPERAR A SESSÃO DO USUÁRIO
         HttpSession sessao = httpRequest.getSession();
         Usuario usuario = (Usuario) sessao.getAttribute("usuario");
-
-//        float precoVenda = Float.parseFloat(request.getParameter("precoVenda"));
-//        float percentualLucro = Float.parseFloat(request.getParameter("lucro"));
         String modelo = request.getParameter("Modelo");
         String marca = request.getParameter("Marca");
         String tipoProduto = request.getParameter("Tipo");
-//        float custo = Float.parseFloat(request.getParameter("custo"));
         int fkFornecedor = Integer.parseInt(request.getParameter("Fornecedor"));
         Date d = new Date();
         String dataCriacao = String.valueOf(d.getTime());
         String nomeFornecedor = request.getParameter(String.valueOf(fkFornecedor));
         String nomeUsuario = usuario.getNomeDoFuncionario();
         int fkFuncionario = Integer.parseInt(usuario.getIdUsuario());
-
-//        Produto p = new Produto(precoVenda, percentualLucro, modelo, 
-//                marca, tipoProduto, custo, fkFornecedor);
-        Produto p = new Produto(0, precoVenda, percentualLucro, modelo,
-                marca, tipoProduto, custo, fkFornecedor, dataCriacao, nomeFornecedor, nomeUsuario, fkFuncionario);
-
+        int quantidade = Integer.parseInt(request.getParameter("quantidade"));
+        String caminhoImagem = request.getParameter(String.valueOf("imagem"));
+        String descImagem = request.getParameter(String.valueOf("descImagem"));
+        String descricao = request.getParameter(String.valueOf("descricao"));
+        
+        Produto p = new Produto(0, precoVenda, percentualLucro, modelo, marca, tipoProduto, custo, fkFornecedor, dataCriacao, nomeFornecedor, nomeUsuario, fkFuncionario, quantidade, descricao, caminhoImagem, descImagem);
+        
         cadastrarProduto(nomeFornecedor, p, usuario);
         response.sendRedirect("CadastrarProduto");
-
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -237,7 +239,7 @@ public class CadastrarProduto extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-
+        
     }
 
     /**

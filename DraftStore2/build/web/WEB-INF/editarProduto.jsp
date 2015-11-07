@@ -165,7 +165,50 @@
                         <input type="text" id="inputPreco" class="form-control" name="preco" placeholder="R$ 00,00" value="R$ ${Produto.precoVenda}" readonly>
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
-                </div>         
+                </div>    
+
+                <div id="campoQuantidade" class="normal form-group" >
+                    <label class="col-sm-3 control-label" for="quantidade"> Quantidade </label>
+                    <div class="col-sm-2 from-group">
+                        <input type="number" class="form-control" id="numberQuantidade" name="quantidade" min="0" value="${Produto.quantidade}">
+                    </div>
+                </div>
+
+                <div id="campoImagem" class="normal form-group" >
+                    <label class="col-sm-3 control-label" for="imagem"> Caminho da imagem </label>
+                    <div class="col-sm-2 from-group">
+                        <input type="text" class="form-control" id="imageCaminho" name="imagem" value="${Produto.caminhoImagem}">
+                    </div>
+                </div>
+
+                <div id="campoImagem" class="normal form-group" >
+                    <label class="col-sm-3 control-label" for="descImagem"> Descrição da imagem </label>
+                    <div class="col-sm-2 from-group">
+                        <input type="text" class="form-control" id="descImagem" name="descImagem" value="${Produto.descImagem}">
+                    </div>
+                </div>
+
+                <div id="campoDescricao" class="normal form-group" >
+                    <label class="col-sm-3 control-label" for="btnTeste"> Preview </label>
+                    <div class="col-sm-2 from-group">
+                        <input type="button" class="form-control" id="textareaDescricao" name="btnTeste" onclick="setSourceOnImg()">
+                    </div>
+                </div>
+
+                <div id="campoImagem" class="normal form-group" >
+                    <div class="col-sm-2 from-group">
+                        <img id="imgTeste" src="${Produto.caminhoImagem}" alt="${Produto.descImagem}"/>
+                    </div>
+                </div>
+
+                <div id="campoDescricao" class="normal form-group" >
+                    <label class="col-sm-3 control-label" for="descricao"> Descricao </label>
+                    <div class="col-sm-2 from-group">
+                        <textarea class="form-control" id="textareaDescricao" name="descricao">
+                            ${Produto.descricao}
+                        </textarea>
+                    </div>
+                </div>
                 <div class="botoesFormulario">
                     <button type="reset" class="btn btn-default">Cancelar</button>
                     <button type="submit" class="btn btn-primary">Efetuar mudanças</button>
@@ -175,6 +218,16 @@
         </div>
 
     </div>
+    <script>
+        function setSourceOnImg() {
+            var url = document.getElementById("imageCaminho").value;
+            var desc = document.getElementById("descImagem").value;
+            var img = document.getElementById("imgTeste");
+
+            img.setAttribute("src", url);
+            img.setAttribute("alt", desc);
+        }
+    </script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
