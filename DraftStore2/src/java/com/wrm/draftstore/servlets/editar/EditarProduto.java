@@ -50,7 +50,11 @@ public class EditarProduto extends HttpServlet {
                 + "        MARCA  = '" + p.getMarca() + "', \n"
                 + "        TIPO_PRODUTO  = '" + p.getTipoProduto() + "',\n"
                 + "        CUSTO  = " + p.getCusto() + ", \n"
-                + "        DATA_CRIACAO = '" + new Timestamp(new Date().getTime()).toString() + "'\n"
+                + "        QUANTIDADE  = " + p.getQuantidade() + ", \n"
+                + "        CAMINHO_IMAGEM  = '" + p.getCaminhoImagem() + "', \n"
+                + "        DESCRICAO  = '" + p.getDescricao() + "', \n"
+                + "        DATA_CRIACAO = '" + new Timestamp(new Date().getTime()).toString() + "', \n"
+                + "        DESCRICAO_IMAGEM  = '" + p.getDescImagem() + "' \n"
                 + "  WHERE ID_PRODUTO = " + idProduto + "\n";
         try {
             conn = conexaoBD.obterConexao();
@@ -122,7 +126,7 @@ public class EditarProduto extends HttpServlet {
                 p.setIdFuncionario(Integer.parseInt(resultados.getString("FK_FUNCIONARIO")));
                 p.setDataCriacao(resultados.getString("DATA_CRIACAO"));
                 p.setNomeUsuario(resultados.getString("NOME_FORNECEDOR"));
-                p.setNomeFornecedor(resultados.getString("NOME_USUARIO"));                
+                p.setNomeFornecedor(resultados.getString("NOME_USUARIO"));
                 p.setDescImagem(resultados.getString("DESCRICAO_IMAGEM"));
             }
             return p;
