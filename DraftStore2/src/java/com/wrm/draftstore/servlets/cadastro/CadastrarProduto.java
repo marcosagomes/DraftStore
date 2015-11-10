@@ -103,8 +103,9 @@ public class CadastrarProduto extends HttpServlet {
                 + " DATA_CRIACAO,"
                 + " NOME_FORNECEDOR,"
                 + " NOME_USUARIO,"
-                + " DESCRICAO_IMAGEM) \n"
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + " DESCRICAO_IMAGEM,"
+                + " FK_CATEGORIA) \n"
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             conn = conexaoBD.obterConexao();
             stmt = conn.prepareStatement(sql);

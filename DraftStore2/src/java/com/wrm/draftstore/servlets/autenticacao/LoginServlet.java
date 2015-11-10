@@ -5,6 +5,7 @@
  */
 package com.wrm.draftstore.servlets.autenticacao;
 
+import com.wrm.draftstore.auxiliares.ScheduleMain;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,8 +32,8 @@ import java.util.logging.Logger;
  * @author fernando.tsuda
  */
 @WebServlet(name = "LoginServlet", urlPatterns = {"/Login"})
-public class LoginServlet extends HttpServlet {
-
+public class LoginServlet extends HttpServlet {     
+    
     private static String nome, senha;
 
     // OBS: Usuarios mantidos em um mapa somente como exemplo.

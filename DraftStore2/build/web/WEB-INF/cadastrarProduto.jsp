@@ -108,14 +108,21 @@
                 action="CadastrarProduto"
                 method="POST">
                 <div id="campoTipoProduto" class="normal form-group" >
-                    <label class="col-sm-3 control-label" for="Tipo"> Tipo do Produto </label>
+                    <label class="col-sm-3 control-label" for="Tipo"> Categoria </label>
                     <div class="col-sm-2 from-group">
-                        <select class="form-control" id="selectTipo" name="Tipo">
+                        <select class="form-control" id="selectCategoria" name="Tipo">
                             <option selected="selected"  value="">Selecione</option>
                             <option value="Processador"> Processador </option>
-                            <option value="Placa-Mae"> Placa-Mãe </option>
-                            <option value="Memoria"> Memoria </option>
-                            <option value="Fonte"> Fonte </option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div id="campoTipoProduto" class="normal form-group" >
+                    <label class="col-sm-3 control-label" for="Tipo"> Subcategoria </label>
+                    <div class="col-sm-2 from-group">
+                        <select class="form-control" id="selectSubcategoria" name="Tipo">
+                            <option selected="selected"  value="">Selecione</option>
+                            <option value="Processador"> Processador </option>
                         </select>
                     </div>
                 </div>
