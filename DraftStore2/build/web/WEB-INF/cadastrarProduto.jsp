@@ -200,7 +200,7 @@
                 <div id="campoImagem" class="normal form-group" >
                     <label class="col-sm-3 control-label" for="descImagem"> Descrição da imagem </label>
                     <div class="col-sm-2 from-group">
-                        <input type="text" class="form-control" id="imageCaminho" name="descImagem">
+                        <input type="text" class="form-control" id="descImagem" name="descImagem">
                     </div>
                 </div>
 
