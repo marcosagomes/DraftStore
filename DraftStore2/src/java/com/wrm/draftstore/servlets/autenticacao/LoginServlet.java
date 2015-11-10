@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet {
     public static HashMap<String, Usuario> carregarUsuarios(String nome, String senha) {
 
         String hashSenha = "";
-        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
+        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
         Statement stmt = null;
         Connection conn = null;
 

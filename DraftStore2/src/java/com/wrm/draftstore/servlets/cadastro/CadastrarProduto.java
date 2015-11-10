@@ -41,7 +41,7 @@ import javax.servlet.http.HttpSession;
 public class CadastrarProduto extends HttpServlet {
     
     public List<Fornecedor> listarFornecedores() {
-        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
+        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
         Statement stmt = null;
         Connection conn = null;
         
@@ -84,11 +84,11 @@ public class CadastrarProduto extends HttpServlet {
     }
     
     public void cadastrarProduto(String razaoSocial, Produto p, Usuario u) {
-        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
+        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
         PreparedStatement stmt = null;
         Connection conn = null;
         
-        String sql = "INSERT INTO ADM.TB_PRODUTO"
+        String sql = "INSERT INTO TB_PRODUTO"
                 + "(PRECO_VENDA,"
                 + " PERCENTUAL_LUCRO,"
                 + " MODELO,"

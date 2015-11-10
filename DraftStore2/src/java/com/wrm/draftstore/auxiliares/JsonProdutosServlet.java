@@ -118,7 +118,7 @@ public class JsonProdutosServlet extends HttpServlet {
     }// </editor-fold>
 
     public List<Produto> listarProdutos() {
-        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
+        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
         Statement stmt = null;
         Connection conn = null;
         

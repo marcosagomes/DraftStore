@@ -114,7 +114,7 @@ public class JsonFuncionariosServlet extends HttpServlet {
   }// </editor-fold>
 
   public List<Funcionario> listarFuncionarios() {
-    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
+    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
     Statement stmt = null;
     Connection conn = null;
 

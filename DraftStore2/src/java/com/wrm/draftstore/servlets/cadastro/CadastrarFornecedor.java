@@ -32,7 +32,7 @@ import javax.servlet.http.HttpSession;
 public class CadastrarFornecedor extends HttpServlet {
 
     public void cadastrarFornecedor(Fornecedor f, Usuario u){
-        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
+        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
         PreparedStatement stmt = null;
         Connection conn = null;
         

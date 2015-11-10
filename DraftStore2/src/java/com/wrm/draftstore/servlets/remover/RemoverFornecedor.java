@@ -32,7 +32,7 @@ import javax.servlet.http.HttpSession;
 public class RemoverFornecedor extends HttpServlet {
     static String idFornec;
     public void removerFornecedor(Fornecedor f, Usuario u) {
-        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
+        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
         PreparedStatement stmt = null;
         Connection conn = null;
         
@@ -67,7 +67,7 @@ public class RemoverFornecedor extends HttpServlet {
     }
 
     public Fornecedor buscarFornecedor(Object idFornecedor, Usuario u) {
-        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
+        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
         Statement stmt = null;
         Connection conn = null;
 

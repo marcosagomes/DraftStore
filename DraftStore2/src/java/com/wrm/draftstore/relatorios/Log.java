@@ -42,7 +42,7 @@ public class Log extends HttpServlet {
         String auxAtual;
 
         auxAtual = "20" + mesAtual.substring(6, 8) + "-" + mesAtual.substring(3, 5);
-        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
+        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
         Statement stmt = null;
         Connection conn = null;
 
@@ -50,7 +50,7 @@ public class Log extends HttpServlet {
                 = "select 'DESCRIÇÃO DO LOG: '||log.DESCRICAO_LOG||\n"
                 + "       '  -  DATA DO LOG: '||log.DATA_CRIACAO||\n"
                 + "       '  -  USUÁRIO ENVOLVIDO: '||log.NOME_USUARIO as DESCRICAO\n"
-                + "        from ADM.TB_LOG log\n"
+                + "        from TB_LOG log\n"
                 + "       where SUBSTR((CAST((CAST(log.data_criacao AS DATE)) AS VARCHAR(10))),1,7) = '" + auxAtual + "'";
         try {
             conn = conexaoBD.obterConexao();

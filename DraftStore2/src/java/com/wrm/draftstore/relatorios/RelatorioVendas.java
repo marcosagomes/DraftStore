@@ -48,15 +48,15 @@ public class RelatorioVendas extends HttpServlet {
         auxAtual = "20" + mesAtual.substring(6, 8) + "-" + mesAtual.substring(3, 5);
         auxAnterior = "20" + mesAnterior.substring(6, 8) + "-" + mesAnterior.substring(3, 5);
         
-        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
+        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
         Statement stmt = null;
         Connection conn = null;
         
         String sql
                 = "select  sum(produto.PRECO) as VALOR,\n"
                 + "        SUBSTR((CAST((CAST(venda.DATA_CRIACAO as DATE)) as VARCHAR(10))),1,7) as MES\n"
-                + "        from ADM.TB_VENDA venda, \n"
-                + "            ADM.TB_ITEM_VENDA produto\n"
+                + "        from TB_VENDA venda, \n"
+                + "            TB_ITEM_VENDA produto\n"
                 + "        where venda.ID_VENDA = produto.FK_VENDA\n"
                 + "        and (CAST((SUBSTR((CAST((CAST(venda.DATA_CRIACAO as DATE)) as VARCHAR(10))),1,8)||'01') AS DATE)) "
                 + "        BETWEEN '" + auxAnterior + "-01'" + " AND '" + auxAtual + "-01'" + " group\n"
@@ -106,15 +106,15 @@ public class RelatorioVendas extends HttpServlet {
         mesAnterior = mesAnterior.length() == 1 ? "0" + mesAnterior : mesAnterior;
         auxAnterior = "20" + anoAnterior.substring(6, 8) + "-" + mesAnterior;
         
-        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
+        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
         Statement stmt = null;
         Connection conn = null;
         
         String sql
                 = "select  sum(produto.PRECO) as VALOR,\n"
                 + "        SUBSTR((CAST((CAST(venda.DATA_CRIACAO as DATE)) as VARCHAR(10))),1,7) as MES\n"
-                + "        from ADM.TB_VENDA venda, \n"
-                + "            ADM.TB_ITEM_VENDA produto\n"
+                + "        from TB_VENDA venda, \n"
+                + "            TB_ITEM_VENDA produto\n"
                 + "        where venda.ID_VENDA = produto.FK_VENDA\n"
                 + "        and (CAST((SUBSTR((CAST((CAST(venda.DATA_CRIACAO as DATE)) as VARCHAR(10))),1,8)||'01') AS DATE)) "
                 + "        BETWEEN '" + auxAnterior + "-01'" + " AND '" + auxAtual + "-01'" + " group\n"

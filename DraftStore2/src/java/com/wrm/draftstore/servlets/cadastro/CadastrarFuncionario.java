@@ -44,7 +44,7 @@ public class CadastrarFuncionario extends HttpServlet {
 
   //Metódo para tentar comparar CARGO > FK_PAPEL
   public List<Funcionario> listarFuncionarios() {
-    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
+    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
     Statement stmt = null;
     Connection conn = null;
 
@@ -88,7 +88,7 @@ public class CadastrarFuncionario extends HttpServlet {
 
   public void cadastrarFuncionario(Funcionario f, Usuario u) {
     ConexaoBDJavaDB conexaoBD
-            = new ConexaoBDJavaDB("DraftOfficeDB");
+            = new ConexaoBDJavaDB("draftCliente");
     PreparedStatement stmt = null;
     Connection conn = null;
 
