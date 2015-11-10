@@ -32,7 +32,7 @@ import javax.servlet.http.HttpServletResponse;
 public class BuscarFornecedor extends HttpServlet {
 
   public List<Fornecedor> listarFornecedores() {
-    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
+    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
     Statement stmt = null;
     Connection conn = null;
 

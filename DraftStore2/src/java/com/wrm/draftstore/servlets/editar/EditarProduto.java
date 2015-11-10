@@ -39,7 +39,7 @@ public class EditarProduto extends HttpServlet {
     static Object idProduto;
 
     public void editarProduto(Produto p, Usuario u) {
-        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
+        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
         PreparedStatement stmt = null;
         Connection conn = null;
 
@@ -83,7 +83,7 @@ public class EditarProduto extends HttpServlet {
     }
 
     public Produto buscarProduto(Object idProduto, Usuario u) {
-        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
+        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
         Statement stmt = null;
         Connection conn = null;
 

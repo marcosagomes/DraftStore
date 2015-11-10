@@ -38,7 +38,7 @@ public class EditarFuncionario extends HttpServlet {
   static String idFuncionario;
 
   public void editarFuncionario(Funcionario f, Usuario u) {
-    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
+    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
     PreparedStatement stmt = null;
     Connection conn = null;
     Date data = new Date();
@@ -93,7 +93,7 @@ public class EditarFuncionario extends HttpServlet {
   }
 
   public Funcionario buscarFuncionario(Object idFuncionario, Usuario u) {
-    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
+    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
     Statement stmt = null;
     Connection conn = null;
 

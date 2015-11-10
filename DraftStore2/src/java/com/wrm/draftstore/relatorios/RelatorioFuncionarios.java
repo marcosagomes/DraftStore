@@ -35,7 +35,7 @@ public class RelatorioFuncionarios extends HttpServlet {
 
     public void buscarVendas(List<Funcionario> funcionarios) {
 
-        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
+        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
         Statement stmt = null;
         Connection conn = null;
 
@@ -43,8 +43,8 @@ public class RelatorioFuncionarios extends HttpServlet {
                 = "select  sum(produto.PRECO) as VALOR,\n"
                 + "        FK_FUNCIONARIO ,\n"
                 + "        NOME_USUARIO as FUNCIONARIO\n"
-                + "        from ADM.TB_VENDA venda, \n"
-                + "            ADM.TB_ITEM_VENDA produto\n"
+                + "        from TB_VENDA venda, \n"
+                + "            TB_ITEM_VENDA produto\n"
                 + "        where venda.ID_VENDA = produto.FK_VENDA group\n"
                 + "        by FK_FUNCIONARIO, NOME_USUARIO order by VALOR desc";
         try {

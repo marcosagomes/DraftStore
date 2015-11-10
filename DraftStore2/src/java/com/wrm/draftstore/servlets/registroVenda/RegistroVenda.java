@@ -106,7 +106,7 @@ public class RegistroVenda extends HttpServlet {
   }
 
   public int selectIdVenda() {
-    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
+    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
     Statement stmt = null;
     Connection conn = null;
     int idVenda = -1;
@@ -145,11 +145,11 @@ public class RegistroVenda extends HttpServlet {
   }
 
   public void inserirVenda(Usuario u) {
-    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
+    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
     PreparedStatement stmt = null;
     Connection conn = null;
 
-    String sql = "INSERT INTO ADM.TB_VENDA "
+    String sql = "INSERT INTO TB_VENDA "
             + "(FK_FUNCIONARIO, DATA_CRIACAO, NOME_USUARIO) \n"
             + "	VALUES (?, ?, ?)\n";
     try {
@@ -190,11 +190,11 @@ public class RegistroVenda extends HttpServlet {
   }
 
   public void cadastrarItensVenda(Usuario u, List<ItemVenda> lista) {
-    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
+    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
     PreparedStatement stmt = null;
     Connection conn = null;
 
-    String sql = "INSERT INTO ADM.TB_ITEM_VENDA "
+    String sql = "INSERT INTO TB_ITEM_VENDA "
             + "(FK_PRODUTO, FK_VENDA, QUANTIDADE, PRECO, NOME_PRODUTO) "
             + "VALUES (?, ?, ?, ?, ?)";
     try {

@@ -36,7 +36,7 @@ import javax.servlet.http.HttpSession;
 public class RemoverFuncionario extends HttpServlet {
     static String idFuncionario;
     public void removerFuncionario(Funcionario f, Usuario u) {
-        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
+        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
         PreparedStatement stmt = null;
         Connection conn = null;
         
@@ -73,7 +73,7 @@ public class RemoverFuncionario extends HttpServlet {
     }
     
     public Funcionario buscarFuncionario(Object idFuncionario, Usuario u) {
-    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
+    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
     Statement stmt = null;
     Connection conn = null;
 

@@ -36,7 +36,7 @@ public class BuscarPaginas {
   }
 
   public List<String> listaDePaginas(Usuario usuario) {
-    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
+    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
     Statement stmt = null;
     Connection conn = null;
     

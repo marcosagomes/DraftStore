@@ -32,7 +32,7 @@ import javax.servlet.http.HttpServletResponse;
 public class BuscarProduto extends HttpServlet {
 
   public List<Produto> listarProdutos() {
-    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("DraftOfficeDB");
+    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
     Statement stmt = null;
     Connection conn = null;
 
