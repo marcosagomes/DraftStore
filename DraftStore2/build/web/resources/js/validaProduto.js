@@ -1,5 +1,4 @@
 // validacoes
-var campoTipoProduto = document.getElementById("campoTipoProduto");
 var campoTipoFornecedor = document.getElementById("campoFornecedor");
 var campoMarca = document.getElementById("campoMarca");
 var campoModelo = document.getElementById("campoModelo");
@@ -7,17 +6,7 @@ var campoLucro = document.getElementById("campoLucro");
 var campoCusto = document.getElementById("campoCusto");
 
 
-function validaTipoProduto() {
-    var comboNome = document.getElementById("selectTipo");
-    if (comboNome.options[comboNome.selectedIndex].value === "") {
-        campoTipoProduto.classList.add("has-error");
-        return false;
-    } else {
-        campoTipoProduto.classList.remove("has-error");
-        campoTipoProduto.classList.add("has-success");
-        return true;
-    }
-}
+
 function validaFornecedor() {
     var comboNome = document.getElementById("selectFornecedor");
     if (comboNome.options[comboNome.selectedIndex].value === "") {
@@ -76,11 +65,6 @@ function validaLucro() {
 }
 
 function valida(form) {
-
-    if (!validaTipoProduto()) {
-        form.Tipo.focus();
-        return false;
-    }
     if (!validaFornecedor()) {
         form.Fornecedor.focus();
         return false;
@@ -109,7 +93,6 @@ function valida(form) {
     }
 
 }
-$("#selectTipo").blur(validaTipoProduto);
 $("#selectFornecedor").blur(validaFornecedor);
 $("#inputMarca").blur(validaMarca);
 $("#inputModelo").blur(validaModelo);

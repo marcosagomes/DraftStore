@@ -195,7 +195,6 @@ public class CadastrarProduto extends HttpServlet {
         Usuario usuario = (Usuario) sessao.getAttribute("usuario");
         String modelo = request.getParameter("Modelo");
         String marca = request.getParameter("Marca");
-        String tipoProduto = request.getParameter("Tipo");
         int fkFornecedor = Integer.parseInt(request.getParameter("Fornecedor"));
         Date d = new Date();
         String dataCriacao = String.valueOf(d.getTime());

@@ -119,7 +119,6 @@
                 <thead>
                     <tr>
                         <th data-field="idProduto">ID</th>
-                        <th data-field="tipoProduto">Tipo de produto</th>
                         <th data-field="marca">Marca</th>
                         <th data-field="modelo">Modelo</th>
                         <th data-field="precoVenda">Preço</th>

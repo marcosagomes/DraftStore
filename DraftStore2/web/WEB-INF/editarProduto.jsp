@@ -107,11 +107,21 @@
                 onSubmit="return valida(this)"
                 method="POST"
                 action="EditarProduto">
+
                 <div id="campoTipoProduto" class="normal form-group" >
-                    <label class="col-sm-3 control-label" for="Tipo"> Tipo do Produto </label>
+                    <label class="col-sm-3 control-label" for="Tipo"> Categoria </label>
                     <div class="col-sm-2 from-group">
-                        <select class="form-control" id="selectTipo" name="Tipo">
-                            <option value="${Produto.tipoProduto}">${Produto.tipoProduto}</option>
+                        <select class="form-control" id="selectCategoria" name="Categoria">
+                            <option value="1">Teste</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="campoTipoProduto" class="normal form-group" >
+                    <label class="col-sm-3 control-label" for="Tipo"> Subcategoria </label>
+                    <div class="col-sm-2 from-group">
+                        <select class="form-control" id="selectSubCategoria" name="Subcategoria">
+                            <option value="1">Teste</option>
                         </select>
                     </div>
                 </div>
