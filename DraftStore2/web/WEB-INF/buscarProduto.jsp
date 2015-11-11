@@ -134,8 +134,7 @@
                     <thead>
                         <tr>
                             <th data-field="state" data-radio="true"></th>
-                            <th data-field="idProduto">ID</th>                            
-                            <th data-field="tipoProduto">Tipo de Produto</th>
+                            <th data-field="idProduto">ID</th>
                             <th data-field="modelo">Modelo</th>
                             <th data-field="precoVenda">Preço de Venda</th>
                         </tr>
