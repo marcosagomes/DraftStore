@@ -27,56 +27,55 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author fernando.tsuda
  */
-@WebServlet(name = "BuscarProduto", 
+@WebServlet(name = "BuscarProduto",
         urlPatterns = {"/Servlet/BuscarProduto"})
 public class BuscarProduto extends HttpServlet {
 
-  public List<Produto> listarProdutos() {
-    ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
-    Statement stmt = null;
-    Connection conn = null;
+    public List<Produto> listarProdutos() {
+        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
+        Statement stmt = null;
+        Connection conn = null;
 
-    String sql = "SELECT TIPO_PRODUTO, MARCA, MODELO, PRECO_VENDA FROM TB_PRODUTO";
-    try {
-      conn = conexaoBD.obterConexao();
-      stmt = conn.createStatement();
-      ResultSet resultados = stmt.executeQuery(sql);
-      
-      List<Produto> lista = new ArrayList<>();
-
-      while (resultados.next()) {
-          Produto p = new Produto();
-          p.setTipoProduto(resultados.getString("TIPO_PRODUTO"));
-          p.setMarca(resultados.getString("MARCA"));
-          p.setModelo(resultados.getString("MODELO"));
-          p.setPrecoVenda(resultados.getFloat("PRECO_VENDA"));
-          
-          lista.add(p);
-      }
-      
-     return lista;
-
-    } catch (SQLException | ClassNotFoundException ex) {
-      Logger.getLogger(BuscarProduto.class.getName()).log(Level.SEVERE, null, ex);
-    } finally {
-      if (stmt != null) {
+        String sql = "SELECT MARCA, MODELO, PRECO_VENDA FROM TB_PRODUTO";
         try {
-          stmt.close();
-        } catch (SQLException ex) {
-          Logger.getLogger(BuscarProduto.class.getName()).log(Level.SEVERE, null, ex);
+            conn = conexaoBD.obterConexao();
+            stmt = conn.createStatement();
+            ResultSet resultados = stmt.executeQuery(sql);
+
+            List<Produto> lista = new ArrayList<>();
+
+            while (resultados.next()) {
+                Produto p = new Produto();
+                p.setMarca(resultados.getString("MARCA"));
+                p.setModelo(resultados.getString("MODELO"));
+                p.setPrecoVenda(resultados.getFloat("PRECO_VENDA"));
+
+                lista.add(p);
+            }
+
+            return lista;
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(BuscarProduto.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(BuscarProduto.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(BuscarProduto.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
-      }
-      if (conn != null) {
-        try {
-          conn.close();
-        } catch (SQLException ex) {
-          Logger.getLogger(BuscarProduto.class.getName()).log(Level.SEVERE, null, ex);
-        }
-      }
+        return null;
     }
-    return null;
-  }
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -89,20 +88,21 @@ public class BuscarProduto extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         processRequest(request, response);
     }
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         List<Produto> produtosLista = listarProdutos();
         request.setAttribute("lista", produtosLista);
-        
+
         RequestDispatcher rd = request.getRequestDispatcher("../WEB-INF/buscarProduto.jsp");
         rd.forward(request, response);
     }
+
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -114,7 +114,7 @@ public class BuscarProduto extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+
     }
 
     /**

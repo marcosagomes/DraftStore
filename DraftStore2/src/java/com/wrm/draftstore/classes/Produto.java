@@ -5,6 +5,8 @@
  */
 package com.wrm.draftstore.classes;
 
+import java.util.Date;
+
 /**
  *
  * @author ramon.ahonorio
@@ -15,17 +17,45 @@ public class Produto {
 
     private float precoVenda;
 
+    private float precoPromo;
+
+    public float getPrecoPromo() {
+        return precoPromo;
+    }
+
+    public void setPrecoPromo(float precoPromo) {
+        this.precoPromo = precoPromo;
+    }
+
     private float percentualLucro;
 
     private String modelo;
 
     private String marca;
 
-    private String tipoProduto;
-
     private float custo;
 
     private int idFornecedor;
+
+    private int idCategoria;
+
+    public int getIdCategoria() {
+        return idCategoria;
+    }
+
+    public void setIdCategoria(int idCategoria) {
+        this.idCategoria = idCategoria;
+    }
+
+    public int getIdSubCategoria() {
+        return idSubCategoria;
+    }
+
+    public void setIdSubCategoria(int idSubCategoria) {
+        this.idSubCategoria = idSubCategoria;
+    }
+
+    private int idSubCategoria;
 
     private String dataCriacao;
 
@@ -42,6 +72,16 @@ public class Produto {
     private String caminhoImagem;
 
     private String descImagem;
+
+    private Date dataEvento;
+
+    public Date getDataEvento() {
+        return dataEvento;
+    }
+
+    public void setDataEvento(Date dataEvento) {
+        this.dataEvento = dataEvento;
+    }
 
     public int getQuantidade() {
         return quantidade;
@@ -123,14 +163,6 @@ public class Produto {
         this.precoVenda = precoVenda;
     }
 
-    public String getTipoProduto() {
-        return tipoProduto;
-    }
-
-    public void setTipoProduto(String tipoProduto) {
-        this.tipoProduto = tipoProduto;
-    }
-
     public String getModelo() {
         return modelo;
     }
@@ -171,15 +203,17 @@ public class Produto {
         this.idFornecedor = idFornecedor;
     }
 
-    public Produto(int idProduto, float precoVenda, float percentualLucro, String modelo, String marca, String tipoProduto, float custo, int idFornecedor, String dataCriacao, String nomeFornecedor, String nomeUsuario, int idFuncionario, int quantidade, String descricao, String caminhoImagem, String descImagem) {
+    public Produto(int idProduto, float precoVenda, float precoPromo, float percentualLucro, String modelo, String marca, float custo, int idFornecedor, int idCategoria, int idSubCategoria, String dataCriacao, String nomeFornecedor, String nomeUsuario, int idFuncionario, int quantidade, String descricao, String caminhoImagem, String descImagem, Date dataEvento) {
         this.idProduto = idProduto;
         this.precoVenda = precoVenda;
+        this.precoPromo = precoPromo;
         this.percentualLucro = percentualLucro;
         this.modelo = modelo;
         this.marca = marca;
-        this.tipoProduto = tipoProduto;
         this.custo = custo;
         this.idFornecedor = idFornecedor;
+        this.idCategoria = idCategoria;
+        this.idSubCategoria = idSubCategoria;
         this.dataCriacao = dataCriacao;
         this.nomeFornecedor = nomeFornecedor;
         this.nomeUsuario = nomeUsuario;
@@ -188,6 +222,7 @@ public class Produto {
         this.descricao = descricao;
         this.caminhoImagem = caminhoImagem;
         this.descImagem = descImagem;
+        this.dataEvento = dataEvento;
     }
 
     public Produto() {

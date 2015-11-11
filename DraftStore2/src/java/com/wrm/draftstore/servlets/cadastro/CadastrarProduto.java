@@ -90,11 +90,13 @@ public class CadastrarProduto extends HttpServlet {
 
         String sql = "INSERT INTO TB_PRODUTO"
                 + "(PRECO_VENDA,"
+                + " PRECO_PROMO,"
                 + " PERCENTUAL_LUCRO,"
                 + " MODELO,"
                 + " MARCA,"
-                + " TIPO_PRODUTO,"
                 + " CUSTO,"
+                + " FK_CATEGORIA,"
+                + " FK_SUBCATEGORIA,"
                 + " QUANTIDADE,"
                 + " CAMINHO_IMAGEM,"
                 + " DESCRICAO,"
@@ -103,30 +105,33 @@ public class CadastrarProduto extends HttpServlet {
                 + " DATA_CRIACAO,"
                 + " NOME_FORNECEDOR,"
                 + " NOME_USUARIO,"
-                + " DESCRICAO_IMAGEM) \n"
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + " DESCRICAO_IMAGEM,"
+                + " DATA_EVENTO) \n"
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             conn = conexaoBD.obterConexao();
             stmt = conn.prepareStatement(sql);
 
             stmt.setFloat(1, p.getPrecoVenda());
-            stmt.setFloat(2, p.getPercentualLucro());
-            stmt.setString(3, p.getModelo());
-            stmt.setString(4, p.getMarca());
-            stmt.setString(5, p.getTipoProduto());
+            stmt.setFloat(2, p.getPrecoVenda());
+            stmt.setFloat(3, p.getPercentualLucro());
+            stmt.setString(4, p.getModelo());
+            stmt.setString(5, p.getMarca());
             stmt.setFloat(6, p.getCusto());
-            stmt.setInt(7, p.getQuantidade());
-            stmt.setString(8, p.getCaminhoImagem());
-            stmt.setString(9, p.getDescricao());
-            stmt.setInt(10, p.getIdFornecedor());
-            stmt.setString(11, u.getIdUsuario());
-
+            stmt.setInt(7, 1);
+            stmt.setInt(8, 1);
+            stmt.setInt(9, p.getQuantidade());
+            stmt.setString(10, p.getCaminhoImagem());
+            stmt.setString(11, p.getDescricao());
+            stmt.setInt(12, p.getIdFornecedor());
+            stmt.setString(13, u.getIdUsuario());
             // Criando um Timestamp atual do sistema
-            stmt.setTimestamp(12, new Timestamp(new Date().getTime()));
+            stmt.setTimestamp(14, new Timestamp(new Date().getTime()));
 
-            stmt.setString(13, p.getNomeFornecedor());
-            stmt.setString(14, u.getNomeDoFuncionario());
-            stmt.setString(15, p.getDescImagem());
+            stmt.setString(15, p.getNomeFornecedor());
+            stmt.setString(16, u.getNomeDoFuncionario());
+            stmt.setString(17, p.getDescImagem());
+            stmt.setDate(18, new java.sql.Date(01, 01, 1000));
 
             stmt.executeUpdate();
 
@@ -202,8 +207,7 @@ public class CadastrarProduto extends HttpServlet {
         String descImagem = request.getParameter(String.valueOf("descImagem"));
         String descricao = request.getParameter(String.valueOf("descricao"));
 
-        Produto p = new Produto(0, precoVenda, percentualLucro, modelo, marca, tipoProduto, custo, fkFornecedor, dataCriacao, nomeFornecedor, nomeUsuario, fkFuncionario, quantidade, descricao, caminhoImagem, descImagem);
-
+        Produto p = new Produto(0, precoVenda, precoVenda, percentualLucro, modelo, marca, custo, fkFornecedor, 1, fkFuncionario, dataCriacao, nomeFornecedor, nomeUsuario, fkFuncionario, quantidade, descricao, caminhoImagem, descImagem, d);
         cadastrarProduto(nomeFornecedor, p, usuario);
         response.sendRedirect("CadastrarProduto");
 

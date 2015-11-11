@@ -48,7 +48,6 @@ public class EditarProduto extends HttpServlet {
                 + "        PERCENTUAL_LUCRO  = " + p.getPercentualLucro() + ", \n"
                 + "        MODELO = '" + p.getModelo() + "', \n"
                 + "        MARCA  = '" + p.getMarca() + "', \n"
-                + "        TIPO_PRODUTO  = '" + p.getTipoProduto() + "',\n"
                 + "        CUSTO  = " + p.getCusto() + ", \n"
                 + "        QUANTIDADE  = " + p.getQuantidade() + ", \n"
                 + "        CAMINHO_IMAGEM  = '" + p.getCaminhoImagem() + "', \n"
@@ -92,7 +91,6 @@ public class EditarProduto extends HttpServlet {
                 + "          PERCENTUAL_LUCRO ,\n"
                 + "          MODELO ,\n"
                 + "          MARCA ,\n"
-                + "          TIPO_PRODUTO ,\n"
                 + "          CUSTO ,\n"
                 + "          QUANTIDADE ,\n"
                 + "          CAMINHO_IMAGEM ,\n"
@@ -117,7 +115,6 @@ public class EditarProduto extends HttpServlet {
                 p.setPercentualLucro(Float.parseFloat(resultados.getString("PERCENTUAL_LUCRO")));
                 p.setModelo(resultados.getString("MODELO"));
                 p.setMarca(resultados.getString("MARCA"));
-                p.setTipoProduto(resultados.getString("TIPO_PRODUTO"));
                 p.setCusto(Float.parseFloat(resultados.getString("CUSTO")));
                 p.setQuantidade(Integer.parseInt(resultados.getString("QUANTIDADE")));
                 p.setCaminhoImagem(resultados.getString("CAMINHO_IMAGEM"));
@@ -236,7 +233,6 @@ public class EditarProduto extends HttpServlet {
         Usuario usuario = (Usuario) sessao.getAttribute("usuario");
         String modelo = request.getParameter("Modelo");
         String marca = request.getParameter("Marca");
-        String tipoProduto = request.getParameter("Tipo");
         int fkFornecedor = Integer.parseInt(request.getParameter("Fornecedor"));
         Date d = new Date();
         String dataCriacao = String.valueOf(d.getTime());
@@ -248,8 +244,7 @@ public class EditarProduto extends HttpServlet {
         String descImagem = request.getParameter(String.valueOf("descImagem"));
         String descricao = request.getParameter(String.valueOf("descricao"));
 
-        Produto p = new Produto(0, precoVenda, percentualLucro, modelo, marca, tipoProduto, custo, fkFornecedor, dataCriacao, nomeFornecedor, nomeUsuario, fkFuncionario, quantidade, descricao, caminhoImagem, descImagem);
-
+        Produto p = new Produto(0, precoVenda, precoVenda, percentualLucro, modelo, marca, custo, fkFornecedor, 1, fkFuncionario, dataCriacao, nomeFornecedor, nomeUsuario, fkFuncionario, quantidade, descricao, caminhoImagem, descImagem, d);
         editarProduto(p, usuario);
 
         response.sendRedirect("BuscarProduto");

@@ -75,7 +75,6 @@ public class RemoverProduto extends HttpServlet {
                 + "          PERCENTUAL_LUCRO ,\n"
                 + "          MODELO ,\n"
                 + "          MARCA ,\n"
-                + "          TIPO_PRODUTO ,\n"
                 + "          CUSTO ,\n"
                 + "          FK_FORNECEDOR ,\n"
                 + "          FK_FUNCIONARIO ,\n"
@@ -96,7 +95,6 @@ public class RemoverProduto extends HttpServlet {
                 p.setPercentualLucro(Float.parseFloat(resultados.getString("PERCENTUAL_LUCRO")));
                 p.setModelo(resultados.getString("MODELO"));
                 p.setMarca(resultados.getString("MARCA"));
-                p.setTipoProduto(resultados.getString("TIPO_PRODUTO"));
                 p.setCusto(Float.parseFloat(resultados.getString("CUSTO")));
                 p.setIdFornecedor(Integer.parseInt(resultados.getString("FK_FORNECEDOR")));
                 p.setIdFuncionario(Integer.parseInt(resultados.getString("FK_FUNCIONARIO")));
