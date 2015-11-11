@@ -184,24 +184,18 @@
                     </div>
                 </div>
 
-                <div id="campoImagem" class="normal form-group" >
+                <div id="campoCaminhoImagem" class="normal form-group" >
                     <label class="col-sm-3 control-label" for="imagem"> Caminho da imagem </label>
                     <div class="col-sm-2 from-group">
                         <input type="text" class="form-control" id="imageCaminho" name="imagem" value="${Produto.caminhoImagem}">
                     </div>
                 </div>
 
-                <div id="campoImagem" class="normal form-group" >
-                    <label class="col-sm-3 control-label" for="descImagem"> Descrição da imagem </label>
-                    <div class="col-sm-2 from-group">
-                        <input type="text" class="form-control" id="descImagem" name="descImagem" value="${Produto.descImagem}">
-                    </div>
-                </div>
-
-                <div id="campoDescricao" class="normal form-group" >
+                <div id="campoPreview" class="normal form-group" >
                     <label class="col-sm-3 control-label" for="btnTeste"> Preview </label>
                     <div class="col-sm-2 from-group">
-                        <input type="button" class="form-control" id="textareaDescricao" name="btnTeste" onclick="setSourceOnImg()">
+                        <input type="button" class="form-control" id="btnTeste" name="btnTeste" onclick="setSourceOnImg()" value="Abrir">              
+                        <input type="button" class="form-control" id="btnTeste2" name="btnTeste2" onclick="fecharPreview()" value="Fechar">
                     </div>
                 </div>
 
@@ -211,14 +205,22 @@
                     </div>
                 </div>
 
+                <div id="campoDescImagem" class="normal form-group" >
+                    <label class="col-sm-3 control-label" for="descImagem"> Descrição da imagem </label>
+                    <div class="col-sm-2 from-group">
+                        <input type="text" class="form-control" id="descImagem" name="descImagem" value="${Produto.descImagem}">
+                    </div>
+                </div>
+
                 <div id="campoDescricao" class="normal form-group" >
-                    <label class="col-sm-3 control-label" for="descricao"> Descricao </label>
+                    <label class="col-sm-3 control-label" for="descricao"> Descricao do Produto </label>
                     <div class="col-sm-2 from-group">
                         <textarea class="form-control" id="textareaDescricao" name="descricao">
                             ${Produto.descricao}
                         </textarea>
                     </div>
                 </div>
+
                 <div class="botoesFormulario">
                     <button type="reset" class="btn btn-default">Cancelar</button>
                     <button type="submit" class="btn btn-primary">Efetuar mudanças</button>
@@ -229,21 +231,33 @@
 
     </div>
     <script>
-        function setSourceOnImg() {
-            var url = document.getElementById("imageCaminho").value;
-            var desc = document.getElementById("descImagem").value;
-            var img = document.getElementById("imgTeste");
+        < script >
+                function setSourceOnImg() {
+                    var url = document.getElementById("imageCaminho").value;
+                    var desc = document.getElementById("descImagem").value;
+                    var img = document.getElementById("imgTeste");
+                    var close = document.getElementById("btnTeste2")
 
-            img.setAttribute("src", url);
-            img.setAttribute("alt", desc);
+                    img.setAttribute("src", url);
+                    img.setAttribute("alt", desc);
+                    close.style.display = "block";
+                }
+        function fecharPreview() {
+            var img = document.getElementById("imgTeste");
+            var close = document.getElementById("btnTeste2");
+
+            img.style.display= "none";
+            close.style.display = "none";
         }
     </script>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
-    <script src="../resources/js/validaProduto.js"></script>
-    <script src="../resources/js/previsaoPrecoVenda.js"></script>
+</script>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+<script src="../resources/js/validaProduto.js"></script>
+<script src="../resources/js/previsaoPrecoVenda.js"></script>
 </body>
 </html>
+
