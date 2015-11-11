@@ -130,18 +130,18 @@
                             <c:set var="sexo" scope="session" value="${Funcionario.sexo}"/>
                             <option value="Masculino" 
                                     <c:if test="${sexo == 'Masculino'}">selected</c:if>> Masculino </option>
-                            <option value="Feminino"
+                                    <option value="Feminino"
                                     <c:if test="${sexo == 'Feminino'}">selected</c:if>> Feminino </option>
-                        </select>
+                            </select>
+                        </div>
                     </div>
-                </div>
 
-                <div id="campoCPF" class="normal form-group">
-                    <label class="col-sm-2 control-label" for="inputCPF"> CPF </label>
-                    <div class="col-sm-3">
-                        <input type="text" id="inputCPF" class="form-control" 
-                               name="CPF" placeholder="___.___.___-__"  data-mask = "999.999.999-99"
-                               value="<c:out value="${Funcionario.cpf}"/>">
+                    <div id="campoCPF" class="normal form-group">
+                        <label class="col-sm-2 control-label" for="inputCPF"> CPF </label>
+                        <div class="col-sm-3">
+                            <input type="text" id="inputCPF" class="form-control" 
+                                   name="CPF" placeholder="___.___.___-__"  data-mask = "999.999.999-99"
+                                   value="<c:out value="${Funcionario.cpf}"/>">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -183,18 +183,18 @@
                             <c:set var="cargo" scope="session" value="${Funcionario.cargo}"/>
                             <option value="2" 
                                     <c:if test="${cargo == '2'}">selected</c:if>> Retaguarda </option>
-                            <option value="3"
+                                    <option value="3"
                                     <c:if test="${cargo == '3'}">selected</c:if>> Suporte </option>
-                            <option value="4"
+                                    <option value="4"
                                     <c:if test="${cargo == '4'}">selected</c:if>> Venda </option>
-                        </select>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div id="campoEmail" class="normal form-group ">
-                    <label class="col-sm-3 control-label" for="inputEmail"> Email </label>
-                    <div class="col-sm-7">
-                        <input type="text" id="inputEmail" class="form-control" name="Email"
-                               value="<c:out value="${Funcionario.email}"/>">
+                    <div id="campoEmail" class="normal form-group ">
+                        <label class="col-sm-3 control-label" for="inputEmail"> Email </label>
+                        <div class="col-sm-7">
+                            <input type="text" id="inputEmail" class="form-control" name="Email"
+                                   value="<c:out value="${Funcionario.email}"/>">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>

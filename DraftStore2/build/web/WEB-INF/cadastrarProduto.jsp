@@ -28,78 +28,105 @@
     <![endif]-->
     <link href="../resources/css/estiloProduto.css" type="text/css" rel="stylesheet">
 </head>
-<body>
-    <header>
-        <img id="logo" src="../resources/img/wrm-logoteste.png">
-        <div class="texto" id="titulo"><h1>Cadastrar Produto</h1></div>
-    </header>
-    <div class="row">
-        <div class="col-sm-3">
-            <div class="sidebar-nav">
-                <div class="navbar navbar-default" role="navigation">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <span class="visible-xs navbar-brand">Menu de navegação</span>
-                    </div>
-                    <div class="navbar-collapse collapse sidebar-navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            <li>
-                                <a href="../Home">Home</a>
-                            </li>
-                            <li>
-                                <a href="RegistroVenda">Registro de vendas</a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produtos <b class="caret"></b></a>
-                                <ul class="dropdown-menu dropdown-menu-right">
+<body <c:if test="${CatProduto == null}">onload="carregaCategoria('formCategoria', 'cadastrarProduto')"</c:if>>
+        <header>
+            <img id="logo" src="../resources/img/wrm-logoteste.png">
+            <div class="texto" id="titulo"><h1>Cadastrar Produto</h1></div>
+        </header>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="sidebar-nav">
+                    <div class="navbar navbar-default" role="navigation">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <span class="visible-xs navbar-brand">Menu de navegação</span>
+                        </div>
+                        <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li>
+                                    <a href="../Home">Home</a>
+                                </li>
+                                <li>
+                                    <a href="RegistroVenda">Registro de vendas</a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produtos <b class="caret"></b></a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
 
-                                    <li>
-                                        <a href="BuscarProduto">Buscar </a>
-                                    </li>
-                                    <li>
-                                        <a href="CadastrarProduto">Cadastrar</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Funcionários <b class="caret"></b></a>
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li>
-                                        <a href="BuscarFuncionario">Buscar </a>
-                                    </li>
-                                    <li>
-                                        <a href="CadastrarFuncionario">Cadastrar</a>
-                                    </li>
+                                        <li>
+                                            <a href="BuscarProduto">Buscar </a>
+                                        </li>
+                                        <li>
+                                            <a href="CadastrarProduto">Cadastrar</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Funcionários <b class="caret"></b></a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li>
+                                            <a href="BuscarFuncionario">Buscar </a>
+                                        </li>
+                                        <li>
+                                            <a href="CadastrarFuncionario">Cadastrar</a>
+                                        </li>
 
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Fornecedores <b class="caret"></b></a>
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li>
-                                        <a href="BuscarFornecedor">Buscar </a>
-                                    </li>
-                                    <li>
-                                        <a href="CadastrarFornecedor">Cadastrar</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="Log">Relatórios</a>
-                            </li>
-                        </ul>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Fornecedores <b class="caret"></b></a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li>
+                                            <a href="BuscarFornecedor">Buscar </a>
+                                        </li>
+                                        <li>
+                                            <a href="CadastrarFornecedor">Cadastrar</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="Log">Relatórios</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--/.nav-collapse -->
                     </div>
-                    <!--/.nav-collapse -->
                 </div>
             </div>
-        </div>
-        <div class="col-sm-9">
-            <!-- ********************** Inserir o conteudo aqui! ********************** -->
+            <div class="col-sm-9">
+                <!-- ********************** Inserir o conteudo aqui! ********************** -->
+
+                <form 
+                    id="formCategoria"
+                    class="form-inline"
+                    action="BuscaSubCategoria"
+                    method="GET">
+                    <div id="campoCategoria" class="normal form-group" >
+                        <label class="col-sm-3 control-label" for="Tipo"> Categoria do Produto </label>
+                        <div class="col-sm-2 from-group">
+                            <select class="form-control" id="selectCategoria" name="categoria">
+                            <c:forEach items="${CatProduto}" var="cat" varStatus="stat">
+                                <option value="${cat.value}"> ${cat.nome} </option>
+                            </c:forEach>                            
+                        </select>
+                    </div>
+                </div>                
+            </form>
+
+            <div id="campoSubCategoria" class="normal form-group" >
+                <label class="col-sm-3 control-label" for="Tipo"> SubCategoria do Produto </label>
+                <div class="col-sm-2 from-group">
+                    <select class="form-control" id="selectSubcategoria" name="subcategoria">
+                        <option selected="selected"  value="">Selecione</option>
+                        <option value="Processador"> Processador </option>
+                    </select>
+                </div>
+            </div>
 
             <form 
                 id="formulario"
@@ -107,23 +134,16 @@
                 onSubmit="return valida(this)"
                 action="CadastrarProduto"
                 method="POST">
-                <div id="campoTipoProduto" class="normal form-group" >
-                    <label class="col-sm-3 control-label" for="Tipo"> Categoria </label>
+
+                <div id="campohdCategoria" class="normal form-group" >
                     <div class="col-sm-2 from-group">
-                        <select class="form-control" id="selectCategoria" name="Tipo">
-                            <option selected="selected"  value="">Selecione</option>
-                            <option value="Processador"> Processador </option>
-                        </select>
+                        <input type="hidden" class="form-control" id="selectCategoria" name="hdcategoria">
                     </div>
                 </div>
-                
-                <div id="campoTipoProduto" class="normal form-group" >
-                    <label class="col-sm-3 control-label" for="Tipo"> Subcategoria </label>
+
+                <div id="campohdSubCategoria" class="normal form-group">                    
                     <div class="col-sm-2 from-group">
-                        <select class="form-control" id="selectSubcategoria" name="Tipo">
-                            <option selected="selected"  value="">Selecione</option>
-                            <option value="Processador"> Processador </option>
-                        </select>
+                        <input type="hidden" class="form-control" id="hdSubCategoria" name="hdsubcategoria">
                     </div>
                 </div>
 
@@ -240,6 +260,18 @@
 
             img.setAttribute("src", url);
             img.setAttribute("alt", desc);
+        }
+        function carregaCategoria(form, url)
+        {
+            var select = document.getElementById("selectCategoria");
+            select.innerHTML = "";
+            var option = document.createElement("option");
+            option.value = url;
+            option.name = "url";
+            select.appendChild(option);
+            var frm = document.getElementById(form);
+            frm.action = "BuscaSubCategoria";
+            frm.submit();
         }
     </script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
