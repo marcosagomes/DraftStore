@@ -233,8 +233,7 @@
                 <div id="campoDescricaoProduto" class="normal form-group" >
                     <label class="col-sm-3 control-label" for="descricao"> Descricao do Produto</label>
                     <div class="col-sm-2 from-group">
-                        <textarea class="form-control" id="textareaDescricao" name="descricao">
-                        </textarea>
+                        <textarea class="form-control" id="textareaDescricao" name="descricao"></textarea>
                     </div>
                 </div>
 
