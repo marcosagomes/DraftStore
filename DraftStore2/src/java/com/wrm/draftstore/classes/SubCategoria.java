@@ -13,10 +13,20 @@ public class SubCategoria {
 
     private int value;
     private String nome;
+    private int fkValue;
 
-    public SubCategoria(int value, String nome) {
+    public int getFkValue() {
+        return fkValue;
+    }
+
+    public void setFkValue(int fkValue) {
+        this.fkValue = fkValue;
+    }
+
+    public SubCategoria(int value, String nome, int fkValue) {
         this.value = value;
         this.nome = nome;
+        this.fkValue = fkValue;
     }
 
     public SubCategoria() {

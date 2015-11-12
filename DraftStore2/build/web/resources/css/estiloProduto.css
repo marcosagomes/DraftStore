@@ -62,14 +62,28 @@ li {
   margin-left: -35px;
   padding-left: 40px;
 }
-#selectTipo, #selectFornecedor{
+#selectTipo, #selectFornecedor, #selectCategoria, #selectSubCategoria{
     width: 196px;
 }
-#campoFornecedor{
-    width: 400px;
+
+#campoPreview{
+    width: 333px;
 }
+
+#textareaDescricao{
+    display: block;
+}
+
+
+#btnTeste2{
+    margin-top: 10px;
+    display: block;
+}
+
 button{
     margin-left: 120px;
     margin-right: 100px;
     width: 140px;
 }
+
+

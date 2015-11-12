@@ -28,7 +28,7 @@
     <![endif]-->
     <link href="../resources/css/estiloProduto.css" type="text/css" rel="stylesheet">
 </head>
-<body <c:if test="${CatProduto == null}">onload="carregaCategoria('formCategoria', 'cadastrarProduto')"</c:if>>
+<body <c:if test="${CatProduto == null}">onload="loadCatAndSubCat('cadastrarProduto');"</c:if>>
         <header>
             <img id="logo" src="../resources/img/wrm-logoteste.png">
             <div class="texto" id="titulo"><h1>Cadastrar Produto</h1></div>
@@ -102,48 +102,37 @@
                 <!-- ********************** Inserir o conteudo aqui! ********************** -->
 
                 <form 
-                    id="formCategoria"
+                    id="formCatAndSubCat"
                     class="form-inline"
                     action="BuscaSubCategoria"
                     method="GET">
-                    <div id="campoCategoria" class="normal form-group" >
-                        <label class="col-sm-3 control-label" for="Tipo"> Categoria do Produto </label>
+                </form>
+
+                <form 
+                    id="formulario"
+                    class="form-inline"
+                    onSubmit="return valida(this)"
+                    action="CadastrarProduto"
+                    method="POST">
+
+                    <div id="campoTipoProduto" class="normal form-group" >
+                        <label class="col-sm-3 control-label" for="Tipo"> Categoria </label>
                         <div class="col-sm-2 from-group">
-                            <select class="form-control" id="selectCategoria" name="categoria">
+                            <select class="form-control" id="selectCategoria" name="Tipo" onchange="SubCatProduto(this)">
+                                <option value="" selected> Selecione </option>
                             <c:forEach items="${CatProduto}" var="cat" varStatus="stat">
                                 <option value="${cat.value}"> ${cat.nome} </option>
-                            </c:forEach>                            
+                            </c:forEach>
                         </select>
                     </div>
-                </div>                
-            </form>
-
-            <div id="campoSubCategoria" class="normal form-group" >
-                <label class="col-sm-3 control-label" for="Tipo"> SubCategoria do Produto </label>
-                <div class="col-sm-2 from-group">
-                    <select class="form-control" id="selectSubcategoria" name="subcategoria">
-                        <option selected="selected"  value="">Selecione</option>
-                        <option value="Processador"> Processador </option>
-                    </select>
-                </div>
-            </div>
-
-            <form 
-                id="formulario"
-                class="form-inline"
-                onSubmit="return valida(this)"
-                action="CadastrarProduto"
-                method="POST">
-
-                <div id="campohdCategoria" class="normal form-group" >
-                    <div class="col-sm-2 from-group">
-                        <input type="hidden" class="form-control" id="selectCategoria" name="hdcategoria">
-                    </div>
                 </div>
 
-                <div id="campohdSubCategoria" class="normal form-group">                    
-                    <div class="col-sm-2 from-group">
-                        <input type="hidden" class="form-control" id="hdSubCategoria" name="hdsubcategoria">
+                <div id="campoSubTipoProduto" class="normal form-group ">
+                    <label class="col-sm-3 control-label" for="subCategoria"> Sub Categoria </label>
+                    <div class="col-sm-2">
+                        <select class="form-control" id="selectSubCategoria" name="subTipo">
+                            <option selected="selected"  value="">Selecione</option>
+                        </select>
                     </div>
                 </div>
 
@@ -165,7 +154,7 @@
 
                 <div id="campoMarca" class="normal form-group ">
                     <label class="col-sm-3 control-label" for="Marca"> Marca </label>
-                    <div class="col-sm-7">
+                    <div class="col-sm-2">
                         <input type="text" id="inputMarca" class="form-control" name="Marca">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
@@ -210,41 +199,45 @@
                     </div>
                 </div>
 
-                <div id="campoImagem" class="normal form-group" >
+                <div id="campoCaminhoImagem" class="normal form-group" >
                     <label class="col-sm-3 control-label" for="imagem"> Caminho da imagem </label>
                     <div class="col-sm-2 from-group">
                         <input type="text" class="form-control" id="imageCaminho" name="imagem">
                     </div>
                 </div>
 
-                <div id="campoImagem" class="normal form-group" >
-                    <label class="col-sm-3 control-label" for="descImagem"> Descrição da imagem </label>
-                    <div class="col-sm-2 from-group">
-                        <input type="text" class="form-control" id="descImagem" name="descImagem">
-                    </div>
-                </div>
 
-                <div id="campoDescricao" class="normal form-group" >
+
+                <div id="campoPreview" class="normal form-group" >
                     <label class="col-sm-3 control-label" for="btnTeste"> Preview </label>
                     <div class="col-sm-2 from-group">
-                        <input type="button" class="form-control" id="textareaDescricao" name="btnTeste" onclick="setSourceOnImg()">
+                        <input type="button" class="form-control" id="btnTeste" name="btnTeste" onclick="setSourceOnImg()" value="Abrir">              
+                        <input type="button" class="form-control" id="btnTeste2" name="btnTeste2" onclick="fecharPreview()" value="Fechar" style="display: none">
                     </div>
                 </div>
 
                 <div id="campoImagem" class="normal form-group" >
                     <div class="col-sm-2 from-group">
                         <img id="imgTeste"/>
+
                     </div>
                 </div>
 
+                <div id="campoDescImagem" class="normal form-group" >
+                    <label class="col-sm-3 control-label" for="descImagem"> Descrição da imagem </label>
+                    <div class="col-sm-2 from-group">
+                        <input type="text" class="form-control" id="descImagem" name="descImagem">
+                    </div>
+                </div>
 
-                <div id="campoDescricao" class="normal form-group" >
-                    <label class="col-sm-3 control-label" for="descricao"> Descricao </label>
+                <div id="campoDescricaoProduto" class="normal form-group" >
+                    <label class="col-sm-3 control-label" for="descricao"> Descricao do Produto</label>
                     <div class="col-sm-2 from-group">
                         <textarea class="form-control" id="textareaDescricao" name="descricao">
                         </textarea>
                     </div>
                 </div>
+
                 <div class="botoesFormulario">
                     <button type="reset" class="btn btn-default" >Cancelar</button>
                     <button type="submit" class="btn btn-primary" id="btCadastrar">Cadastrar</button>
@@ -253,26 +246,54 @@
         </div>
     </div>
     <script>
-        function setSourceOnImg() {
-            var url = document.getElementById("imageCaminho").value;
-            var desc = document.getElementById("descImagem").value;
-            var img = document.getElementById("imgTeste");
+        function SubCatProduto(select) {
+            var categoria = document.getElementById('selectSubCategoria');
+        <c:choose>
+            <c:when test="${SubCatProduto == null}">null</c:when>
+            <c:otherwise>
+                    categoria.innerHTML = '';
+                <c:forEach items="${SubCatProduto}" var="sub" varStatus="stat">
+                    if (select.value === "${sub.fkValue}") {
+                        var opt = document.createElement('option');
+                        opt.value = ${sub.value};
+                        opt.innerHTML = '${sub.nome}';
+                        categoria.appendChild(opt);
+                    }
+                </c:forEach>
+            </c:otherwise>
+        </c:choose>
+                }
+                function loadCatAndSubCat(url) {
+                    var form = document.getElementById('formCatAndSubCat');
+                    var select = document.createElement('select');
+                    select.id = select.name = 'url';
+                    var option = document.createElement('option');
+                    option.id = option.name = 'opt';
+                    option.value = url;
 
-            img.setAttribute("src", url);
-            img.setAttribute("alt", desc);
-        }
-        function carregaCategoria(form, url)
-        {
-            var select = document.getElementById("selectCategoria");
-            select.innerHTML = "";
-            var option = document.createElement("option");
-            option.value = url;
-            option.name = "url";
-            select.appendChild(option);
-            var frm = document.getElementById(form);
-            frm.action = "BuscaSubCategoria";
-            frm.submit();
-        }
+                    select.appendChild(option);
+                    form.appendChild(select);
+
+                    form.submit();
+                }
+                function setSourceOnImg() {
+                    var url = document.getElementById("imageCaminho").value;
+                    var desc = document.getElementById("descImagem").value;
+                    var img = document.getElementById("imgTeste");
+                    var close = document.getElementById("btnTeste2");
+
+                    img.setAttribute("src", url);
+                    img.setAttribute("alt", desc);
+                    close.style.display = "block";
+                }
+                function fecharPreview() {
+                    var img = document.getElementById("imgTeste");
+                    var close = document.getElementById("btnTeste2");
+
+                    img.setAttribute("src", "");
+                    img.setAttribute("alt", "");
+                    close.style.display = "none";
+                }
     </script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -283,3 +304,4 @@
     <script src="../resources/js/previsaoPrecoVenda.js"></script>
 </body>
 </html>
+
