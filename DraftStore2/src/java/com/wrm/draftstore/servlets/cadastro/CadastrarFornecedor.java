@@ -37,8 +37,20 @@ public class CadastrarFornecedor extends HttpServlet {
         Connection conn = null;
         
         String sql = "INSERT INTO TB_FORNECEDOR " // Notar que antes de fechar aspas tem espaço em branco!
-                + "(RAZAO_SOCIAL, CNPJ, CEP, ENDERECO, BAIRRO, NUMERO, CIDADE, ESTADO, TELEFONE, EMAIL, SITE, "
-                + "FK_FUNCIONARIO, DATA_CRIACAO, NOME_USUARIO) "
+                + "(RAZAO_SOCIAL,"
+                + " CNPJ, "
+                + "CEP, "
+                + "ENDERECO, "
+                + "BAIRRO, "
+                + "NUMERO, "
+                + "CIDADE, "
+                + "ESTADO, "
+                + "TELEFONE, "
+                + "EMAIL, "
+                + "SITE, "
+                + "FK_FUNCIONARIO, "
+                + "DATA_CRIACAO, "
+                + "NOME_USUARIO) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
         conn = conexaoBD.obterConexao();

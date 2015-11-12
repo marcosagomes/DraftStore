@@ -28,98 +28,98 @@
     <![endif]-->
     <link href="../resources/css/estiloProduto.css" type="text/css" rel="stylesheet">
 </head>
-<body <c:if test="${CatProduto == null}">onload="loadCatAndSubCat('cadastrarProduto');"</c:if>>
-        <header>
-            <img id="logo" src="../resources/img/wrm-logoteste.png">
-            <div class="texto" id="titulo"><h1>Cadastrar Produto</h1></div>
-        </header>
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="sidebar-nav">
-                    <div class="navbar navbar-default" role="navigation">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            <span class="visible-xs navbar-brand">Menu de navegação</span>
-                        </div>
-                        <div class="navbar-collapse collapse sidebar-navbar-collapse">
-                            <ul class="nav navbar-nav">
-                                <li>
-                                    <a href="../Home">Home</a>
-                                </li>
-                                <li>
-                                    <a href="RegistroVenda">Registro de vendas</a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produtos <b class="caret"></b></a>
-                                    <ul class="dropdown-menu dropdown-menu-right">
-
-                                        <li>
-                                            <a href="BuscarProduto">Buscar </a>
-                                        </li>
-                                        <li>
-                                            <a href="CadastrarProduto">Cadastrar</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Funcionários <b class="caret"></b></a>
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li>
-                                            <a href="BuscarFuncionario">Buscar </a>
-                                        </li>
-                                        <li>
-                                            <a href="CadastrarFuncionario">Cadastrar</a>
-                                        </li>
-
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Fornecedores <b class="caret"></b></a>
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li>
-                                            <a href="BuscarFornecedor">Buscar </a>
-                                        </li>
-                                        <li>
-                                            <a href="CadastrarFornecedor">Cadastrar</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="Log">Relatórios</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!--/.nav-collapse -->
+<body>
+    <header>
+        <img id="logo" src="../resources/img/wrm-logoteste.png">
+        <div class="texto" id="titulo"><h1>Cadastrar Produto</h1></div>
+    </header>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="sidebar-nav">
+                <div class="navbar navbar-default" role="navigation">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <span class="visible-xs navbar-brand">Menu de navegação</span>
                     </div>
+                    <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="../Home">Home</a>
+                            </li>
+                            <li>
+                                <a href="RegistroVenda">Registro de vendas</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produtos <b class="caret"></b></a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+
+                                    <li>
+                                        <a href="BuscarProduto">Buscar </a>
+                                    </li>
+                                    <li>
+                                        <a href="CadastrarProduto">Cadastrar</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Funcionários <b class="caret"></b></a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li>
+                                        <a href="BuscarFuncionario">Buscar </a>
+                                    </li>
+                                    <li>
+                                        <a href="CadastrarFuncionario">Cadastrar</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Fornecedores <b class="caret"></b></a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li>
+                                        <a href="BuscarFornecedor">Buscar </a>
+                                    </li>
+                                    <li>
+                                        <a href="CadastrarFornecedor">Cadastrar</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="Log">Relatórios</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--/.nav-collapse -->
                 </div>
             </div>
-            <div class="col-sm-9">
-                <!-- ********************** Inserir o conteudo aqui! ********************** -->
+        </div>
+        <div class="col-sm-9">
+            <!-- ********************** Inserir o conteudo aqui! ********************** -->
 
-                <form 
-                    id="formCatAndSubCat"
-                    class="form-inline"
-                    action="BuscaSubCategoria"
-                    method="GET">
-                </form>
+            <form 
+                id="formCatAndSubCat"
+                class="form-inline"
+                action="BuscaSubCategoria"
+                method="GET">
+            </form>
 
-                <form 
-                    id="formulario"
-                    class="form-inline"
-                    onSubmit="return valida(this)"
-                    action="CadastrarProduto"
-                    method="POST">
+            <form 
+                id="formulario"
+                class="form-inline"
+                onSubmit="return valida(this)"
+                action="CadastrarProduto"
+                method="POST">
 
-                    <div id="campoTipoProduto" class="normal form-group" >
-                        <label class="col-sm-3 control-label" for="Tipo"> Categoria </label>
-                        <div class="col-sm-2 from-group">
-                            <select class="form-control" id="selectCategoria" name="Tipo" onchange="SubCatProduto(this)">
-                                <option value="" selected> Selecione </option>
+                <div id="campoTipoProduto" class="normal form-group" >
+                    <label class="col-sm-3 control-label" for="Tipo"> Categoria </label>
+                    <div class="col-sm-2 from-group">
+                        <select class="form-control" id="selectCategoria" name="Tipo" onchange="SubCatProduto(this)">
+                            <option value="" selected> Selecione </option>
                             <c:forEach items="${CatProduto}" var="cat" varStatus="stat">
                                 <option value="${cat.value}"> ${cat.nome} </option>
                             </c:forEach>
@@ -262,38 +262,25 @@
                 </c:forEach>
             </c:otherwise>
         </c:choose>
-                }
-                function loadCatAndSubCat(url) {
-                    var form = document.getElementById('formCatAndSubCat');
-                    var select = document.createElement('select');
-                    select.id = select.name = 'url';
-                    var option = document.createElement('option');
-                    option.id = option.name = 'opt';
-                    option.value = url;
+        }
+        function setSourceOnImg() {
+            var url = document.getElementById("imageCaminho").value;
+            var desc = document.getElementById("descImagem").value;
+            var img = document.getElementById("imgTeste");
+            var close = document.getElementById("btnTeste2");
 
-                    select.appendChild(option);
-                    form.appendChild(select);
+            img.setAttribute("src", url);
+            img.setAttribute("alt", desc);
+            close.style.display = "block";
+        }
+        function fecharPreview() {
+            var img = document.getElementById("imgTeste");
+            var close = document.getElementById("btnTeste2");
 
-                    form.submit();
-                }
-                function setSourceOnImg() {
-                    var url = document.getElementById("imageCaminho").value;
-                    var desc = document.getElementById("descImagem").value;
-                    var img = document.getElementById("imgTeste");
-                    var close = document.getElementById("btnTeste2");
-
-                    img.setAttribute("src", url);
-                    img.setAttribute("alt", desc);
-                    close.style.display = "block";
-                }
-                function fecharPreview() {
-                    var img = document.getElementById("imgTeste");
-                    var close = document.getElementById("btnTeste2");
-
-                    img.setAttribute("src", "");
-                    img.setAttribute("alt", "");
-                    close.style.display = "none";
-                }
+            img.setAttribute("src", "");
+            img.setAttribute("alt", "");
+            close.style.display = "none";
+        }
     </script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

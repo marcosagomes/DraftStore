@@ -5,11 +5,14 @@
  */
 package com.wrm.draftstore.servlets.cadastro;
 
+import com.wrm.draftstore.classes.Categoria;
 import com.wrm.draftstore.servlets.editar.EditarFornecedor;
 import com.wrm.draftstore.classes.Fornecedor;
 import com.wrm.draftstore.classes.Produto;
+import com.wrm.draftstore.classes.SubCategoria;
 import com.wrm.draftstore.classes.Usuario;
 import com.wrm.draftstore.database.ConexaoBDJavaDB;
+import com.wrm.draftstore.servlets.busca.BuscaSubCategoria;
 import com.wrm.draftstore.servlets.busca.BuscarFornecedor;
 import java.io.IOException;
 import java.sql.Connection;
@@ -39,29 +42,29 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "CadastrarProduto", urlPatterns = {"/Servlet/CadastrarProduto"})
 public class CadastrarProduto extends HttpServlet {
-
+    
     public List<Fornecedor> listarFornecedores() {
         ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
         Statement stmt = null;
         Connection conn = null;
-
+        
         String sql = "SELECT ID_FORNECEDOR, RAZAO_SOCIAL FROM TB_FORNECEDOR";
         try {
             conn = conexaoBD.obterConexao();
             stmt = conn.createStatement();
             ResultSet resultados = stmt.executeQuery(sql);
-
+            
             List<Fornecedor> lista = new ArrayList<>();
-
+            
             while (resultados.next()) {
                 Fornecedor f = new Fornecedor();
                 f.setIdFornecedor(resultados.getString("ID_FORNECEDOR"));
                 f.setRazaoSocial(resultados.getString("RAZAO_SOCIAL"));
                 lista.add(f);
             }
-
+            
             return lista;
-
+            
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(BuscarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -82,12 +85,12 @@ public class CadastrarProduto extends HttpServlet {
         }
         return null;
     }
-
+    
     public void cadastrarProduto(String razaoSocial, Produto p, Usuario u) {
         ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
         PreparedStatement stmt = null;
         Connection conn = null;
-
+        
         String sql = "INSERT INTO TB_PRODUTO"
                 + "(PRECO_VENDA,"
                 + " PRECO_PROMO,"
@@ -111,15 +114,15 @@ public class CadastrarProduto extends HttpServlet {
         try {
             conn = conexaoBD.obterConexao();
             stmt = conn.prepareStatement(sql);
-
+            
             stmt.setFloat(1, p.getPrecoVenda());
             stmt.setFloat(2, p.getPrecoVenda());
             stmt.setFloat(3, p.getPercentualLucro());
             stmt.setString(4, p.getModelo());
             stmt.setString(5, p.getMarca());
             stmt.setFloat(6, p.getCusto());
-            stmt.setInt(7, 1);
-            stmt.setInt(8, 1);
+            stmt.setInt(7, p.getIdCategoria());
+            stmt.setInt(8, p.getIdSubCategoria());
             stmt.setInt(9, p.getQuantidade());
             stmt.setString(10, p.getCaminhoImagem());
             stmt.setString(11, p.getDescricao());
@@ -127,16 +130,16 @@ public class CadastrarProduto extends HttpServlet {
             stmt.setString(13, u.getIdUsuario());
             // Criando um Timestamp atual do sistema
             stmt.setTimestamp(14, new Timestamp(new Date().getTime()));
-
+            
             stmt.setString(15, p.getNomeFornecedor());
             stmt.setString(16, u.getNomeDoFuncionario());
             stmt.setString(17, p.getDescImagem());
-            stmt.setDate(18, new java.sql.Date(01, 01, 1000));
-
+            stmt.setDate(18, p.getDataEvento());
+            
             stmt.executeUpdate();
-
+            
             System.out.println("> Produto cadastrado com sucesso.");
-
+            
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(EditarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("ERRO! -> " + ex.getMessage());
@@ -170,9 +173,9 @@ public class CadastrarProduto extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        
         request.setCharacterEncoding("UTF-8");
-
+        
         String stringPrecoVenda = request.getParameter("preco");
         String teste = request.getParameter("Teste");
         String stringPercLucro = request.getParameter("lucro");
@@ -205,11 +208,11 @@ public class CadastrarProduto extends HttpServlet {
         String caminhoImagem = request.getParameter(String.valueOf("imagem"));
         String descImagem = request.getParameter(String.valueOf("descImagem"));
         String descricao = request.getParameter(String.valueOf("descricao"));
-
-        Produto p = new Produto(0, precoVenda, precoVenda, percentualLucro, modelo, marca, custo, fkFornecedor, 1, fkFuncionario, dataCriacao, nomeFornecedor, nomeUsuario, fkFuncionario, quantidade, descricao, caminhoImagem, descImagem, d);
+        
+        Produto p = new Produto(0, precoVenda, precoVenda, percentualLucro, modelo, marca, custo, fkFornecedor, 1, fkFuncionario, dataCriacao, nomeFornecedor, nomeUsuario, fkFuncionario, quantidade, descricao, caminhoImagem, descImagem, new java.sql.Date(01, 01, 1000));
         cadastrarProduto(nomeFornecedor, p, usuario);
         response.sendRedirect("CadastrarProduto");
-
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -226,6 +229,11 @@ public class CadastrarProduto extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         request.setAttribute("lista", listarFornecedores());
+        List<Categoria> produtosLista = listarCategorias();
+        List<SubCategoria> produtosListaSub = listarSubCategorias();
+        
+        request.setAttribute("CatProduto", produtosLista);
+        request.setAttribute("SubCatProduto", produtosListaSub);
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/cadastrarProduto.jsp");
         rd.forward(request, response);
     }
@@ -242,7 +250,7 @@ public class CadastrarProduto extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-
+        
     }
 
     /**
@@ -255,4 +263,92 @@ public class CadastrarProduto extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    private List<Categoria> listarCategorias() {
+        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
+        Statement stmt = null;
+        Connection conn = null;
+        
+        String sql = "SELECT ID_CATEGORIA, NOME_CATEGORIA FROM TB_CATEGORIA";
+        try {
+            conn = conexaoBD.obterConexao();
+            stmt = conn.createStatement();
+            ResultSet resultados = stmt.executeQuery(sql);
+            
+            List<Categoria> lista = new ArrayList<>();
+            
+            while (resultados.next()) {
+                Categoria c = new Categoria();
+                c.setNome(resultados.getString("NOME_CATEGORIA"));
+                c.setValue(resultados.getInt("ID_CATEGORIA"));
+                
+                lista.add(c);
+            }
+            
+            return lista;
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(BuscaSubCategoria.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(BuscaSubCategoria.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(BuscaSubCategoria.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return null;
+    }
+    
+    private List<SubCategoria> listarSubCategorias() {
+        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
+        Statement stmt = null;
+        Connection conn = null;
+        
+        String sql = "SELECT ID_SUBCATEGORIA, FK_CATEGORIA, NOME_SUBCATEGORIA FROM TB_SUBCATEGORIA";
+        try {
+            conn = conexaoBD.obterConexao();
+            stmt = conn.createStatement();
+            ResultSet resultados = stmt.executeQuery(sql);
+            
+            List<SubCategoria> lista = new ArrayList<>();
+            
+            while (resultados.next()) {
+                SubCategoria sc = new SubCategoria();
+                sc.setNome(resultados.getString("NOME_SUBCATEGORIA"));
+                sc.setValue(resultados.getInt("ID_SUBCATEGORIA"));
+                sc.setFkValue(resultados.getInt("FK_CATEGORIA"));
+                
+                lista.add(sc);
+            }
+            
+            return lista;
+            
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(BuscaSubCategoria.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(BuscaSubCategoria.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(BuscaSubCategoria.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return null;
+    }
 }

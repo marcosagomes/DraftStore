@@ -14,7 +14,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,94 +32,7 @@ import javax.servlet.http.HttpServletResponse;
         urlPatterns = {"/Servlet/BuscaSubCategoria"})
 public class BuscaSubCategoria extends HttpServlet {
 
-    public List<Categoria> listarCategorias() {
-        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
-        Statement stmt = null;
-        Connection conn = null;
-
-        String sql = "SELECT ID_CATEGORIA, NOME_CATEGORIA FROM TB_CATEGORIA";
-        try {
-            conn = conexaoBD.obterConexao();
-            stmt = conn.createStatement();
-            ResultSet resultados = stmt.executeQuery(sql);
-
-            List<Categoria> lista = new ArrayList<>();
-
-            while (resultados.next()) {
-                Categoria c = new Categoria();
-                c.setNome(resultados.getString("NOME_CATEGORIA"));
-                c.setValue(resultados.getInt("ID_CATEGORIA"));
-
-                lista.add(c);
-            }
-
-            return lista;
-
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(BuscaSubCategoria.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(BuscaSubCategoria.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(BuscaSubCategoria.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-        return null;
-    }
-
-    public List<SubCategoria> listarSubCategorias() {
-        ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
-        Statement stmt = null;
-        Connection conn = null;
-
-        String sql = "SELECT ID_SUBCATEGORIA, FK_CATEGORIA, NOME_SUBCATEGORIA FROM TB_SUBCATEGORIA";
-        try {
-            conn = conexaoBD.obterConexao();
-            stmt = conn.createStatement();
-            ResultSet resultados = stmt.executeQuery(sql);
-
-            List<SubCategoria> lista = new ArrayList<>();
-
-            while (resultados.next()) {
-                SubCategoria sc = new SubCategoria();
-                sc.setNome(resultados.getString("NOME_SUBCATEGORIA"));
-                sc.setValue(resultados.getInt("ID_SUBCATEGORIA"));
-                sc.setFkValue(resultados.getInt("FK_CATEGORIA"));
-
-                lista.add(sc);
-            }
-
-            return lista;
-
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(BuscaSubCategoria.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(BuscaSubCategoria.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(BuscaSubCategoria.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-        return null;
-    }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -141,10 +53,7 @@ public class BuscaSubCategoria extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        List<Categoria> produtosLista = listarCategorias();
-        List<SubCategoria> produtosListaSub = listarSubCategorias();
-        request.setAttribute("CatProduto", produtosLista);
-        request.setAttribute("SubCatProduto", produtosListaSub);
+        
         String url = request.getParameter("url");
 
         RequestDispatcher rd = request.getRequestDispatcher("../WEB-INF/" + url

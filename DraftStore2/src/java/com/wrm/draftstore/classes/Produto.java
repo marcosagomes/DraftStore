@@ -73,13 +73,13 @@ public class Produto {
 
     private String descImagem;
 
-    private Date dataEvento;
+    private java.sql.Date dataEvento;
 
-    public Date getDataEvento() {
+    public java.sql.Date getDataEvento() {
         return dataEvento;
     }
 
-    public void setDataEvento(Date dataEvento) {
+    public void setDataEvento(java.sql.Date dataEvento) {
         this.dataEvento = dataEvento;
     }
 
@@ -203,7 +203,7 @@ public class Produto {
         this.idFornecedor = idFornecedor;
     }
 
-    public Produto(int idProduto, float precoVenda, float precoPromo, float percentualLucro, String modelo, String marca, float custo, int idFornecedor, int idCategoria, int idSubCategoria, String dataCriacao, String nomeFornecedor, String nomeUsuario, int idFuncionario, int quantidade, String descricao, String caminhoImagem, String descImagem, Date dataEvento) {
+    public Produto(int idProduto, float precoVenda, float precoPromo, float percentualLucro, String modelo, String marca, float custo, int idFornecedor, int idCategoria, int idSubCategoria, String dataCriacao, String nomeFornecedor, String nomeUsuario, int idFuncionario, int quantidade, String descricao, String caminhoImagem, String descImagem, java.sql.Date dataEvento) {
         this.idProduto = idProduto;
         this.precoVenda = precoVenda;
         this.precoPromo = precoPromo;

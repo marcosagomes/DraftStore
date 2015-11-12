@@ -244,7 +244,7 @@ public class EditarProduto extends HttpServlet {
         String descImagem = request.getParameter(String.valueOf("descImagem"));
         String descricao = request.getParameter(String.valueOf("descricao"));
 
-        Produto p = new Produto(0, precoVenda, precoVenda, percentualLucro, modelo, marca, custo, fkFornecedor, 1, fkFuncionario, dataCriacao, nomeFornecedor, nomeUsuario, fkFuncionario, quantidade, descricao, caminhoImagem, descImagem, d);
+        Produto p = new Produto(0, precoVenda, precoVenda, percentualLucro, modelo, marca, custo, fkFornecedor, 1, fkFuncionario, dataCriacao, nomeFornecedor, nomeUsuario, fkFuncionario, quantidade, descricao, caminhoImagem, descImagem, new java.sql.Date(01, 01, 1000));
         editarProduto(p, usuario);
 
         response.sendRedirect("BuscarProduto");
