@@ -5,8 +5,6 @@
  */
 package com.wrm.draftstore.classes;
 
-import java.util.Date;
-
 /**
  *
  * @author ramon.ahonorio
@@ -39,6 +37,8 @@ public class Produto {
 
     private int idCategoria;
 
+    private String nomeCategoria;
+
     public int getIdCategoria() {
         return idCategoria;
     }
@@ -56,6 +56,24 @@ public class Produto {
     }
 
     private int idSubCategoria;
+
+    private String nomeSubCategoria;
+
+    public String getNomeCategoria() {
+        return nomeCategoria;
+    }
+
+    public void setNomeCategoria(String nomeCategoria) {
+        this.nomeCategoria = nomeCategoria;
+    }
+
+    public String getNomeSubCategoria() {
+        return nomeSubCategoria;
+    }
+
+    public void setNomeSubCategoria(String nomeSubCategoria) {
+        this.nomeSubCategoria = nomeSubCategoria;
+    }
 
     private String dataCriacao;
 
@@ -223,6 +241,21 @@ public class Produto {
         this.caminhoImagem = caminhoImagem;
         this.descImagem = descImagem;
         this.dataEvento = dataEvento;
+    }
+
+    public Produto(int idProduto, String marca, String modelo, float precoVenda, float percentualLucro, float custo, float precoPromo, java.sql.Date dataPromo, int quantidade, String caminhoImagem, String descImagem, String descricao, java.sql.Date data) {
+        this.idProduto = idProduto;
+        this.precoVenda = precoVenda;
+        this.precoPromo = precoPromo;
+        this.percentualLucro = percentualLucro;
+        this.modelo = modelo;
+        this.marca = marca;
+        this.custo = custo;
+        this.quantidade = quantidade;
+        this.descricao = descricao;
+        this.caminhoImagem = caminhoImagem;
+        this.descImagem = descImagem;
+        this.dataEvento = data;
     }
 
     public Produto() {

@@ -102,13 +102,6 @@
             <!-- ********************** Inserir o conteudo aqui! ********************** -->
 
             <form 
-                id="formCatAndSubCat"
-                class="form-inline"
-                action="BuscaSubCategoria"
-                method="GET">
-            </form>
-
-            <form 
                 id="formulario"
                 class="form-inline"
                 onSubmit="return valida(this)"
@@ -192,6 +185,22 @@
                     </div>
                 </div>
 
+                <div id="campoPrecoPromo" class="normalidade form-group">
+                    <label class="col-sm-3 control-label" for="precoPromo"> Preco Promocional </label>
+                    <div class="col-sm-2">
+                        <input type="text" id="inputPrecoPromo" class="form-control" name="precoPromo" placeholder="R$ 00,00">
+                        <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
+                    </div>
+                </div>
+
+                <div id="campoDataPromo" class="normalidade form-group">
+                    <label class="col-sm-3 control-label" for="dataPromo"> Data Promoção </label>
+                    <div class="col-sm-2">
+                        <input type="date" id="inputDataPromocao" class="form-control" name="dataPromo">
+                        <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
+                    </div>
+                </div>
+
                 <div id="campoQuantidade" class="normal form-group" >
                     <label class="col-sm-3 control-label" for="quantidade"> Quantidade </label>
                     <div class="col-sm-2 from-group">
@@ -248,16 +257,16 @@
         function SubCatProduto(select) {
             var categoria = document.getElementById('selectSubCategoria');
         <c:choose>
-            <c:when test="${SubCatProduto == null}">null</c:when>
+            <c:when test="${SubCatProduto == null}"></c:when>
             <c:otherwise>
-                    categoria.innerHTML = '';
+            categoria.innerHTML = '';
                 <c:forEach items="${SubCatProduto}" var="sub" varStatus="stat">
-                    if (select.value === "${sub.fkValue}") {
-                        var opt = document.createElement('option');
-                        opt.value = ${sub.value};
-                        opt.innerHTML = '${sub.nome}';
-                        categoria.appendChild(opt);
-                    }
+            if (select.value === "${sub.fkValue}") {
+                var opt = document.createElement('option');
+                opt.value = ${sub.value};
+                opt.innerHTML = '${sub.nome}';
+                categoria.appendChild(opt);
+            }
                 </c:forEach>
             </c:otherwise>
         </c:choose>

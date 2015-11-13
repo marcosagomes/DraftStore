@@ -15,10 +15,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.text.NumberFormat;
 import java.text.ParseException;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -45,6 +43,7 @@ public class EditarProduto extends HttpServlet {
 
         String updateSql = "UPDATE TB_PRODUTO\n"
                 + "    SET PRECO_VENDA  = " + p.getPrecoVenda() + ", \n"
+                + "        PRECO_PROMO  = " + p.getPrecoPromo() + ", \n"
                 + "        PERCENTUAL_LUCRO  = " + p.getPercentualLucro() + ", \n"
                 + "        MODELO = '" + p.getModelo() + "', \n"
                 + "        MARCA  = '" + p.getMarca() + "', \n"
@@ -52,8 +51,8 @@ public class EditarProduto extends HttpServlet {
                 + "        QUANTIDADE  = " + p.getQuantidade() + ", \n"
                 + "        CAMINHO_IMAGEM  = '" + p.getCaminhoImagem() + "', \n"
                 + "        DESCRICAO  = '" + p.getDescricao() + "', \n"
-                + "        DATA_CRIACAO = '" + new Timestamp(new Date().getTime()).toString() + "', \n"
-                + "        DESCRICAO_IMAGEM  = '" + p.getDescImagem() + "' \n"
+                + "        DESCRICAO_IMAGEM  = '" + p.getDescImagem() + "', \n"
+                + "        DATA_EVENTO  = '" + p.getDataEvento() + "' \n"
                 + "  WHERE ID_PRODUTO = " + idProduto + "\n";
         try {
             conn = conexaoBD.obterConexao();
@@ -88,10 +87,15 @@ public class EditarProduto extends HttpServlet {
 
         String sql = "SELECT ID_PRODUTO ,\n"
                 + "          PRECO_VENDA ,\n"
+                + "          PRECO_PROMO ,\n"
                 + "          PERCENTUAL_LUCRO ,\n"
                 + "          MODELO ,\n"
                 + "          MARCA ,\n"
                 + "          CUSTO ,\n"
+                + "          P.FK_CATEGORIA ,\n"
+                + "          NOME_CATEGORIA ,\n"
+                + "          P.FK_SUBCATEGORIA ,\n"
+                + "          NOME_SUBCATEGORIA ,\n"
                 + "          QUANTIDADE ,\n"
                 + "          CAMINHO_IMAGEM ,\n"
                 + "          DESCRICAO ,\n"
@@ -100,9 +104,15 @@ public class EditarProduto extends HttpServlet {
                 + "          DATA_CRIACAO ,\n"
                 + "          NOME_FORNECEDOR ,\n"
                 + "          NOME_USUARIO, \n"
-                + "          DESCRICAO_IMAGEM\n"
-                + "     FROM TB_PRODUTO\n"
-                + "    WHERE TB_PRODUTO.ID_PRODUTO = " + idProduto.toString();
+                + "          DESCRICAO_IMAGEM ,\n"
+                + "          DATA_EVENTO\n"
+                + "     FROM TB_PRODUTO P,\n"
+                + "          TB_CATEGORIA C,\n"
+                + "          TB_SUBCATEGORIA S\n"
+                + "    WHERE C.ID_CATEGORIA = S.FK_CATEGORIA\n"
+                + "      AND P.FK_CATEGORIA = C.ID_CATEGORIA\n"
+                + "      AND P.FK_SUBCATEGORIA = S.ID_SUBCATEGORIA\n"
+                + "      AND P.ID_PRODUTO = " + idProduto.toString();
         try {
             conn = conexaoBD.obterConexao();
             stmt = conn.createStatement();
@@ -112,19 +122,25 @@ public class EditarProduto extends HttpServlet {
             while (resultados.next()) {
                 p.setIdProduto(Integer.parseInt(resultados.getString("ID_PRODUTO")));
                 p.setPrecoVenda(Float.parseFloat(resultados.getString("PRECO_VENDA")));
+                p.setPrecoPromo(Float.parseFloat(resultados.getString("PRECO_PROMO")));
                 p.setPercentualLucro(Float.parseFloat(resultados.getString("PERCENTUAL_LUCRO")));
                 p.setModelo(resultados.getString("MODELO"));
                 p.setMarca(resultados.getString("MARCA"));
                 p.setCusto(Float.parseFloat(resultados.getString("CUSTO")));
+                p.setIdCategoria(Integer.parseInt(resultados.getString("FK_CATEGORIA")));
+                p.setNomeCategoria(resultados.getString("NOME_CATEGORIA"));
+                p.setIdSubCategoria(Integer.parseInt(resultados.getString("FK_SUBCATEGORIA")));
+                p.setNomeSubCategoria(resultados.getString("NOME_SUBCATEGORIA"));
                 p.setQuantidade(Integer.parseInt(resultados.getString("QUANTIDADE")));
                 p.setCaminhoImagem(resultados.getString("CAMINHO_IMAGEM"));
                 p.setDescricao(resultados.getString("DESCRICAO"));
                 p.setIdFornecedor(Integer.parseInt(resultados.getString("FK_FORNECEDOR")));
                 p.setIdFuncionario(Integer.parseInt(resultados.getString("FK_FUNCIONARIO")));
                 p.setDataCriacao(resultados.getString("DATA_CRIACAO"));
-                p.setNomeUsuario(resultados.getString("NOME_FORNECEDOR"));
-                p.setNomeFornecedor(resultados.getString("NOME_USUARIO"));
+                p.setNomeUsuario(resultados.getString("NOME_USUARIO"));
+                p.setNomeFornecedor(resultados.getString("NOME_FORNECEDOR"));
                 p.setDescImagem(resultados.getString("DESCRICAO_IMAGEM"));
+                p.setDataEvento(java.sql.Date.valueOf(resultados.getString("DATA_EVENTO")));
             }
             return p;
         } catch (SQLException | ClassNotFoundException ex) {
@@ -211,40 +227,37 @@ public class EditarProduto extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
-        String stringPrecoVenda = request.getParameter("preco");
-        String teste = request.getParameter("Teste");
-        String stringPercLucro = request.getParameter("lucro");
+        String marca = request.getParameter("Marca");
+        String modelo = request.getParameter("Modelo");
         String stringCusto = request.getParameter("Custo");
+        String stringPercLucro = request.getParameter("lucro");
+        String stringPrecoVenda = request.getParameter("preco");
+        String stringPrecoPromo = request.getParameter("precoPromo");
         float precoVenda = 0;
         float percentualLucro = 0;
         float custo = 0;
+        float precoPromo = 0;
+        java.sql.Date dataPromo = null;
         try {
             precoVenda = (Long) NumberFormat.getIntegerInstance().parse(stringPrecoVenda.substring(3, stringPrecoVenda.length() - 3));
+            precoPromo = (Long) NumberFormat.getIntegerInstance().parse(stringPrecoPromo);
             percentualLucro = (Long) NumberFormat.getNumberInstance().parse(stringPercLucro);
             custo = (Long) NumberFormat.getNumberInstance().parse(stringCusto);
+            dataPromo = java.sql.Date.valueOf(request.getParameter("dataPromo"));
         } catch (ParseException ex) {
             Logger.getLogger(CadastrarProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
-        // 1) OBTEM AS INFORMACOES DO USUARIO DA SESSAO
-        // A) CAST DOS PARÂMETROS RECEBIDOS
+        int quantidade = Integer.parseInt(request.getParameter("quantidade"));
+        String caminhoImagem = request.getParameter("imagem");
+        String descImagem = request.getParameter("descImagem");
+        String descricao = request.getParameter("descricao");
+        java.sql.Date Data = java.sql.Date.valueOf(request.getParameter("dataPromo"));
+
         HttpServletRequest httpRequest = (HttpServletRequest) request;
-        // B) TENTA RECUPERAR A SESSÃO DO USUÁRIO
         HttpSession sessao = httpRequest.getSession();
         Usuario usuario = (Usuario) sessao.getAttribute("usuario");
-        String modelo = request.getParameter("Modelo");
-        String marca = request.getParameter("Marca");
-        int fkFornecedor = Integer.parseInt(request.getParameter("Fornecedor"));
-        Date d = new Date();
-        String dataCriacao = String.valueOf(d.getTime());
-        String nomeFornecedor = request.getParameter(String.valueOf(fkFornecedor));
-        String nomeUsuario = usuario.getNomeDoFuncionario();
-        int fkFuncionario = Integer.parseInt(usuario.getIdUsuario());
-        int quantidade = Integer.parseInt(request.getParameter("quantidade"));
-        String caminhoImagem = request.getParameter(String.valueOf("imagem"));
-        String descImagem = request.getParameter(String.valueOf("descImagem"));
-        String descricao = request.getParameter(String.valueOf("descricao"));
 
-        Produto p = new Produto(0, precoVenda, precoVenda, percentualLucro, modelo, marca, custo, fkFornecedor, 1, fkFuncionario, dataCriacao, nomeFornecedor, nomeUsuario, fkFuncionario, quantidade, descricao, caminhoImagem, descImagem, new java.sql.Date(01, 01, 1000));
+        Produto p = new Produto((Integer.parseInt(idProduto.toString())), marca, modelo, precoVenda, percentualLucro, custo, precoPromo, dataPromo, quantidade, caminhoImagem, descImagem, descricao, Data);
         editarProduto(p, usuario);
 
         response.sendRedirect("BuscarProduto");

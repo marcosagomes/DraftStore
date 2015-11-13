@@ -111,17 +111,17 @@
                 <div id="campoTipoProduto" class="normal form-group" >
                     <label class="col-sm-3 control-label" for="Tipo"> Categoria </label>
                     <div class="col-sm-2 from-group">
-                        <select class="form-control" id="selectCategoria" name="Categoria">
-                            <option value="1">Teste</option>
+                        <select class="form-control" id="selectCategoria" name="Categoria" readonly>
+                            <option value="${Produto.idCategoria}">${Produto.nomeCategoria}</option>
                         </select>
                     </div>
                 </div>
 
                 <div id="campoTipoProduto" class="normal form-group" >
-                    <label class="col-sm-3 control-label" for="Tipo"> Subcategoria </label>
+                    <label class="col-sm-3 control-label" for="Tipo"> Sub Categoria </label>
                     <div class="col-sm-2 from-group">
-                        <select class="form-control" id="selectSubCategoria" name="Subcategoria">
-                            <option value="1">Teste</option>
+                        <select class="form-control" id="selectSubCategoria" name="Subcategoria" readonly>
+                            <option value="${Produto.idSubCategoria}">${Produto.nomeSubCategoria}</option>
                         </select>
                     </div>
                 </div>
@@ -129,7 +129,7 @@
                 <div id="campoFornecedor" class="normal form-group">
                     <label class="col-sm-3 control-label" for="Fornecedor"> Fornecedor </label>
                     <div class="col-sm-2 from-group">
-                        <select class="form-control" id="selectFornecedor" name="Fornecedor">
+                        <select class="form-control" id="selectFornecedor" name="Fornecedor" readonly>
                             <option value="${Produto.idFornecedor}">${Produto.nomeFornecedor}</option>
                             <input type="hidden" name="${Produto.idFornecedor}" value="${Produto.nomeFornecedor}">
                         </select>
@@ -175,7 +175,23 @@
                         <input type="text" id="inputPreco" class="form-control" name="preco" placeholder="R$ 00,00" value="R$ ${Produto.precoVenda}" readonly>
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
-                </div>    
+                </div>
+
+                <div id="campoPrecoPromo" class="normalidade form-group">
+                    <label class="col-sm-3 control-label" for="precoPromo"> Preco Promocional </label>
+                    <div class="col-sm-2">
+                        <input type="text" id="inputPrecoPromo" class="form-control" name="precoPromo" placeholder="R$ 00,00" value="${Produto.precoPromo}">
+                        <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
+                    </div>
+                </div>
+
+                <div id="campoDataPromo" class="normalidade form-group">
+                    <label class="col-sm-3 control-label" for="dataPromo"> Data Promoção </label>
+                    <div class="col-sm-2">
+                        <input type="date" id="inputDataPromocao" class="form-control" name="dataPromo" value="${Produto.dataEvento}">
+                        <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
+                    </div>
+                </div>
 
                 <div id="campoQuantidade" class="normal form-group" >
                     <label class="col-sm-3 control-label" for="quantidade"> Quantidade </label>
@@ -215,9 +231,7 @@
                 <div id="campoDescricao" class="normal form-group" >
                     <label class="col-sm-3 control-label" for="descricao"> Descricao do Produto </label>
                     <div class="col-sm-2 from-group">
-                        <textarea class="form-control" id="textareaDescricao" name="descricao">
-                            ${Produto.descricao}
-                        </textarea>
+                        <textarea class="form-control" id="textareaDescricao" name="descricao">${Produto.descricao}</textarea>
                     </div>
                 </div>
 
@@ -231,22 +245,22 @@
 
     </div>
     <script>
-        < script >
-                function setSourceOnImg() {
-                    var url = document.getElementById("imageCaminho").value;
-                    var desc = document.getElementById("descImagem").value;
-                    var img = document.getElementById("imgTeste");
-                    var close = document.getElementById("btnTeste2")
+        function setSourceOnImg() {
+            var url = document.getElementById("imageCaminho").value;
+            var desc = document.getElementById("descImagem").value;
+            var img = document.getElementById("imgTeste");
+            var close = document.getElementById("btnTeste2");
 
-                    img.setAttribute("src", url);
-                    img.setAttribute("alt", desc);
-                    close.style.display = "block";
-                }
+            img.setAttribute("src", url);
+            img.setAttribute("alt", desc);
+            img.style.display = "block";
+            close.style.display = "block";
+        }
         function fecharPreview() {
             var img = document.getElementById("imgTeste");
             var close = document.getElementById("btnTeste2");
 
-            img.style.display= "none";
+            img.style.display = "none";
             close.style.display = "none";
         }
     </script>

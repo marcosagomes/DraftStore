@@ -6,7 +6,6 @@
 package com.wrm.draftstore.auxiliares;
 
 import com.google.gson.Gson;
-import com.wrm.draftstore.classes.Fornecedor;
 import com.wrm.draftstore.classes.Produto;
 import com.wrm.draftstore.database.ConexaoBDJavaDB;
 import com.wrm.draftstore.servlets.busca.BuscarFornecedor;
@@ -46,13 +45,13 @@ public class JsonProdutosServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
         List<Produto> produtosLista = listarProdutos();
         request.setAttribute("lista", produtosLista);
-
+        
         String json = new Gson().toJson(produtosLista);
         PrintWriter out = response.getWriter();
-
+        
         try {
             response.setContentType("application/json");
 //      out.write(json);
@@ -61,7 +60,7 @@ public class JsonProdutosServlet extends HttpServlet {
         } catch (JsonException e) {
             System.out.println("ERRO! -> [Json]: " + e);
         }
-
+        
         FileWriter file = new FileWriter("fornec.json");
         try {
             file.write(json);
@@ -70,12 +69,12 @@ public class JsonProdutosServlet extends HttpServlet {
 
         } catch (IOException e) {
             e.printStackTrace();
-
+            
         } finally {
             file.flush();
             file.close();
         }
-
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -121,30 +120,43 @@ public class JsonProdutosServlet extends HttpServlet {
         ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
         Statement stmt = null;
         Connection conn = null;
-
-        String sql = "SELECT MARCA,"
-                + "          ID_PRODUTO,"
-                + "          PRECO_VENDA,"
-                + "          MODELO"
-                + "     FROM TB_PRODUTO";
+        
+        String sql = "SELECT ID_PRODUTO,\n"
+                + "       CASE WHEN DATA_EVENTO > (CAST (CURRENT_TIMESTAMP AS DATE))\n"
+                + "          THEN PRECO_PROMO ELSE PRECO_VENDA END PRECO_VENDA,\n"
+                + "       MODELO,\n"
+                + "       MARCA,\n"
+                + "       NOME_CATEGORIA,\n"
+                + "       NOME_SUBCATEGORIA,\n"
+                + "       DATA_EVENTO\n"
+                + "  FROM TB_PRODUTO P,\n"
+                + "       TB_CATEGORIA C,\n"
+                + "       TB_SUBCATEGORIA S\n"
+                + " WHERE C.ID_CATEGORIA = S.FK_CATEGORIA\n"
+                + "   AND P.FK_CATEGORIA = C.ID_CATEGORIA\n"
+                + "   AND P.FK_SUBCATEGORIA = S.ID_SUBCATEGORIA\n"
+                + " ORDER BY P.ID_PRODUTO";
         try {
             conn = conexaoBD.obterConexao();
             stmt = conn.createStatement();
             ResultSet resultados = stmt.executeQuery(sql);
-
+            
             List<Produto> lista = new ArrayList<>();
-
+            
             while (resultados.next()) {
                 Produto p = new Produto();
-                p.setMarca(resultados.getString("MARCA"));
-                p.setIdProduto(resultados.getInt("ID_PRODUTO"));
-                p.setPrecoVenda(resultados.getFloat("PRECO_VENDA"));
+                p.setIdProduto(Integer.parseInt(resultados.getString("ID_PRODUTO")));
+                p.setPrecoVenda(Float.parseFloat(resultados.getString("PRECO_VENDA")));
                 p.setModelo(resultados.getString("MODELO"));
+                p.setMarca(resultados.getString("MARCA"));
+                p.setNomeCategoria(resultados.getString("NOME_CATEGORIA"));
+                p.setNomeSubCategoria(resultados.getString("NOME_SUBCATEGORIA"));
+                p.setDataEvento(java.sql.Date.valueOf(resultados.getString("DATA_EVENTO")));
                 lista.add(p);
             }
-
+            
             return lista;
-
+            
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(BuscarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -165,5 +177,5 @@ public class JsonProdutosServlet extends HttpServlet {
         }
         return null;
     }
-
+    
 }

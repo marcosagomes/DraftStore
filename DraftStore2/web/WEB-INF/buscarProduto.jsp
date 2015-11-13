@@ -135,8 +135,12 @@
                         <tr>
                             <th data-field="state" data-radio="true"></th>
                             <th data-field="idProduto">ID</th>
+                            <th data-field="nomeCategoria">Categoria</th>
+                            <th data-field="nomeSubCategoria">Sub Categoria</th>
+                            <th data-field="marca">Marca</th>
                             <th data-field="modelo">Modelo</th>
                             <th data-field="precoVenda">Preço de Venda</th>
+                            <th data-field="dataEvento">Data Evento</th>
                         </tr>
                     </thead>
                 </table>
@@ -152,16 +156,16 @@
                         </div>	
                     </form>
 
-<!--                    <form id="formRemover" 
-                          action="RemoverProduto"
-                          method="GET"
-                          class="form-search" 
-                          onsubmit="return removerProduto(this)">
-                        <input id="inputHiddenRemover" type="hidden" name="idProduto" value="">
-                        <div class="botao">
-                            <button class="btn btn-small btn-danger botaoDeAcao" type="submit">Remover</button>
-                        </div>	
-                    </form>-->
+                    <!--                    <form id="formRemover" 
+                                              action="RemoverProduto"
+                                              method="GET"
+                                              class="form-search" 
+                                              onsubmit="return removerProduto(this)">
+                                            <input id="inputHiddenRemover" type="hidden" name="idProduto" value="">
+                                            <div class="botao">
+                                                <button class="btn btn-small btn-danger botaoDeAcao" type="submit">Remover</button>
+                                            </div>	
+                                        </form>-->
                 </div>
 
                 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
