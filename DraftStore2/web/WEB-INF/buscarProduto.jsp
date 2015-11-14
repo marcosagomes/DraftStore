@@ -140,7 +140,8 @@
                             <th data-field="marca">Marca</th>
                             <th data-field="modelo">Modelo</th>
                             <th data-field="precoVenda">Preço de Venda</th>
-                            <th data-field="dataEvento">Data Evento</th>
+                            <th data-field="dataEventoIni">Início da Promoção</th>                            
+                            <th data-field="dataEventoFim">Fim da Promoção</th>
                         </tr>
                     </thead>
                 </table>

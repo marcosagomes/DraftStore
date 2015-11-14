@@ -52,7 +52,8 @@ public class EditarProduto extends HttpServlet {
                 + "        CAMINHO_IMAGEM  = '" + p.getCaminhoImagem() + "', \n"
                 + "        DESCRICAO  = '" + p.getDescricao() + "', \n"
                 + "        DESCRICAO_IMAGEM  = '" + p.getDescImagem() + "', \n"
-                + "        DATA_EVENTO  = '" + p.getDataEvento() + "' \n"
+                + "        DATA_EVENTO_INI  = '" + p.getDataEventoIni() + "', \n"
+                + "        DATA_EVENTO_FIM = '" + p.getDataEventoFim() + "' \n"
                 + "  WHERE ID_PRODUTO = " + idProduto + "\n";
         try {
             conn = conexaoBD.obterConexao();
@@ -105,7 +106,8 @@ public class EditarProduto extends HttpServlet {
                 + "          NOME_FORNECEDOR ,\n"
                 + "          NOME_USUARIO, \n"
                 + "          DESCRICAO_IMAGEM ,\n"
-                + "          DATA_EVENTO\n"
+                + "          DATA_EVENTO_INI ,\n"
+                + "          DATA_EVENTO_FIM\n"
                 + "     FROM TB_PRODUTO P,\n"
                 + "          TB_CATEGORIA C,\n"
                 + "          TB_SUBCATEGORIA S\n"
@@ -140,7 +142,8 @@ public class EditarProduto extends HttpServlet {
                 p.setNomeUsuario(resultados.getString("NOME_USUARIO"));
                 p.setNomeFornecedor(resultados.getString("NOME_FORNECEDOR"));
                 p.setDescImagem(resultados.getString("DESCRICAO_IMAGEM"));
-                p.setDataEvento(java.sql.Date.valueOf(resultados.getString("DATA_EVENTO")));
+                p.setDataEventoIni(java.sql.Date.valueOf(resultados.getString("DATA_EVENTO_INI")));
+                p.setDataEventoFim(java.sql.Date.valueOf(resultados.getString("DATA_EVENTO_FIM")));
             }
             return p;
         } catch (SQLException | ClassNotFoundException ex) {
@@ -237,13 +240,15 @@ public class EditarProduto extends HttpServlet {
         float percentualLucro = 0;
         float custo = 0;
         float precoPromo = 0;
-        java.sql.Date dataPromo = null;
+        java.sql.Date dataEventoIni = null;
+        java.sql.Date dataEventoFim = null;
         try {
             precoVenda = (Long) NumberFormat.getIntegerInstance().parse(stringPrecoVenda.substring(3, stringPrecoVenda.length() - 3));
-            precoPromo = (Long) NumberFormat.getIntegerInstance().parse(stringPrecoPromo);
-            percentualLucro = (Long) NumberFormat.getNumberInstance().parse(stringPercLucro);
-            custo = (Long) NumberFormat.getNumberInstance().parse(stringCusto);
-            dataPromo = java.sql.Date.valueOf(request.getParameter("dataPromo"));
+            precoPromo = Float.valueOf(stringPrecoPromo);
+            percentualLucro = Float.valueOf(stringPercLucro);
+            custo = Float.valueOf(stringCusto);
+            dataEventoIni = java.sql.Date.valueOf(request.getParameter("dataEventoIni"));
+            dataEventoFim = java.sql.Date.valueOf(request.getParameter("dataEventoFim"));
         } catch (ParseException ex) {
             Logger.getLogger(CadastrarProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -251,13 +256,11 @@ public class EditarProduto extends HttpServlet {
         String caminhoImagem = request.getParameter("imagem");
         String descImagem = request.getParameter("descImagem");
         String descricao = request.getParameter("descricao");
-        java.sql.Date Data = java.sql.Date.valueOf(request.getParameter("dataPromo"));
-
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpSession sessao = httpRequest.getSession();
         Usuario usuario = (Usuario) sessao.getAttribute("usuario");
 
-        Produto p = new Produto((Integer.parseInt(idProduto.toString())), marca, modelo, precoVenda, percentualLucro, custo, precoPromo, dataPromo, quantidade, caminhoImagem, descImagem, descricao, Data);
+        Produto p = new Produto(0, marca, modelo, precoVenda, percentualLucro, custo, precoPromo, quantidade, caminhoImagem, descImagem, descricao, dataEventoIni, dataEventoFim);
         editarProduto(p, usuario);
 
         response.sendRedirect("BuscarProduto");

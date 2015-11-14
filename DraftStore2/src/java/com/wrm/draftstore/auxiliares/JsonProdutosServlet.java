@@ -45,13 +45,13 @@ public class JsonProdutosServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         List<Produto> produtosLista = listarProdutos();
         request.setAttribute("lista", produtosLista);
-        
+
         String json = new Gson().toJson(produtosLista);
         PrintWriter out = response.getWriter();
-        
+
         try {
             response.setContentType("application/json");
 //      out.write(json);
@@ -60,7 +60,7 @@ public class JsonProdutosServlet extends HttpServlet {
         } catch (JsonException e) {
             System.out.println("ERRO! -> [Json]: " + e);
         }
-        
+
         FileWriter file = new FileWriter("fornec.json");
         try {
             file.write(json);
@@ -69,12 +69,12 @@ public class JsonProdutosServlet extends HttpServlet {
 
         } catch (IOException e) {
             e.printStackTrace();
-            
+
         } finally {
             file.flush();
             file.close();
         }
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -120,15 +120,17 @@ public class JsonProdutosServlet extends HttpServlet {
         ConexaoBDJavaDB conexaoBD = new ConexaoBDJavaDB("draftCliente");
         Statement stmt = null;
         Connection conn = null;
-        
+
         String sql = "SELECT ID_PRODUTO,\n"
-                + "       CASE WHEN DATA_EVENTO > (CAST (CURRENT_TIMESTAMP AS DATE))\n"
-                + "          THEN PRECO_PROMO ELSE PRECO_VENDA END PRECO_VENDA,\n"
+                + "       CASE WHEN (CAST (CURRENT_TIMESTAMP AS DATE)) "
+                + "         BETWEEN DATA_EVENTO_INI AND DATA_EVENTO_FIM\n"
+                + "            THEN PRECO_PROMO ELSE PRECO_VENDA END PRECO_VENDA,\n"
                 + "       MODELO,\n"
                 + "       MARCA,\n"
                 + "       NOME_CATEGORIA,\n"
                 + "       NOME_SUBCATEGORIA,\n"
-                + "       DATA_EVENTO\n"
+                + "       DATA_EVENTO_INI,"
+                + "       DATA_EVENTO_FIM\n"
                 + "  FROM TB_PRODUTO P,\n"
                 + "       TB_CATEGORIA C,\n"
                 + "       TB_SUBCATEGORIA S\n"
@@ -140,9 +142,9 @@ public class JsonProdutosServlet extends HttpServlet {
             conn = conexaoBD.obterConexao();
             stmt = conn.createStatement();
             ResultSet resultados = stmt.executeQuery(sql);
-            
+
             List<Produto> lista = new ArrayList<>();
-            
+
             while (resultados.next()) {
                 Produto p = new Produto();
                 p.setIdProduto(Integer.parseInt(resultados.getString("ID_PRODUTO")));
@@ -151,12 +153,13 @@ public class JsonProdutosServlet extends HttpServlet {
                 p.setMarca(resultados.getString("MARCA"));
                 p.setNomeCategoria(resultados.getString("NOME_CATEGORIA"));
                 p.setNomeSubCategoria(resultados.getString("NOME_SUBCATEGORIA"));
-                p.setDataEvento(java.sql.Date.valueOf(resultados.getString("DATA_EVENTO")));
+                p.setDataEventoIni(java.sql.Date.valueOf(resultados.getString("DATA_EVENTO_INI")));
+                p.setDataEventoFim(java.sql.Date.valueOf(resultados.getString("DATA_EVENTO_FIM")));
                 lista.add(p);
             }
-            
+
             return lista;
-            
+
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(BuscarFornecedor.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -177,5 +180,5 @@ public class JsonProdutosServlet extends HttpServlet {
         }
         return null;
     }
-    
+
 }

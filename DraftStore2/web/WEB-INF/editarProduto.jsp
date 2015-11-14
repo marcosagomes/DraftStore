@@ -185,10 +185,18 @@
                     </div>
                 </div>
 
-                <div id="campoDataPromo" class="normalidade form-group">
-                    <label class="col-sm-3 control-label" for="dataPromo"> Data Promoção </label>
+                <div id="campoDataEventoIni" class="normalidade form-group">
+                    <label class="col-sm-3 control-label" for="dataEventoIni"> Data Início da Promoção </label>
                     <div class="col-sm-2">
-                        <input type="date" id="inputDataPromocao" class="form-control" name="dataPromo" value="${Produto.dataEvento}">
+                        <input type="date" id="inputDataEventoIni" class="form-control" name="dataEventoIni" value="${Produto.dataEventoIni}">
+                        <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
+                    </div>
+                </div>
+
+                <div id="campoDataEventoFim" class="normalidade form-group">
+                    <label class="col-sm-3 control-label" for="dataEventoFim"> Data Fim da Promoção </label>
+                    <div class="col-sm-2">
+                        <input type="date" id="inputDataEventoFim" class="form-control" name="dataEventoFim" value="${Produto.dataEventoFim}">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>

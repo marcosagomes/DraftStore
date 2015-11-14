@@ -5,6 +5,8 @@
  */
 package com.wrm.draftstore.classes;
 
+import java.sql.Date;
+
 /**
  *
  * @author ramon.ahonorio
@@ -91,15 +93,25 @@ public class Produto {
 
     private String descImagem;
 
-    private java.sql.Date dataEvento;
+    private java.sql.Date dataEventoIni;
 
-    public java.sql.Date getDataEvento() {
-        return dataEvento;
+    public Date getDataEventoIni() {
+        return dataEventoIni;
     }
 
-    public void setDataEvento(java.sql.Date dataEvento) {
-        this.dataEvento = dataEvento;
+    public void setDataEventoIni(Date dataEventoIni) {
+        this.dataEventoIni = dataEventoIni;
     }
+
+    public Date getDataEventoFim() {
+        return dataEventoFim;
+    }
+
+    public void setDataEventoFim(Date dataEventoFim) {
+        this.dataEventoFim = dataEventoFim;
+    }
+
+    private java.sql.Date dataEventoFim;
 
     public int getQuantidade() {
         return quantidade;
@@ -221,7 +233,7 @@ public class Produto {
         this.idFornecedor = idFornecedor;
     }
 
-    public Produto(int idProduto, float precoVenda, float precoPromo, float percentualLucro, String modelo, String marca, float custo, int idFornecedor, int idCategoria, int idSubCategoria, String dataCriacao, String nomeFornecedor, String nomeUsuario, int idFuncionario, int quantidade, String descricao, String caminhoImagem, String descImagem, java.sql.Date dataEvento) {
+    public Produto(int idProduto, float precoVenda, float precoPromo, float percentualLucro, String modelo, String marca, float custo, int idFornecedor, int idCategoria, int idSubCategoria, String dataCriacao, String nomeFornecedor, String nomeUsuario, int idFuncionario, int quantidade, String descricao, String caminhoImagem, String descImagem, java.sql.Date dataEventoIni, java.sql.Date dataEventoFim) {
         this.idProduto = idProduto;
         this.precoVenda = precoVenda;
         this.precoPromo = precoPromo;
@@ -240,10 +252,11 @@ public class Produto {
         this.descricao = descricao;
         this.caminhoImagem = caminhoImagem;
         this.descImagem = descImagem;
-        this.dataEvento = dataEvento;
+        this.dataEventoIni = dataEventoIni;
+        this.dataEventoFim = dataEventoFim;
     }
 
-    public Produto(int idProduto, String marca, String modelo, float precoVenda, float percentualLucro, float custo, float precoPromo, java.sql.Date dataPromo, int quantidade, String caminhoImagem, String descImagem, String descricao, java.sql.Date data) {
+    public Produto(int idProduto, String marca, String modelo, float precoVenda, float percentualLucro, float custo, float precoPromo, int quantidade, String caminhoImagem, String descImagem, String descricao, java.sql.Date dataEventoIni, java.sql.Date dataEventoFim) {
         this.idProduto = idProduto;
         this.precoVenda = precoVenda;
         this.precoPromo = precoPromo;
@@ -255,7 +268,8 @@ public class Produto {
         this.descricao = descricao;
         this.caminhoImagem = caminhoImagem;
         this.descImagem = descImagem;
-        this.dataEvento = data;
+        this.dataEventoIni = dataEventoIni;
+        this.dataEventoFim = dataEventoFim;
     }
 
     public Produto() {

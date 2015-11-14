@@ -109,8 +109,9 @@ public class CadastrarProduto extends HttpServlet {
                 + " NOME_FORNECEDOR,"
                 + " NOME_USUARIO,"
                 + " DESCRICAO_IMAGEM,"
-                + " DATA_EVENTO) \n"
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + " DATA_EVENTO_INI,"
+                + " DATA_EVENTO_FIM) \n"
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             conn = conexaoBD.obterConexao();
             stmt = conn.prepareStatement(sql);
@@ -134,7 +135,8 @@ public class CadastrarProduto extends HttpServlet {
             stmt.setString(15, p.getNomeFornecedor());
             stmt.setString(16, u.getNomeDoFuncionario());
             stmt.setString(17, p.getDescImagem().replace("\t", "<br>"));
-            stmt.setDate(18, p.getDataEvento());
+            stmt.setDate(18, p.getDataEventoIni());
+            stmt.setDate(19, p.getDataEventoFim());
 
             stmt.executeUpdate();
 
@@ -190,13 +192,15 @@ public class CadastrarProduto extends HttpServlet {
         float percentualLucro = 0;
         float custo = 0;
         float precoPromo = 0;
-        java.sql.Date dataPromo = null;
+        java.sql.Date dataEventoIni = null;
+        java.sql.Date dataEventoFim = null;
         try {
             precoVenda = (Long) NumberFormat.getIntegerInstance().parse(stringPrecoVenda.substring(3, stringPrecoVenda.length() - 3));
-            precoPromo = (Long) NumberFormat.getIntegerInstance().parse(stringPrecoPromo);
-            percentualLucro = (Long) NumberFormat.getNumberInstance().parse(stringPercLucro);
-            custo = (Long) NumberFormat.getNumberInstance().parse(stringCusto);
-            dataPromo = java.sql.Date.valueOf(request.getParameter("dataPromo"));
+            precoPromo = Float.valueOf(stringPrecoPromo);
+            percentualLucro = Float.valueOf(stringPercLucro);
+            custo = Float.valueOf(stringCusto);
+            dataEventoIni = java.sql.Date.valueOf(request.getParameter("dataEventoIni"));
+            dataEventoFim = java.sql.Date.valueOf(request.getParameter("dataEventoFim"));
         } catch (ParseException ex) {
             Logger.getLogger(CadastrarProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -212,7 +216,7 @@ public class CadastrarProduto extends HttpServlet {
         String nomeUsuario = usuario.getNomeDoFuncionario();
         int fkFuncionario = Integer.parseInt(usuario.getIdUsuario());
 
-        Produto p = new Produto(0, precoVenda, precoPromo, percentualLucro, modelo, marca, custo, fkFornecedor, idCategoria, idSubCategoria, dataCriacao, nomeFornecedor, nomeUsuario, fkFuncionario, quantidade, descricao, caminhoImagem, descImagem, dataPromo);
+        Produto p = new Produto(0, precoVenda, precoPromo, percentualLucro, modelo, marca, custo, fkFornecedor, idCategoria, idSubCategoria, dataCriacao, nomeFornecedor, nomeUsuario, fkFuncionario, quantidade, descricao, caminhoImagem, descImagem, dataEventoIni, dataEventoFim);
         cadastrarProduto(nomeFornecedor, p, usuario);
         response.sendRedirect("CadastrarProduto");
 
