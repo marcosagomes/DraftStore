@@ -106,13 +106,15 @@
                 class="form-inline"
                 onSubmit="return valida(this)"
                 action="CadastrarProduto"
-                method="POST">
+                method="POST"
+                name="produtoForm">
 
                 <div id="campoTipoProduto" class="normal form-group" >
-                    <label class="col-sm-3 control-label" for="Tipo"> Categoria </label>
+                    <label class="col-sm-3 control-label" for="Categoria"> Categoria </label>
                     <div class="col-sm-2 from-group">
-                        <select class="form-control" id="selectCategoria" name="Tipo" onchange="SubCatProduto(this)">
-                            <option value="" selected> Selecione </option>
+                        <select class="form-control" id="selectCategoria"
+                                name="selectCategoria" onchange="SubCatProduto(this)">
+                            <option  selected="selected" value=""> Selecione </option>
                             <c:forEach items="${CatProduto}" var="cat" varStatus="stat">
                                 <option value="${cat.value}"> ${cat.nome} </option>
                             </c:forEach>
@@ -164,7 +166,7 @@
                 <div id="campoCusto" class="normal form-group ">
                     <label class="col-sm-3 control-label" for="Custo"> Custo </label>
                     <div class="col-sm-2">
-                        <input type="text"  value="0" id="inputCusto" class="form-control" name="Custo">
+                        <input type="text"  id="inputCusto" class="form-control" name="Custo" onkeypress="return SomenteNumero(event);">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -172,7 +174,7 @@
                 <div id="campoLucro" class="normal form-group">
                     <label class="col-sm-2 control-label" for="Lucro"> % de Lucro </label>
                     <div class="col-sm-3">
-                        <input type="text" value="0" id="inputLucro" class="form-control" name="lucro">
+                        <input type="text"  id="inputLucro" class="form-control" name="lucro" onkeypress="return SomenteNumero(event);">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -196,7 +198,7 @@
                 <div id="campoDataIni" class="normalidade form-group">
                     <label class="col-sm-3 control-label" for="dataEventoIni"> Data Início da Promoção </label>
                     <div class="col-sm-2">
-                        <input type="date" id="inputDataEventoIni" class="form-control" name="dataEventoIni">
+                        <input type="text" id="inputDataEventoIni" class="form-control" name="dataEventoIni" data-mask="99/99/9999">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -204,7 +206,7 @@
                 <div id="campoDataFim" class="normalidade form-group">
                     <label class="col-sm-3 control-label" for="dataEventoFim"> Data Fim da Promoção </label>
                     <div class="col-sm-2">
-                        <input type="date" id="inputDataEventoFim" class="form-control" name="dataEventoFim">
+                        <input type="text" id="inputDataEventoFim" class="form-control" name="dataEventoFim" data-mask="99/99/9999">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -212,7 +214,7 @@
                 <div id="campoQuantidade" class="normal form-group" >
                     <label class="col-sm-3 control-label" for="quantidade"> Quantidade </label>
                     <div class="col-sm-2 from-group">
-                        <input type="number" class="form-control" id="numberQuantidade" name="quantidade">
+                        <input type="text" class="form-control" id="numberQuantidade" name="quantidade"  onkeypress="return SomenteNumero(event);">
                     </div>
                 </div>
 
