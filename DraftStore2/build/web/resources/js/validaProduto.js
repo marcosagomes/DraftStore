@@ -93,9 +93,10 @@ function validaLucro() {
 }
 function validaPromocao() {
     var objDate = new Date($("#inputDataEventoIni").val());
+    objDate.getDate() + 1;
     var valor = $("#inputPrecoPromo").val();
     if (objDate.isValid()) { // verifica se a data de inicio está preenchida, se estiver entra na condição.
-        if (valor <= 0 || valor === "") {
+        if (valor <= 0) {
             campoPromo.classList.add("has-error");
             return false;
         } else {
@@ -104,15 +105,19 @@ function validaPromocao() {
             return true;
         }
     }
+    campoDataPromoIni.classList.remove("has-error");
+    campoDataPromoIni.classList.remove("has-success");
     return true;
 }
 
 function validaDataPromoInicio() {
-    var objDate = new Date(objDate = $("#inputDataEventoIni").val());
+    var stringData = document.getElementById("inputDataEventoIni").value;
+    var objDate = new Date(stringData);
+    var data = objDate.getDate() + 1;
+    objDate.setDate(data) + 1;
     var today = new Date();
     console.log(objDate.isValid());
     if (objDate.isValid()) {
-        console.log("entrou");
         if (objDate < today) {
             campoDataPromoIni.classList.add("has-error");
             return false;
@@ -123,13 +128,23 @@ function validaDataPromoInicio() {
             return true;
         }
     }
+    campoDataPromoIni.classList.remove("has-error");
+    campoDataPromoIni.classList.remove("has-success");
+    return true;
 
 }
 
 function validaDataPromoFim() {
-    var objDate = new Date($("#inputDataEventoIni").val());
+    var stringData = document.getElementById("inputDataEventoIni").value;
+    var objDate = new Date(stringData);
+    var data = objDate.getDate() + 1;
+    objDate.setDate(data) + 1;
+    var dataFim = new Date($("#inputDataEventoFim").val());
+    data = dataFim.getDate() + 1;
+    dataFim.setDate(data);
+    dataFim.getDate() + 1;
     if (objDate.isValid()) {
-        if (!compareDatas() || !objDate.isValid()) {
+        if (dataFim < objDate || !dataFim.isValid()) {
             campoDataPromoFim.classList.add("has-error");
             return false;
         }
@@ -139,6 +154,9 @@ function validaDataPromoFim() {
             return true;
         }
     }
+    campoDataPromoFim.classList.remove("has-error");
+    campoDataPromoFim.classList.remove("has-success");
+    return true;
 }
 function validaQuantidade() {
     var quant = $("#numberQuantidade").val();
@@ -274,7 +292,7 @@ function SomenteNumero(e) {
     if ((tecla > 47 && tecla < 58))
         return true;
     else {
-        if (tecla == 8 || tecla == 0)
+        if (tecla === 8 || tecla === 0)
             return true;
         else
             return false;
@@ -283,19 +301,18 @@ function SomenteNumero(e) {
 
 
 
-function compareDatas() {
-    var valorCampoFim = new Date($("#inputDataEventoFim").val());
-    var valorCampoIni = new Date($("#inputDataEventoIni").val());
+function validaDatas() {
+    var objDate = new Date($("#inputDataEventoIni").val());
+    var dataFim = new Date($("#inputDataEventoFim").val());
 
-    if (valorCampoFim < valorCampoIni) {
-        return false;
-        console.log("1");
-    } else {
+    if (dataFim.getDate() + 1 >= objDate.getDate() + 1) {
         return true;
-        console.log("2");
+    } else {
+        return false;
     }
-
 }
+
+
 function tamanhoImagem() {
     var url = $("#imageCaminho").val();
     var myImage = new Image();

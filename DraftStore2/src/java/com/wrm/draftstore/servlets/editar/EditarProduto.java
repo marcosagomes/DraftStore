@@ -134,7 +134,7 @@ public class EditarProduto extends HttpServlet {
                 p.setModelo(resultados.getString("MODELO"));
                 p.setCusto(resultados.getFloat("CUSTO"));
                 p.setPercentualLucro(resultados.getFloat("PERCENTUAL_LUCRO"));
-                p.setPrecoVenda(resultados.getFloat("PRECO_VENDA"));                       
+                p.setPrecoVenda(resultados.getFloat("PRECO_VENDA"));
                 p.setPrecoPromo(resultados.getFloat("PRECO_PROMO"));
                 p.setQuantidade(resultados.getInt("QUANTIDADE"));
                 p.setCaminhoImagem(resultados.getString("CAMINHO_IMAGEM"));
@@ -144,18 +144,17 @@ public class EditarProduto extends HttpServlet {
                 p.setDataCriacao(resultados.getString("DATA_CRIACAO"));
                 p.setNomeUsuario(resultados.getString("NOME_USUARIO"));
                 SimpleDateFormat df = new SimpleDateFormat("dd MM yyyy");
-               
+
                 Date dtD;
                 dtD = resultados.getDate("DATA_EVENTO_INI");
-                
+
                 try {
-                  Date dtIni = df.parse(df.format(dtD));
-                  System.out.println(dtIni);
+                    Date dtIni = df.parse(df.format(dtD));
+                    System.out.println(dtIni);
                 } catch (ParseException ex) {
                     Logger.getLogger(EditarProduto.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
-                
+
                 p.setDataEventoIni(java.sql.Date.valueOf(resultados.getString("DATA_EVENTO_INI")));
                 p.setDataEventoFim(java.sql.Date.valueOf(resultados.getString("DATA_EVENTO_FIM")));
             }
@@ -254,29 +253,29 @@ public class EditarProduto extends HttpServlet {
         String stringPercLucro = request.getParameter("lucro");
         String stringPrecoVenda = request.getParameter("preco");
         String stringPrecoPromo = request.getParameter("precoPromo");
-        String stringDataInicio = request.getParameter("dataEventoIni");
-        String stringDataFim = request.getParameter("dataEventoFim");
+        String dataIni = request.getParameter("dataEventoIni");
+        String dataFim = request.getParameter("dataEventoFim");
         float precoVenda = 0f;
         float percentualLucro;
         float custo;
-        float precoPromo = 0f;
-        SimpleDateFormat dtFormat = new SimpleDateFormat("dd/MM/yyyy");
-        java.sql.Date dataIni = null;
-        java.sql.Date dataFim = null;
-        try {
-            precoPromo = Float.valueOf(stringPrecoPromo);
-            Date auxDateIni = dtFormat.parse(stringDataInicio);
-            Date auxDateFim = dtFormat.parse(stringDataFim);
-            dataIni = new java.sql.Date(auxDateIni.getTime());
-            dataFim = new java.sql.Date(auxDateFim.getTime());
-        } catch (ParseException ex) {
-            ex.addSuppressed(ex);
+        float precoPromo;
+        java.sql.Date dataEventoFim;
+        java.sql.Date dataEventoIni;
+
+        if (stringPrecoPromo.equals(" ") || dataIni.equals("") || dataFim.equals("")) {
+            stringPrecoPromo = "0.0";
+            dataIni = "2000-01-01";
+            dataFim = "2000-01-01";
         }
+        dataEventoIni = java.sql.Date.valueOf(dataIni);
+        dataEventoFim = java.sql.Date.valueOf(dataFim);
         try {
             precoVenda = (Long) NumberFormat.getIntegerInstance().parse(stringPrecoVenda.substring(3, stringPrecoVenda.length() - 3));
         } catch (ParseException ex) {
             Logger.getLogger(CadastrarProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        precoPromo = Float.valueOf(stringPrecoPromo);
         percentualLucro = Float.valueOf(stringPercLucro);
         custo = Float.valueOf(stringCusto);
         int quantidade = Integer.parseInt(request.getParameter("quantidade"));
@@ -291,7 +290,7 @@ public class EditarProduto extends HttpServlet {
         String nomeUsuario = usuario.getNomeDoFuncionario();
         int fkFuncionario = Integer.parseInt(usuario.getIdUsuario());
 
-        Produto p = new Produto(0, precoVenda, precoPromo, percentualLucro, modelo, marca, custo, fkFornecedor, idCategoria, idSubCategoria, dataCriacao, nomeFornecedor, nomeUsuario, fkFuncionario, quantidade, descricao, caminhoImagem, descImagem, dataIni, dataFim);
+        Produto p = new Produto(0, precoVenda, precoPromo, percentualLucro, modelo, marca, custo, fkFornecedor, idCategoria, idSubCategoria, dataCriacao, nomeFornecedor, nomeUsuario, fkFuncionario, quantidade, descricao, caminhoImagem, descImagem, dataEventoIni, dataEventoFim);
 
         editarProduto(p, usuario);
 

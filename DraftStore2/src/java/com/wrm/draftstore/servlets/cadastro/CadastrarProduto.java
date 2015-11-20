@@ -189,30 +189,28 @@ public class CadastrarProduto extends HttpServlet {
         String stringPercLucro = request.getParameter("lucro");
         String stringPrecoVenda = request.getParameter("preco");
         String stringPrecoPromo = request.getParameter("precoPromo");
-        String stringDataInicio = request.getParameter("dataEventoIni");
-        String stringDataFim = request.getParameter("dataEventoFim");
-
+        String dataIni = request.getParameter("dataEventoIni");
+        String dataFim = request.getParameter("dataEventoFim");
         float precoVenda = 0f;
-        float percentualLucro = 0f;
-        float custo = 0f;
-        float precoPromo = 0f;
-        SimpleDateFormat dtFormat = new SimpleDateFormat("dd/MM/yyyy");
-        java.sql.Date dataIni = null;
-        java.sql.Date dataFim = null;
-        try {
-            precoPromo = Float.valueOf(stringPrecoPromo);
-            Date auxDateIni = dtFormat.parse(stringDataInicio);
-            Date auxDateFim = dtFormat.parse(stringDataFim);
-            dataIni = new java.sql.Date(auxDateIni.getTime());
-            dataFim = new java.sql.Date(auxDateFim.getTime());            
-        } catch (ParseException ex) {
-            ex.addSuppressed(ex);
+        float percentualLucro;
+        float custo;
+        float precoPromo;
+        java.sql.Date dataEventoFim;
+        java.sql.Date dataEventoIni;
+
+        if (stringPrecoPromo.equals(" ") || dataIni.equals("") || dataFim.equals("")) {
+            stringPrecoPromo = "0.0";
+            dataIni = "2000-01-01";
+            dataFim = "2000-01-01";
         }
         try {
             precoVenda = (Long) NumberFormat.getIntegerInstance().parse(stringPrecoVenda.substring(3, stringPrecoVenda.length() - 3));
         } catch (ParseException ex) {
             Logger.getLogger(CadastrarProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
+        dataEventoIni = java.sql.Date.valueOf(dataIni);
+        dataEventoFim = java.sql.Date.valueOf(dataFim);
+        precoPromo = Float.valueOf(stringPrecoPromo);
         percentualLucro = Float.valueOf(stringPercLucro);
         custo = Float.valueOf(stringCusto);
         int quantidade = Integer.parseInt(request.getParameter("quantidade"));
@@ -227,7 +225,7 @@ public class CadastrarProduto extends HttpServlet {
         String nomeUsuario = usuario.getNomeDoFuncionario();
         int fkFuncionario = Integer.parseInt(usuario.getIdUsuario());
 
-        Produto p = new Produto(0, precoVenda, precoPromo, percentualLucro, modelo, marca, custo, fkFornecedor, idCategoria, idSubCategoria, dataCriacao, nomeFornecedor, nomeUsuario, fkFuncionario, quantidade, descricao, caminhoImagem, descImagem, dataIni, dataFim);
+        Produto p = new Produto(0, precoVenda, precoPromo, percentualLucro, modelo, marca, custo, fkFornecedor, idCategoria, idSubCategoria, dataCriacao, nomeFornecedor, nomeUsuario, fkFuncionario, quantidade, descricao, caminhoImagem, descImagem, dataEventoIni, dataEventoFim);
         cadastrarProduto(nomeFornecedor, p, usuario);
         response.sendRedirect("CadastrarProduto");
 

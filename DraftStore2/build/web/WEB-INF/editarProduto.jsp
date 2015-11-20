@@ -180,7 +180,7 @@
                 <div id="campoPrecoPromo" class="normalidade form-group">
                     <label class="col-sm-3 control-label" for="precoPromo"> Preco Promocional </label>
                     <div class="col-sm-2">
-                        <input type="text" id="inputPrecoPromo" class="form-control" name="precoPromo" placeholder="R$ 00,00" value="${Produto.precoPromo}">
+                        <input type="number" id="inputPrecoPromo" class="form-control" name="precoPromo" placeholder="R$ 00,00" value="${Produto.precoPromo}">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
