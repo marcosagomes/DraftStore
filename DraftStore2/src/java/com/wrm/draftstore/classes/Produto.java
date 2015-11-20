@@ -93,7 +93,8 @@ public class Produto {
 
     private String descImagem;
 
-    private java.sql.Date dataEventoIni;
+    private Date dataEventoIni;
+    private Date dataEventoFim;
 
     public Date getDataEventoIni() {
         return dataEventoIni;
@@ -110,8 +111,6 @@ public class Produto {
     public void setDataEventoFim(Date dataEventoFim) {
         this.dataEventoFim = dataEventoFim;
     }
-
-    private java.sql.Date dataEventoFim;
 
     public int getQuantidade() {
         return quantidade;
@@ -233,7 +232,7 @@ public class Produto {
         this.idFornecedor = idFornecedor;
     }
 
-    public Produto(int idProduto, float precoVenda, float precoPromo, float percentualLucro, String modelo, String marca, float custo, int idFornecedor, int idCategoria, int idSubCategoria, String dataCriacao, String nomeFornecedor, String nomeUsuario, int idFuncionario, int quantidade, String descricao, String caminhoImagem, String descImagem, java.sql.Date dataEventoIni, java.sql.Date dataEventoFim) {
+    public Produto(int idProduto, float precoVenda, float precoPromo, float percentualLucro, String modelo, String marca, float custo, int idFornecedor, int idCategoria, int idSubCategoria, String dataCriacao, String nomeFornecedor, String nomeUsuario, int idFuncionario, int quantidade, String descricao, String caminhoImagem, String descImagem, Date dataEventoIni, Date dataEventoFim) {
         this.idProduto = idProduto;
         this.precoVenda = precoVenda;
         this.precoPromo = precoPromo;
@@ -256,7 +255,7 @@ public class Produto {
         this.dataEventoFim = dataEventoFim;
     }
 
-    public Produto(int idProduto, String marca, String modelo, float precoVenda, float percentualLucro, float custo, float precoPromo, int quantidade, String caminhoImagem, String descImagem, String descricao, java.sql.Date dataEventoIni, java.sql.Date dataEventoFim) {
+    public Produto(int idProduto, String marca, String modelo, float precoVenda, float percentualLucro, float custo, float precoPromo, int quantidade, String caminhoImagem, String descImagem, String descricao, Date dataEventoIni, Date dataEventoFim) {
         this.idProduto = idProduto;
         this.precoVenda = precoVenda;
         this.precoPromo = precoPromo;

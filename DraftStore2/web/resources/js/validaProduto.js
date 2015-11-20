@@ -13,8 +13,6 @@ var campoImagem = document.getElementById("campoCaminhoImagem");
 var campoQuantidade = document.getElementById("campoQuantidade");
 var campoDescImg = document.getElementById("campoDescImagem");
 var campoDescProd = document.getElementById("campoDescricaoProduto");
-
-
 function validaCategoria() {
     var subCategoria = document.getElementById("selectSubCategoria");
     if (subCategoria.options[subCategoria.selectedIndex].value === "") {
@@ -94,10 +92,9 @@ function validaLucro() {
     }
 }
 function validaPromocao() {
-    var valorDoCampo = $("#inputDataEventoIni").val();
-    var objDate = new Date();
+    var objDate = new Date($("#inputDataEventoIni").val());
     var valor = $("#inputPrecoPromo").val();
-    if (objDate.setDate(valorDoCampo.split("/")[2]) > 0) { // verifica se a data de inicio está preenchida, se estiver entra na condição.
+    if (objDate.isValid()) { // verifica se a data de inicio está preenchida, se estiver entra na condição.
         if (valor <= 0 || valor === "") {
             campoPromo.classList.add("has-error");
             return false;
@@ -111,10 +108,12 @@ function validaPromocao() {
 }
 
 function validaDataPromoInicio() {
-    var valorDoCampo = $("#inputDataEventoIni").val();
-    var objDate = new Date();
-    if (objDate.setDate(valorDoCampo.split("/")[2]) > 0) {
-        if (!dataValida(valorDoCampo) || !dataToday(valorDoCampo)) {
+    var objDate = new Date(objDate = $("#inputDataEventoIni").val());
+    var today = new Date();
+    console.log(objDate.isValid());
+    if (objDate.isValid()) {
+        console.log("entrou");
+        if (objDate < today) {
             campoDataPromoIni.classList.add("has-error");
             return false;
         }
@@ -124,19 +123,13 @@ function validaDataPromoInicio() {
             return true;
         }
     }
-    if (objDate.setDate(valorDoCampo.split("/")[2]) <= 0) {
-        campoDataPromoIni.classList.remove("has-error");
-        return true;
-    }
-    return true;
+
 }
 
 function validaDataPromoFim() {
-    var valorDoCampoIni = $("#inputDataEventoIni").val();
-    var valorDoCampoFim = $("#inputDataEventoFim").val();
-    var objDate = new Date();
-    if (objDate.setDate(valorDoCampoIni.split("/")[2]) >= 1) {
-        if (!dataValida(valorDoCampoFim) || dataFimInicio(valorDoCampoIni, valorDoCampoFim)) {
+    var objDate = new Date($("#inputDataEventoIni").val());
+    if (objDate.isValid()) {
+        if (!compareDatas() || !objDate.isValid()) {
             campoDataPromoFim.classList.add("has-error");
             return false;
         }
@@ -146,7 +139,6 @@ function validaDataPromoFim() {
             return true;
         }
     }
-    return true;
 }
 function validaQuantidade() {
     var quant = $("#numberQuantidade").val();
@@ -162,7 +154,7 @@ function validaQuantidade() {
 function validaCaminhoImg() {
     var regex = /\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]/i;
     var valorDoCampo = $("#imageCaminho").val();
-    if (!regex.test(valorDoCampo) || !tamanhoImagem() ) {
+    if (!regex.test(valorDoCampo) || !tamanhoImagem()) {
         campoImagem.classList.add("has-error");
         return false;
     } else {
@@ -290,57 +282,17 @@ function SomenteNumero(e) {
 }
 
 
-function dataValida(dts) {
-    var date = dts;
-    var ardt = new Array;
-    var ExpReg = new RegExp("(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/[12][0-9]{3}");
-    ardt = date.split("/");
-    if (date.search(ExpReg) == -1) {
+
+function compareDatas() {
+    var valorCampoFim = new Date($("#inputDataEventoFim").val());
+    var valorCampoIni = new Date($("#inputDataEventoIni").val());
+
+    if (valorCampoFim < valorCampoIni) {
         return false;
-    }
-    else if (((ardt[1] == 4) || (ardt[1] == 6) || (ardt[1] == 9) || (ardt[1] == 11)) && (ardt[0] > 30))
-        return false
-    else if (ardt[1] == 2) {
-        if ((ardt[0] > 28) && ((ardt[2] % 4) != 0))
-            return false;
-        if ((ardt[0] > 29) && ((ardt[2] % 4) == 0))
-            return false
-    }
-
-    return true;
-}
-
-function dataToday(dts) {
-    var data = dts;
-    var objDate = new Date();
-    objDate.setYear(data.split("/")[2]);
-    objDate.setMonth(data.split("/")[1] - 1);//- 1 pq em js é de 0 a 11 os meses
-    objDate.setDate(data.split("/")[0]);
-
-    if (objDate.getTime() < new Date().getTime()) {
-        return false;
-    } else if (objDate.getTime() >= new Date().getTime()) {
-        return true;
-    }
-}
-function dataFimInicio(dts, dts2) {
-    var data = dts;
-    var data2 = dts2;
-    var objDate = new Date();
-    var objDate2 = new Date();
-    objDate.setYear(data.split("/")[2]);
-    objDate.setMonth(data.split("/")[1] - 1);//- 1 pq em js é de 0 a 11 os meses
-    objDate.setDate(data.split("/")[0]);
-    // populando a segunda data
-
-    objDate.setYear(data2.split("/")[2]);
-    objDate.setMonth(data2.split("/")[1] - 1);//- 1 pq em js é de 0 a 11 os meses
-    objDate.setDate(data2.split("/")[0]);
-
-    if (objDate.getTime() > objDate2.getTime()) {
-        return false;
+        console.log("1");
     } else {
         return true;
+        console.log("2");
     }
 
 }
@@ -350,12 +302,15 @@ function tamanhoImagem() {
     myImage.src = url;
     var largura = parseInt(myImage.width);
     var altura = parseInt(myImage.height);
-
-    if (largura < 500 && altura < 500) {
-        alert("Largura e Altura deve passar dos 500px")
+    if (largura < 500 || altura < 500) {
+        alert("Largura e Altura deve ultrapassar dos 500px");
         return false;
     }
     return true;
-
 }
 
+Date.prototype.isValid = function () {
+    // An invalid date object returns NaN for getTime() and NaN is the only
+    // object not strictly equal to itself.
+    return this.getTime() === this.getTime();
+};

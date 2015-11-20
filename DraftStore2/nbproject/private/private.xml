@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Marcos/Documents/NetBeansProjects/DraftStore2.1/DraftStore2/web/WEB-INF/cadastrarProduto.jsp</file>
-            <file>file:/C:/Users/Marcos/Documents/NetBeansProjects/DraftStore2.1/DraftStore2/web/resources/js/validaFuncionario.js</file>
-            <file>file:/C:/Users/Marcos/Documents/NetBeansProjects/DraftStore2.1/DraftStore2/web/WEB-INF/cadastrarFuncionario.jsp</file>
+            <file>file:/C:/Users/Marcos/Documents/NetBeansProjects/DraftStore2.1/DraftStore2/src/java/com/wrm/draftstore/servlets/editar/EditarProduto.java</file>
+            <file>file:/C:/Users/Marcos/Documents/NetBeansProjects/DraftStore2.1/DraftStore2/src/java/com/wrm/draftstore/servlets/cadastro/CadastrarProduto.java</file>
             <file>file:/C:/Users/Marcos/Documents/NetBeansProjects/DraftStore2.1/DraftStore2/web/resources/js/validaProduto.js</file>
+            <file>file:/C:/Users/Marcos/Documents/NetBeansProjects/DraftStore2.1/DraftStore2/web/WEB-INF/editarProduto.jsp</file>
         </group>
     </open-files>
 </project-private>

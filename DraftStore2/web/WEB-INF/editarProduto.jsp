@@ -111,7 +111,7 @@
                 <div id="campoTipoProduto" class="normal form-group" >
                     <label class="col-sm-3 control-label" for="Tipo"> Categoria </label>
                     <div class="col-sm-2 from-group">
-                        <select class="form-control" id="selectCategoria" name="Categoria" readonly>
+                        <select class="form-control" id="selectCategoria" name="selectCategoria" readonly>
                             <option value="${Produto.idCategoria}">${Produto.nomeCategoria}</option>
                         </select>
                     </div>
@@ -120,7 +120,7 @@
                 <div id="campoTipoProduto" class="normal form-group" >
                     <label class="col-sm-3 control-label" for="Tipo"> Sub Categoria </label>
                     <div class="col-sm-2 from-group">
-                        <select class="form-control" id="selectSubCategoria" name="Subcategoria" readonly>
+                        <select class="form-control" id="selectSubCategoria" name="subTipo" readonly>
                             <option value="${Produto.idSubCategoria}">${Produto.nomeSubCategoria}</option>
                         </select>
                     </div>
@@ -185,18 +185,18 @@
                     </div>
                 </div>
 
-                <div id="campoDataEventoIni" class="normalidade form-group">
+                <div id="campoDataIni" class="normalidade form-group">
                     <label class="col-sm-3 control-label" for="dataEventoIni"> Data Início da Promoção </label>
                     <div class="col-sm-2">
-                        <input type="date" id="inputDataEventoIni" class="form-control" name="dataEventoIni" value="${Produto.dataEventoIni}">
+                        <input type="date" id="inputDataEventoIni" class="form-control" name="dataEventoIni"  value="${Produto.dataEventoIni}">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
 
-                <div id="campoDataEventoFim" class="normalidade form-group">
+                <div id="campoDataFim" class="normalidade form-group">
                     <label class="col-sm-3 control-label" for="dataEventoFim"> Data Fim da Promoção </label>
                     <div class="col-sm-2">
-                        <input type="date" id="inputDataEventoFim" class="form-control" name="dataEventoFim" value="${Produto.dataEventoFim}">
+                        <input type="date" id="inputDataEventoFim" class="form-control"name="dataEventoFim" value="${Produto.dataEventoFim}" >
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -204,7 +204,7 @@
                 <div id="campoQuantidade" class="normal form-group" >
                     <label class="col-sm-3 control-label" for="quantidade"> Quantidade </label>
                     <div class="col-sm-2 from-group">
-                        <input type="number" class="form-control" id="numberQuantidade" name="quantidade" min="0" value="${Produto.quantidade}">
+                        <input type="text" class="form-control" id="numberQuantidade" name="quantidade" min="0" value="${Produto.quantidade}">
                     </div>
                 </div>
 
@@ -236,7 +236,7 @@
                     </div>
                 </div>
 
-                <div id="campoDescricao" class="normal form-group" >
+                <div id="campoDescricaoProduto" class="normal form-group" >
                     <label class="col-sm-3 control-label" for="descricao"> Descricao do Produto </label>
                     <div class="col-sm-2 from-group">
                         <textarea class="form-control" id="textareaDescricao" name="descricao">${Produto.descricao}</textarea>

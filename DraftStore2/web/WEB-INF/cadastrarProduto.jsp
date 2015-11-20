@@ -182,7 +182,7 @@
                 <div id="campoPreco" class="normalidade form-group">
                     <label class="col-sm-3 control-label" for="Preco"> Preco de Venda </label>
                     <div class="col-sm-2">
-                        <input type="text" id="inputPreco" class="form-control" name="preco" placeholder="R$ 00,00" readonly>
+                        <input type="text" id="inputPreco" class="form-control" name="preco" placeholder="R$ 00,00" readonly onkeypress="return SomenteNumero(event);">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -190,7 +190,7 @@
                 <div id="campoPrecoPromo" class="normalidade form-group">
                     <label class="col-sm-3 control-label" for="precoPromo"> Preco Promocional </label>
                     <div class="col-sm-2">
-                        <input type="text" id="inputPrecoPromo" class="form-control" name="precoPromo" placeholder="R$ 00,00">
+                        <input type="text" id="inputPrecoPromo" class="form-control" name="precoPromo" placeholder="R$ 00,00" onkeypress="return SomenteNumero(event);">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -198,7 +198,7 @@
                 <div id="campoDataIni" class="normalidade form-group">
                     <label class="col-sm-3 control-label" for="dataEventoIni"> Data Início da Promoção </label>
                     <div class="col-sm-2">
-                        <input type="text" id="inputDataEventoIni" class="form-control" name="dataEventoIni" data-mask="99/99/9999">
+                        <input type="date" id="inputDataEventoIni" class="form-control" name="dataEventoIni" >
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -206,7 +206,7 @@
                 <div id="campoDataFim" class="normalidade form-group">
                     <label class="col-sm-3 control-label" for="dataEventoFim"> Data Fim da Promoção </label>
                     <div class="col-sm-2">
-                        <input type="text" id="inputDataEventoFim" class="form-control" name="dataEventoFim" data-mask="99/99/9999">
+                        <input type="date" id="inputDataEventoFim" class="form-control" name="dataEventoFim">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>

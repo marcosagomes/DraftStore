@@ -23,6 +23,7 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.text.NumberFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -178,7 +179,7 @@ public class CadastrarProduto extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
-        int idCategoria = Integer.parseInt(request.getParameter("Tipo"));
+        int idCategoria = Integer.parseInt(request.getParameter("selectCategoria"));
         int idSubCategoria = Integer.parseInt(request.getParameter("subTipo"));
         int fkFornecedor = Integer.parseInt(request.getParameter("Fornecedor"));
         String nomeFornecedor = request.getParameter(String.valueOf(fkFornecedor));
@@ -188,22 +189,32 @@ public class CadastrarProduto extends HttpServlet {
         String stringPercLucro = request.getParameter("lucro");
         String stringPrecoVenda = request.getParameter("preco");
         String stringPrecoPromo = request.getParameter("precoPromo");
-        float precoVenda = 0;
-        float percentualLucro = 0;
-        float custo = 0;
-        float precoPromo = 0;
-        java.sql.Date dataEventoIni = null;
-        java.sql.Date dataEventoFim = null;
+        String stringDataInicio = request.getParameter("dataEventoIni");
+        String stringDataFim = request.getParameter("dataEventoFim");
+
+        float precoVenda = 0f;
+        float percentualLucro = 0f;
+        float custo = 0f;
+        float precoPromo = 0f;
+        SimpleDateFormat dtFormat = new SimpleDateFormat("dd/MM/yyyy");
+        java.sql.Date dataIni = null;
+        java.sql.Date dataFim = null;
+        try {
+            precoPromo = Float.valueOf(stringPrecoPromo);
+            Date auxDateIni = dtFormat.parse(stringDataInicio);
+            Date auxDateFim = dtFormat.parse(stringDataFim);
+            dataIni = new java.sql.Date(auxDateIni.getTime());
+            dataFim = new java.sql.Date(auxDateFim.getTime());            
+        } catch (ParseException ex) {
+            ex.addSuppressed(ex);
+        }
         try {
             precoVenda = (Long) NumberFormat.getIntegerInstance().parse(stringPrecoVenda.substring(3, stringPrecoVenda.length() - 3));
-            precoPromo = Float.valueOf(stringPrecoPromo);
-            percentualLucro = Float.valueOf(stringPercLucro);
-            custo = Float.valueOf(stringCusto);
-            dataEventoIni = java.sql.Date.valueOf(request.getParameter("dataEventoIni"));
-            dataEventoFim = java.sql.Date.valueOf(request.getParameter("dataEventoFim"));
         } catch (ParseException ex) {
             Logger.getLogger(CadastrarProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
+        percentualLucro = Float.valueOf(stringPercLucro);
+        custo = Float.valueOf(stringCusto);
         int quantidade = Integer.parseInt(request.getParameter("quantidade"));
         String caminhoImagem = request.getParameter("imagem");
         String descImagem = request.getParameter("descImagem");
@@ -216,7 +227,7 @@ public class CadastrarProduto extends HttpServlet {
         String nomeUsuario = usuario.getNomeDoFuncionario();
         int fkFuncionario = Integer.parseInt(usuario.getIdUsuario());
 
-        Produto p = new Produto(0, precoVenda, precoPromo, percentualLucro, modelo, marca, custo, fkFornecedor, idCategoria, idSubCategoria, dataCriacao, nomeFornecedor, nomeUsuario, fkFuncionario, quantidade, descricao, caminhoImagem, descImagem, dataEventoIni, dataEventoFim);
+        Produto p = new Produto(0, precoVenda, precoPromo, percentualLucro, modelo, marca, custo, fkFornecedor, idCategoria, idSubCategoria, dataCriacao, nomeFornecedor, nomeUsuario, fkFuncionario, quantidade, descricao, caminhoImagem, descImagem, dataIni, dataFim);
         cadastrarProduto(nomeFornecedor, p, usuario);
         response.sendRedirect("CadastrarProduto");
 

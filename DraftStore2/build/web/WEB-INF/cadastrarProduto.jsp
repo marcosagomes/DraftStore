@@ -102,24 +102,19 @@
             <!-- ********************** Inserir o conteudo aqui! ********************** -->
 
             <form 
-                id="formCatAndSubCat"
-                class="form-inline"
-                action="BuscaSubCategoria"
-                method="GET">
-            </form>
-
-            <form 
                 id="formulario"
                 class="form-inline"
                 onSubmit="return valida(this)"
                 action="CadastrarProduto"
-                method="POST">
+                method="POST"
+                name="produtoForm">
 
                 <div id="campoTipoProduto" class="normal form-group" >
-                    <label class="col-sm-3 control-label" for="Tipo"> Categoria </label>
+                    <label class="col-sm-3 control-label" for="Categoria"> Categoria </label>
                     <div class="col-sm-2 from-group">
-                        <select class="form-control" id="selectCategoria" name="Tipo" onchange="SubCatProduto(this)">
-                            <option value="" selected> Selecione </option>
+                        <select class="form-control" id="selectCategoria"
+                                name="selectCategoria" onchange="SubCatProduto(this)">
+                            <option  selected="selected" value=""> Selecione </option>
                             <c:forEach items="${CatProduto}" var="cat" varStatus="stat">
                                 <option value="${cat.value}"> ${cat.nome} </option>
                             </c:forEach>
@@ -171,7 +166,7 @@
                 <div id="campoCusto" class="normal form-group ">
                     <label class="col-sm-3 control-label" for="Custo"> Custo </label>
                     <div class="col-sm-2">
-                        <input type="text"  value="0" id="inputCusto" class="form-control" name="Custo">
+                        <input type="text"  id="inputCusto" class="form-control" name="Custo" onkeypress="return SomenteNumero(event);">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -179,7 +174,7 @@
                 <div id="campoLucro" class="normal form-group">
                     <label class="col-sm-2 control-label" for="Lucro"> % de Lucro </label>
                     <div class="col-sm-3">
-                        <input type="text" value="0" id="inputLucro" class="form-control" name="lucro">
+                        <input type="text"  id="inputLucro" class="form-control" name="lucro" onkeypress="return SomenteNumero(event);">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -187,7 +182,31 @@
                 <div id="campoPreco" class="normalidade form-group">
                     <label class="col-sm-3 control-label" for="Preco"> Preco de Venda </label>
                     <div class="col-sm-2">
-                        <input type="text" id="inputPreco" class="form-control" name="preco" placeholder="R$ 00,00" readonly>
+                        <input type="text" id="inputPreco" class="form-control" name="preco" placeholder="R$ 00,00" readonly onkeypress="return SomenteNumero(event);">
+                        <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
+                    </div>
+                </div>
+
+                <div id="campoPrecoPromo" class="normalidade form-group">
+                    <label class="col-sm-3 control-label" for="precoPromo"> Preco Promocional </label>
+                    <div class="col-sm-2">
+                        <input type="text" id="inputPrecoPromo" class="form-control" name="precoPromo" placeholder="R$ 00,00" onkeypress="return SomenteNumero(event);">
+                        <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
+                    </div>
+                </div>
+
+                <div id="campoDataIni" class="normalidade form-group">
+                    <label class="col-sm-3 control-label" for="dataEventoIni"> Data Início da Promoção </label>
+                    <div class="col-sm-2">
+                        <input type="date" id="inputDataEventoIni" class="form-control" name="dataEventoIni" >
+                        <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
+                    </div>
+                </div>
+
+                <div id="campoDataFim" class="normalidade form-group">
+                    <label class="col-sm-3 control-label" for="dataEventoFim"> Data Fim da Promoção </label>
+                    <div class="col-sm-2">
+                        <input type="date" id="inputDataEventoFim" class="form-control" name="dataEventoFim">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -195,7 +214,7 @@
                 <div id="campoQuantidade" class="normal form-group" >
                     <label class="col-sm-3 control-label" for="quantidade"> Quantidade </label>
                     <div class="col-sm-2 from-group">
-                        <input type="number" class="form-control" id="numberQuantidade" name="quantidade">
+                        <input type="text" class="form-control" id="numberQuantidade" name="quantidade"  onkeypress="return SomenteNumero(event);">
                     </div>
                 </div>
 
@@ -233,8 +252,7 @@
                 <div id="campoDescricaoProduto" class="normal form-group" >
                     <label class="col-sm-3 control-label" for="descricao"> Descricao do Produto</label>
                     <div class="col-sm-2 from-group">
-                        <textarea class="form-control" id="textareaDescricao" name="descricao">
-                        </textarea>
+                        <textarea class="form-control" id="textareaDescricao" name="descricao"></textarea>
                     </div>
                 </div>
 
@@ -249,16 +267,16 @@
         function SubCatProduto(select) {
             var categoria = document.getElementById('selectSubCategoria');
         <c:choose>
-            <c:when test="${SubCatProduto == null}">null</c:when>
+            <c:when test="${SubCatProduto == null}"></c:when>
             <c:otherwise>
-                    categoria.innerHTML = '';
+            categoria.innerHTML = '';
                 <c:forEach items="${SubCatProduto}" var="sub" varStatus="stat">
-                    if (select.value === "${sub.fkValue}") {
-                        var opt = document.createElement('option');
-                        opt.value = ${sub.value};
-                        opt.innerHTML = '${sub.nome}';
-                        categoria.appendChild(opt);
-                    }
+            if (select.value === "${sub.fkValue}") {
+                var opt = document.createElement('option');
+                opt.value = ${sub.value};
+                opt.innerHTML = '${sub.nome}';
+                categoria.appendChild(opt);
+            }
                 </c:forEach>
             </c:otherwise>
         </c:choose>
