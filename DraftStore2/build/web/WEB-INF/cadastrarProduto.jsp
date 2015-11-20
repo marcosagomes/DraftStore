@@ -166,7 +166,7 @@
                 <div id="campoCusto" class="normal form-group ">
                     <label class="col-sm-3 control-label" for="Custo"> Custo </label>
                     <div class="col-sm-2">
-                        <input type="text"  id="inputCusto" class="form-control" name="Custo" onkeypress="return SomenteNumero(event);">
+                        <input type="number"  id="inputCusto" class="form-control" name="Custo">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -182,7 +182,7 @@
                 <div id="campoPreco" class="normalidade form-group">
                     <label class="col-sm-3 control-label" for="Preco"> Preco de Venda </label>
                     <div class="col-sm-2">
-                        <input type="text" id="inputPreco" class="form-control" name="preco" placeholder="R$ 00,00" readonly onkeypress="return SomenteNumero(event);">
+                        <input type="text" id="inputPreco" class="form-control" name="preco" placeholder="R$ 00,00" >
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -190,7 +190,7 @@
                 <div id="campoPrecoPromo" class="normalidade form-group">
                     <label class="col-sm-3 control-label" for="precoPromo"> Preco Promocional </label>
                     <div class="col-sm-2">
-                        <input type="text" id="inputPrecoPromo" class="form-control" name="precoPromo" placeholder="R$ 00,00" onkeypress="return SomenteNumero(event);">
+                        <input type="number" id="inputPrecoPromo" class="form-control" name="precoPromo" placeholder="R$ 00,00" >
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>

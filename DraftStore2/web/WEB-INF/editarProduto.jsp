@@ -156,7 +156,7 @@
                 <div id="campoCusto" class="normal form-group ">
                     <label class="col-sm-3 control-label" for="Custo"> Custo </label>
                     <div class="col-sm-2">
-                        <input type="text"value="${Produto.custo}" id="inputCusto" class="form-control" name="Custo">
+                        <input type="number"value="${Produto.custo}" id="inputCusto" class="form-control" name="Custo">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
@@ -164,7 +164,7 @@
                 <div id="campoLucro" class="normal form-group">
                     <label class="col-sm-2 control-label" for="Lucro"> % de Lucro </label>
                     <div class="col-sm-3">
-                        <input type="text" value="${Produto.percentualLucro}" id="inputLucro" class="form-control" name="lucro">
+                        <input type="number" value="${Produto.percentualLucro}" id="inputLucro" class="form-control" name="lucro">
                         <!--<span class="glyphicon glyphicon-remove form-control-feedback"></span>-->
                     </div>
                 </div>
