@@ -135,7 +135,7 @@ public class CadastrarProduto extends HttpServlet {
 
             stmt.setString(15, p.getNomeFornecedor());
             stmt.setString(16, u.getNomeDoFuncionario());
-            stmt.setString(17, p.getDescImagem().replace("\t", "<br>"));
+            stmt.setString(17, p.getDescImagem());
             stmt.setDate(18, p.getDataEventoIni());
             stmt.setDate(19, p.getDataEventoFim());
 
@@ -216,7 +216,7 @@ public class CadastrarProduto extends HttpServlet {
         int quantidade = Integer.parseInt(request.getParameter("quantidade"));
         String caminhoImagem = request.getParameter("imagem");
         String descImagem = request.getParameter("descImagem");
-        String descricao = request.getParameter("descricao");
+        String descricao = request.getParameter("descricao").replace("\r", "<br/>");
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpSession sessao = httpRequest.getSession();
         Usuario usuario = (Usuario) sessao.getAttribute("usuario");

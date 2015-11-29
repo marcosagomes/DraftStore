@@ -138,7 +138,7 @@ public class EditarProduto extends HttpServlet {
                 p.setPrecoPromo(resultados.getFloat("PRECO_PROMO"));
                 p.setQuantidade(resultados.getInt("QUANTIDADE"));
                 p.setCaminhoImagem(resultados.getString("CAMINHO_IMAGEM"));
-                p.setDescricao(resultados.getString("DESCRICAO"));
+                p.setDescricao(resultados.getString("DESCRICAO").replace("<br/>", "\t"));
                 p.setDescImagem(resultados.getString("DESCRICAO_IMAGEM"));
                 p.setIdFuncionario(resultados.getInt("FK_FUNCIONARIO"));
                 p.setDataCriacao(resultados.getString("DATA_CRIACAO"));
@@ -281,7 +281,7 @@ public class EditarProduto extends HttpServlet {
         int quantidade = Integer.parseInt(request.getParameter("quantidade"));
         String caminhoImagem = request.getParameter("imagem");
         String descImagem = request.getParameter("descImagem");
-        String descricao = request.getParameter("descricao");
+        String descricao = request.getParameter("descricao").replace("\r", "<br/>");
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpSession sessao = httpRequest.getSession();
         Usuario usuario = (Usuario) sessao.getAttribute("usuario");
