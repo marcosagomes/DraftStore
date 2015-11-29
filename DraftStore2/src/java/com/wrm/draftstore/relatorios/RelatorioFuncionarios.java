@@ -40,12 +40,14 @@ public class RelatorioFuncionarios extends HttpServlet {
         Connection conn = null;
 
         String sql
-                = "select  sum(produto.PRECO) as VALOR,\n"
-                + "        FK_FUNCIONARIO ,\n"
+                = "select  CAST (sum(((prod.CUSTO * prod.PERCENTUAL_LUCRO)/100) * produto.QUANTIDADE) AS DECIMAL(30,2)) as VALOR,\n"
+                + "        FK_FUNCIONARIO,\n"
                 + "        NOME_USUARIO as FUNCIONARIO\n"
-                + "        from TB_VENDA venda, \n"
-                + "            TB_ITEM_VENDA produto\n"
-                + "        where venda.ID_VENDA = produto.FK_VENDA group\n"
+                + "        from TB_CARRINHO_VENDA venda, \n"
+                + "            TB_CARRINHO produto,\n"
+                + "            TB_PRODUTO prod\n"
+                + "        where venda.ID_VENDA = produto.FK_CARRINHO_VENDA\n"
+                + "          and prod.ID_PRODUTO = produto.FK_PRODUTO group\n"
                 + "        by FK_FUNCIONARIO, NOME_USUARIO order by VALOR desc";
         try {
             conn = conexaoBD.obterConexao();
