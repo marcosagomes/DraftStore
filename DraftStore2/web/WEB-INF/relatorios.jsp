@@ -118,7 +118,7 @@
                     <div class="despesas">
                         <a href="RelatorioVendas">
                             <img src="../resources/img/gastos.png">   
-                            <p class="nome">Despesas </p>
+                            <p class="nome">Lucro mensal </p>
                         </a>                
                     </div>
 
