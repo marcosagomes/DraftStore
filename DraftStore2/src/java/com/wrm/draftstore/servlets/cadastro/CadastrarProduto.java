@@ -203,11 +203,7 @@ public class CadastrarProduto extends HttpServlet {
             dataIni = "2000-01-01";
             dataFim = "2000-01-01";
         }
-        try {
-            precoVenda = (Long) NumberFormat.getIntegerInstance().parse(stringPrecoVenda.substring(3, stringPrecoVenda.length() - 3));
-        } catch (ParseException ex) {
-            Logger.getLogger(CadastrarProduto.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        precoVenda = Float.valueOf(stringPrecoVenda);
         dataEventoIni = java.sql.Date.valueOf(dataIni);
         dataEventoFim = java.sql.Date.valueOf(dataFim);
         precoPromo = Float.valueOf(stringPrecoPromo);

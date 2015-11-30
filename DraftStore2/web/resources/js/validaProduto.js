@@ -172,7 +172,11 @@ function validaQuantidade() {
 function validaCaminhoImg() {
     var regex = /\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]/i;
     var valorDoCampo = $("#imageCaminho").val();
-    if (!regex.test(valorDoCampo) || !tamanhoImagem()) {
+    if (!regex.test(valorDoCampo)) {
+        campoImagem.classList.add("has-error");
+        return false;
+    }
+    if (!tamanhoImagem(valorDoCampo)) {
         campoImagem.classList.add("has-error");
         return false;
     } else {
@@ -313,12 +317,12 @@ function validaDatas() {
 }
 
 
-function tamanhoImagem() {
-    var url = $("#imageCaminho").val();
+function tamanhoImagem(url) {
     var myImage = new Image();
     myImage.src = url;
-    var largura = parseInt(myImage.width);
-    var altura = parseInt(myImage.height);
+    var largura = myImage.width;
+    var altura = myImage.height;
+    console.log(largura + "*" + altura);
     if (largura < 500 || altura < 500) {
         alert("Largura e Altura deve ultrapassar dos 500px");
         return false;
