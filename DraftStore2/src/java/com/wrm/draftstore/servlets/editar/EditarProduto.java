@@ -8,14 +8,12 @@ package com.wrm.draftstore.servlets.editar;
 import com.wrm.draftstore.classes.Produto;
 import com.wrm.draftstore.classes.Usuario;
 import com.wrm.draftstore.database.ConexaoBDJavaDB;
-import com.wrm.draftstore.servlets.cadastro.CadastrarProduto;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -255,7 +253,7 @@ public class EditarProduto extends HttpServlet {
         String stringPrecoPromo = request.getParameter("precoPromo");
         String dataIni = request.getParameter("dataEventoIni");
         String dataFim = request.getParameter("dataEventoFim");
-        float precoVenda = 0f;
+        float precoVenda;
         float percentualLucro;
         float custo;
         float precoPromo;
@@ -269,12 +267,7 @@ public class EditarProduto extends HttpServlet {
         }
         dataEventoIni = java.sql.Date.valueOf(dataIni);
         dataEventoFim = java.sql.Date.valueOf(dataFim);
-        try {
-            precoVenda = (Long) NumberFormat.getIntegerInstance().parse(stringPrecoVenda.substring(3, stringPrecoVenda.length() - 3));
-        } catch (ParseException ex) {
-            Logger.getLogger(CadastrarProduto.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        precoVenda = Float.valueOf(stringPrecoVenda);
         precoPromo = Float.valueOf(stringPrecoPromo);
         percentualLucro = Float.valueOf(stringPercLucro);
         custo = Float.valueOf(stringCusto);

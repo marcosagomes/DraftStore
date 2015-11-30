@@ -8,7 +8,7 @@ percentLucro.addEventListener("input", atualizarPrevisto);
 
 function atualizarPrevisto() {
     var valor = parseFloat(custo.value) + parseFloat(custo.value) * parseFloat(percentLucro.value) / 100;
-    previsto.value = "R$ " + valor.toFixed(2);
+    previsto.value = valor.toFixed(2);
 }
 
 // ------------------------------------------------------------
