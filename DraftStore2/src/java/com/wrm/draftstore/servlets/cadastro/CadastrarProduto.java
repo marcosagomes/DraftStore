@@ -199,7 +199,6 @@ public class CadastrarProduto extends HttpServlet {
         java.sql.Date dataEventoIni;
 
         if (stringPrecoPromo.equals(" ") || dataIni.equals("") || dataFim.equals("")) {
-            stringPrecoPromo = "0.0";
             dataIni = "2000-01-01";
             dataFim = "2000-01-01";
         }
