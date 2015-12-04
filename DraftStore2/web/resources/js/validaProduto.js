@@ -176,10 +176,7 @@ function validaCaminhoImg() {
         campoImagem.classList.add("has-error");
         return false;
     }
-    if (!tamanhoImagem(valorDoCampo)) {
-        campoImagem.classList.add("has-error");
-        return false;
-    } else {
+    else {
         campoImagem.classList.remove("has-error");
         campoImagem.classList.add("has-success");
         return true;
